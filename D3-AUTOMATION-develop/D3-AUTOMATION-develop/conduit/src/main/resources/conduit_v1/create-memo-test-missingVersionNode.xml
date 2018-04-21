@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<conduitMemoPostRequest xmlns="http://lodosoftware.com/conduit/memo">
+	<authentication>
+		<username>userName</username>
+		<password>password</password>
+	</authentication>
+	<accountList>
+		<account directId="accountDirectID1-1">
+			<branchExternalId>ArnaTest-1</branchExternalId>
+			<balance>4200.00</balance>
+			<availableBalance>3900.99</availableBalance>
+			<transactionList>
+				 <transaction directId="DDA-CHECKING-123-201204201829326050">
+					<type>0</type>
+					<name>Long John Silver’s</name>
+					<memo>memo</memo>
+					<amount>8260.19</amount>
+					<principalAmount>12.45</principalAmount>
+					<interestAmount>75.12</interestAmount>
+					<postDate>2012-04-21</postDate>
+					<otherAmount>45.15</otherAmount>
+					<mcc>123</mcc>
+					<currencyCode>USD</currencyCode>
+					<pending>true</pending>
+					<runningBalance>9.99</runningBalance>
+					<originationDate>2012-04-21</originationDate>
+					<tranCode>99</tranCode>
+					<checkNum>999</checkNum>
+					 <imageId>1</imageId>
+					<postingSeq>14</postingSeq>
+				</transaction>
+			</transactionList>
+		</account>
+	</accountList> 
+</conduitMemoPostRequest>

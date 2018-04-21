@@ -1,0 +1,6 @@
+#!/bin/bash
+
+# usage: bash push_file_to_conduit <filepath>
+
+cat $1 | curl --data-binary "@-" https://ftbqa.d3vcloud.com/d3conduitapp/intraday
+

@@ -1,0 +1,106 @@
+<?xml version="1.0"?>
+<conduitUserRequest xmlns="http://lodosoftware.com/conduit/user">
+    <version>1.0</version>
+    <transactionDateRange>
+        <beginDate>2009-05-24</beginDate>
+        <endDate>2013-05-30</endDate>
+    </transactionDateRange> 
+    <userList>
+        <user directId="ArnaTestUser-1">
+            <loginId>TestUserLoginID1</loginId>
+            <branchExternalId>ArnaTest-1</branchExternalId>
+            <taxId>304-26-2460</taxId>
+            <taxIdType>SSN</taxIdType>
+            <locked>false</locked>
+            <userEnabled>false</userEnabled>
+            <emailOptOut>false</emailOptOut>
+            <dateOfBirth>1980-08-24</dateOfBirth>
+            <gender>F</gender>
+            <billpaySubscriberId>316492460304</billpaySubscriberId>
+            <creditScore>800</creditScore>
+            <creditScoreDate>2012-04-20</creditScoreDate>
+            <userClass>DOUBLE-PLATNUM</userClass>
+            <credentials>
+                <profileName>arnatest1</profileName>
+                <password>P@ssw0rd1</password>
+                <secretQuestion1>1Where do you work?</secretQuestion1>
+                <secretAnswer1>LodoSoftware</secretAnswer1>
+                <secretQuestion2>What do you like?</secretQuestion2>
+                <secretAnswer2>Flower</secretAnswer2>
+                <secretQuestion3>What color is your favorite?</secretQuestion3>
+                <secretAnswer3>blue</secretAnswer3>
+            </credentials>
+            <person>
+                <firstName>Arna</firstName>
+                <lastName>Badyelkhan</lastName>
+                <primaryEmail>abadyelkhan@lodosoftware.com</primaryEmail>
+                <homePhone>304-304-2460</homePhone>
+                <employee>false</employee>
+                <physicalAddress>
+                    <address1>9568 Missouri Ave</address1>
+                    <city>LOWELL</city>
+                    <state>AR</state>
+                    <countryCode>US</countryCode>
+                    <postalCode>72745-9551</postalCode>
+                </physicalAddress>
+            </person>
+        </user>
+
+    </userList>
+    <accountList>
+        <account directId="accountDirectID1-1">
+            <branchExternalId>ArnaTest-1</branchExternalId>
+			<accountProductExternalId>DEFAULT_COMPANY_CHECKING</accountProductExternalId>
+			<routingTransitNumber>TEST1</routingTransitNumber>
+            <accountName>AccountName1-1</accountName>
+            <accountNumber>9292f28e23f70e9a9a4ca03545489ff1</accountNumber>
+            <accountClass>accountclass.deposit</accountClass>
+            <accountType>accounttype.banking.checking</accountType>
+            <balance>-400.15</balance>
+            <transactionList>
+                <transaction directId="1268206987">
+                    <amount>20.14</amount>
+                    <name>84baa369a45e64d84435a0b1f2672e47</name>
+                    <postDate>2012-05-29</postDate>
+                    <type>0</type>
+                    <pending>false</pending>
+                    <memo>This is test!</memo>
+                    <mcc>5599</mcc>
+                    <postingSeq>0000001</postingSeq>   
+                </transaction>
+                <transaction directId="1266213429">
+                    <amount>+000000000001000.00</amount>
+                    <name>20d0a23dff267fb91207fbdff1773054</name>
+                    <postDate>2012-05-24</postDate>
+                    <type>0</type>
+                    <pending>false</pending>
+                    <memo></memo>
+                    <mcc>5599</mcc>
+                    <postingSeq>0000001</postingSeq>   
+                </transaction>
+                <transaction directId="1270244726">
+                    <amount>+000000000000007.30</amount>
+                    <name>b05aac3f2cc312ea492d643404e8d390</name>
+                    <postDate>2012-05-30</postDate>
+                    <type>0</type>
+                    <pending>false</pending>
+                    <memo>123456 79879</memo>
+                    <mcc>456464</mcc>
+                    <postingSeq>0000001</postingSeq>   
+                </transaction>
+            </transactionList>
+       </account>
+       <account directId="accountDirectID1-2">
+            <accountName>accountDirectID1-2</accountName>
+            <branchExternalId>ArnaTest-1</branchExternalId>
+			<accountProductExternalId>DEFAULT_COMPANY_CHECKING</accountProductExternalId>
+			<routingTransitNumber>TEST1</routingTransitNumber>
+            <accountNumber>Test</accountNumber>
+            <accountClass>accountclass.deposit</accountClass>
+            <accountType>accounttype.banking.checking</accountType>
+            <balance>-400.15</balance>
+            <transactionList>
+            </transactionList>
+        </account>
+    </accountList>
+</conduitUserRequest>

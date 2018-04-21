@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<conduitUserRequest xmlns="http://lodosoftware.com/conduit/user" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <version>1.0</version>
+    <requestId>requestId</requestId>
+    <authentication>
+        <username>userName</username>
+        <password>password</password>
+    </authentication>
+    <userList>
+        <user directId="ArnaTestUser-1" directId2="TestuserDirectID2">
+     		<userMigration>
+				<messageList>
+					<message>
+						<body>This is just a testing for conduit message1 migrations.</body>
+						<status>messagestatus.good</status>
+					</message>
+				</messageList>
+			</userMigration>
+        </user>
+    </userList>
+</conduitUserRequest>

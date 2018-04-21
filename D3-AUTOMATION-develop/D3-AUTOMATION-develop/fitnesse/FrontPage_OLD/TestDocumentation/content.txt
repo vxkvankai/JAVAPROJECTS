@@ -1,0 +1,9 @@
+!*****> !style_green[8. DOCUMENTATION]
+'''8.1 Documentation (returns rest api schema)'''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest/documentation/schema|
+|setHeader|!- appKey : -!${institutionNum}!- 
+Content-Type : application/json
+userToken : %encodedUserToken%-!|
+|GET||200|||
+****!

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<conduit>
+  <hdr>
+    <ver>2.0</ver>
+    <rqid>01234567890</rqid>
+    <authn u="user" p="password"/>
+    <txndtrng bdt="2013-09-01" edt="2013-09-30"/>
+    <parse>ftrue</parse>
+  </hdr>
+  <complst>
+    <comp uid="testCompany-1" puid="ROOT" del = "false">
+      <tp>processor</tp>
+      <busn>
+        <nm>Test Business Name &amp; 1</nm>
+        <ph>123456</ph>
+        <paddr>
+			<a1>1-1 Any Physical Street</a1>
+			<a2>1-2 Any Physical Street</a2>
+			<a3>1-3 Any Physical Street</a3>
+			<a4>1-4 Any Physical Street</a4>
+			<ct>Englewood</ct>
+			<st>CO</st>
+			<cc>US</cc>
+			<pc>80112</pc>
+			<ln>-94.20885579</ln>
+            <lt>36.37312619</lt>
+		</paddr>
+        <maddr>
+			<a1>1-5 Any Mailing Street</a1>
+			<a2>1-6 Any Mailing Street</a2>
+			<a3>1-7 Any Mailing Street</a3>
+			<a4>1-8 Any Mailing Street</a4>
+			<ct>Highlands Ranch</ct>
+			<st>CO</st>
+			<cc>US</cc>
+			<pc>80111</pc>
+			<ln>-95.20885579</ln>
+            <lt>35.37316219</lt>
+		</maddr>
+		<ct1>
+			<fn>TestFirstName1-1</fn>
+			<mn>TestMiddleName1-1</mn>
+			<ln>TestLastName1-1</ln>
+			<pem>PrimaryEmail1-1@d3banking.com</pem>
+			<aem>AlternateEmail1-1@d3banking.com</aem>
+			<hph>7204564545</hph>
+			<wph>720 678 4564</wph>
+			<mph>7894 456 1525</mph>
+			<emp>false</emp>
+		</ct1>
+		<ct2>
+			<fn>TestFirstName1-2</fn>
+			<mn>TestMiddleName1-2</mn>
+			<ln>TestLastName1-2</ln>
+			<pem>PrimaryEmail1-2@d3banking.com</pem>
+			<aem>AlternateEmail1-2@d3banking.com</aem>
+			<hph>7204564542</hph>
+			<wph>720 678 4562</wph>
+			<mph>7894 456 1522</mph>
+			<emp>true</emp>
+		</ct2>
+      </busn>
+      <acctprodlst>
+        <acctprod uid="testAccProductId1-1">
+          <ac>a</ac>
+          <nm>TestAccountProductName1-1</nm>
+          <alst>
+                <a	n = "ACHTransferFrom1-1" 	t = "boolean" 	d = "1">true</a>
+          </alst>  
+        </acctprod>
+      </acctprodlst>
+      <alst>
+      	<a n="TestProductAttribute1-1" t = "datetime"  d = "1">TestProductAttribute1-1</a>
+      </alst>
+    </comp>
+    <comp uid="testCompany-2" puid="testCompany-1" del = "f">
+      <tp>holding</tp>
+      <busn>
+        <nm>Test Business Name - 2</nm>
+      </busn>
+    </comp>
+    <comp uid="testCompany-3" puid="testCompany-1" del = "0">
+      <tp>institution</tp>
+      <busn>
+        <nm>Test Business Name - 3</nm>
+      </busn>
+    </comp>
+    <comp uid="testCompany-4" puid="testCompany-1" del = "false">
+      <tp>region</tp>
+      <busn>
+        <nm>Test Business Name - 4</nm>
+      </busn>
+    </comp>
+    <comp uid="testCompany-5" puid="testCompany-1" del = "false">
+      <tp>branch</tp>
+      <busn>
+        <nm>Test Business Name - 5</nm>
+      </busn>
+    </comp>
+    <comp uid="testCompany-6" puid="ROOT" del = "true">
+      <tp>processor</tp>
+      <busn>
+        <nm>Test Business Name - 6</nm>
+      </busn>
+    </comp>
+   </complst>
+</conduit>

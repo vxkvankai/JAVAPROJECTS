@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<conduit>
+  <hdr>
+    <ver>2.0</ver>
+    <rqid>01234567890</rqid>
+    <authn u="user" p="password"/>
+    <txndtrng bdt="2013-09-01" edt="2013-09-30"/>
+    <parse>ftrue</parse>
+  </hdr>
+
+  <acctlst>
+    <acct uid="acct-uid-001" cuid="com-uid-001">
+      <bal>7800.12</bal>
+    </acct>
+  </acctlst>
+</conduit>

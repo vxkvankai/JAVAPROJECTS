@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<conduit>
+  <hdr>
+    <ver>2.0</ver>
+    <rqid>01234567890</rqid>
+    <authn u="user" p="password"/>
+    <txndtrng bdt="2013-09-01" edt="2014-09-30"/>
+  </hdr>
+ 
+  <acctlst>
+    <acct uid="acct-uid-001" cuid="com-uid-001">
+      <txnlst >
+        <txn uid="txn-uid-001"
+        tp="d"
+        am="450.00"
+        pd="2013-12-01"
+        pn="0"
+        ps="55">
+          <nm>MACY'S</nm>
+          <mm del="true"/>
+        </txn>
+      </txnlst>
+    </acct>
+  </acctlst>
+</conduit>

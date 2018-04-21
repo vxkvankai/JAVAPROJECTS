@@ -1,0 +1,329 @@
+<?xml version="1.0"?>
+<conduitUserRequest xmlns="http://lodosoftware.com/conduit/user" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <version>1.0</version>
+    <authentication>
+        <username>userName</username>
+        <password>password</password>
+    </authentication>
+    <transactionDateRange>
+        <beginDate>2012-05-24</beginDate>
+        <endDate>2020-05-30</endDate>
+    </transactionDateRange>
+    <userList>
+        <user directId="SeleniumTestUser-1" directId2="SeleniumTestUser-2">
+            <loginId>SeleniumTestUser1</loginId>
+            <branchExternalId>ArnaTest-1</branchExternalId>
+            <interfaceId>9999</interfaceId>
+            <taxId>304-26-2460</taxId>
+            <taxIdType>SSN</taxIdType>
+            <locked>false</locked>
+            <userEnabled>true</userEnabled>
+            <emailOptOut>false</emailOptOut>
+            <dateOfBirth>1980-08-24</dateOfBirth>
+            <gender>F</gender>
+            <billpaySubscriberId>316492460304</billpaySubscriberId>
+            <billpayStatus>billpayStatus.active</billpayStatus>
+            <mobile>false</mobile>
+            <creditScore>800</creditScore>
+            <creditScoreDate>2012-04-20</creditScoreDate>
+            <userClass>DOUBLE-PLATNUM</userClass>
+            <credentials>
+                <profileName>SeleniumTestUser-1</profileName>
+                <password>P@ssw0rd1</password>
+                <secretQuestion1>Where do you work?</secretQuestion1>
+                <secretAnswer1>lodo</secretAnswer1>
+                <secretQuestion2>What do you like?</secretQuestion2>
+                <secretAnswer2>flower</secretAnswer2>
+                <secretQuestion3>What is your favorite color?</secretQuestion3>
+                <secretAnswer3>blue</secretAnswer3>
+            </credentials>
+            <person>
+                <firstName>Arna</firstName>
+                <middleName>middleName</middleName>
+                <lastName>Badyelkhan</lastName>
+                <primaryEmail>abadyelkhan@lodosoftware.com</primaryEmail>
+                <homePhone>304-304-2460</homePhone>
+                <employee>false</employee>
+                <alternateEmail>alternateEmail@lodosoftware.com</alternateEmail>
+                <workPhone>720-456-8585</workPhone>
+                <mobilePhone>3034567845</mobilePhone>
+                <physicalAddress>
+                    <address1>9568 Missouri Ave</address1>
+                    <address2>9568 Missouri Ave</address2>
+                    <address3>9568 Missouri Ave</address3>
+                    <address4>9568 Missouri Ave</address4>
+                    <city>LOWELL</city>
+                    <state>AR</state>
+                    <countryCode>US</countryCode>
+                    <postalCode>72745-9551</postalCode>
+                </physicalAddress>
+                <mailingAddress>
+					<address1>111 Any Street</address1>
+					<address2>Suite 101</address2>
+					 <address3>address3 line</address3>
+					<address4>address4 line</address4>
+					<city>AnyTown</city>
+					<state>CO</state>
+					<countryCode>US</countryCode>
+					<postalCode>80000</postalCode>
+				</mailingAddress>
+            </person>
+            <userAccountList>
+                <userAccount action="associate">
+                    <accountInterfaceId>accountInterfaceID1-1</accountInterfaceId>
+                    <nickname>External Account Nickname:creditcard</nickname>
+                    <excluded>false</excluded>
+                    <hidden>false</hidden>
+                    <hideByAdmin>false</hideByAdmin>
+                    <displayOrder>1</displayOrder>
+                </userAccount>
+                <userAccount action="associate">
+                    <accountInterfaceId>accountInterfaceID1-2</accountInterfaceId>
+                    <nickname>External Account Nickname:cd</nickname>
+                    <excluded>false</excluded>
+                    <hidden>false</hidden>
+                    <hideByAdmin>false</hideByAdmin>
+                    <displayOrder>1</displayOrder>
+                </userAccount>
+                <userAccount action="associate">
+                    <accountInterfaceId>accountInterfaceID1-3</accountInterfaceId>
+                    <nickname>External Account Nickname:checking</nickname>
+                    <excluded>false</excluded>
+                    <hidden>false</hidden>
+                    <hideByAdmin>false</hideByAdmin>
+                    <displayOrder>1</displayOrder>
+                </userAccount>
+                <userAccount action="associate">
+                    <accountInterfaceId>accountInterfaceID1-5</accountInterfaceId>
+                    <nickname>External Account Nickname:savings</nickname>
+                    <excluded>false</excluded>
+                    <hidden>false</hidden>
+                    <hideByAdmin>false</hideByAdmin>
+                    <displayOrder>1</displayOrder>
+                </userAccount>
+                <userAccount action="associate">
+                    <accountInterfaceId>accountInterfaceID1-6</accountInterfaceId>
+                    <nickname>External Account Nickname:lifeinsurance</nickname>
+                    <excluded>false</excluded>
+                    <hidden>false</hidden>
+                    <hideByAdmin>false</hideByAdmin>
+                    <displayOrder>1</displayOrder>
+                </userAccount>
+                <userAccount action="associate">
+                    <accountInterfaceId>accountInterfaceID1-20</accountInterfaceId>
+                    <nickname>External Account Nickname:loan</nickname>
+                    <excluded>false</excluded>
+                    <hidden>false</hidden>
+                    <hideByAdmin>false</hideByAdmin>
+                    <displayOrder>1</displayOrder>
+                </userAccount>
+            </userAccountList>
+        </user>
+    </userList>
+    <accountList>
+        <account interfaceId="accountInterfaceID1-1">
+            <accountName>External Account Name:accounttype.creditcard</accountName>
+            <externalInstitutionId>4</externalInstitutionId>
+            <accountProductExternalId>DEFAULT_COMPANY_CHECKING</accountProductExternalId>
+            <routingTransitNumber>ROUNTNUM</routingTransitNumber>
+            <accountNumber>1234 1234 1234 1234</accountNumber>
+            <accountClass>accountclass.creditcard</accountClass>
+            <accountType>accounttype.creditcard</accountType>
+            <balance>4500.15</balance>
+            <availableBalance>5400.85</availableBalance>
+            <rateOfReturn>0.15</rateOfReturn>
+            <interestRate>9.99</interestRate>
+            <accountOpenDate>2012-05-20</accountOpenDate>
+            <transactionList>
+                 <transaction interfaceId="01111231">
+                    <name>External_creditcard-1</name>
+                    <amount>20.14</amount>
+                    <type>1</type>
+                    <postDate>2013-03-17</postDate>
+                    <pending>true</pending>
+                    <postingSeq>1</postingSeq>
+                    <memo>This is just external transaction test memo.</memo>	                  
+                </transaction>
+                <transaction interfaceId="01121232">
+                    <name>External_creditcard-2</name>
+                    <amount>456.50</amount>
+                    <type>0</type>
+                    <postDate>2013-03-17</postDate>
+                    <pending>false</pending>
+                    <postingSeq>2</postingSeq>	
+                    <memo>This is just external transaction test memo.</memo>                  
+                </transaction>
+            </transactionList>
+        </account>
+        <account interfaceId="accountInterfaceID1-2">
+            <accountName>External Account Name:accounttype.banking.cd</accountName>
+            <routingTransitNumber>ROUNTNUM</routingTransitNumber>
+            <externalInstitutionId>4</externalInstitutionId>
+            <accountProductExternalId>DEFAULT_COMPANY_CHECKING</accountProductExternalId>
+            <accountNumber>1234 1234 1234 1234</accountNumber>
+            <accountClass>accountclass.deposit</accountClass>
+            <accountType>accounttype.banking.cd</accountType>
+            <balance>4510.15</balance>
+            <availableBalance>5410.85</availableBalance>
+            <rateOfReturn>0.15</rateOfReturn>
+            <interestRate>9.99</interestRate>
+            <accountOpenDate>2012-05-20</accountOpenDate>
+            <transactionList>
+                 <transaction interfaceId="021">
+                    <name>External_cd-1</name>
+                    <amount>47.77</amount>
+                    <type>1</type>
+                    <postDate>2013-03-17</postDate>
+                    <pending>true</pending>
+                    <postingSeq>1</postingSeq>
+                    <memo>This is just external transaction test memo.</memo>	                  
+                </transaction>
+                <transaction interfaceId="022">
+                    <name>External_cd-2</name>
+                    <amount>512.14</amount>
+                    <type>0</type>
+                    <postDate>2013-03-17</postDate>
+                    <pending>false</pending>
+                    <postingSeq>2</postingSeq>	
+                    <memo>This is just external transaction test memo.</memo>                  
+                </transaction>
+            </transactionList>
+        </account>
+        <account interfaceId="accountInterfaceID1-3">
+            <accountName>External Account Name:accounttype.banking.checking</accountName>
+            <routingTransitNumber>ROUNTNUM</routingTransitNumber>
+            <externalInstitutionId>4</externalInstitutionId>
+            <accountProductExternalId>DEFAULT_COMPANY_CHECKING</accountProductExternalId>
+            <accountNumber>1234 1234 1234 1234</accountNumber>
+            <accountClass>accountclass.deposit</accountClass>
+            <accountType>accounttype.banking.checking</accountType>
+            <balance>4520.15</balance>
+            <availableBalance>5420.85</availableBalance>
+            <rateOfReturn>0.15</rateOfReturn>
+            <interestRate>9.99</interestRate>
+            <accountOpenDate>2012-05-20</accountOpenDate>
+            <transactionList>
+                 <transaction interfaceId="031">
+                    <name>External_checking-1</name>
+                    <amount>47.77</amount>
+                    <type>1</type>
+                    <postDate>2013-03-17</postDate>
+                    <pending>true</pending>
+                    <postingSeq>1</postingSeq>
+                    <memo>This is just external transaction test memo.</memo>	                  
+                </transaction>
+                <transaction interfaceId="032">
+                    <name>External_checking-2</name>
+                    <amount>512.14</amount>
+                    <type>0</type>
+                    <postDate>2013-03-17</postDate>
+                    <pending>false</pending>
+                    <postingSeq>2</postingSeq>	
+                    <memo>This is just external transaction test memo.</memo>                  
+                </transaction>
+            </transactionList>
+        </account>
+        <account interfaceId="accountInterfaceID1-5">
+            <accountName>External Account Name:accounttype.banking.savings</accountName>
+            <routingTransitNumber>ROUNTNUM</routingTransitNumber>
+            <externalInstitutionId>4</externalInstitutionId>
+            <accountProductExternalId>DEFAULT_COMPANY_CHECKING</accountProductExternalId>
+            <accountNumber>1234 1234 1234 1234</accountNumber>
+            <accountClass>accountclass.deposit</accountClass>
+            <accountType>accounttype.banking.savings</accountType>
+            <balance>4540.15</balance>
+            <availableBalance>5440.85</availableBalance>
+            <rateOfReturn>0.15</rateOfReturn>
+            <interestRate>9.99</interestRate>
+            <accountOpenDate>2012-05-20</accountOpenDate>
+            <transactionList>
+                 <transaction interfaceId="051">
+                    <name>External_savings-1</name>
+                    <amount>47.77</amount>
+                    <type>1</type>
+                    <postDate>2013-03-17</postDate>
+                    <pending>true</pending>
+                    <postingSeq>1</postingSeq>
+                    <memo>This is just external transaction test memo.</memo>	                  
+                </transaction>
+                <transaction interfaceId="052">
+                    <name>External_savings-2</name>
+                    <amount>512.14</amount>
+                    <type>0</type>
+                    <postDate>2013-03-17</postDate>
+                    <pending>false</pending>
+                    <postingSeq>2</postingSeq>	
+                    <memo>This is just external transaction test memo.</memo>                  
+                </transaction>
+            </transactionList>
+        </account>
+        <account interfaceId="accountInterfaceID1-6">
+            <accountName>External Account Name:accounttype.lifeinsurance</accountName>
+            <routingTransitNumber>ROUNTNUM</routingTransitNumber>
+            <externalInstitutionId>4</externalInstitutionId>
+            <accountProductExternalId>DEFAULT_COMPANY_CHECKING</accountProductExternalId>
+            <accountNumber>1234 1234 1234 1234</accountNumber>
+            <accountClass>accountclass.insurance</accountClass>
+            <accountType>accounttype.lifeinsurance</accountType>
+            <balance>600.15</balance>
+            <availableBalance>600.85</availableBalance>
+            <rateOfReturn>0.15</rateOfReturn>
+            <interestRate>9.99</interestRate>
+            <accountOpenDate>2012-05-20</accountOpenDate>
+            <transactionList>
+                 <transaction interfaceId="061">
+                    <name>External_lifeinsurance-1</name>
+                    <amount>47.77</amount>
+                    <type>1</type>
+                    <postDate>2013-03-17</postDate>
+                    <pending>true</pending>
+                    <postingSeq>1</postingSeq>
+                    <memo>This is just external transaction test memo.</memo>	                  
+                </transaction>
+                <transaction interfaceId="062">
+                    <name>External_lifeinsurance-2</name>
+                    <amount>512.14</amount>
+                    <type>0</type>
+                    <postDate>2013-03-17</postDate>
+                    <pending>false</pending>
+                    <postingSeq>2</postingSeq>	
+                    <memo>This is just external transaction test memo.</memo>                  
+                </transaction>
+            </transactionList>
+        </account>
+        <account interfaceId="accountInterfaceID1-20">
+            <accountName>External Account Name:accounttype.loan</accountName>
+            <routingTransitNumber>ROUNTNUM</routingTransitNumber>
+            <externalInstitutionId>4</externalInstitutionId>
+            <accountProductExternalId>DEFAULT_COMPANY_CHECKING</accountProductExternalId>
+            <accountNumber>1234 1234 1234 1234</accountNumber>
+            <accountClass>accountclass.loan</accountClass>
+            <accountType>accounttype.loan</accountType>
+            <balance>2000.15</balance>
+            <availableBalance>2000.85</availableBalance>
+            <rateOfReturn>0.15</rateOfReturn>
+            <interestRate>9.99</interestRate>
+            <accountOpenDate>2012-05-20</accountOpenDate>
+            <transactionList>
+                 <transaction interfaceId="0201">
+                    <name>External_loan-1</name>
+                    <amount>47.77</amount>
+                    <type>1</type>
+                    <postDate>2013-03-17</postDate>
+                    <pending>true</pending>
+                    <postingSeq>1</postingSeq>
+                    <memo>This is just external transaction test memo.</memo>	                  
+                </transaction>
+                <transaction interfaceId="0456789202">
+                    <name>External_loan-2</name>
+                    <amount>512.14</amount>
+                    <type>0</type>
+                    <postDate>2013-03-17</postDate>
+                    <pending>false</pending>
+                    <postingSeq>2</postingSeq>	
+                    <memo>This is just external transaction test memo.</memo>                  
+                </transaction>
+            </transactionList>
+        </account>
+    </accountList>
+</conduitUserRequest>

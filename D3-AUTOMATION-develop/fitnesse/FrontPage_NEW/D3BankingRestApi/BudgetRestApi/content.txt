@@ -1,0 +1,47 @@
+!*****> '''!style_darkRed [BUDGETS]'''
+
+
+!****> !style_darkRed [1. GET  /budgets/{budgetId}/periods/{startDate}:{endDate}]
+****!
+
+
+!****> !style_darkRed [2. GET  /budgets]
+!****> 2.1
+
+!|Execute|!-update company_attribute set value = 'USER_NAME_PASSWORD[SECRET_QUESTION,TERMS_OF_SERVICE]' where name = 'consumer-authentication.adapter.challenge-flow'
+  and company_id = (select top 1 id from company where source_company_id = 'fi2')-!|
+!|DatabaseEnvironment|
+|commit|
+
+
+
+
+!|Execute|!-update company_attribute set value = 'USER_NAME,PASSWORD[SECRET_QUESTION,TERMS_OF_SERVICE]' where name = 'consumer-authentication.adapter.challenge-flow'
+  and company_id = (select top 1 id from company where source_company_id = 'fi2')-!|
+!|DatabaseEnvironment|
+|commit|
+
+****!
+
+****!
+
+!****> !style_darkRed[3. POST  /budgets]
+****!
+
+!****> !style_darkRed[4. POST  /budgets/{budgetId}/reset]
+****!
+
+!****> !style_darkRed[5. DELETE  /budgets/{budgetId}]
+****!
+
+!****> !style_darkRed[6. GET  /budgets/{budgetId}/periods/current]
+****!
+
+!****> !style_darkRed[7. GET  /budgets/periods/current]
+****!
+
+!****> !style_darkRed[8. GET  /budgets/{budgetId}/periods/current/categories/{budgetCategoryId}]
+****!
+
+
+*****!

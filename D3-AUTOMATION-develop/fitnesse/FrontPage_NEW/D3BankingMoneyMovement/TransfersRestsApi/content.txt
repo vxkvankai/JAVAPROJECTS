@@ -1,0 +1,2160 @@
+!*****> '''!style_darkRed[TRANSFER]'''
+
+!*****> !style_darkRed[1 POST]
+!*****> ''1.1 /transfers''
+
+''1.1.1 all field provided''
+
+!*****> ''EXECUTE PREREQUISITE REST APIs''
+
+!|Query|!-  select t1.id as UserAccIds, t2.account_name as accName from [user_account] as t1, [d3_account] as t2 
+            where t1.account_id=t2.id and t1.user_id = (select id from d3_user where login_id = '-!${userLoginId}!-') and t2.source_account_id like 'acct--!${userLoginId}!--0%'-! ORDER By t2.account_name|
+|UserAccIds?|accName?|
+|>>UserAccId1|>>accName1|
+|>>UserAccId2|>>accName2|
+|>>UserAccId3|>>accName3|
+|>>UserAccId4|>>accName4|
+|>>UserAccId5|>>accName5|
+|>>UserAccId6|>>accName6|
+|>>UserAccId7|>>accName7|
+|>>UserAccId8|>>accName8|
+|>>UserAccId9|>>accName9|
+|>>UserAccId10|>>accName10|
+|>>UserAccId11|>>accName11|
+|>>UserAccId12|>>accName12|
+|>>UserAccId13|>>accName13|
+|>>UserAccId14|>>accName14|
+|>>UserAccId15|>>accName15|
+|>>UserAccId16|>>accName16|
+|>>UserAccId17|>>accName17|
+|>>UserAccId18|>>accName18|
+|>>UserAccId19|>>accName19|
+|>>UserAccId20|>>accName20|
+|>>UserAccId21|>>accName21|
+|>>UserAccId22|>>accName22|
+|>>UserAccId23|>>accName23|
+|>>UserAccId24|>>accName24|
+|>>UserAccId25|>>accName25|
+|>>UserAccId26|>>accName26|
+|>>UserAccId27|>>accName27|
+|>>UserAccId28|>>accName28|
+
+!|Query|!-  select t1.id as UserAccIds from [user_account] as t1, [d3_account] as t2 
+            where t1.account_id=t2.id and t1.user_id = (select id from d3_user where login_id = '-!${userLoginId2}!-') and t2.source_account_id like 'acct--!${userLoginId}!--0%'-!|
+|UserAccIds?|
+|>>UserAccId29|
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest/recipients|
+|setHeader|!-Content-Type : application/json
+Cookie: sid=-!%cookie1%|
+|GET||200|||
+|let|$recipient1|js|!-response.jsonbody[0].id-!||
+|let||js|!-response.jsonbody[0].name-!||
+|let|$recipient2|js|!-response.jsonbody[1].id-!||
+|let||js|!-response.jsonbody[1].name-!||
+|let|$recipient3|js|!-response.jsonbody[2].id-!||
+|let||js|!-response.jsonbody[2].name-!||
+|let|$recipient4|js|!-response.jsonbody[3].id-!||
+|let||js|!-response.jsonbody[3].name-!||
+|let|$recipient5|js|!-response.jsonbody[4].id-!||
+|let||js|!-response.jsonbody[4].name-!||
+|let|$recipient6|js|!-response.jsonbody[5].id-!||
+|let||js|!-response.jsonbody[5].name-!||
+|let|$recipient7|js|!-response.jsonbody[6].id-!||
+|let||js|!-response.jsonbody[6].name-!||
+|let|$recipient8|js|!-response.jsonbody[7].id-!||
+|let||js|!-response.jsonbody[7].name-!||
+|let|$recipient9|js|!-response.jsonbody[8].id-!||
+|let||js|!-response.jsonbody[8].name-!||
+|let|$recipient10|js|!-response.jsonbody[9].id-!||
+|let||js|!-response.jsonbody[9].name-!||
+|let|$recipient11|js|!-response.jsonbody[10].id-!||
+|let||js|!-response.jsonbody[10].name-!||
+|let|$recipient12|js|!-response.jsonbody[11].id-!||
+|let||js|!-response.jsonbody[11].name-!||
+|let|$recipient13|js|!-response.jsonbody[12].id-!||
+|let||js|!-response.jsonbody[12].name-!||
+|let|$recipient14|js|!-response.jsonbody[13].id-!||
+|let||js|!-response.jsonbody[13].name-!||
+|let|$recipient15|js|!-response.jsonbody[14].id-!||
+|let||js|!-response.jsonbody[14].name-!||
+|let|$recipient16|js|!-response.jsonbody[15].id-!||
+|let||js|!-response.jsonbody[15].name-!||
+|let|$recipient17|js|!-response.jsonbody[16].id-!||
+|let||js|!-response.jsonbody[16].name-!||
+|let|$recipient18|js|!-response.jsonbody[17].id-!||
+|let||js|!-response.jsonbody[17].name-!||
+|let|$recipient19|js|!-response.jsonbody[18].id-!||
+|let||js|!-response.jsonbody[18].name-!||
+|let|$recipient20|js|!-response.jsonbody[19].id-!||
+|let||js|!-response.jsonbody[19].name-!||
+|let|$recipient21|js|!-response.jsonbody[20].id-!||
+|let||js|!-response.jsonbody[20].name-!||
+|let|$recipient22|js|!-response.jsonbody[21].id-!||
+|let||js|!-response.jsonbody[21].name-!||
+|let|$recipient23|js|!-response.jsonbody[22].id-!||
+|let||js|!-response.jsonbody[22].name-!||
+|let|$recipient24|js|!-response.jsonbody[23].id-!||
+|let||js|!-response.jsonbody[23].name-!||
+|let|$recipient25|js|!-response.jsonbody[24].id-!||
+|let||js|!-response.jsonbody[24].name-!||
+|let|$recipient26|js|!-response.jsonbody[25].id-!||
+|let||js|!-response.jsonbody[25].name-!||
+|let|$recipient27|js|!-response.jsonbody[26].id-!||
+|let||js|!-response.jsonbody[26].name-!||
+|let|$recipient28|js|!-response.jsonbody[27].id-!||
+|let||js|!-response.jsonbody[27].name-!||
+
+''Enroll user for Bill Payment''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest|
+|setHeader|!-Content-Type : application/json
+Cookie: sid=-!%cookie1%|
+|setBody|!-{
+    "phoneNumber": "4025554118", 
+    "email": "samuel.adamsiii@d3banking.com", 
+    "address": {
+        "street1": "11222 Lake Forest Dr", 
+        "street2": null, 
+        "city": "Denver", 
+        "state": "CO", 
+        "zip": "80247"
+    }, 
+    "userAccountId": "-!%UserAccId5%!-", 
+    "dateOfBirth": "1985-07-18", 
+    "taxId": "132454567"
+}-!|
+|POST|/users/current/billPayEnrollment|200|||
+
+''Create payment type of recipients''
+
+!|Query|!-select top 1 id as categoryId, category_name from [category] where company_id = 1-!|
+|categoryId?|category_name?|
+|>>categoryId1|>>categoryName1|
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest/recipients|
+|setHeader|!-Content-Type : application/json
+Cookie: sid=-!%cookie1%|
+|setBody|!-{
+    "type": "COMPANY", 
+    "merchantZipRequired": false, 
+    "name": "PayToName", 
+    "nickname": "FitTestCreatedCompanyNickName", 
+    "accountNumber": "123456789", 
+    "address": {
+        "street1": "123 Inverness St", 
+        "street2": "Suit 304", 
+        "city": "Denver", 
+        "state": "CO", 
+        "zip": "80112"
+    }, 
+    "phoneNumber": "3036666666", 
+    "category": {
+        "id": -!%categoryId1%!-
+    }
+}-!|
+|POST||200|||
+|let|$comRecipientId1|js|!-response.jsonbody.id-!||
+|setBody|!-{
+    "type": "PERSON", 
+    "firstName": "TestFirstName", 
+    "lastName": "TestLastName", 
+    "nickname": "FitTestCreatedPersonNickName", 
+    "address": {
+        "street1": "123 Inverness St", 
+        "street2": "Suite 305", 
+        "city": "Englewood", 
+        "state": "CO", 
+        "zip": "80112"
+    }, 
+    "email": "test@d3banking.com", 
+    "phoneNumber": "3034564564", 
+    "category": {
+       "id": -!%categoryId1%!-
+    }
+}-!|
+|POST||200|||
+|let|$personRecipientId1|js|!-response.jsonbody.id-!||
+****!
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest/transfers|
+|setHeader|!-Content-Type : application/json
+Cookie: sid=-!%cookie1%|
+|setBody|!-{
+    "recipient": {
+        "version": 0, 
+        "id": -!%recipient1%!-,
+        "deleted": false, 
+        "name": "fit_brokerage", 
+        "balance": 66666, 
+        "availableBalance": 55555, 
+        "type": "INTERNAL_ACCOUNT"
+    }, 
+    "fromAccount": {
+        "id": -!%UserAccId2%!-
+    }, 
+    "transferType": "TRANSFER", 
+    "scheduledDate": "-!%todayDate%!-", 
+    "amount": "15.25", 
+    "note": "This is created by fit test!"
+}
+-!|
+|POST||200|||
+|let||js|!-response.jsonbody.transferType-!|TRANSFER|
+|let||js|!-response.jsonbody.version-!||
+|let||js|!-response.jsonbody.createdTimestamp-!||
+|let||js|!-response.jsonbody.updatedTimestamp-!||
+|let|$transferId1|js|!-response.jsonbody.id-!||
+|let||js|!-response.jsonbody.amount-!|15.25|
+|let||js|!-response.jsonbody.fromAccount.version-!||
+|let||js|!-response.jsonbody.fromAccount.createdTimestamp-!||
+|let||js|!-response.jsonbody.fromAccount.updatedTimestamp-!||
+|let||js|!-response.jsonbody.fromAccount.id-!|%UserAccId2%|
+|let||js|!-response.jsonbody.fromAccount.deleted-!|false|
+|let||js|!-response.jsonbody.fromAccount.account.version-!||
+|let||js|!-response.jsonbody.fromAccount.account.createdTimestamp-!||
+|let||js|!-response.jsonbody.fromAccount.account.updatedTimestamp-!||
+|let||js|!-response.jsonbody.fromAccount.account.id-!||
+|let||js|!-response.jsonbody.fromAccount.account.deleted-!|false|
+|let||js|!-response.jsonbody.fromAccount.account.accountProduct.id-!||
+|let||js|!-response.jsonbody.fromAccount.account.accountType-!|BROKERAGE|
+|let||js|!-response.jsonbody.fromAccount.account.accountStatus-!|CLOSED|
+|let||js|!-response.jsonbody.fromAccount.account.source-!|INTERNAL|
+|let||js|!-response.jsonbody.fromAccount.account.sourceId-!||
+|let||js|!-response.jsonbody.fromAccount.account.sourceAccountId-!||
+|let||js|!-response.jsonbody.fromAccount.account.accountName-!|BROKERAGE|
+|let||js|!-response.jsonbody.fromAccount.account.accountNumber-!|XXXXXXXXXXXXXXX1112|
+|let||js|!-response.jsonbody.fromAccount.account.routingTransitNumber-!|000000009|
+|let||js|!-response.jsonbody.fromAccount.account.balance-!||
+|let||js|!-response.jsonbody.fromAccount.account.syncTimestamp-!||
+|let||js|!-response.jsonbody.fromAccount.account.availableBalance-!||
+|let||js|!-response.jsonbody.fromAccount.account.currencyCode-!|USD|
+|let||js|!-response.jsonbody.fromAccount.account.accountOpenDate-!|2013-01-01|
+|let||js|!-response.jsonbody.fromAccount.account.accountClosedDate-!|2015-01-01|
+|let||js|!-response.jsonbody.fromAccount.account.accountAttributes-!||
+|let||js|!-response.jsonbody.fromAccount.account.external-!|false|
+|let||js|!-response.jsonbody.fromAccount.account.offline-!|false|
+|let||js|!-response.jsonbody.fromAccount.account.estatements-!|true|
+|let||js|!-response.jsonbody.fromAccount.account.accountingClass-!|ASSET|
+|let||js|!-response.jsonbody.fromAccount.account.internal-!|true|
+|let||js|!-response.jsonbody.fromAccount.account.accountClass-!|INVESTMENT|
+|let||js|!-response.jsonbody.fromAccount.billPayActive-!|false|
+|let||js|!-response.jsonbody.fromAccount.associated-!|true|
+|let||js|!-response.jsonbody.fromAccount.nickname-!|BROKERAGE|
+|let||js|!-response.jsonbody.fromAccount.excluded-!|false|
+|let||js|!-response.jsonbody.fromAccount.hidden-!|false|
+|let||js|!-response.jsonbody.fromAccount.alertUserAlerts-!||
+|let||js|!-response.jsonbody.fromAccount.financialGoalAccounts-!||
+|let||js|!-response.jsonbody.fromAccount.preferredAccount-!|false|
+|let||js|!-response.jsonbody.scheduledDate-!|%todayDate%|
+|let||js|!-response.jsonbody.note-!|This is created by fit test!|
+|let||js|!-response.jsonbody.recipient.type-!|INTERNAL_ACCOUNT|
+|let||js|!-response.jsonbody.recipient.version-!||
+|let||js|!-response.jsonbody.recipient.createdTimestamp-!||
+|let||js|!-response.jsonbody.recipient.updatedTimestamp-!||
+|let||js|!-response.jsonbody.recipient.id-!|%recipient1%|
+|let||js|!-response.jsonbody.recipient.deleted-!|false|
+|let||js|!-response.jsonbody.recipient.name-!|checking|
+|let||js|!-response.jsonbody.recipient.balance-!||
+|let||js|!-response.jsonbody.recipient.availableBalance-!||
+|let||js|!-response.jsonbody.status-!|||
+|setBody|!-{
+    "recipient": {
+        "version": 0, 
+        "id": -!%recipient1%!-,
+        "deleted": false, 
+        "name": "fit_brokerage", 
+        "balance": 66666, 
+        "availableBalance": 55555, 
+        "type": "INTERNAL_ACCOUNT"
+    }, 
+    "fromAccount": {
+        "id": -!%UserAccId3%!-
+    }, 
+    "transferType": "TRANSFER", 
+    "scheduledDate": "%todayDate%",  
+    "amount": "200", 
+    "note": "This is created by fit test (a year ago)!"
+}
+-!|
+|POST||200|||
+|let|$transferId2|js|!-response.jsonbody.id-!||
+|setBody|!-{
+    "recipient": {
+        "version": 0, 
+        "id": -!%recipient1%!-,
+        "deleted": false, 
+        "name": "fit_brokerage", 
+        "balance": 66666, 
+        "availableBalance": 55555, 
+        "type": "INTERNAL_ACCOUNT"
+    }, 
+    "fromAccount": {
+        "id": -!%UserAccId4%!-
+    }, 
+    "transferType": "TRANSFER", 
+    "scheduledDate": "%todayDate%",  
+    "amount": "300", 
+    "note": "This is created by fit test (2 years ago)!"
+}
+-!|
+|POST||200|||
+|let|$transferId3|js|!-response.jsonbody.id-!||
+|setBody|!-{
+    "recipient": {
+        "version": 0, 
+        "id": -!%recipient1%!-,
+        "deleted": false, 
+        "name": "fit_brokerage", 
+        "balance": 66666, 
+        "availableBalance": 55555, 
+        "type": "INTERNAL_ACCOUNT"
+    }, 
+    "fromAccount": {
+        "id": -!%UserAccId28%!-
+    }, 
+    "transferType": "TRANSFER", 
+    "scheduledDate": "%todayDate%",  
+    "amount": "400", 
+    "note": "This is created by fit test (3 years ago)!"
+}
+-!|
+|POST||200|||
+|let|$transferId4|js|!-response.jsonbody.id-!||
+|setBody|!-{
+    "recipient": {
+        "version": 0, 
+        "id": -!%recipient1%!-,
+        "deleted": false, 
+        "name": "fit_brokerage", 
+        "balance": 66666, 
+        "availableBalance": 55555, 
+        "type": "INTERNAL_ACCOUNT"
+    }, 
+    "fromAccount": {
+        "id": -!%UserAccId6%!-
+    }, 
+    "transferType": "TRANSFER", 
+    "scheduledDate": "-!%nextYear%!-",  
+    "amount": "500", 
+    "note": "This is created by fit test (next year)!"
+}
+-!|
+|POST||200|||
+|let|$transferId5|js|!-response.jsonbody.id-!||
+|setBody|!-{
+    "recipient": { 
+        "id": -!%recipient1%!-, 
+        "type": "INTERNAL_ACCOUNT"
+    }, 
+    "fromAccount": {
+        "id": -!%UserAccId7%!-
+    }, 
+    "transferType": "TRANSFER", 
+    "scheduledDate": "-!%twoNextYear%!-",  
+    "amount": "600", 
+    "note": "This is created by fit test (next 2 years)!"
+}
+-!|
+|POST||200|||
+|let|$transferId6|js|!-response.jsonbody.id-!||
+|setBody|!-{
+    "recipient": { 
+        "id": -!%recipient1%!-, 
+        "type": "INTERNAL_ACCOUNT"
+    }, 
+    "fromAccount": {
+        "id": -!%UserAccId8%!-
+    }, 
+    "transferType": "TRANSFER", 
+    "scheduledDate": "-!%twoNextYear%!-",  
+    "amount": "700", 
+    "note": "This is created by fit test (will be cancelled)!"
+}
+-!|
+|POST||200|||
+|let|$transferId7|js|!-response.jsonbody.id-!||
+|setBody|!-{
+    "recipient": {
+        "version": 0, 
+        "id": -!%recipient1%!-,
+        "deleted": false, 
+        "name": "fit_brokerage", 
+        "balance": 456.14, 
+        "availableBalance": 780.00, 
+        "type": "INTERNAL_ACCOUNT"
+    }, 
+    "fromAccount": {
+        "id": -!%UserAccId9%!-
+    }, 
+    "transferType": "TRANSFER", 
+    "scheduledDate": "%todayDate%",  
+    "amount": "800", 
+    "note": "This is created by fit test (today)!"
+}
+-!|
+|POST||200|||
+|let|$transferId8|js|!-response.jsonbody.id-!||
+|setBody|!-{
+    "recipient": {
+        "version": 0, 
+        "id": -!%recipient1%!-,
+        "deleted": false, 
+        "name": "fit_brokerage", 
+        "balance": 456.14, 
+        "availableBalance": 780.00, 
+        "type": "INTERNAL_ACCOUNT"
+    }, 
+    "fromAccount": {
+        "id": -!%UserAccId10%!-
+    }, 
+    "transferType": "TRANSFER", 
+    "scheduledDate": "%todayDate%",  
+    "amount": "900", 
+    "note": "This is created by fit test (today)!"
+}
+-!|
+|POST||200|||
+|let|$transferId9|js|!-response.jsonbody.id-!||
+|setBody|!-{
+    "recipient": {
+        "version": 0, 
+        "id": -!%recipient1%!-,
+        "deleted": false, 
+        "name": "fit_brokerage", 
+        "balance": 456.14, 
+        "availableBalance": 780.00, 
+        "type": "INTERNAL_ACCOUNT"
+    }, 
+    "fromAccount": {
+        "id": -!%UserAccId11%!-
+    }, 
+    "transferType": "TRANSFER", 
+    "scheduledDate": "%todayDate%",  
+    "amount": "1000", 
+    "note": "This is created by fit test (today)!"
+}
+-!|
+|POST||200|||
+|let|$transferId10|js|!-response.jsonbody.id-!||
+|setBody|!-{
+    "recipient": {
+        "version": 0, 
+        "id": -!%recipient1%!-,
+        "deleted": false, 
+        "name": "fit_brokerage", 
+        "balance": 456.14, 
+        "availableBalance": 780.00, 
+        "type": "INTERNAL_ACCOUNT"
+    }, 
+    "fromAccount": {
+        "id": -!%UserAccId12%!-
+    }, 
+    "transferType": "TRANSFER", 
+    "scheduledDate": "%todayDate%",  
+    "amount": "1100", 
+    "note": "This is created by fit test (today)!"
+}
+-!|
+|POST||200|||
+|let|$transferId11|js|!-response.jsonbody.id-!||
+|setBody|!-{
+    "recipient": {
+        "version": 0, 
+        "id": -!%recipient1%!-,
+        "deleted": false, 
+        "name": "fit_brokerage", 
+        "balance": 456.14, 
+        "availableBalance": 780.00, 
+        "type": "INTERNAL_ACCOUNT"
+    }, 
+    "fromAccount": {
+        "id": -!%UserAccId13%!-
+    }, 
+    "transferType": "TRANSFER", 
+    "scheduledDate": "%todayDate%",  
+    "amount": "1200", 
+    "note": "This is created by fit test (today)!"
+}
+-!|
+|POST||200|||
+|let|$transferId12|js|!-response.jsonbody.id-!||
+|setBody|!-{
+    "recipient": {
+        "version": 0, 
+        "id": -!%recipient1%!-,
+        "deleted": false, 
+        "name": "fit_brokerage", 
+        "balance": 456.14, 
+        "availableBalance": 780.00, 
+        "type": "INTERNAL_ACCOUNT"
+    }, 
+    "fromAccount": {
+        "id": -!%UserAccId14%!-
+    }, 
+    "transferType": "TRANSFER", 
+    "scheduledDate": "%todayDate%",  
+    "amount": "1300", 
+    "note": "This is created by fit test (today)!"
+}
+-!|
+|POST||200|||
+|let|$transferId13|js|!-response.jsonbody.id-!||
+|setBody|!-{
+    "recipient": {
+        "version": 0, 
+        "id": -!%recipient1%!-,
+        "deleted": false, 
+        "name": "fit_brokerage", 
+        "balance": 456.14, 
+        "availableBalance": 780.00, 
+        "type": "INTERNAL_ACCOUNT"
+    }, 
+    "fromAccount": {
+        "id": -!%UserAccId14%!-
+    }, 
+    "transferType": "TRANSFER", 
+    "scheduledDate": "%todayDate%",  
+    "amount": "1400", 
+    "note": "This is created by fit test (today)!"
+}
+-!|
+|POST||200|||
+|let|$transferId13|js|!-response.jsonbody.id-!||
+|setBody|!-{
+    "recipient": {
+        "version": 0, 
+        "id": -!%recipient1%!-,
+        "deleted": false, 
+        "name": "fit_brokerage", 
+        "balance": 456.14, 
+        "availableBalance": 780.00, 
+        "type": "INTERNAL_ACCOUNT"
+    }, 
+    "fromAccount": {
+        "id": -!%UserAccId15%!-
+    }, 
+    "transferType": "TRANSFER", 
+    "scheduledDate": "%todayDate%",  
+    "amount": "1500", 
+    "note": "This is created by fit test (today)!"
+}
+-!|
+|POST||200|||
+|let|$transferId14|js|!-response.jsonbody.id-!||
+|setBody|!-{
+    "recipient": {
+        "version": 0, 
+        "id": -!%recipient1%!-,
+        "deleted": false, 
+        "name": "fit_brokerage", 
+        "balance": 456.14, 
+        "availableBalance": 780.00, 
+        "type": "INTERNAL_ACCOUNT"
+    }, 
+    "fromAccount": {
+        "id": -!%UserAccId16%!-
+    }, 
+    "transferType": "TRANSFER", 
+    "scheduledDate": "%todayDate%",  
+    "amount": "1600", 
+    "note": "This is created by fit test (today)!"
+}
+-!|
+|POST||200|||
+|let|$transferId15|js|!-response.jsonbody.id-!||
+|setBody|!-{
+    "recipient": {
+        "version": 0, 
+        "id": -!%recipient1%!-,
+        "deleted": false, 
+        "name": "fit_brokerage", 
+        "balance": 456.14, 
+        "availableBalance": 780.00, 
+        "type": "INTERNAL_ACCOUNT"
+    }, 
+    "fromAccount": {
+        "id": -!%UserAccId17%!-
+    }, 
+    "transferType": "TRANSFER", 
+    "scheduledDate": "%todayDate%",  
+    "amount": "1700", 
+    "note": "This is created by fit test (today)!"
+}
+-!|
+|POST||200|||
+|let|$transferId16|js|!-response.jsonbody.id-!||
+|setBody|!-{
+    "recipient": {
+        "version": 0, 
+        "id": -!%recipient1%!-,
+        "deleted": false, 
+        "name": "fit_brokerage", 
+        "balance": 456.14, 
+        "availableBalance": 780.00, 
+        "type": "INTERNAL_ACCOUNT"
+    }, 
+    "fromAccount": {
+        "id": -!%UserAccId18%!-
+    }, 
+    "transferType": "TRANSFER", 
+    "scheduledDate": "%todayDate%",  
+    "amount": "1800", 
+    "note": "This is created by fit test (today)!"
+}
+-!|
+|POST||200|||
+|let|$transferId17|js|!-response.jsonbody.id-!||
+|setBody|!-{
+    "recipient": {
+        "version": 0, 
+        "id": -!%recipient1%!-,
+        "deleted": false, 
+        "name": "fit_brokerage", 
+        "balance": 456.14, 
+        "availableBalance": 780.00, 
+        "type": "INTERNAL_ACCOUNT"
+    }, 
+    "fromAccount": {
+        "id": -!%UserAccId19%!-
+    }, 
+    "transferType": "TRANSFER", 
+    "scheduledDate": "%todayDate%",  
+    "amount": "1900", 
+    "note": "This is created by fit test (today)!"
+}
+-!|
+|POST||200|||
+|let|$transferId18|js|!-response.jsonbody.id-!||
+|setBody|!-{
+    "recipient": {
+        "version": 0, 
+        "id": -!%recipient1%!-,
+        "deleted": false, 
+        "name": "fit_brokerage", 
+        "balance": 456.14, 
+        "availableBalance": 780.00, 
+        "type": "INTERNAL_ACCOUNT"
+    }, 
+    "fromAccount": {
+        "id": -!%UserAccId20%!-
+    }, 
+    "transferType": "TRANSFER", 
+    "scheduledDate": "%todayDate%",  
+    "amount": "2000", 
+    "note": "This is created by fit test (today)!"
+}
+-!|
+|POST||200|||
+|let|$transferId19|js|!-response.jsonbody.id-!||
+|setBody|!-{
+    "recipient": {
+        "version": 0, 
+        "id": -!%recipient1%!-,
+        "deleted": false, 
+        "name": "fit_brokerage", 
+        "balance": 456.14, 
+        "availableBalance": 780.00, 
+        "type": "INTERNAL_ACCOUNT"
+    }, 
+    "fromAccount": {
+        "id": -!%UserAccId21%!-
+    }, 
+    "transferType": "TRANSFER", 
+    "scheduledDate": "%todayDate%",  
+    "amount": "2100", 
+    "note": "This is created by fit test (today)!"
+}
+-!|
+|POST||200|||
+|let|$transferId20|js|!-response.jsonbody.id-!||
+|setBody|!-{
+    "recipient": {
+        "version": 0, 
+        "id": -!%recipient1%!-,
+        "deleted": false, 
+        "name": "fit_brokerage", 
+        "balance": 456.14, 
+        "availableBalance": 780.00, 
+        "type": "INTERNAL_ACCOUNT"
+    }, 
+    "fromAccount": {
+        "id": -!%UserAccId22%!-
+    }, 
+    "transferType": "TRANSFER", 
+    "scheduledDate": "%todayDate%",  
+    "amount": "2200", 
+    "note": "This is created by fit test (today)!"
+}
+-!|
+|POST||200|||
+|let|$transferId21|js|!-response.jsonbody.id-!||
+|setBody|!-{
+    "recipient": {
+        "version": 0, 
+        "id": -!%recipient1%!-,
+        "deleted": false, 
+        "name": "fit_brokerage", 
+        "balance": 456.14, 
+        "availableBalance": 780.00, 
+        "type": "INTERNAL_ACCOUNT"
+    }, 
+    "fromAccount": {
+        "id": -!%UserAccId23%!-
+    }, 
+    "transferType": "TRANSFER", 
+    "scheduledDate": "%todayDate%",  
+    "amount": "2300", 
+    "note": "This is created by fit test (today)!"
+}
+-!|
+|POST||200|||
+|let|$transferId22|js|!-response.jsonbody.id-!||
+|setBody|!-{
+    "recipient": {
+        "version": 0, 
+        "id": -!%recipient1%!-,
+        "deleted": false, 
+        "name": "fit_brokerage", 
+        "balance": 456.14, 
+        "availableBalance": 780.00, 
+        "type": "INTERNAL_ACCOUNT"
+    }, 
+    "fromAccount": {
+        "id": -!%UserAccId24%!-
+    }, 
+    "transferType": "TRANSFER", 
+    "scheduledDate": "%todayDate%",  
+    "amount": "2400", 
+    "note": "This is created by fit test (today)!"
+}
+-!|
+|POST||200|||
+|let|$transferId23|js|!-response.jsonbody.id-!||
+|setBody|!-{
+    "recipient": {
+        "version": 0, 
+        "id": -!%recipient1%!-,
+        "deleted": false, 
+        "name": "fit_brokerage", 
+        "balance": 456.14, 
+        "availableBalance": 780.00, 
+        "type": "INTERNAL_ACCOUNT"
+    }, 
+    "fromAccount": {
+        "id": -!%UserAccId25%!-
+    }, 
+    "transferType": "TRANSFER", 
+    "scheduledDate": "%todayDate%",  
+    "amount": "2500", 
+    "note": "This is created by fit test (today)!"
+}
+-!|
+|POST||200|||
+|let|$transferId24|js|!-response.jsonbody.id-!||
+|setBody|!-{
+    "recipient": {
+        "version": 0, 
+        "id": -!%recipient1%!-,
+        "deleted": false, 
+        "name": "fit_brokerage", 
+        "balance": 456.14, 
+        "availableBalance": 780.00, 
+        "type": "INTERNAL_ACCOUNT"
+    }, 
+    "fromAccount": {
+        "id": -!%UserAccId26%!-
+    }, 
+    "transferType": "TRANSFER", 
+    "scheduledDate": "%todayDate%",  
+    "amount": "2600", 
+    "note": "This is created by fit test (today)!"
+}
+-!|
+|POST||200|||
+|let|$transferId25|js|!-response.jsonbody.id-!||
+|setBody|!-{
+    "recipient": {
+        "version": 0, 
+        "id": -!%recipient1%!-,
+        "deleted": false, 
+        "name": "fit_brokerage", 
+        "balance": 456.14, 
+        "availableBalance": 780.00, 
+        "type": "INTERNAL_ACCOUNT"
+    }, 
+    "fromAccount": {
+        "id": -!%UserAccId27%!-
+    }, 
+    "transferType": "TRANSFER", 
+    "scheduledDate": "%todayDate%",  
+    "amount": "2700", 
+    "note": "This is created by fit test (today)!"
+}
+-!|
+|POST||200|||
+|let|$transferId26|js|!-response.jsonbody.id-!||
+
+''1.1.2 transferId provided''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest/transfers|
+|setHeader|!-Content-Type : application/json
+Cookie: sid=-!%cookie1%|
+|setBody|!-{
+    "id": 12,
+    "recipient": {
+        "version": 0, 
+        "id": -!%recipient1%!-,
+        "deleted": false, 
+        "name": "fit_brokerage", 
+        "balance": 66666, 
+        "availableBalance": 55555, 
+        "type": "INTERNAL_ACCOUNT"
+    }, 
+    "fromAccount": {
+        "id": -!%UserAccId2%!-
+    }, 
+    "transferType": "TRANSFER", 
+    "scheduledDate": "2015-12-12", 
+    "amount": "15.25", 
+    "note": "This is created by fit test!"
+}
+-!|
+|POST||400|||
+|let|$errMsg|js|response.jsonbody.message||
+
+!|com.lodosoftware.fitnesse.fixtures.LodoSoftFitFixtures|
+|symbolName|str|isContain?|
+|errMsg|!-ErrorCode: 200001 - Argument transfer-new is invalid.-!|true|
+
+''1.1.3 transferType is other than PAYMENT and TRANSFER values''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest/transfers|
+|setHeader|!-Content-Type : application/json
+Cookie: sid=-!%cookie1%|
+|setBody|!-{
+    "recipient": {
+        "version": 0, 
+        "deleted": false, 
+        "name": "fit_brokerage", 
+        "balance": 66666, 
+        "availableBalance": 55555, 
+        "type": "INTERNAL_ACCOUNT"
+    }, 
+    "fromAccount": {
+        "id": -!%UserAccId1%!-
+    }, 
+    "transferType": "something", 
+    "scheduledDate": "2015-12-12", 
+    "amount": "15.25", 
+    "note": "This is created by fit test!"
+}
+-!|
+|POST||400|||
+|let|$errMsg|js|response.jsonbody.message||
+
+!|com.lodosoftware.fitnesse.fixtures.LodoSoftFitFixtures|
+|symbolName|str|isContain?|
+|errMsg|!-Could not read JSON: Could not resolve type id 'something' into a subtype of-!|true|
+|comment|DDB-1278|
+
+''1.1.4 recipient omitted''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest/transfers|
+|setHeader|!-Content-Type : application/json
+Cookie: sid=-!%cookie1%|
+|setBody|!-{ 
+    "fromAccount": {
+        "id": -!%UserAccId1%!-
+    }, 
+    "transferType": "TRANSFER", 
+    "scheduledDate": "2015-12-12", 
+    "amount": "15.25", 
+    "note": "This is created by fit test!"
+}
+-!|
+|POST||500|||
+|comment|DDB-1285|
+
+''1.1.5 recipientId omitted''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest/transfers|
+|setHeader|!-Content-Type : application/json
+Cookie: sid=-!%cookie1%|
+|setBody|!-{
+    "recipient": {
+        "version": 0, 
+        "deleted": false, 
+        "name": "fit_brokerage", 
+        "balance": 66666, 
+        "availableBalance": 55555, 
+        "type": "INTERNAL_ACCOUNT"
+    }, 
+    "fromAccount": {
+        "id": -!%UserAccId1%!-
+    }, 
+    "transferType": "TRANSFER", 
+    "scheduledDate": "2015-12-12", 
+    "amount": "15.25", 
+    "note": "This is created by fit test!"
+}
+-!|
+|POST||400|||
+|let|$errMsg|js|response.jsonbody.message||
+
+!|com.lodosoftware.fitnesse.fixtures.LodoSoftFitFixtures|
+|symbolName|str|isContain?|
+|errMsg|!-Input validation exception-!|true|
+
+''1.1.6 invalid recipientId''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest/transfers|
+|setHeader|!-Content-Type : application/json
+Cookie: sid=-!%cookie1%|
+|setBody|!-{
+    "recipient": {
+        "version": 0, 
+        "id": -!%recipient2%123!-,
+        "deleted": false, 
+        "name": "fit_brokerage", 
+        "balance": 66666, 
+        "availableBalance": 55555, 
+        "type": "INTERNAL_ACCOUNT"
+    }, 
+    "fromAccount": {
+        "id": -!%UserAccId1%!-
+    }, 
+    "transferType": "TRANSFER", 
+    "scheduledDate": "2015-12-12", 
+    "amount": "15.25", 
+    "note": "This is created by fit test!"
+}
+-!|
+|POST||400|||
+|let|$errMsg|js|response.jsonbody.message||
+
+!|com.lodosoftware.fitnesse.fixtures.LodoSoftFitFixtures|
+|symbolName|str|isContain?|
+|errMsg|!-ErrorCode: 200002 - Argument recipient-!|true|
+
+''1.1.7 recipient type omitted''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest/transfers|
+|setHeader|!-Content-Type : application/json
+Cookie: sid=-!%cookie1%|
+|setBody|!-{
+    "recipient": {
+        "id": -!%recipient1%!-
+    }, 
+    "fromAccount": {
+        "id": -!%UserAccId2%!-
+    }, 
+    "transferType": "TRANSFER", 
+    "scheduledDate": "2015-12-12", 
+    "amount": "15.25", 
+    "note": "This is created by fit test!"
+}
+-!|
+|POST||400|||
+|let|$errMsg|js|response.jsonbody.message||
+
+!|com.lodosoftware.fitnesse.fixtures.LodoSoftFitFixtures|
+|symbolName|str|isContain?|
+|errMsg|!-expected FIELD_NAME: missing property 'type'-!|true|
+
+''1.1.8 invalid userAccountId''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest/transfers|
+|setHeader|!-Content-Type : application/json
+Cookie: sid=-!%cookie1%|
+|setBody|!-{
+    "recipient": {
+        "id": -!%recipient1%!-,
+        "type": "INTERNAL_ACCOUNT"
+    }, 
+    "fromAccount": {
+        "id": -!%UserAccId1%123!-
+    }, 
+    "transferType": "TRANSFER", 
+    "scheduledDate": "2015-12-12", 
+    "amount": "15.25", 
+    "note": "This is created by fit test!"
+}
+-!|
+|POST||400|||
+|let|$errMsg|js|response.jsonbody.message||
+
+!|com.lodosoftware.fitnesse.fixtures.LodoSoftFitFixtures|
+|symbolName|str|isContain?|
+|errMsg|!-ErrorCode: 200204 - Account does not belong to user.-!|true|
+
+''1.1.9 transferType omitted''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest/transfers|
+|setHeader|!-Content-Type : application/json
+Cookie: sid=-!%cookie1%|
+|setBody|!-{
+    "recipient": {
+        "id": -!%recipient1%!-,
+        "type": "INTERNAL_ACCOUNT"
+    }, 
+    "fromAccount": {
+        "id": -!%UserAccId2%!-
+    }, 
+    "scheduledDate": "2015-12-12", 
+    "amount": "15.25", 
+    "note": "This is created by fit test!"
+}
+-!|
+|POST||400|||
+|let|$errMsg|js|response.jsonbody.message||
+
+!|com.lodosoftware.fitnesse.fixtures.LodoSoftFitFixtures|
+|symbolName|str|isContain?|
+|errMsg|!-expected FIELD_NAME: missing property 'transferType'-!|true|
+
+''1.1.10 amount omitted''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest/transfers|
+|setHeader|!-Content-Type : application/json
+Cookie: sid=-!%cookie1%|
+|setBody|!-{
+    "recipient": {
+        "id": -!%recipient1%!-,
+        "type": "INTERNAL_ACCOUNT"
+    }, 
+    "fromAccount": {
+        "id": -!%UserAccId2%!-
+    }, 
+    "transferType": "TRANSFER", 
+    "scheduledDate": "2016-12-16", 
+    "note": "This is created by fit test!"
+}
+-!|
+|POST||500|||
+|comment|DDB-1286|
+
+''1.1.13 scheduledDate/amount omitted''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest/transfers|
+|setHeader|!-Content-Type : application/json
+Cookie: sid=-!%cookie1%|
+|setBody|!-{
+    "recipient": {
+        "id": -!%recipient1%!-,
+        "type": "INTERNAL_ACCOUNT"
+    }, 
+    "fromAccount": {
+        "id": -!%UserAccId2%!-
+    }, 
+    "transferType": "TRANSFER", 
+     "amount": "10.00", 
+    "note": "This is created by fit test!"
+}
+-!|
+|POST||500|||
+|comment|DDB-1286|
+
+''1.1.14 scheduledDate incorrect value''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest/transfers|
+|setHeader|!-Content-Type : application/json
+Cookie: sid=-!%cookie1%|
+|setBody|!-{
+    "recipient": {
+        "id": -!%recipient1%!-,
+        "type": "INTERNAL_ACCOUNT"
+    }, 
+    "fromAccount": {
+        "id": -!%UserAccId2%!-
+    }, 
+    "scheduledDate": "2015-13-12",
+     "transferType": "TRANSFER",  
+    "amount": "15.25", 
+    "note": "This is created by fit test!"
+}
+-!|
+|POST||400|||
+|let|$errMsg|js|response.jsonbody.message||
+
+!|com.lodosoftware.fitnesse.fixtures.LodoSoftFitFixtures|
+|symbolName|str|isContain?|
+|errMsg|!-Value 13 for monthOfYear must be in the range [1,12]-!|true|
+
+''1.1.15 recipientId none Funding Account''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest/transfers|
+|setHeader|!-Content-Type : application/json
+Cookie: sid=-!%cookie1%|
+|setBody|!-{
+    "recipient": {
+        "version": 0, 
+        "id": -!%recipient3%!-,
+        "deleted": false, 
+        "name": "fit_brokerage", 
+        "balance": 66666, 
+        "availableBalance": 55555, 
+        "type": "INTERNAL_ACCOUNT"
+    }, 
+    "fromAccount": {
+        "id": -!%UserAccId1%!-
+    }, 
+    "transferType": "TRANSFER", 
+    "scheduledDate": "-!%todayDate%!-", 
+    "amount": "15.25", 
+    "note": "This is created by fit test!"
+}
+-!|
+|POST||200|||
+
+''1.1.16 recipientId & userAccountId are same''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest/transfers|
+|setHeader|!-Content-Type : application/json
+Cookie: sid=-!%cookie1%|
+|setBody|!-{
+    "recipient": {
+        "version": 0, 
+        "id": -!%recipient1%!-,
+        "deleted": false, 
+        "name": "fit_brokerage", 
+        "balance": 66666, 
+        "availableBalance": 55555, 
+        "type": "INTERNAL_ACCOUNT"
+    }, 
+    "fromAccount": {
+        "id": -!%UserAccId5%!-
+    }, 
+    "transferType": "TRANSFER", 
+    "scheduledDate": "2015-12-12", 
+    "amount": "15.25", 
+    "note": "This is created by fit test!"
+}
+-!|
+|POST||400|||
+|let|$errMsg|js|response.jsonbody.message||
+
+****!
+!*****> ''1.2 /transfers/collection''
+
+''1.2.1 ''
+
+''valid payment type company & person recipients''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest|
+|setHeader|!-Content-Type : application/json
+Cookie: sid=-!%cookie1%|
+|setBody|!-[
+    {
+        "recipient": {
+             "id": -!%comRecipientId1%!-,
+             "type": "COMPANY"
+         }, 
+        "fromAccount": {
+            "id": -!%UserAccId5%!-
+        },
+        "transferType": "PAYMENT",
+        "scheduledDate": "-!%EVERY_TWO_WEEKS%!-", 
+        "amount": "6.99", 
+        "memo": "collection test-1"
+    },
+{
+        "recipient": {
+             "id": -!%personRecipientId1%!-,
+             "type": "PERSON"
+         }, 
+        "fromAccount": {
+            "id": -!%UserAccId16%!-
+        },
+        "transferType": "PAYMENT",
+        "scheduledDate": "-!%EVERY_TWO_WEEKS%!-", 
+        "amount": "456.12", 
+        "memo": "collection test-2"
+    }
+]
+-!|
+|POST|/transfers/collection|200|||
+|let||js|response.jsonbody[0].recipient.id|%personRecipientId1%|
+|let||js|response.jsonbody[0].fromAccount.id|%UserAccId16%|
+|let||js|response.jsonbody[0].transferType|PAYMENT|
+|let||js|response.jsonbody[0].scheduledDate|%EVERY_TWO_WEEKS%|
+|let||js|response.jsonbody[0].amount|456.12|
+|let||js|response.jsonbody[1].recipient.id|%comRecipientId1%|
+|let||js|response.jsonbody[1].fromAccount.id|%UserAccId5%|
+|let||js|response.jsonbody[1].transferType|PAYMENT|
+|let||js|response.jsonbody[1].scheduledDate|%EVERY_TWO_WEEKS%|
+|let||js|response.jsonbody[1].amount|6.99|
+
+''re-call with same data''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest|
+|setHeader|!-Content-Type : application/json
+Cookie: sid=-!%cookie1%|
+|setBody|!-[
+    {
+        "recipient": {
+             "id": -!%comRecipientId1%!-,
+             "type": "COMPANY"
+         }, 
+        "fromAccount": {
+            "id": -!%UserAccId5%!-
+        },
+        "transferType": "PAYMENT",
+        "scheduledDate": "-!%EVERY_TWO_WEEKS%!-", 
+        "amount": "6.99", 
+        "memo": "collection test-1"
+    },
+{
+        "recipient": {
+             "id": -!%personRecipientId1%!-,
+             "type": "PERSON"
+         }, 
+        "fromAccount": {
+            "id": -!%UserAccId16%!-
+        },
+        "transferType": "PAYMENT",
+        "scheduledDate": "-!%EVERY_TWO_WEEKS%!-", 
+        "amount": "456.12", 
+        "memo": "collection test-2"
+    }
+]
+-!|
+|POST|/transfers/collection|500|||
+|comment|DDB-1628|
+
+''recipient type = "INTERNAL_ACCOUNT"''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest|
+|setHeader|!-Content-Type : application/json
+Cookie: sid=-!%cookie1%|
+|setBody|!-[
+    {
+        "recipient": {
+             "id": -!%recipient1%!-,
+             "type": "INTERNAL_ACCOUNT"
+         }, 
+        "fromAccount": {
+            "id": -!%UserAccId5%!-
+        },
+        "transferType": "PAYMENT",
+        "scheduledDate": "-!%EVERY_TWO_WEEKS%!-", 
+        "amount": "6.99", 
+        "memo": "collection test-1"
+    }
+]
+-!|
+|POST|/transfers/collection|400|||
+
+''fromAccount = non funding account''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest|
+|setHeader|!-Content-Type : application/json
+Cookie: sid=-!%cookie1%|
+|setBody|!-[
+    {
+        "recipient": {
+             "id": -!%comRecipientId1%!-,
+             "type": "COMPANY"
+         }, 
+        "fromAccount": {
+            "id": -!%UserAccId2%!-
+        },
+        "transferType": "PAYMENT",
+        "scheduledDate": "-!%EVERY_TWO_WEEKS%!-", 
+        "amount": "6.99", 
+        "memo": "collection test-1"
+    }
+]
+-!|
+|POST|/transfers/collection|500|||
+|comment|DDB-1628|
+
+''scheduledDate = passed date value''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest|
+|setHeader|!-Content-Type : application/json
+Cookie: sid=-!%cookie1%|
+|setBody|!-[
+    {
+        "recipient": {
+             "id": -!%comRecipientId1%!-,
+             "type": "COMPANY"
+         }, 
+        "fromAccount": {
+            "id": -!%UserAccId5%!-
+        },
+        "transferType": "PAYMENT",
+        "scheduledDate": "-!%lastYear%!-", 
+        "amount": "6.99", 
+        "memo": "collection test-1"
+    }
+]
+-!|
+|POST|/transfers/collection|500|||
+|comment|DDB-1628|
+****!
+****!
+
+!*****> !style_darkRed[2 PUT]
+!*****> ''2.1 /transfers/{id}''
+
+''2.1.1 update with same values''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest|
+|setHeader|!-Content-Type : application/json
+Cookie: sid=-!%cookie1%|
+|setBody|!-{
+    "id": -!%transferId1%!-,
+    "recipient": {
+        "id": -!%recipient2%!-,
+        "type": "INTERNAL_ACCOUNT"
+    }, 
+    "fromAccount": {
+        "id": -!%UserAccId1%!-
+    }, 
+    "transferType": "TRANSFER", 
+    "scheduledDate": "-!%todayDate%!-", 
+    "amount": "15.25", 
+    "note": "This is created by fit test!"
+}
+-!|
+|PUT|/transfers/%transferId1%|200|||
+|let||js|!-response.jsonbody.transferType-!|TRANSFER|
+|let||js|!-response.jsonbody.version-!||
+|let||js|!-response.jsonbody.createdTimestamp-!||
+|let||js|!-response.jsonbody.updatedTimestamp-!||
+|let||js|!-response.jsonbody.id-!|%transferId1%|
+|let||js|!-response.jsonbody.amount-!|15.25|
+|let||js|!-response.jsonbody.fromAccount.version-!||
+|let||js|!-response.jsonbody.fromAccount.createdTimestamp-!||
+|let||js|!-response.jsonbody.fromAccount.updatedTimestamp-!||
+|let||js|!-response.jsonbody.fromAccount.id-!|%UserAccId1%|
+|let||js|!-response.jsonbody.fromAccount.deleted-!|false|
+|let||js|!-response.jsonbody.fromAccount.account.version-!||
+|let||js|!-response.jsonbody.fromAccount.account.createdTimestamp-!||
+|let||js|!-response.jsonbody.fromAccount.account.updatedTimestamp-!||
+|let||js|!-response.jsonbody.fromAccount.account.id-!||
+|let||js|!-response.jsonbody.fromAccount.account.deleted-!|false|
+|let||js|!-response.jsonbody.fromAccount.account.accountProduct.id-!||
+|let||js|!-response.jsonbody.fromAccount.account.accountType-!|ANNUITY|
+|let||js|!-response.jsonbody.fromAccount.account.accountStatus-!|OPEN|
+|let||js|!-response.jsonbody.fromAccount.account.source-!|INTERNAL|
+|let||js|!-response.jsonbody.fromAccount.account.sourceId-!||
+|let||js|!-response.jsonbody.fromAccount.account.sourceAccountId-!||
+|let||js|!-response.jsonbody.fromAccount.account.accountName-!|annuity|
+|let||js|!-response.jsonbody.fromAccount.account.accountNumber-!|XXXXXXXXXXXXXXX1138|
+|let||js|!-response.jsonbody.fromAccount.account.routingTransitNumber-!|082900872|
+|let||js|!-response.jsonbody.fromAccount.account.balance-!||
+|let||js|!-response.jsonbody.fromAccount.account.syncTimestamp-!||
+|let||js|!-response.jsonbody.fromAccount.account.availableBalance-!||
+|let||js|!-response.jsonbody.fromAccount.account.currencyCode-!|USD|
+|let||js|!-response.jsonbody.fromAccount.account.accountOpenDate-!|2013-01-01|
+|let||js|!-response.jsonbody.fromAccount.account.accountClosedDate-!|2015-01-01|
+|let||js|!-response.jsonbody.fromAccount.account.accountAttributes-!||
+|let||js|!-response.jsonbody.fromAccount.account.external-!|false|
+|let||js|!-response.jsonbody.fromAccount.account.offline-!|false|
+|let||js|!-response.jsonbody.fromAccount.account.estatements-!|false|
+|let||js|!-response.jsonbody.fromAccount.account.accountingClass-!|ASSET|
+|let||js|!-response.jsonbody.fromAccount.account.internal-!|true|
+|let||js|!-response.jsonbody.fromAccount.account.accountClass-!|INSURANCE|
+|let||js|!-response.jsonbody.fromAccount.billPayActive-!|false|
+|let||js|!-response.jsonbody.fromAccount.associated-!|true|
+|let||js|!-response.jsonbody.fromAccount.nickname-!|annuity|
+|let||js|!-response.jsonbody.fromAccount.excluded-!|false|
+|let||js|!-response.jsonbody.fromAccount.hidden-!|false|
+|let||js|!-response.jsonbody.fromAccount.alertUserAlerts-!||
+|let||js|!-response.jsonbody.fromAccount.financialGoalAccounts-!||
+|let||js|!-response.jsonbody.fromAccount.preferredAccount-!|false|
+|let||js|!-response.jsonbody.scheduledDate-!|%todayDate%|
+|let||js|!-response.jsonbody.note-!|This is created by fit test!|
+|let||js|!-response.jsonbody.recipient.type-!|INTERNAL_ACCOUNT|
+|let||js|!-response.jsonbody.recipient.version-!||
+|let||js|!-response.jsonbody.recipient.createdTimestamp-!||
+|let||js|!-response.jsonbody.recipient.updatedTimestamp-!||
+|let||js|!-response.jsonbody.recipient.id-!|%recipient1%|
+|let||js|!-response.jsonbody.recipient.deleted-!|false|
+|let||js|!-response.jsonbody.recipient.name-!|checking|
+|let||js|!-response.jsonbody.recipient.balance-!||
+|let||js|!-response.jsonbody.recipient.availableBalance-!||
+|let||js|!-response.jsonbody.status-!|||
+|comment|DDB-1291|
+
+''2.1.2 update with different values except recipient & fromAccount''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest|
+|setHeader|!-Content-Type : application/json
+Cookie: sid=-!%cookie1%|
+|setBody|!-{
+    "id":  -!%transferId1%!-,
+    "recipient": {
+        "id": -!%recipient2%!-, 
+        "type": "INTERNAL_ACCOUNT"
+    }, 
+    "fromAccount": {
+        "id": -!%UserAccId1%!-
+    }, 
+    "transferType": "TRANSFER", 
+    "scheduledDate": "2014-11-10", 
+    "amount": "782.14", 
+    "note": "This is updated by fit test!"
+}
+-!|
+|PUT|/transfers/%transferId1%|200|||
+|let||js|!-response.jsonbody.transferType-!|TRANSFER|
+|let||js|!-response.jsonbody.version-!||
+|let||js|!-response.jsonbody.createdTimestamp-!||
+|let||js|!-response.jsonbody.updatedTimestamp-!||
+|let||js|!-response.jsonbody.id-!|%transferId1%|
+|let||js|!-response.jsonbody.amount-!|782.14|
+|let||js|!-response.jsonbody.fromAccount.version-!||
+|let||js|!-response.jsonbody.fromAccount.createdTimestamp-!||
+|let||js|!-response.jsonbody.fromAccount.updatedTimestamp-!||
+|let||js|!-response.jsonbody.fromAccount.id-!|%UserAccId1%|
+|let||js|!-response.jsonbody.fromAccount.deleted-!|false|
+|let||js|!-response.jsonbody.fromAccount.account.version-!||
+|let||js|!-response.jsonbody.fromAccount.account.createdTimestamp-!||
+|let||js|!-response.jsonbody.fromAccount.account.updatedTimestamp-!||
+|let||js|!-response.jsonbody.fromAccount.account.id-!||
+|let||js|!-response.jsonbody.fromAccount.account.deleted-!|false|
+|let||js|!-response.jsonbody.fromAccount.account.accountProduct.id-!||
+|let||js|!-response.jsonbody.fromAccount.account.accountType-!|ANNUITY|
+|let||js|!-response.jsonbody.fromAccount.account.accountStatus-!|OPEN|
+|let||js|!-response.jsonbody.fromAccount.account.source-!|INTERNAL|
+|let||js|!-response.jsonbody.fromAccount.account.sourceId-!||
+|let||js|!-response.jsonbody.fromAccount.account.sourceAccountId-!||
+|let||js|!-response.jsonbody.fromAccount.account.accountName-!|annuity|
+|let||js|!-response.jsonbody.fromAccount.account.accountNumber-!|XXXXXXXXXXXXXXX1138|
+|let||js|!-response.jsonbody.fromAccount.account.routingTransitNumber-!|082900872|
+|let||js|!-response.jsonbody.fromAccount.account.balance-!||
+|let||js|!-response.jsonbody.fromAccount.account.syncTimestamp-!||
+|let||js|!-response.jsonbody.fromAccount.account.availableBalance-!||
+|let||js|!-response.jsonbody.fromAccount.account.currencyCode-!|USD|
+|let||js|!-response.jsonbody.fromAccount.account.accountOpenDate-!|2013-01-01|
+|let||js|!-response.jsonbody.fromAccount.account.accountClosedDate-!|2015-01-01|
+|let||js|!-response.jsonbody.fromAccount.account.accountAttributes-!||
+|let||js|!-response.jsonbody.fromAccount.account.external-!|false|
+|let||js|!-response.jsonbody.fromAccount.account.offline-!|false|
+|let||js|!-response.jsonbody.fromAccount.account.estatements-!|false|
+|let||js|!-response.jsonbody.fromAccount.account.accountingClass-!|ASSET|
+|let||js|!-response.jsonbody.fromAccount.account.internal-!|true|
+|let||js|!-response.jsonbody.fromAccount.account.accountClass-!|INSURANCE|
+|let||js|!-response.jsonbody.fromAccount.billPayActive-!|false|
+|let||js|!-response.jsonbody.fromAccount.associated-!|true|
+|let||js|!-response.jsonbody.fromAccount.nickname-!|annuity|
+|let||js|!-response.jsonbody.fromAccount.excluded-!|false|
+|let||js|!-response.jsonbody.fromAccount.hidden-!|false|
+|let||js|!-response.jsonbody.fromAccount.alertUserAlerts-!||
+|let||js|!-response.jsonbody.fromAccount.financialGoalAccounts-!||
+|let||js|!-response.jsonbody.fromAccount.preferredAccount-!|false|
+|let||js|!-response.jsonbody.scheduledDate-!|2014-11-10|
+|let||js|!-response.jsonbody.note-!|This is updated by fit test!|
+|let||js|!-response.jsonbody.recipient.type-!|INTERNAL_ACCOUNT|
+|let||js|!-response.jsonbody.recipient.version-!||
+|let||js|!-response.jsonbody.recipient.createdTimestamp-!||
+|let||js|!-response.jsonbody.recipient.updatedTimestamp-!||
+|let||js|!-response.jsonbody.recipient.id-!|%recipient1%|
+|let||js|!-response.jsonbody.recipient.deleted-!|false|
+|let||js|!-response.jsonbody.recipient.name-!|checking|
+|let||js|!-response.jsonbody.recipient.balance-!||
+|let||js|!-response.jsonbody.recipient.availableBalance-!||
+|let||js|!-response.jsonbody.status-!||
+
+
+''2.1.3 update recipient''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest|
+|setHeader|!-Content-Type : application/json
+Cookie: sid=-!%cookie1%|
+|setBody|!-{
+    "id":  -!%transferId1%!-,
+    "recipient": {
+        "id": -!%recipient3%!-, 
+        "type": "INTERNAL_ACCOUNT"
+    }, 
+    "fromAccount": {
+        "id": -!%UserAccId1%!-
+    }, 
+    "transferType": "TRANSFER", 
+    "scheduledDate": "%todayDate%", 
+    "amount": "782.14", 
+    "note": "This is updated by fit test!"
+}
+-!|
+|PUT|/transfers/%transferId1%|200|||
+|let||js|!-response.jsonbody.recipient.id-!|%recipient1%|
+
+
+''2.1.4 update fromAccount''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest|
+|setHeader|!-Content-Type : application/json
+Cookie: sid=-!%cookie1%|
+|setBody|!-{
+    "id":  -!%transferId1%!-,
+    "recipient": {
+        "id": -!%recipient3%!-, 
+        "type": "INTERNAL_ACCOUNT"
+    }, 
+    "fromAccount": {
+        "id": -!%UserAccId2%!-
+    }, 
+    "transferType": "TRANSFER", 
+    "scheduledDate": "%todayDate%", 
+    "amount": "782.14", 
+    "note": "This is updated by fit test!"
+}
+-!|
+|PUT|/transfers/%transferId1%|200|||
+|let||js|!-response.jsonbody.fromAccount.id-!|%UserAccId2%|
+|comment|update back to orginal values|
+|setBody|!-{
+    "id":  -!%transferId1%!-,
+    "recipient": {
+        "version": 0, 
+        "id": -!%recipient2%!-,
+        "deleted": false, 
+        "name": "fit_brokerage", 
+        "balance": 66666, 
+        "availableBalance": 55555, 
+        "type": "INTERNAL_ACCOUNT"
+    }, 
+    "fromAccount": {
+        "id": -!%UserAccId1%!-
+    }, 
+    "transferType": "TRANSFER", 
+    "scheduledDate": "%todayDate%", 
+    "amount": "15.25", 
+    "note": "This is created by fit test!"
+}
+-!|
+|PUT|/transfers/%transferId1%|200|||
+
+''2.1.5 update status''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest|
+|setHeader|!-Content-Type : application/json
+Cookie: sid=-!%cookie1%|
+|setBody|!-{
+    "id":  -!%transferId5%!-,
+    "recipient": { 
+        "id": -!%recipient2%!-, 
+        "type": "INTERNAL_ACCOUNT"
+    }, 
+    "fromAccount": {
+        "id": -!%UserAccId1%!-
+    }, 
+    "transferType": "TRANSFER", 
+    "scheduledDate": "-!%todayDate%!-",  
+    "amount": "700", 
+    "note": "This is created by fit test (will be cancelled)!",
+    "status": "CANCELLED"
+}
+-!|
+|PUT|/transfers/%transferId5%|200|||
+|let||js|!-response.jsonbody.status-!|CANCELLED|
+
+''2.1.6 different user attempts to update''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest|
+|setHeader|!-Content-Type : application/json
+Cookie: sid=-!%cookie2%|
+|setBody|!-{
+    "id":  -!%transferId1%!-,
+    "recipient": {
+        "id": -!%recipient2%!-, 
+        "type": "INTERNAL_ACCOUNT"
+    }, 
+    "fromAccount": {
+        "id": -!%UserAccId3%!-
+    }, 
+    "transferType": "TRANSFER", 
+    "scheduledDate": "%todayDate%", 
+    "amount": "782.14", 
+    "note": "This is updated by fit test!"
+}
+-!|
+|PUT|/transfers/%transferId1%|400|||
+
+****!
+****!
+
+!*****> !style_darkRed[3 GET]
+!*****> ''3.1 /transfers?from=xxxx-xx-xx&to=xxxx-xx-xx''
+
+!|Execute|!-update [transfer] set [scheduled_date] = (DATEADD(Year, -1, SYSDATETIME())) where amount= 200-!|
+!|Execute|!-update [transfer] set [scheduled_date] = (DATEADD(Year, -2, SYSDATETIME()))  where amount= 300-!|
+!|Execute|!-update [transfer] set [scheduled_date] = (DATEADD(Year, -3, SYSDATETIME()))  where amount= 400-!|
+!|DatabaseEnvironment|
+|commit|
+
+''toDate=fromDate=today's Date''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest|
+|comment|transfers?from=%todayDate%&to=%todayDate%|
+|setHeader|!-Content-Type : application/json
+Cookie: sid=-!%cookie1%|
+|GET|/transfers?from=%todayDate%&to=%todayDate%|200|||
+|let||js|!-response.jsonbody[0].scheduledDate-!|%todayDate%|
+|let||js|!-response.jsonbody[0].note-!|This is created by fit test!|
+|let||js|!-response.jsonbody[0].fromAccount.nickname-!|annuity|
+|let||js|!-response.jsonbody[0].recipient.name-!|checking|
+|let||js|!-response.jsonbody[1].scheduledDate-!|%todayDate%|
+|let||js|!-response.jsonbody[1].note-!|This is created by fit test (today)!|
+|let||js|!-response.jsonbody[1].fromAccount.nickname-!|GIC_GROUP_ANNUITY|
+|let||js|!-response.jsonbody[1].recipient.name-!|checking|
+|let||js|!-response.jsonbody[2].scheduledDate-!|%todayDate%|
+|let||js|!-response.jsonbody[2].note-!|This is created by fit test (today)!|
+|let||js|!-response.jsonbody[2].fromAccount.nickname-!|HOME_EQUITY_LOAN |
+|let||js|!-response.jsonbody[2].recipient.name-!|checking|
+|let||js|!-response.jsonbody[3].scheduledDate-!|%todayDate%|
+|let||js|!-response.jsonbody[3].note-!|This is created by fit test (today)!|
+|let||js|!-response.jsonbody[3].fromAccount.nickname-!|INVESTMENT|
+|let||js|!-response.jsonbody[3].recipient.name-!|checking|
+|let||js|!-response.jsonbody[4].scheduledDate-!|%todayDate%|
+|let||js|!-response.jsonbody[4].note-!|This is created by fit test (today)!|
+|let||js|!-response.jsonbody[4].fromAccount.nickname-!|IRA|
+|let||js|!-response.jsonbody[4].recipient.name-!|checking|
+|let||js|!-response.jsonbody[5].scheduledDate-!|%todayDate%|
+|let||js|!-response.jsonbody[5].note-!|This is created by fit test (today)!|
+|let||js|!-response.jsonbody[5].fromAccount.nickname-!|LIFE_INSURANCE|
+|let||js|!-response.jsonbody[5].recipient.name-!|checking|
+|let||js|!-response.jsonbody[6].scheduledDate-!|%todayDate%|
+|let||js|!-response.jsonbody[6].note-!|This is created by fit test (today)!|
+|let||js|!-response.jsonbody[6].fromAccount.nickname-!|LINE_OF_CREDIT |
+|let||js|!-response.jsonbody[6].recipient.name-!|checking|
+|let||js|!-response.jsonbody[7].scheduledDate-!|%todayDate%|
+|let||js|!-response.jsonbody[7].note-!|This is created by fit test (today)!|
+|let||js|!-response.jsonbody[7].fromAccount.nickname-!|LINE_OF_CREDIT |
+|let||js|!-response.jsonbody[7].recipient.name-!|checking|
+|let||js|!-response.jsonbody[8].scheduledDate-!|%todayDate%|
+|let||js|!-response.jsonbody[8].note-!|This is created by fit test (today)!|
+|let||js|!-response.jsonbody[8].fromAccount.nickname-!|loan|
+|let||js|!-response.jsonbody[8].recipient.name-!|checking|
+|let||js|!-response.jsonbody[9].scheduledDate-!|%todayDate%|
+|let||js|!-response.jsonbody[9].note-!|This is created by fit test (today)!|
+|let||js|!-response.jsonbody[9].fromAccount.nickname-!|money_market|
+|let||js|!-response.jsonbody[9].recipient.name-!|checking|
+|let||js|!-response.jsonbody[10].scheduledDate-!|%todayDate%|
+|let||js|!-response.jsonbody[10].note-!|This is created by fit test (today)!|
+|let||js|!-response.jsonbody[10].fromAccount.nickname-!|money_market_retirement |
+|let||js|!-response.jsonbody[10].recipient.name-!|checking|
+|let||js|!-response.jsonbody[11].scheduledDate-!|%todayDate%|
+|let||js|!-response.jsonbody[11].note-!|This is created by fit test (today)!|
+|let||js|!-response.jsonbody[11].fromAccount.nickname-!|mortgage|
+|let||js|!-response.jsonbody[11].recipient.name-!|checking|
+|let||js|!-response.jsonbody[12].scheduledDate-!|%todayDate%|
+|let||js|!-response.jsonbody[12].note-!|This is created by fit test (today)!|
+|let||js|!-response.jsonbody[12].fromAccount.nickname-!|mutual_fund|
+|let||js|!-response.jsonbody[12].recipient.name-!|checking|
+|let||js|!-response.jsonbody[13].scheduledDate-!|%todayDate%|
+|let||js|!-response.jsonbody[13].note-!|This is created by fit test (today)!|
+|let||js|!-response.jsonbody[13].fromAccount.nickname-!|other_asset|
+|let||js|!-response.jsonbody[13].recipient.name-!|checking|
+|let||js|!-response.jsonbody[14].scheduledDate-!|%todayDate%|
+|let||js|!-response.jsonbody[14].note-!|This is created by fit test (today)!|
+|let||js|!-response.jsonbody[14].fromAccount.nickname-!|other_liability|
+|let||js|!-response.jsonbody[14].recipient.name-!|checking|
+|let||js|!-response.jsonbody[15].scheduledDate-!|%todayDate%|
+|let||js|!-response.jsonbody[15].note-!|This is created by fit test (today)!|
+|let||js|!-response.jsonbody[15].fromAccount.nickname-!|overdraft|
+|let||js|!-response.jsonbody[15].recipient.name-!|checking|
+|let||js|!-response.jsonbody[16].scheduledDate-!|%todayDate%|
+|let||js|!-response.jsonbody[16].note-!|This is created by fit test (today)!|
+|let||js|!-response.jsonbody[16].fromAccount.nickname-!|prepaid|
+|let||js|!-response.jsonbody[16].recipient.name-!|checking|
+|let||js|!-response.jsonbody[17].scheduledDate-!|%todayDate%|
+|let||js|!-response.jsonbody[17].note-!|This is created by fit test (today)!|
+|let||js|!-response.jsonbody[17].fromAccount.nickname-!|roth_ira|
+|let||js|!-response.jsonbody[17].recipient.name-!|checking|
+|let||js|!-response.jsonbody[18].scheduledDate-!|%todayDate%|
+|let||js|!-response.jsonbody[18].note-!|This is created by fit test (today)!|
+|let||js|!-response.jsonbody[18].fromAccount.nickname-!|savings|
+|let||js|!-response.jsonbody[18].recipient.name-!|checking|
+|let||js|!-response.jsonbody[19].scheduledDate-!|%todayDate%|
+|let||js|!-response.jsonbody[19].note-!|This is created by fit test (today)!|
+|let||js|!-response.jsonbody[19].fromAccount.nickname-!|term_life_insurance|
+|let||js|!-response.jsonbody[19].recipient.name-!|checking|
+|let||js|!-response.jsonbody[20].scheduledDate-!|%todayDate%|
+|let||js|!-response.jsonbody[20].note-!|This is created by fit test (today)!|
+|let||js|!-response.jsonbody[20].fromAccount.nickname-!|universal_life_insurance|
+|let||js|!-response.jsonbody[20].recipient.name-!|checking|
+|let||js|!-response.jsonbody[21].scheduledDate-!|%todayDate%|
+|let||js|!-response.jsonbody[21].note-!|This is created by fit test!|
+|let||js|!-response.jsonbody[21].fromAccount.nickname-!|annuity|
+|let||js|!-response.jsonbody[21].recipient.name-!|cash_management|
+
+
+''toDate=today's Date; fromDate=3 years ago''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest|
+|comment|transfers?from=2012-11-01&to=%todayDate%|
+|setHeader|!-Content-Type : application/json
+Cookie: sid=-!%cookie1%|
+|GET|/transfers?from=%threeLastYear%&to=%todayDate%|400|||
+|let|$errMsg|js|response.jsonbody.message||
+
+!|com.lodosoftware.fitnesse.fixtures.LodoSoftFitFixtures|
+|symbolName|str|isContain?|
+|errMsg|!-Argument startDate is invalid.-!|true|
+
+''toDate=today's Date; fromDate=2 years ago''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest|
+|comment|transfers?from=2012-11-01&to=%todayDate%|
+|setHeader|!-Content-Type : application/json
+Cookie: sid=-!%cookie1%|
+|GET|/transfers?from=%twoLastYear%&to=%todayDate%|200|||
+
+''valid formatted fromDate''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest|
+|comment|transfers?from=%todayYear%-2-30&to=%todayYear%-%todayMonth%-1|
+|setHeader|!-Content-Type : application/json
+Cookie: sid=-!%cookie1%|
+|GET|/transfers?from=2012-2-30&to=%todayYear%|400|||
+
+''valid formatted toDate''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest|
+|comment|%todayYear%-%todayMonth%-%todayDay%&to=%todayMonth%-%todayYear%-1|
+|setHeader|!-Content-Type : application/json
+Cookie: sid=-!%cookie1%|
+|GET|/transfers?from=%todayDate%-2020-1-12|400|||
+
+''fromDate is recent than toDate''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest|
+|comment|%todayYear%-%todayMonth%-%todayDay%&to=2012-%todayMonth%-1|
+|setHeader|!-Content-Type : application/json
+Cookie: sid=-!%cookie1%|
+|GET|/transfers?from=%todayDate%&to=%threeLastYear%|400|||
+|let|$errMsg|js|response.jsonbody.message||
+
+!|com.lodosoftware.fitnesse.fixtures.LodoSoftFitFixtures|
+|symbolName|str|isContain?|
+|errMsg|!-Argument endDate is invalid.-!|true|
+
+
+''fromDate is not set''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest|
+|comment|%todayYear%-%todayMonth%-%todayDay%&to=2012-%todayMonth%-1|
+|setHeader|!-Content-Type : application/json
+Cookie: sid=-!%cookie1%|
+|GET|/transfers?to=%todayDate%|200|||
+|let||js|!-response.jsonbody[0].scheduledDate-!|%todayDate%|
+|let||js|!-response.jsonbody[0].note-!|This is created by fit test!|
+|let||js|!-response.jsonbody[0].fromAccount.nickname-!|annuity|
+|let||js|!-response.jsonbody[0].recipient.name-!|checking|
+|let||js|!-response.jsonbody[1].scheduledDate-!|%lastYear%|
+|let||js|!-response.jsonbody[1].note-!|This is created by fit test (a year ago)!|
+|let||js|!-response.jsonbody[1].fromAccount.nickname-!|cash_management|
+|let||js|!-response.jsonbody[1].recipient.name-!|checking|
+|let||js|!-response.jsonbody[2].scheduledDate-!|%twoLastYear%|
+|let||js|!-response.jsonbody[2].note-!|This is created by fit test (2 years ago)!|
+|let||js|!-response.jsonbody[2].fromAccount.nickname-!|cd|
+|let||js|!-response.jsonbody[2].recipient.name-!|checking|
+|let||js|!-response.jsonbody[3].scheduledDate-!|%todayDate%|
+|let||js|!-response.jsonbody[3].note-!|This is created by fit test (today)!|
+|let||js|!-response.jsonbody[3].fromAccount.nickname-!|GIC_GROUP_ANNUITY|
+|let||js|!-response.jsonbody[3].recipient.name-!|checking|
+|let||js|!-response.jsonbody[4].scheduledDate-!|%todayDate%|
+|let||js|!-response.jsonbody[4].note-!|This is created by fit test (today)!|
+|let||js|!-response.jsonbody[4].fromAccount.nickname-!|HOME_EQUITY_LOAN|
+|let||js|!-response.jsonbody[4].recipient.name-!|checking|
+|let||js|!-response.jsonbody[5].scheduledDate-!|%todayDate%|
+|let||js|!-response.jsonbody[5].note-!|This is created by fit test (today)!|
+|let||js|!-response.jsonbody[5].fromAccount.nickname-!|INVESTMENT|
+|let||js|!-response.jsonbody[5].recipient.name-!|checking|
+|let||js|!-response.jsonbody[6].scheduledDate-!|%todayDate%|
+|let||js|!-response.jsonbody[6].note-!|This is created by fit test (today)!|
+|let||js|!-response.jsonbody[6].fromAccount.nickname-!|IRA|
+|let||js|!-response.jsonbody[6].recipient.name-!|checking|
+|let||js|!-response.jsonbody[7].scheduledDate-!|%todayDate%|
+|let||js|!-response.jsonbody[7].note-!|This is created by fit test (today)!|
+|let||js|!-response.jsonbody[7].fromAccount.nickname-!|LIFE_INSURANCE|
+|let||js|!-response.jsonbody[7].recipient.name-!|checking|
+|let||js|!-response.jsonbody[8].scheduledDate-!|%todayDate%|
+|let||js|!-response.jsonbody[8].note-!|This is created by fit test (today)!|
+|let||js|!-response.jsonbody[8].fromAccount.nickname-!|LINE_OF_CREDIT|
+|let||js|!-response.jsonbody[8].recipient.name-!|checking|
+|let||js|!-response.jsonbody[9].scheduledDate-!|%todayDate%|
+|let||js|!-response.jsonbody[9].note-!|This is created by fit test (today)!|
+|let||js|!-response.jsonbody[9].fromAccount.nickname-!|LINE_OF_CREDIT|
+|let||js|!-response.jsonbody[9].recipient.name-!|checking|
+|let||js|!-response.jsonbody[10].scheduledDate-!|%todayDate%|
+|let||js|!-response.jsonbody[10].note-!|This is created by fit test (today)!|
+|let||js|!-response.jsonbody[10].fromAccount.nickname-!|loan|
+|let||js|!-response.jsonbody[10].recipient.name-!|checking|
+|let||js|!-response.jsonbody[11].scheduledDate-!|%todayDate%|
+|let||js|!-response.jsonbody[11].note-!|This is created by fit test (today)!|
+|let||js|!-response.jsonbody[11].fromAccount.nickname-!|money_market|
+|let||js|!-response.jsonbody[11].recipient.name-!|checking|
+|let||js|!-response.jsonbody[12].scheduledDate-!|%todayDate%|
+|let||js|!-response.jsonbody[12].note-!|This is created by fit test (today)!|
+|let||js|!-response.jsonbody[12].fromAccount.nickname-!|money_market_retirement|
+|let||js|!-response.jsonbody[12].recipient.name-!|checking|
+|let||js|!-response.jsonbody[13].scheduledDate-!|%todayDate%|
+|let||js|!-response.jsonbody[13].note-!|This is created by fit test (today)!|
+|let||js|!-response.jsonbody[13].fromAccount.nickname-!|mortgage|
+|let||js|!-response.jsonbody[13].recipient.name-!|checking|
+|let||js|!-response.jsonbody[14].scheduledDate-!|%todayDate%|
+|let||js|!-response.jsonbody[14].note-!|This is created by fit test (today)!|
+|let||js|!-response.jsonbody[14].fromAccount.nickname-!|mutual_fund|
+|let||js|!-response.jsonbody[14].recipient.name-!|checking|
+|let||js|!-response.jsonbody[15].scheduledDate-!|%todayDate%|
+|let||js|!-response.jsonbody[15].note-!|This is created by fit test (today)!|
+|let||js|!-response.jsonbody[15].fromAccount.nickname-!|other_asset|
+|let||js|!-response.jsonbody[15].recipient.name-!|checking|
+|let||js|!-response.jsonbody[16].scheduledDate-!|%todayDate%|
+|let||js|!-response.jsonbody[16].note-!|This is created by fit test (today)!|
+|let||js|!-response.jsonbody[16].fromAccount.nickname-!|other_liability|
+|let||js|!-response.jsonbody[16].recipient.name-!|checking|
+|let||js|!-response.jsonbody[17].scheduledDate-!|%todayDate%|
+|let||js|!-response.jsonbody[17].note-!|This is created by fit test (today)!|
+|let||js|!-response.jsonbody[17].fromAccount.nickname-!|overdraft|
+|let||js|!-response.jsonbody[17].recipient.name-!|checking|
+|let||js|!-response.jsonbody[18].scheduledDate-!|%todayDate%|
+|let||js|!-response.jsonbody[18].note-!|This is created by fit test (today)!|
+|let||js|!-response.jsonbody[18].fromAccount.nickname-!|prepaid|
+|let||js|!-response.jsonbody[18].recipient.name-!|checking|
+|let||js|!-response.jsonbody[19].scheduledDate-!|%todayDate%|
+|let||js|!-response.jsonbody[19].note-!|This is created by fit test (today)!|
+|let||js|!-response.jsonbody[19].fromAccount.nickname-!|roth_ira|
+|let||js|!-response.jsonbody[19].recipient.name-!|checking|
+|let||js|!-response.jsonbody[20].scheduledDate-!|%todayDate%|
+|let||js|!-response.jsonbody[20].note-!|This is created by fit test (today)!|
+|let||js|!-response.jsonbody[20].fromAccount.nickname-!|savings|
+|let||js|!-response.jsonbody[20].recipient.name-!|checking|
+|let||js|!-response.jsonbody[21].scheduledDate-!|%todayDate%|
+|let||js|!-response.jsonbody[21].note-!|This is created by fit test (today)!|
+|let||js|!-response.jsonbody[21].fromAccount.nickname-!|term_life_insurance|
+|let||js|!-response.jsonbody[21].recipient.name-!|checking|
+|let||js|!-response.jsonbody[22].scheduledDate-!|%todayDate%|
+|let||js|!-response.jsonbody[22].note-!|This is created by fit test (today)!|
+|let||js|!-response.jsonbody[22].fromAccount.nickname-!|universal_life_insurance|
+|let||js|!-response.jsonbody[22].recipient.name-!|checking|
+
+''endDate is not set''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest|
+|comment|%todayYear%-%todayMonth%-%todayDay%&to=2012-%todayMonth%-1|
+|setHeader|!-Content-Type : application/json
+Cookie: sid=-!%cookie1%|
+|GET|/transfers?from=%todayDate%|200|||
+|let||js|!-response.jsonbody[0].scheduledDate-!|%todayDate%|
+|let||js|!-response.jsonbody[0].note-!|This is created by fit test!|
+|let||js|!-response.jsonbody[0].fromAccount.nickname-!|annuity|
+|let||js|!-response.jsonbody[0].recipient.name-!|checking|
+|let||js|!-response.jsonbody[1].scheduledDate-!|%nextYear%|
+|let||js|!-response.jsonbody[1].note-!|This is created by fit test (next year)!|
+|let||js|!-response.jsonbody[1].fromAccount.nickname-!|CHECKING2|
+|let||js|!-response.jsonbody[1].recipient.name-!|checking|
+|let||js|!-response.jsonbody[2].scheduledDate-!|%todayDate%|
+|let||js|!-response.jsonbody[2].note-!|This is created by fit test (today)!|
+|let||js|!-response.jsonbody[2].fromAccount.nickname-!|GIC_GROUP_ANNUITY|
+|let||js|!-response.jsonbody[2].recipient.name-!|checking|
+|let||js|!-response.jsonbody[3].scheduledDate-!|%todayDate%|
+|let||js|!-response.jsonbody[3].note-!|This is created by fit test (today)!|
+|let||js|!-response.jsonbody[3].fromAccount.nickname-!|HOME_EQUITY_LOAN|
+|let||js|!-response.jsonbody[3].recipient.name-!|checking|
+|let||js|!-response.jsonbody[4].scheduledDate-!|%todayDate%|
+|let||js|!-response.jsonbody[4].note-!|This is created by fit test (today)!|
+|let||js|!-response.jsonbody[4].fromAccount.nickname-!|INVESTMENT|
+|let||js|!-response.jsonbody[4].recipient.name-!|checking|
+|let||js|!-response.jsonbody[5].scheduledDate-!|%todayDate%|
+|let||js|!-response.jsonbody[5].note-!|This is created by fit test (today)!|
+|let||js|!-response.jsonbody[5].fromAccount.nickname-!|IRA|
+|let||js|!-response.jsonbody[5].recipient.name-!|checking|
+|let||js|!-response.jsonbody[6].scheduledDate-!|%todayDate%|
+|let||js|!-response.jsonbody[6].note-!|This is created by fit test (today)!|
+|let||js|!-response.jsonbody[6].fromAccount.nickname-!|LIFE_INSURANCE|
+|let||js|!-response.jsonbody[6].recipient.name-!|checking|
+|let||js|!-response.jsonbody[7].scheduledDate-!|%todayDate%|
+|let||js|!-response.jsonbody[7].note-!|This is created by fit test (today)!|
+|let||js|!-response.jsonbody[7].fromAccount.nickname-!|LINE_OF_CREDIT|
+|let||js|!-response.jsonbody[7].recipient.name-!|checking|
+|let||js|!-response.jsonbody[8].scheduledDate-!|%todayDate%|
+|let||js|!-response.jsonbody[8].note-!|This is created by fit test (today)!|
+|let||js|!-response.jsonbody[8].fromAccount.nickname-!|LINE_OF_CREDIT|
+|let||js|!-response.jsonbody[8].recipient.name-!|checking|
+|let||js|!-response.jsonbody[9].scheduledDate-!|%todayDate%|
+|let||js|!-response.jsonbody[9].note-!|This is created by fit test (today)!|
+|let||js|!-response.jsonbody[9].fromAccount.nickname-!|loan|
+|let||js|!-response.jsonbody[9].recipient.name-!|checking|
+|let||js|!-response.jsonbody[10].scheduledDate-!|%todayDate%|
+|let||js|!-response.jsonbody[10].note-!|This is created by fit test (today)!|
+|let||js|!-response.jsonbody[10].fromAccount.nickname-!|money_market|
+|let||js|!-response.jsonbody[10].recipient.name-!|checking|
+|let||js|!-response.jsonbody[11].scheduledDate-!|%todayDate%|
+|let||js|!-response.jsonbody[11].note-!|This is created by fit test (today)!|
+|let||js|!-response.jsonbody[11].fromAccount.nickname-!|money_market_retirement|
+|let||js|!-response.jsonbody[11].recipient.name-!|checking|
+|let||js|!-response.jsonbody[12].scheduledDate-!|%todayDate%|
+|let||js|!-response.jsonbody[12].note-!|This is created by fit test (today)!|
+|let||js|!-response.jsonbody[12].fromAccount.nickname-!|mortgage|
+|let||js|!-response.jsonbody[12].recipient.name-!|checking|
+|let||js|!-response.jsonbody[13].scheduledDate-!|%todayDate%|
+|let||js|!-response.jsonbody[13].note-!|This is created by fit test (today)!|
+|let||js|!-response.jsonbody[13].fromAccount.nickname-!|mutual_fund|
+|let||js|!-response.jsonbody[13].recipient.name-!|checking|
+|let||js|!-response.jsonbody[14].scheduledDate-!|%todayDate%|
+|let||js|!-response.jsonbody[14].note-!|This is created by fit test (today)!|
+|let||js|!-response.jsonbody[14].fromAccount.nickname-!|other_asset|
+|let||js|!-response.jsonbody[14].recipient.name-!|checking|
+|let||js|!-response.jsonbody[15].scheduledDate-!|%todayDate%|
+|let||js|!-response.jsonbody[15].note-!|This is created by fit test (today)!|
+|let||js|!-response.jsonbody[15].fromAccount.nickname-!|other_liability|
+|let||js|!-response.jsonbody[15].recipient.name-!|checking|
+|let||js|!-response.jsonbody[16].scheduledDate-!|%todayDate%|
+|let||js|!-response.jsonbody[16].note-!|This is created by fit test (today)!|
+|let||js|!-response.jsonbody[16].fromAccount.nickname-!|overdraft|
+|let||js|!-response.jsonbody[16].recipient.name-!|checking|
+|let||js|!-response.jsonbody[17].scheduledDate-!|%todayDate%|
+|let||js|!-response.jsonbody[17].note-!|This is created by fit test (today)!|
+|let||js|!-response.jsonbody[17].fromAccount.nickname-!|prepaid|
+|let||js|!-response.jsonbody[17].recipient.name-!|checking|
+|let||js|!-response.jsonbody[18].scheduledDate-!|%todayDate%|
+|let||js|!-response.jsonbody[18].note-!|This is created by fit test (today)!|
+|let||js|!-response.jsonbody[18].fromAccount.nickname-!|roth_ira|
+|let||js|!-response.jsonbody[18].recipient.name-!|checking|
+|let||js|!-response.jsonbody[19].scheduledDate-!|%todayDate%|
+|let||js|!-response.jsonbody[19].note-!|This is created by fit test (today)!|
+|let||js|!-response.jsonbody[19].fromAccount.nickname-!|savings|
+|let||js|!-response.jsonbody[19].recipient.name-!|checking|
+|let||js|!-response.jsonbody[20].scheduledDate-!|%todayDate%|
+|let||js|!-response.jsonbody[20].note-!|This is created by fit test (today)!|
+|let||js|!-response.jsonbody[20].fromAccount.nickname-!|term_life_insurance|
+|let||js|!-response.jsonbody[20].recipient.name-!|checking|
+
+''both dates are not set''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest|
+|comment|%todayYear%-%todayMonth%-%todayDay%&to=2012-%todayMonth%-1|
+|setHeader|!-Content-Type : application/json
+Cookie: sid=-!%cookie1%|
+|GET|/transfers?|200|||
+|let||js|!-response.jsonbody[0].scheduledDate-!|%todayDate%|
+|let||js|!-response.jsonbody[0].note-!|This is created by fit test!|
+|let||js|!-response.jsonbody[0].fromAccount.nickname-!|annuity|
+|let||js|!-response.jsonbody[0].recipient.name-!|checking|
+|let||js|!-response.jsonbody[1].scheduledDate-!|%lastYear%|
+|let||js|!-response.jsonbody[1].note-!|This is created by fit test (a year ago)!|
+|let||js|!-response.jsonbody[1].fromAccount.nickname-!|cash_management|
+|let||js|!-response.jsonbody[1].recipient.name-!|checking|
+|let||js|!-response.jsonbody[2].scheduledDate-!|%twoLastYear%|
+|let||js|!-response.jsonbody[2].note-!|This is created by fit test (2 years ago)!|
+|let||js|!-response.jsonbody[2].fromAccount.nickname-!|cd|
+|let||js|!-response.jsonbody[2].recipient.name-!|checking|
+|let||js|!-response.jsonbody[3].scheduledDate-!|%nextYear%|
+|let||js|!-response.jsonbody[3].note-!|This is created by fit test (next year)!|
+|let||js|!-response.jsonbody[3].fromAccount.nickname-!|CHECKING2|
+|let||js|!-response.jsonbody[3].recipient.name-!|checking|
+|let||js|!-response.jsonbody[4].scheduledDate-!|%todayDate%|
+|let||js|!-response.jsonbody[4].note-!|This is created by fit test (today)!|
+|let||js|!-response.jsonbody[4].fromAccount.nickname-!|GIC_GROUP_ANNUITY|
+|let||js|!-response.jsonbody[4].recipient.name-!|checking|
+|let||js|!-response.jsonbody[5].scheduledDate-!|%todayDate%|
+|let||js|!-response.jsonbody[5].note-!|This is created by fit test (today)!|
+|let||js|!-response.jsonbody[5].fromAccount.nickname-!|HOME_EQUITY_LOAN|
+|let||js|!-response.jsonbody[5].recipient.name-!|checking|
+|let||js|!-response.jsonbody[6].scheduledDate-!|%todayDate%|
+|let||js|!-response.jsonbody[6].note-!|This is created by fit test (today)!|
+|let||js|!-response.jsonbody[6].fromAccount.nickname-!|INVESTMENT|
+|let||js|!-response.jsonbody[6].recipient.name-!|checking|
+|let||js|!-response.jsonbody[7].scheduledDate-!|%todayDate%|
+|let||js|!-response.jsonbody[7].note-!|This is created by fit test (today)!|
+|let||js|!-response.jsonbody[7].fromAccount.nickname-!|IRA|
+|let||js|!-response.jsonbody[7].recipient.name-!|checking|
+|let||js|!-response.jsonbody[8].scheduledDate-!|%todayDate%|
+|let||js|!-response.jsonbody[8].note-!|This is created by fit test (today)!|
+|let||js|!-response.jsonbody[8].fromAccount.nickname-!|LIFE_INSURANCE|
+|let||js|!-response.jsonbody[8].recipient.name-!|checking|
+|let||js|!-response.jsonbody[9].scheduledDate-!|%todayDate%|
+|let||js|!-response.jsonbody[9].note-!|This is created by fit test (today)!|
+|let||js|!-response.jsonbody[9].fromAccount.nickname-!|LINE_OF_CREDIT|
+|let||js|!-response.jsonbody[9].recipient.name-!|checking|
+|let||js|!-response.jsonbody[10].scheduledDate-!|%todayDate%|
+|let||js|!-response.jsonbody[10].note-!|This is created by fit test (today)!|
+|let||js|!-response.jsonbody[10].fromAccount.nickname-!|LINE_OF_CREDIT|
+|let||js|!-response.jsonbody[10].recipient.name-!|checking|
+|let||js|!-response.jsonbody[11].scheduledDate-!|%todayDate%|
+|let||js|!-response.jsonbody[11].note-!|This is created by fit test (today)!|
+|let||js|!-response.jsonbody[11].fromAccount.nickname-!|loan|
+|let||js|!-response.jsonbody[11].recipient.name-!|checking|
+|let||js|!-response.jsonbody[12].scheduledDate-!|%todayDate%|
+|let||js|!-response.jsonbody[12].note-!|This is created by fit test (today)!|
+|let||js|!-response.jsonbody[12].fromAccount.nickname-!|money_market|
+|let||js|!-response.jsonbody[12].recipient.name-!|checking|
+|let||js|!-response.jsonbody[13].scheduledDate-!|%todayDate%|
+|let||js|!-response.jsonbody[13].note-!|This is created by fit test (today)!|
+|let||js|!-response.jsonbody[13].fromAccount.nickname-!|money_market_retirement|
+|let||js|!-response.jsonbody[13].recipient.name-!|checking|
+|let||js|!-response.jsonbody[14].scheduledDate-!|%todayDate%|
+|let||js|!-response.jsonbody[14].note-!|This is created by fit test (today)!|
+|let||js|!-response.jsonbody[14].fromAccount.nickname-!|mortgage|
+|let||js|!-response.jsonbody[14].recipient.name-!|checking|
+|let||js|!-response.jsonbody[15].scheduledDate-!|%todayDate%|
+|let||js|!-response.jsonbody[15].note-!|This is created by fit test (today)!|
+|let||js|!-response.jsonbody[15].fromAccount.nickname-!|mutual_fund|
+|let||js|!-response.jsonbody[15].recipient.name-!|checking|
+|let||js|!-response.jsonbody[16].scheduledDate-!|%todayDate%|
+|let||js|!-response.jsonbody[16].note-!|This is created by fit test (today)!|
+|let||js|!-response.jsonbody[16].fromAccount.nickname-!|other_asset|
+|let||js|!-response.jsonbody[16].recipient.name-!|checking|
+|let||js|!-response.jsonbody[17].scheduledDate-!|%todayDate%|
+|let||js|!-response.jsonbody[17].note-!|This is created by fit test (today)!|
+|let||js|!-response.jsonbody[17].fromAccount.nickname-!|other_liability|
+|let||js|!-response.jsonbody[17].recipient.name-!|checking|
+|let||js|!-response.jsonbody[18].scheduledDate-!|%todayDate%|
+|let||js|!-response.jsonbody[18].note-!|This is created by fit test (today)!|
+|let||js|!-response.jsonbody[18].fromAccount.nickname-!|overdraft|
+|let||js|!-response.jsonbody[18].recipient.name-!|checking|
+|let||js|!-response.jsonbody[19].scheduledDate-!|%todayDate%|
+|let||js|!-response.jsonbody[19].note-!|This is created by fit test (today)!|
+|let||js|!-response.jsonbody[19].fromAccount.nickname-!|prepaid|
+|let||js|!-response.jsonbody[19].recipient.name-!|checking|
+|let||js|!-response.jsonbody[20].scheduledDate-!|%todayDate%|
+|let||js|!-response.jsonbody[20].note-!|This is created by fit test (today)!|
+|let||js|!-response.jsonbody[20].fromAccount.nickname-!|roth_ira|
+|let||js|!-response.jsonbody[20].recipient.name-!|checking|
+|let||js|!-response.jsonbody[21].scheduledDate-!|%todayDate%|
+|let||js|!-response.jsonbody[21].note-!|This is created by fit test (today)!|
+|let||js|!-response.jsonbody[21].fromAccount.nickname-!|savings|
+|let||js|!-response.jsonbody[21].recipient.name-!|checking|
+|let||js|!-response.jsonbody[22].scheduledDate-!|%todayDate%|
+|let||js|!-response.jsonbody[22].note-!|This is created by fit test (today)!|
+|let||js|!-response.jsonbody[22].fromAccount.nickname-!|term_life_insurance|
+|let||js|!-response.jsonbody[22].recipient.name-!|checking|
+|let||js|!-response.jsonbody[23].scheduledDate-!|%todayDate%|
+|let||js|!-response.jsonbody[23].note-!|This is created by fit test (today)!|
+|let||js|!-response.jsonbody[23].fromAccount.nickname-!|universal_life_insurance|
+|let||js|!-response.jsonbody[23].recipient.name-!|checking|
+|let||js|!-response.jsonbody[24].scheduledDate-!|%todayDate%|
+|let||js|!-response.jsonbody[24].note-!|This is created by fit test!|
+|let||js|!-response.jsonbody[24].fromAccount.nickname-!|annuity|
+|let||js|!-response.jsonbody[24].recipient.name-!|cash_management|
+****!
+!*****> ''3.2 /transfers/{id}''
+
+''3.2.1 valid transferId''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest|
+|comment|http://${serverName}/d3rest/transfers/%transferId1%|
+|setHeader|!-Content-Type : application/json
+Cookie: sid=-!%cookie1%|
+|GET|/transfers/%transferId1%|200|||
+|let||js|!-response.jsonbody.transferType-!|TRANSFER|
+|let||js|!-response.jsonbody.version-!||
+|let||js|!-response.jsonbody.createdTimestamp-!||
+|let||js|!-response.jsonbody.updatedTimestamp-!||
+|let||js|!-response.jsonbody.id-!|%transferId1%|
+|let||js|!-response.jsonbody.amount-!|15.25|
+|let||js|!-response.jsonbody.fromAccount.version-!||
+|let||js|!-response.jsonbody.fromAccount.createdTimestamp-!||
+|let||js|!-response.jsonbody.fromAccount.updatedTimestamp-!||
+|let||js|!-response.jsonbody.fromAccount.id-!|%UserAccId1%|
+|let||js|!-response.jsonbody.fromAccount.deleted-!|false|
+|let||js|!-response.jsonbody.fromAccount.account.version-!||
+|let||js|!-response.jsonbody.fromAccount.account.createdTimestamp-!||
+|let||js|!-response.jsonbody.fromAccount.account.updatedTimestamp-!||
+|let||js|!-response.jsonbody.fromAccount.account.id-!||
+|let||js|!-response.jsonbody.fromAccount.account.deleted-!|false|
+|let||js|!-response.jsonbody.fromAccount.account.accountProduct.id-!||
+|let||js|!-response.jsonbody.fromAccount.account.accountType-!|ANNUITY|
+|let||js|!-response.jsonbody.fromAccount.account.accountStatus-!|OPEN|
+|let||js|!-response.jsonbody.fromAccount.account.source-!|INTERNAL|
+|let||js|!-response.jsonbody.fromAccount.account.sourceId-!||
+|let||js|!-response.jsonbody.fromAccount.account.sourceAccountId-!||
+|let||js|!-response.jsonbody.fromAccount.account.accountName-!|annuity|
+|let||js|!-response.jsonbody.fromAccount.account.accountNumber-!|XXXXXXXXXXXXXXX1138|
+|let||js|!-response.jsonbody.fromAccount.account.routingTransitNumber-!|082900872|
+|let||js|!-response.jsonbody.fromAccount.account.balance-!||
+|let||js|!-response.jsonbody.fromAccount.account.syncTimestamp-!||
+|let||js|!-response.jsonbody.fromAccount.account.availableBalance-!||
+|let||js|!-response.jsonbody.fromAccount.account.currencyCode-!|USD|
+|let||js|!-response.jsonbody.fromAccount.account.accountOpenDate-!|2013-01-01|
+|let||js|!-response.jsonbody.fromAccount.account.accountClosedDate-!|2015-01-01|
+|let||js|!-response.jsonbody.fromAccount.account.accountAttributes-!||
+|let||js|!-response.jsonbody.fromAccount.account.external-!|false|
+|let||js|!-response.jsonbody.fromAccount.account.offline-!|false|
+|let||js|!-response.jsonbody.fromAccount.account.estatements-!|false|
+|let||js|!-response.jsonbody.fromAccount.account.accountingClass-!|ASSET|
+|let||js|!-response.jsonbody.fromAccount.account.internal-!|true|
+|let||js|!-response.jsonbody.fromAccount.account.accountClass-!|INSURANCE|
+|let||js|!-response.jsonbody.fromAccount.billPayActive-!|false|
+|let||js|!-response.jsonbody.fromAccount.associated-!|true|
+|let||js|!-response.jsonbody.fromAccount.nickname-!|annuity|
+|let||js|!-response.jsonbody.fromAccount.excluded-!|false|
+|let||js|!-response.jsonbody.fromAccount.hidden-!|false|
+|let||js|!-response.jsonbody.fromAccount.alertUserAlerts-!||
+|let||js|!-response.jsonbody.fromAccount.financialGoalAccounts-!||
+|let||js|!-response.jsonbody.fromAccount.preferredAccount-!|false|
+|let||js|!-response.jsonbody.scheduledDate-!|%todayDate%|
+|let||js|!-response.jsonbody.note-!|This is created by fit test!|
+|let||js|!-response.jsonbody.recipient.type-!|INTERNAL_ACCOUNT|
+|let||js|!-response.jsonbody.recipient.version-!||
+|let||js|!-response.jsonbody.recipient.createdTimestamp-!||
+|let||js|!-response.jsonbody.recipient.updatedTimestamp-!||
+|let||js|!-response.jsonbody.recipient.id-!|%recipient1%|
+|let||js|!-response.jsonbody.recipient.deleted-!|false|
+|let||js|!-response.jsonbody.recipient.name-!|checking|
+|let||js|!-response.jsonbody.recipient.balance-!||
+|let||js|!-response.jsonbody.recipient.availableBalance-!||
+|let||js|!-response.jsonbody.status-!|PROCESSED|
+
+''3.2.2 invalid transferId''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest|
+|setHeader|!-Content-Type : application/json
+Cookie: sid=-!%cookie1%|
+|GET|/transfers/345654353|400|||
+|let|$errMsg|js|response.jsonbody.message||
+
+!|com.lodosoftware.fitnesse.fixtures.LodoSoftFitFixtures|
+|symbolName|str|isContain?|
+|errMsg|!-ErrorCode: 200002 - Argument transfer-!|true|
+
+''3.2.3 different user''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest|
+|setHeader|!-Content-Type : application/json
+Cookie: sid=-!%cookie1%|
+|GET|/transfers/%transferId1%|200|||
+
+****!
+!*****> ''3.3 /transfers/{id}/details''
+
+''3.3.1 valid transferId''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest|
+|setHeader|!-Content-Type : application/json
+Cookie: sid=-!%cookie1%|
+|GET|/transfers/%transferId1%/details|400|||
+
+''3.3.2 invalid transferId''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest|
+|setHeader|!-Content-Type : application/json
+Cookie: sid=-!%cookie1%|
+|GET|/transfers/34543345/details|400|||
+|let|$errMsg|js|response.jsonbody.message||
+
+!|com.lodosoftware.fitnesse.fixtures.LodoSoftFitFixtures|
+|symbolName|str|isContain?|
+|errMsg|!-ErrorCode: 200002 - Argument transfer-34543345 is undefined but is required.-!|true|
+
+''3.3.3 different user''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest|
+|setHeader|!-Content-Type : application/json
+Cookie: sid=-!%cookie2%|
+|GET|/transfers/%transferId1%/details|400|||
+
+****!
+!*****> ''3.4 /transfers/{id}/routingOptions (NOT IMPLEMENTED YET)''
+****!
+!*****> ''3.5 /transfers/recurringDisclosure (NOT IMPLEMENTED YET)''
+****!
+****!
+****!

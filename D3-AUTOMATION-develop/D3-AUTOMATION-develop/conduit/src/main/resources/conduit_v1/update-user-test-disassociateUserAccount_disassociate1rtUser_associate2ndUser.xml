@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<conduitUserRequest xmlns="http://lodosoftware.com/conduit/user">
+    <version>1.0</version>
+    <authentication>
+        <username>userName</username>
+        <password>password</password>
+    </authentication>
+    <transactionDateRange>
+        <beginDate>2009-05-24</beginDate>
+        <endDate>2013-05-30</endDate>
+    </transactionDateRange>
+    <userList>
+        <user directId="ArnaTestUser-1" directId2="TestuserDirectID2">
+            <branchExternalId>ArnaTest-1</branchExternalId>
+            <userAccountList>
+                <userAccount action="disassociate">
+                    <accountDirectId>accountDirectID1-1</accountDirectId>
+                </userAccount>
+            </userAccountList>
+        </user>
+      <user directId="ArnaTestUser-2">
+            <loginId>TestUserLoginID2</loginId>
+            <branchExternalId>ArnaTest-1</branchExternalId>
+            <interfaceId>9999</interfaceId>
+            <taxId>304-26-2460</taxId>
+            <taxIdType>SSN</taxIdType>
+            <locked>false</locked>
+            <userEnabled>false</userEnabled>
+            <emailOptOut>false</emailOptOut>
+            <dateOfBirth>1980-08-24</dateOfBirth>
+            <gender>F</gender>
+            <billpaySubscriberId>316492460304</billpaySubscriberId>
+            <creditScore>800</creditScore>
+            <creditScoreDate>2012-04-20</creditScoreDate>
+            <userClass>DOUBLE-PLATNUM</userClass>
+            <person>
+                <firstName>Arna</firstName>
+                <lastName>Badyelkhan</lastName>
+                <primaryEmail>abadyelkhan@lodosoftware.com</primaryEmail>
+                <homePhone>304-304-2460</homePhone>
+                <employee>false</employee>
+                <physicalAddress>
+                    <address1>9568 Missouri Ave</address1>
+                    <address2>9568 Missouri Ave</address2>
+                    <address3>9568 Missouri Ave</address3>
+                    <address4>9568 Missouri Ave</address4>
+                    <city>LOWELL</city>
+                    <state>AR</state>
+                    <countryCode>US</countryCode>
+                    <postalCode>72745-9551</postalCode>
+                </physicalAddress>
+            </person>
+            <userAccountList>
+                <userAccount action="associate">
+                    <accountDirectId>accountDirectID1-1</accountDirectId>
+                    <nickname>TestNickName-1</nickname>
+                    <excluded>false</excluded>
+                    <hidden>false</hidden>
+                    <hideByAdmin>false</hideByAdmin>
+                    <displayOrder>1</displayOrder>
+                </userAccount>
+            </userAccountList>
+        </user>
+    </userList>
+</conduitUserRequest>

@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<conduitUserRequest xmlns="http://lodosoftware.com/conduit/user">
+    <version>1.0</version>
+    <authentication>
+        <username>userName</username>
+        <password>password</password>
+    </authentication>
+    <accountList>
+        <account directId="accountDirectID1-1">
+        	<branchExternalId>ArnaTest-1</branchExternalId>
+			<accountProductExternalId>DEFAULT_COMPANY_CHECKING</accountProductExternalId>
+		    <routingTransitNumber>TEST1</routingTransitNumber>
+			<accountName>ThisIsJustTesting</accountName>
+			<accountNumber>4321</accountNumber>
+			<accountClass>accountclass.creditcard</accountClass>
+			<routingTransitNumber>ROUNTNUM1</routingTransitNumber>	
+        </account>
+    </accountList>
+</conduitUserRequest>

@@ -1,0 +1,467 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jmeterTestPlan version="1.2" properties="2.6" jmeter="2.11 r1554548">
+  <hashTree>
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="Test Plan" enabled="true">
+      <stringProp name="TestPlan.comments"></stringProp>
+      <boolProp name="TestPlan.functional_mode">false</boolProp>
+      <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
+      <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+        <collectionProp name="Arguments.arguments"/>
+      </elementProp>
+      <stringProp name="TestPlan.user_define_classpath"></stringProp>
+    </TestPlan>
+    <hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="HARD POSTS TXNS (to existing accounts)" enabled="true">
+        <stringProp name="ThreadGroup.on_sample_error">stoptestnow</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">1</stringProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">${numOfThreads}</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+        <longProp name="ThreadGroup.start_time">1360810051000</longProp>
+        <longProp name="ThreadGroup.end_time">1360810051000</longProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+      </ThreadGroup>
+      <hashTree>
+        <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+          <collectionProp name="Arguments.arguments">
+            <elementProp name="startAccountId" elementType="Argument">
+              <stringProp name="Argument.name">startAccountId</stringProp>
+              <stringProp name="Argument.value">78</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="endAccountId" elementType="Argument">
+              <stringProp name="Argument.name">endAccountId</stringProp>
+              <stringProp name="Argument.value">128</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="databaseToUse" elementType="Argument">
+              <stringProp name="Argument.name">databaseToUse</stringProp>
+              <stringProp name="Argument.value">MySql</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="minMaxTxnsPerAcct" elementType="Argument">
+              <stringProp name="Argument.name">minMaxTxnsPerAcct</stringProp>
+              <stringProp name="Argument.value">5-5</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="numOfThreads" elementType="Argument">
+              <stringProp name="Argument.name">numOfThreads</stringProp>
+              <stringProp name="Argument.value">1</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="threadMultiplier" elementType="Argument">
+              <stringProp name="Argument.name">threadMultiplier</stringProp>
+              <stringProp name="Argument.value">2</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="categorizeTransactions" elementType="Argument">
+              <stringProp name="Argument.name">categorizeTransactions</stringProp>
+              <stringProp name="Argument.value">true</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="conduitFileDropPath" elementType="Argument">
+              <stringProp name="Argument.name">conduitFileDropPath</stringProp>
+              <stringProp name="Argument.value">/Users/dariusz</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="suppressAlerts" elementType="Argument">
+              <stringProp name="Argument.name">suppressAlerts</stringProp>
+              <stringProp name="Argument.value">true</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="serverName" elementType="Argument">
+              <stringProp name="Argument.name">serverName</stringProp>
+              <stringProp name="Argument.value">cond1</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="createAccounts" elementType="Argument">
+              <stringProp name="Argument.name">createAccounts</stringProp>
+              <stringProp name="Argument.value">false</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+          </collectionProp>
+        </Arguments>
+        <hashTree/>
+        <BeanShellSampler guiclass="BeanShellSamplerGui" testclass="BeanShellSampler" testname="MCC and Transaction Names" enabled="true">
+          <stringProp name="BeanShellSampler.query">
+String mcc = &quot;2741,5192,5812,5813,5814,5942,5945,5946,5947,5963,5964,5965,5968,5973,5978,5992,&quot; +
+	&quot;5994,5995,6010,6012,6300,6399,7012,7261,7277,7333,7338,7395,7699,9311,9399,0742,4511,&quot; +
+	&quot;4722,3023,3058,3061,3219,3357,3649,5047,5122,5912,5975,5976,5976,7011,8011,8011,8021,8031,&quot; +
+	&quot;8041,8041,8042,8043,8049,8050,8062,8062,8071,8071,8099&quot;;
+
+String txNames = &quot;WALMART,SHELL,TARGET,MICRO CENTER,ATT,TONYS MKT,STARBUCKS,HOSPITAL,MICROSOFT,APPLE STORE,&quot;+
+	&quot;BESTBUY,SPRINT,7-ELEVEN,KING SOOPERS,SAFEWAY,WALGREENS,KUM-N-GO,XCELL NRGY,COMFORT SUITES,AMAZON&quot;;
+
+vars.put(&quot;mcc&quot;, mcc);
+vars.put(&quot;txNames&quot;, txNames);
+</stringProp>
+          <stringProp name="BeanShellSampler.filename"></stringProp>
+          <stringProp name="BeanShellSampler.parameters"></stringProp>
+          <boolProp name="BeanShellSampler.resetInterpreter">false</boolProp>
+        </BeanShellSampler>
+        <hashTree/>
+        <BeanShellSampler guiclass="BeanShellSamplerGui" testclass="BeanShellSampler" testname="Account Range" enabled="true">
+          <stringProp name="BeanShellSampler.query">
+vars.put(&quot;acctIdFrom&quot;, &quot;${startAccountId}&quot;);
+vars.put(&quot;acctIdTo&quot;, &quot;${endAccountId}&quot;);
+
+vars.put(&quot;accountPageNo&quot;, &quot;0&quot;);
+vars.put(&quot;accountPageSize&quot;, &quot;100&quot;);
+
+vars.put(&quot;results&quot;, &quot;true&quot;);
+vars.put(&quot;postingSeq&quot;, &quot;1&quot;);
+vars.put(&quot;txnCount&quot;, &quot;0&quot;);
+</stringProp>
+          <stringProp name="BeanShellSampler.filename"></stringProp>
+          <stringProp name="BeanShellSampler.parameters"></stringProp>
+          <boolProp name="BeanShellSampler.resetInterpreter">false</boolProp>
+        </BeanShellSampler>
+        <hashTree/>
+        <BeanShellSampler guiclass="BeanShellSamplerGui" testclass="BeanShellSampler" testname="Conduit Header" enabled="true">
+          <stringProp name="BeanShellSampler.query">
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Random;
+
+
+String cats = (&quot;true&quot;.equals(&quot;${categorizeTransactions}&quot;)) ? &quot;-cats&quot; : &quot;-nocats&quot;;
+String alerts = (&quot;true&quot;.equals(&quot;${suppressAlerts}&quot;)) ? &quot;-noalrts&quot; : &quot;-alrts&quot;;
+
+String eDate = new SimpleDateFormat(&quot;yyyy-MM-dd&quot;).format(new Date());
+String bDate = new SimpleDateFormat(&quot;yyyy-MM-dd&quot;).format(new Date(System.currentTimeMillis()-7*24*60*60*1000L));
+
+String tstamp = &quot;&quot;+System.currentTimeMillis();
+String fileName = &quot;conduit-&quot; + tstamp + cats + alerts + &quot;-m${threadMultiplier}-posted-txns-${minMaxTxnsPerAcct}-${serverName}&quot;;
+vars.put(&quot;filename&quot;, fileName);
+String filePath = &quot;${conduitFileDropPath}/&quot; + fileName + &quot;.txt&quot;;
+vars.put(&quot;filePath&quot;, filePath);
+
+File file = new File(filePath);
+FileWriter fw = new FileWriter(file);
+BufferedWriter bw = new BufferedWriter(fw);
+
+bw.write(&quot;&lt;?xml version=\&quot;1.0\&quot; encoding=\&quot;UTF-8\&quot;?&gt;\n&quot; +
+		&quot;&lt;conduit&gt;\n&quot; +
+		&quot;  &lt;hdr&gt;\n&quot; +
+		&quot;    &lt;ver&gt;2.0&lt;/ver&gt;\n&quot; +
+		&quot;    &lt;rqid&gt;&quot; + tstamp + &quot;&lt;/rqid&gt;\n&quot; +
+		&quot;    &lt;txndtrng bdt=\&quot;&quot; + bDate + &quot;\&quot; edt=\&quot;&quot; + eDate + &quot;\&quot; /&gt;\n&quot; +
+		&quot;  &lt;/hdr&gt;\n&quot; +
+		&quot;  &lt;acctlst&gt;\n\n&quot;);
+bw.flush();
+bw.close();
+</stringProp>
+          <stringProp name="BeanShellSampler.filename"></stringProp>
+          <stringProp name="BeanShellSampler.parameters"></stringProp>
+          <boolProp name="BeanShellSampler.resetInterpreter">false</boolProp>
+        </BeanShellSampler>
+        <hashTree/>
+        <IfController guiclass="IfControllerPanel" testclass="IfController" testname="If Sql Server" enabled="true">
+          <stringProp name="IfController.condition">&quot;${databaseToUse}&quot; == &quot;SqlServer&quot;</stringProp>
+          <boolProp name="IfController.evaluateAll">false</boolProp>
+        </IfController>
+        <hashTree>
+          <JDBCDataSource guiclass="TestBeanGUI" testclass="JDBCDataSource" testname="Sql Server DB Connection" enabled="true">
+            <boolProp name="autocommit">true</boolProp>
+            <stringProp name="checkQuery">Select 1</stringProp>
+            <stringProp name="connectionAge">5000</stringProp>
+            <stringProp name="dataSource">Connection-1</stringProp>
+            <stringProp name="dbUrl">jdbc:jtds:sqlserver://10.1.1.40:1433;databaseName=d3cluster_v233</stringProp>
+            <stringProp name="driver">net.sourceforge.jtds.jdbc.Driver</stringProp>
+            <boolProp name="keepAlive">true</boolProp>
+            <stringProp name="password">d3qa</stringProp>
+            <stringProp name="poolMax">1</stringProp>
+            <stringProp name="timeout">10000</stringProp>
+            <stringProp name="transactionIsolation">TRANSACTION_NONE</stringProp>
+            <stringProp name="trimInterval">6000</stringProp>
+            <stringProp name="username">d3qa</stringProp>
+          </JDBCDataSource>
+          <hashTree/>
+        </hashTree>
+        <IfController guiclass="IfControllerPanel" testclass="IfController" testname="If My Sql" enabled="true">
+          <stringProp name="IfController.condition">&quot;${databaseToUse}&quot; == &quot;MySql&quot;</stringProp>
+          <boolProp name="IfController.evaluateAll">false</boolProp>
+        </IfController>
+        <hashTree>
+          <JDBCDataSource guiclass="TestBeanGUI" testclass="JDBCDataSource" testname="MySql DB Connection" enabled="true">
+            <stringProp name="dataSource">Connection-2</stringProp>
+            <stringProp name="poolMax">1</stringProp>
+            <stringProp name="timeout">10000</stringProp>
+            <stringProp name="trimInterval">6000</stringProp>
+            <boolProp name="autocommit">true</boolProp>
+            <stringProp name="transactionIsolation">DEFAULT</stringProp>
+            <boolProp name="keepAlive">true</boolProp>
+            <stringProp name="connectionAge">5000</stringProp>
+            <stringProp name="checkQuery">Select 1</stringProp>
+            <stringProp name="dbUrl">jdbc:mysql://localhost:3306/d3v2</stringProp>
+            <stringProp name="driver">com.mysql.jdbc.Driver</stringProp>
+            <stringProp name="username">d3</stringProp>
+            <stringProp name="password">d3</stringProp>
+          </JDBCDataSource>
+          <hashTree/>
+        </hashTree>
+        <WhileController guiclass="WhileControllerGui" testclass="WhileController" testname="While Have Results" enabled="true">
+          <stringProp name="WhileController.condition">${results}</stringProp>
+        </WhileController>
+        <hashTree>
+          <IfController guiclass="IfControllerPanel" testclass="IfController" testname="If Sql Server" enabled="true">
+            <stringProp name="IfController.condition">&quot;${databaseToUse}&quot; == &quot;SqlServer&quot;</stringProp>
+            <boolProp name="IfController.evaluateAll">false</boolProp>
+          </IfController>
+          <hashTree>
+            <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="Sql Server-QueryGetSourceAccountIDFromDB" enabled="true">
+              <stringProp name="dataSource">Connection-1</stringProp>
+              <stringProp name="queryType">Prepared Select Statement</stringProp>
+              <stringProp name="query">select source_account_id from d3_account with (nolock) where deleted &lt;&gt; 1 and id between ${acctIdFrom} and ${acctIdTo} order by id OFFSET ${accountPageNo} ROWS FETCH NEXT ${accountPageSize} ROWS ONLY;</stringProp>
+              <stringProp name="queryArguments"></stringProp>
+              <stringProp name="queryArgumentsTypes"></stringProp>
+              <stringProp name="variableNames">source_account_id</stringProp>
+              <stringProp name="resultVariable"></stringProp>
+              <stringProp name="queryTimeout"></stringProp>
+            </JDBCSampler>
+            <hashTree/>
+          </hashTree>
+          <IfController guiclass="IfControllerPanel" testclass="IfController" testname="If My Sql" enabled="true">
+            <stringProp name="IfController.condition">&quot;${databaseToUse}&quot; == &quot;MySql&quot;</stringProp>
+            <boolProp name="IfController.evaluateAll">false</boolProp>
+          </IfController>
+          <hashTree>
+            <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="MySql-QueryGetSourceAccountIDFromDB" enabled="true">
+              <stringProp name="dataSource">Connection-2</stringProp>
+              <stringProp name="queryType">Prepared Select Statement</stringProp>
+              <stringProp name="query">select source_account_id from d3_account where deleted &lt;&gt; 1 and id between ${acctIdFrom} and ${acctIdTo} order by id limit ${accountPageNo},${accountPageSize};</stringProp>
+              <stringProp name="queryArguments"></stringProp>
+              <stringProp name="queryArgumentsTypes"></stringProp>
+              <stringProp name="variableNames">source_account_id</stringProp>
+              <stringProp name="resultVariable"></stringProp>
+              <stringProp name="queryTimeout"></stringProp>
+            </JDBCSampler>
+            <hashTree/>
+          </hashTree>
+          <BeanShellSampler guiclass="BeanShellSamplerGui" testclass="BeanShellSampler" testname="BeanShell Sampler" enabled="true">
+            <stringProp name="BeanShellSampler.query">
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+if (&quot;true&quot;.equals(&quot;${createAccounts}&quot;)) {
+  String createDate = new SimpleDateFormat(&quot;yyyyMMdd&quot;).format(new Date());
+  for (int i = ${acctIdFrom}; i &lt;= ${acctIdTo}; i++) {
+    vars.put(&quot;source_account_id_&quot; + i, &quot;test_&quot; + createDate + &quot;_&quot; + i);
+  }
+  vars.put(&quot;source_account_id_#&quot;, String.valueOf((int)${acctIdTo} - (int)${acctIdFrom}));
+}
+</stringProp>
+            <stringProp name="BeanShellSampler.filename"></stringProp>
+            <stringProp name="BeanShellSampler.parameters"></stringProp>
+            <boolProp name="BeanShellSampler.resetInterpreter">false</boolProp>
+          </BeanShellSampler>
+          <hashTree/>
+          <ForeachController guiclass="ForeachControlPanel" testclass="ForeachController" testname="ForEach Account" enabled="true">
+            <stringProp name="ForeachController.inputVal">source_account_id</stringProp>
+            <stringProp name="ForeachController.returnVal">sourceAccountId</stringProp>
+            <boolProp name="ForeachController.useSeparator">true</boolProp>
+            <stringProp name="ForeachController.startIndex">0</stringProp>
+            <stringProp name="ForeachController.endIndex">${source_account_id_#}</stringProp>
+          </ForeachController>
+          <hashTree>
+            <BeanShellSampler guiclass="BeanShellSamplerGui" testclass="BeanShellSampler" testname="Start Account &lt;acct&gt;" enabled="true">
+              <stringProp name="BeanShellSampler.query">import java.util.Random;
+
+String xml;
+if (&quot;true&quot;.equals(&quot;${createAccounts}&quot;)) {
+    xml = &quot;&lt;acct uid=\&quot;${sourceAccountId}\&quot; cuid=\&quot;fi1\&quot;&gt;\n&quot; +
+           &quot;  &lt;produid&gt;DEPOSIT_CHECKING&lt;/produid&gt;\n&quot; +
+           &quot;  &lt;nm&gt;Checking Account&lt;/nm&gt;\n&quot; +
+           &quot;  &lt;rttn&gt;123123123&lt;/rttn&gt;\n&quot; +
+           &quot;  &lt;nbr&gt;123123&quot;+(new Random().nextInt(999))+&quot;&lt;/nbr&gt;\n&quot; +
+           &quot;  &lt;avbal&gt;&quot;+(new Random().nextInt(9999))+&quot;.50&lt;/avbal&gt;\n&quot; +
+           &quot;  &lt;bal&gt;&quot;+(new Random().nextInt(9999))+&quot;.75&lt;/bal&gt;\n&quot;;
+
+} else {
+  xml = &quot;&lt;acct uid=\&quot;${sourceAccountId}\&quot;&gt;\n&quot; +
+         &quot;  &lt;avbal&gt;&quot;+(new Random().nextInt(9999))+&quot;.50&lt;/avbal&gt;\n&quot; +
+         &quot;  &lt;bal&gt;&quot;+(new Random().nextInt(9999))+&quot;.75&lt;/bal&gt;\n&quot;;
+
+}
+
+vars.put(&quot;xml&quot;, xml);
+</stringProp>
+              <stringProp name="BeanShellSampler.filename"></stringProp>
+              <stringProp name="BeanShellSampler.parameters"></stringProp>
+              <boolProp name="BeanShellSampler.resetInterpreter">false</boolProp>
+            </BeanShellSampler>
+            <hashTree/>
+            <BeanShellSampler guiclass="BeanShellSamplerGui" testclass="BeanShellSampler" testname="Add Transactions &lt;txns/&gt;" enabled="true">
+              <stringProp name="BeanShellSampler.query">import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Random;
+
+String xml = vars.get(&quot;xml&quot;);
+
+String tDay = new SimpleDateFormat(&quot;yyMMddhhmm&quot;).format(new Date());
+String postDate = new SimpleDateFormat(&quot;yyyy-MM-dd&quot;).format(new Date());
+
+boolean catsOn = &quot;true&quot;.equals(&quot;${categorizeTransactions}&quot;);
+boolean suppressAlerts = &quot;true&quot;.equals(&quot;${suppressAlerts}&quot;);
+String[] minMaxTxnsPerAcct = &quot;${minMaxTxnsPerAcct}&quot;.split(&quot;-&quot;);
+int minTxns = new Integer(minMaxTxnsPerAcct[0]);
+int maxTxns = new Random().nextInt(new Integer(minMaxTxnsPerAcct[1])+1);
+int txnsPerAccount = maxTxns &lt;= minTxns ? minTxns : maxTxns;
+long postingSeq = ${postingSeq};
+long txnCount = ${txnCount};
+
+String[] mcc = &quot;${mcc}&quot;.split(&quot;,&quot;);
+String[] txNames = &quot;${txNames}&quot;.split(&quot;,&quot;);
+String invalidTxName = &quot;NOCATSTXNAME&quot;;
+String invalidMcc = &quot;0000&quot;;
+
+xml += &quot;  &lt;txnlst&gt;\n&quot;;
+for (int txn = 0; txn &lt; txnsPerAccount; txn++) {
+	String mcCode = catsOn ? mcc[new Random().nextInt(mcc.length)] : invalidMcc;
+	String txName = catsOn ? txNames[new Random().nextInt(txNames.length)] : invalidTxName;
+	if (catsOn) {
+		if (new Random().nextInt(1000) &gt; 100) { // use invalid - most of the time
+			mcCode = invalidMcc;
+			txName = invalidTxName + txName;
+		}
+	}
+	mcCode = &quot;6300&quot;; // insurance - one to see T/O on categorization
+	// txName = &quot;INSURANCE UNDERWRITING / PREMIUMS&quot;;
+	String amount = new Random().nextInt(999) + &quot;.00&quot;;
+
+	xml += &quot;    &lt;txn uid=\&quot;&quot; + tDay+ &quot;-${serverName}-&quot; + (txn+1) + &quot;\&quot;&quot; +
+		&quot; tp=\&quot;d\&quot;&quot; + 							// TODO - debit or credit - from accountingClass??
+		&quot; am=\&quot;&quot; + amount + &quot;\&quot;&quot; +
+		&quot; mc=\&quot;&quot; + mcCode + &quot;\&quot;&quot; +
+		&quot; od=\&quot;&quot; + postDate + &quot;\&quot;&quot; +
+		&quot; pd=\&quot;&quot; + postDate + &quot;\&quot;&quot; +
+		&quot; pn=\&quot;0\&quot;&quot; + 							// pending flag
+		&quot; ps=\&quot;&quot; + (postingSeq++) + &quot;\&quot;&quot; +			// posting sequence 
+		&quot; sa=\&quot;&quot; + (suppressAlerts?1:0) + &quot;\&quot;&gt;\n&quot; + 	// supress alerts flag
+		&quot;      &lt;nm&gt;&quot; + txName + &quot;&lt;/nm&gt;\n&quot; + 
+		&quot;    &lt;/txn&gt;\n&quot;;
+			
+	txnCount++;
+}				
+xml += &quot;  &lt;/txnlst&gt;\n&quot;;
+
+vars.put(&quot;xml&quot;, xml);
+vars.put(&quot;postingSeq&quot;, &quot;&quot;+postingSeq);
+vars.put(&quot;txnCount&quot;, &quot;&quot;+txnCount);
+</stringProp>
+              <stringProp name="BeanShellSampler.filename"></stringProp>
+              <stringProp name="BeanShellSampler.parameters"></stringProp>
+              <boolProp name="BeanShellSampler.resetInterpreter">false</boolProp>
+            </BeanShellSampler>
+            <hashTree/>
+            <BeanShellSampler guiclass="BeanShellSamplerGui" testclass="BeanShellSampler" testname="End Account &lt;acct&gt;" enabled="true">
+              <stringProp name="BeanShellSampler.query">
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+
+
+String xml = vars.get(&quot;xml&quot;);
+xml += &quot;&lt;/acct&gt;\n\n&quot;;
+
+File file = new File(vars.get(&quot;filePath&quot;));
+FileWriter fw = new FileWriter(file, true);
+BufferedWriter bw = new BufferedWriter(fw);
+
+bw.write(xml);
+bw.flush();
+bw.close();
+</stringProp>
+              <stringProp name="BeanShellSampler.filename"></stringProp>
+              <stringProp name="BeanShellSampler.parameters"></stringProp>
+              <boolProp name="BeanShellSampler.resetInterpreter">false</boolProp>
+            </BeanShellSampler>
+            <hashTree/>
+          </hashTree>
+          <BeanShellSampler guiclass="BeanShellSamplerGui" testclass="BeanShellSampler" testname="Next Page" enabled="true">
+            <stringProp name="BeanShellSampler.query">
+vars.put(&quot;accountPageNo&quot;, &quot;&quot;+(new Integer(&quot;${accountPageNo}&quot;)+new Integer(&quot;${accountPageSize}&quot;)));
+boolean results = ${source_account_id_#} &gt;= 1;
+vars.put(&quot;results&quot;, results ? &quot;true&quot; : &quot;false&quot;);
+vars.put(&quot;createAccounts&quot;, &quot;false&quot;);
+</stringProp>
+            <stringProp name="BeanShellSampler.filename"></stringProp>
+            <stringProp name="BeanShellSampler.parameters"></stringProp>
+            <boolProp name="BeanShellSampler.resetInterpreter">false</boolProp>
+          </BeanShellSampler>
+          <hashTree/>
+        </hashTree>
+        <BeanShellSampler guiclass="BeanShellSamplerGui" testclass="BeanShellSampler" testname="Conduit End" enabled="true">
+          <stringProp name="BeanShellSampler.query">
+File file = new File(vars.get(&quot;filePath&quot;));
+FileWriter fw = new FileWriter(file, true);
+BufferedWriter bw = new BufferedWriter(fw);	
+
+bw.write(&quot;&lt;!-- txnCount: ${txnCount} --&gt;\n&quot;);
+
+bw.write(&quot;&lt;/acctlst&gt;\n&lt;/conduit&gt;\n&quot;);
+bw.flush();
+bw.close();
+</stringProp>
+          <stringProp name="BeanShellSampler.filename"></stringProp>
+          <stringProp name="BeanShellSampler.parameters"></stringProp>
+          <boolProp name="BeanShellSampler.resetInterpreter">false</boolProp>
+        </BeanShellSampler>
+        <hashTree/>
+        <BeanShellSampler guiclass="BeanShellSamplerGui" testclass="BeanShellSampler" testname="Rename Conduit Files" enabled="true">
+          <stringProp name="BeanShellSampler.query">
+String path = &quot;${conduitFileDropPath}/&quot;;
+String name = &quot;${filename}&quot;;
+
+File txtFile = new File(path+name+&quot;.txt&quot;);	
+File xmlFile = new File(path+name+&quot;.xml&quot;);
+
+txtFile.renameTo(xmlFile);
+</stringProp>
+          <stringProp name="BeanShellSampler.filename"></stringProp>
+          <stringProp name="BeanShellSampler.parameters"></stringProp>
+          <boolProp name="BeanShellSampler.resetInterpreter">false</boolProp>
+        </BeanShellSampler>
+        <hashTree/>
+        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="false">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>false</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>false</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+      </hashTree>
+    </hashTree>
+  </hashTree>
+</jmeterTestPlan>

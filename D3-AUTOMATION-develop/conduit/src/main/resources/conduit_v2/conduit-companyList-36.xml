@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<conduit>
+  <hdr>
+    <ver>2.0</ver>
+    <rqid>01234567890</rqid>
+    <authn u="user" p="password"/>
+    <txndtrng bdt="2013-09-01" edt="2013-09-30"/>
+    <parse>ftrue</parse>
+  </hdr>
+  <complst>
+    <comp uid="testCompany-1" puid="ROOT">
+      <tp>root</tp>
+      <busn>
+        <nm>Updated Test Business Name - 1</nm>
+        <ph>123456 56</ph>
+        <paddr>
+			<a1></a1>
+			<a2>1-2 Updated Any Physical Street</a2>
+			<a3>1-3 Updated Any Physical Street</a3>
+			<a4>1-4 Updated Any Physical Street</a4>
+			<ct>Boulder</ct>
+			<st>NY</st>
+			<cc>US</cc>
+			<pc>98564</pc>
+			<ln>-94.24885579</ln>
+            <lt>36.37342619</lt>
+		</paddr>
+        <maddr>
+			<a1>1-5 Updated Any Mailing Street</a1>
+			<a2>1-6 Updated Any Mailing Street</a2>
+			<a3>1-7 Updated Any Mailing Street</a3>
+			<a4>1-8 Updated Any Mailing Street</a4>
+			<ct>Omaha</ct>
+			<st>NE</st>
+			<cc>US</cc>
+			<pc>65314 1212</pc>
+			<ln>-95.20885559</ln>
+            <lt>35.37316519</lt>
+		</maddr>
+		<ct1>
+			<fn>UpdatedTestFirstName1-1</fn>
+			<mn>UpdatedTestMiddleName1-1</mn>
+			<ln>UpdatedTestLastName1-1</ln>
+			<pem>UpdatedPrimaryEmail1-1@d3banking.com</pem>
+			<aem>UpdatedAlternateEmail1-1@d3banking.com</aem>
+			<hph>72034564545</hph>
+			<wph>7203 678 4564</wph>
+			<mph>78394 456 1525</mph>
+			<emp>true</emp>
+		</ct1>
+		<ct2>
+			<fn>UpdatedTestFirstName1-2</fn>
+			<mn>UpdatedTestMiddleName1-2</mn>
+			<ln>UpdatedTestLastName1-2</ln>
+			<pem>UpdatedPrimaryEmail1-2@d3banking.com</pem>
+			<aem>UpdatedAlternateEmail1-2@d3banking.com</aem>
+			<hph>72045664542</hph>
+			<wph>720 6678 4562</wph>
+			<mph>7894 4656 1522</mph>
+			<emp>false</emp>
+		</ct2>
+      </busn>
+      <acctprodlst>
+        <acctprod uid="testAccProductId1-1">
+          <ac>a</ac>
+          <nm>UpdatedTestAccountProductName1-1</nm>
+          <alst>
+                <a	n = "UpdatedACHTransferFrom1-1" 	t = "string" 	d = "11">true</a>
+          </alst>  
+        </acctprod>
+      </acctprodlst>
+      <alst>
+      	<a n="UpdatedTestProductAttribute1-1" t = "money"  d = "13">UpdatedTestProductAttribute1-1</a>
+      </alst>
+    </comp>
+   </complst>
+</conduit>

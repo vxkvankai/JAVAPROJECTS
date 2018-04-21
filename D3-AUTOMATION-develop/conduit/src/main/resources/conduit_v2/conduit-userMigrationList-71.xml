@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<conduit>
+  <hdr>
+    <ver>2.0</ver>
+    <rqid>01234567890</rqid>
+    <authn u="user" p="password"/>
+    <txndtrng bdt="2013-09-01" edt="2013-09-30"/>
+  </hdr>
+  
+  <usrmiglst>
+    <usrmig uid="usr-uid-001">
+      <alertdestlst>
+        <alertdest uid="dest-uid-001">
+          <nm>MyAlertDest</nm>
+          <tp>inbox</tp>
+          <dest>updated.joe.dest@email.com</dest>
+		  <prDest>1</prDest>
+		  <altDest>1</altDest>
+        </alertdest>
+      </alertdestlst>
+      <alertlst>
+		 <alert uid="alert-uid-008">
+          <tp>transaction.merchant</tp>
+          <desc>Transaction Merchant</desc>
+          <enbl>1</enbl>
+          <freq>always</freq>
+          <destlst>
+            <dest uid="dest-uid-001"/>
+          </destlst>
+          <alst>
+            <a n="merchants">WALMART</a>
+          </alst>
+        </alert>
+      </alertlst>
+    </usrmig> 
+  </usrmiglst>
+</conduit>

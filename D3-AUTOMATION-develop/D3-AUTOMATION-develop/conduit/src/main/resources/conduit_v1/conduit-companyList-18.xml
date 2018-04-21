@@ -1,0 +1,584 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<conduit>
+  <hdr>
+    <ver>2.0</ver>
+    <rqid>01234567890</rqid>
+    <authn u="user" p="password"/>
+    <txndtrng bdt="2013-09-01" edt="2013-09-30"/>
+    <parse>ftrue</parse>
+  </hdr>
+  <complst>
+    <comp uid="testCompany-1" puid="ROOT">
+      <tp>processor</tp>
+      <busn>
+        <nm>Test Business Name - 1</nm>
+        <ph>123456</ph>
+        <paddr>
+			<a1>1-1 Any Physical Street</a1>
+			<a2>1-2 Any Physical Street</a2>
+			<a3>1-3 Any Physical Street</a3>
+			<a4>1-4 Any Physical Street</a4>
+			<ct>Englewood</ct>
+			<st>CO</st>
+			<cc>US</cc>
+			<pc>80112</pc>
+			<ln>-94.20885579</ln>
+            <lt>36.37312619</lt>
+		</paddr>
+        <maddr>
+			<a1>1-5 Any Mailing Street</a1>
+			<a2>1-6 Any Mailing Street</a2>
+			<a3>1-7 Any Mailing Street</a3>
+			<a4>1-8 Any Mailing Street</a4>
+			<ct>Highlands Ranch</ct>
+			<st>CO</st>
+			<cc>US</cc>
+			<pc>80111</pc>
+			<ln>-95.20885579</ln>
+            <lt>35.37316219</lt>
+		</maddr>
+		<ct1>
+			<fn>TestFirstName1-1</fn>
+			<mn>TestMiddleName1-1</mn>
+			<ln>TestLastName1-1</ln>
+			<pem>PrimaryEmail1-1@d3banking.com</pem>
+			<aem>AlternateEmail1-1@d3banking.com</aem>
+			<hph>7204564545</hph>
+			<wph>720 678 4564</wph>
+			<mph>7894 456 1525</mph>
+			<emp>false</emp>
+		</ct1>
+		<ct2>
+			<fn>TestFirstName1-2</fn>
+			<mn>TestMiddleName1-2</mn>
+			<ln>TestLastName1-2</ln>
+			<pem>PrimaryEmail1-2@d3banking.com</pem>
+			<aem>AlternateEmail1-2@d3banking.com</aem>
+			<hph>7204564542</hph>
+			<wph>720 678 4562</wph>
+			<mph>7894 456 1522</mph>
+			<emp>true</emp>
+		</ct2>
+      </busn>
+      <acctprodlst>
+        <acctprod uid="testAccProductId1-1">
+          <tp>annuity</tp>
+          <nm>TestAccountProductName1-1</nm>
+          <alst>
+                <a	n = "ACHTransferFrom1-1" 	t = "string" 	d = "1">2014-04-02</a>
+          </alst>  
+        </acctprod>
+        <acctprod uid="testAccProductId1-2">
+          <tp>brokerage</tp>
+          <nm>TestAccountProductName1-2</nm>
+          <alst>
+                <a	n = "ACHTransferFrom1-2" 	t = "string" 	d = "1">2014-04-02</a>
+          </alst>  
+        </acctprod>
+        <acctprod uid="testAccProductId1-3">
+          <tp>cash_management</tp>
+          <nm>TestAccountProductName1-3</nm>
+          <alst>
+                <a	n = "ACHTransferFrom1-3" 	t = "string" 	d = "1">2014-04-02</a>
+          </alst>  
+        </acctprod>
+        <acctprod uid="testAccProductId1-4">
+          <tp>cd</tp>
+          <nm>TestAccountProductName1-4</nm>
+          <alst>
+                <a	n = "ACHTransferFrom1-4" 	t = "string" 	d = "1">2014-04-02</a>
+          </alst>  
+        </acctprod>
+        <acctprod uid="testAccProductId1-5">
+          <tp>checking</tp>
+          <nm>TestAccountProductName1-5</nm>
+          <alst>
+                <a	n = "ACHTransferFrom1-5" 	t = "string" 	d = "1">2014-04-02</a>
+          </alst>  
+        </acctprod>
+        <acctprod uid="testAccProductId1-6" >
+          <tp>credit_card</tp>
+          <nm>TestAccountProductName1-6</nm>
+          <alst>
+                <a	n = "ACHTransferFrom1-6" 	t = "string" 	d = "1">2014-04-02</a>
+          </alst>  
+        </acctprod>
+         <acctprod uid="testAccProductId1-6-1" puid="testAccProductId1-6">
+          <tp>credit_card</tp>
+          <nm>TestAccountProductName1-6-1</nm>
+          <alst>
+                <a	n = "ACHTransferFrom1-6-1" 	t = "string" 	d = "1">2014-04-02</a>
+          </alst>  
+        </acctprod>
+        <acctprod uid="testAccProductId1-7">
+          <tp>employee_retirement_plan</tp>
+          <nm>TestAccountProductName1-7</nm>
+          <alst>
+                <a	n = "ACHTransferFrom1-7" 	t = "string" 	d = "1">2014-04-02</a>
+          </alst>  
+        </acctprod>
+        <acctprod uid="testAccProductId1-8">
+          <tp>gic_group_annuity</tp>
+          <nm>TestAccountProductName1-8</nm>
+          <alst>
+                <a	n = "ACHTransferFrom1-8" 	t = "string" 	d = "1">2014-04-02</a>
+          </alst>  
+        </acctprod>
+        <acctprod uid="testAccProductId1-9">
+          <tp>home_equity_loan</tp>
+          <nm>TestAccountProductName1-9</nm>
+          <alst>
+                <a	n = "ACHTransferFrom1-9" 	t = "string" 	d = "1">2014-04-02</a>
+          </alst>  
+        </acctprod>
+        <acctprod uid="testAccProductId1-10">
+          <tp>investment</tp>
+          <nm>TestAccountProductName1-10</nm>
+          <alst>
+                <a	n = "ACHTransferFrom1-10" 	t = "string" 	d = "1">2014-04-02</a>
+          </alst>  
+        </acctprod>
+        <acctprod uid="testAccProductId1-11">
+          <tp>ira</tp>
+          <nm>TestAccountProductName1-11</nm>
+          <alst>
+                <a	n = "ACHTransferFrom1-11" 	t = "string" 	d = "1">2014-04-02</a>
+          </alst>  
+        </acctprod>
+        <acctprod uid="testAccProductId1-12">
+          <tp>life_insurance</tp>
+          <nm>TestAccountProductName1-12</nm>
+          <alst>
+                <a	n = "ACHTransferFrom1-12" 	t = "string" 	d = "1">2014-04-02</a>
+          </alst>  
+        </acctprod>
+        <acctprod uid="testAccProductId1-13">
+          <tp>line_of_credit</tp>
+          <nm>TestAccountProductName1-13</nm>
+          <alst>
+                <a	n = "ACHTransferFrom1-13" 	t = "string" 	d = "1">2014-04-02</a>
+          </alst>  
+        </acctprod>
+        <acctprod uid="testAccProductId1-14">
+          <tp>loan</tp>
+          <nm>TestAccountProductName1-14</nm>
+          <alst>
+                <a	n = "ACHTransferFrom1-14" 	t = "string" 	d = "1">2014-04-02</a>
+          </alst>  
+        </acctprod>
+        <acctprod uid="testAccProductId1-15">
+          <tp>money_market</tp>
+          <nm>TestAccountProductName1-15</nm>
+          <alst>
+                <a	n = "ACHTransferFrom1-15" 	t = "string" 	d = "1">2014-04-02</a>
+          </alst>  
+        </acctprod>
+        <acctprod uid="testAccProductId1-16">
+          <tp>money_market_retirement</tp>
+          <nm>TestAccountProductName1-16</nm>
+          <alst>
+                <a	n = "ACHTransferFrom1-16" 	t = "string" 	d = "1">2014-04-02</a>
+          </alst>  
+        </acctprod>
+        <acctprod uid="testAccProductId1-17">
+          <tp>mortgage</tp>
+          <nm>TestAccountProductName1-17</nm>
+          <alst>
+                <a	n = "ACHTransferFrom1-17" 	t = "string" 	d = "1">2014-04-02</a>
+          </alst>  
+        </acctprod>
+        <acctprod uid="testAccProductId1-18">
+          <tp>mutual_fund</tp>
+          <nm>TestAccountProductName1-18</nm>
+          <alst>
+                <a	n = "ACHTransferFrom1-18" 	t = "string" 	d = "1">2014-04-02</a>
+          </alst>  
+        </acctprod>
+        <acctprod uid="testAccProductId1-19">
+          <tp>other_asset</tp>
+          <nm>TestAccountProductName1-19</nm>
+          <alst>
+                <a	n = "ACHTransferFrom1-19" 	t = "string" 	d = "1">2014-04-02</a>
+          </alst>  
+        </acctprod>
+        <acctprod uid="testAccProductId1-20">
+          <tp>other_liability</tp>
+          <nm>TestAccountProductName1-20</nm>
+          <alst>
+                <a	n = "ACHTransferFrom1-20" 	t = "string" 	d = "1">2014-04-02</a>
+          </alst>  
+        </acctprod>
+        <acctprod uid="testAccProductId1-21">
+          <tp>overdraft</tp>
+          <nm>TestAccountProductName1-21</nm>
+          <alst>
+                <a	n = "ACHTransferFrom1-21" 	t = "string" 	d = "1">2014-04-02</a>
+          </alst>  
+        </acctprod>
+        <acctprod uid="testAccProductId1-22">
+          <tp>prepaid</tp>
+          <nm>TestAccountProductName1-22</nm>
+          <alst>
+                <a	n = "ACHTransferFrom1-22" 	t = "string" 	d = "1">2014-04-02</a>
+          </alst>  
+        </acctprod>
+        <acctprod uid="testAccProductId1-23">
+          <tp>roth_ira</tp>
+          <nm>TestAccountProductName1-23</nm>
+          <alst>
+                <a	n = "ACHTransferFrom1-23" 	t = "string" 	d = "1">2014-04-02</a>
+          </alst>  
+        </acctprod>
+        <acctprod uid="testAccProductId1-24">
+          <tp>savings</tp>
+          <nm>TestAccountProductName1-24</nm>
+          <alst>
+                <a	n = "ACHTransferFrom1-24" 	t = "string" 	d = "1">2014-04-02</a>
+          </alst>  
+        </acctprod>
+        <acctprod uid="testAccProductId1-25">
+          <tp>term_life_insurance</tp>
+          <nm>TestAccountProductName1-25</nm>
+          <alst>
+                <a	n = "ACHTransferFrom1-25" 	t = "string" 	d = "1">2014-04-02</a>
+          </alst>  
+        </acctprod>
+        <acctprod uid="testAccProductId1-26">
+          <tp>universal_life_insurance</tp>
+          <nm>TestAccountProductName1-26</nm>
+          <alst>
+                <a	n = "ACHTransferFrom1-26" 	t = "string" 	d = "1">2014-04-02</a>
+          </alst>  
+        </acctprod>
+        <acctprod uid="testAccProductId1-27">
+          <tp>whole_life_insurance</tp>
+          <nm>TestAccountProductName1-27</nm>
+          <alst>
+                <a	n = "ACHTransferFrom1-27" 	t = "string" 	d = "1">2014-04-02</a>
+          </alst>  
+        </acctprod>
+      </acctprodlst>
+      <alst>
+      	<a n="TestProductAttribute1-1" t = "string"  d = "1">TestProductAttribute1-1</a>
+      </alst>
+    </comp>
+    <comp uid="testCompany-2" puid="testCompany-1">
+      <tp>holding</tp>
+      <busn>
+        <nm>Test Business Name - 2</nm>
+        <ph>123456</ph>
+        <paddr>
+			<a1>2-1 Any Physical Street</a1>
+			<a2>2-2 Any Physical Street</a2>
+			<a3>2-3 Any Physical Street</a3>
+			<a4>2-4 Any Physical Street</a4>
+			<ct>Englewood</ct>
+			<st>CO</st>
+			<cc>US</cc>
+			<pc>80112</pc>
+			<ln>-94.20885579</ln>
+            <lt>36.37312619</lt>
+		</paddr>
+        <maddr>
+			<a1>2-5 Any Mailing Street</a1>
+			<a2>2-6 Any Mailing Street</a2>
+			<a3>2-7 Any Mailing Street</a3>
+			<a4>2-8 Any Mailing Street</a4>
+			<ct>Highlands Ranch</ct>
+			<st>CO</st>
+			<cc>US</cc>
+			<pc>80111</pc>
+			<ln>-95.20885579</ln>
+            <lt>35.37316219</lt>
+		</maddr>
+		<ct1>
+			<fn>TestFirstName2-1</fn>
+			<mn>TestMiddleName2-1</mn>
+			<ln>TestLastName2-1</ln>
+			<pem>PrimaryEmail2-1@d3banking.com</pem>
+			<aem>AlternateEmail2-1@d3banking.com</aem>
+			<hph>7204564545</hph>
+			<wph>720 678 4564</wph>
+			<mph>7894 456 1525</mph>
+			<emp>false</emp>
+		</ct1>
+		<ct2>
+			<fn>TestFirstName2-2</fn>
+			<mn>TestMiddleName2-2</mn>
+			<ln>TestLastName2-2</ln>
+			<pem>PrimaryEmail2-2@d3banking.com</pem>
+			<aem>AlternateEmail2-2@d3banking.com</aem>
+			<hph>7204564542</hph>
+			<wph>720 678 4562</wph>
+			<mph>7894 456 1522</mph>
+			<emp>true</emp>
+		</ct2>
+      </busn>
+      <acctprodlst>
+        <acctprod uid="testAccProductId2-1">
+          <tp>checking</tp>
+          <nm>TestAccountProductName2-1</nm>
+          <alst>
+                <a	n = "ACHTransferFrom2-1" 	t = "string" 	d = "1">2014-04-02</a>
+          </alst>  
+        </acctprod>
+      </acctprodlst>
+      <alst>
+      	<a n="TestProductAttribute2-1" t = "string"  d = "1">TestProductAttribute2-1</a>
+      </alst>
+    </comp>
+    <comp uid="testCompany-3" puid="testCompany-1">
+      <tp>institution</tp>
+      <busn>
+        <nm>Test Business Name - 3</nm>
+        <ph>1234563</ph>
+        <paddr>
+			<a1>3-1 Any Physical Street</a1>
+			<a2>3-2 Any Physical Street</a2>
+			<a3>3-3 Any Physical Street</a3>
+			<a4>3-4 Any Physical Street</a4>
+			<ct>Englewood</ct>
+			<st>CO</st>
+			<cc>US</cc>
+			<pc>80112</pc>
+			<ln>-94.20885579</ln>
+            <lt>36.37312619</lt>
+		</paddr>
+        <maddr>
+			<a1>3-5 Any Mailing Street</a1>
+			<a2>3-6 Any Mailing Street</a2>
+			<a3>3-7 Any Mailing Street</a3>
+			<a4>3-8 Any Mailing Street</a4>
+			<ct>Highlands Ranch</ct>
+			<st>CO</st>
+			<cc>US</cc>
+			<pc>80111</pc>
+			<ln>-95.20885579</ln>
+            <lt>35.37316219</lt>
+		</maddr>
+		<ct1>
+			<fn>TestFirstName3-1</fn>
+			<mn>TestMiddleName3-1</mn>
+			<ln>TestLastName3-1</ln>
+			<pem>PrimaryEmail3-1@d3banking.com</pem>
+			<aem>AlternateEmail3-1@d3banking.com</aem>
+			<hph>7204564545</hph>
+			<wph>720 678 4564</wph>
+			<mph>7894 456 1525</mph>
+			<emp>false</emp>
+		</ct1>
+		<ct2>
+			<fn>TestFirstName3-2</fn>
+			<mn>TestMiddleName3-2</mn>
+			<ln>TestLastName3-2</ln>
+			<pem>PrimaryEmail3-2@d3banking.com</pem>
+			<aem>AlternateEmail3-2@d3banking.com</aem>
+			<hph>7204564542</hph>
+			<wph>720 678 4562</wph>
+			<mph>7894 456 1522</mph>
+			<emp>true</emp>
+		</ct2>
+      </busn>
+      <acctprodlst>
+        <acctprod uid="testAccProductId3-1">
+          <tp>checking</tp>
+          <nm>TestAccountProductName3-1</nm>
+          <alst>
+                <a	n = "ACHTransferFrom3-1" 	t = "string" 	d = "1">2014-04-02</a>
+          </alst>  
+        </acctprod>
+      </acctprodlst>
+      <alst>
+      	<a n="TestProductAttribute3-1" t = "string"  d = "1">TestProductAttribute3-1</a>
+      </alst>
+    </comp>
+    <comp uid="testCompany-4" puid="testCompany-1">
+      <tp>region</tp>
+      <busn>
+        <nm>Test Business Name - 4</nm>
+        <ph>1234563</ph>
+        <paddr>
+			<a1>4-1 Any Physical Street</a1>
+			<a2>4-2 Any Physical Street</a2>
+			<a3>4-3 Any Physical Street</a3>
+			<a4>4-4 Any Physical Street</a4>
+			<ct>Englewood</ct>
+			<st>CO</st>
+			<cc>US</cc>
+			<pc>80112</pc>
+			<ln>-94.20885579</ln>
+            <lt>36.37312619</lt>
+		</paddr>
+        <maddr>
+			<a1>4-5 Any Mailing Street</a1>
+			<a2>4-6 Any Mailing Street</a2>
+			<a3>4-7 Any Mailing Street</a3>
+			<a4>4-8 Any Mailing Street</a4>
+			<ct>Highlands Ranch</ct>
+			<st>CO</st>
+			<cc>US</cc>
+			<pc>80111</pc>
+			<ln>-95.20885579</ln>
+            <lt>35.37316219</lt>
+		</maddr>
+		<ct1>
+			<fn>TestFirstName4-1</fn>
+			<mn>TestMiddleName4-1</mn>
+			<ln>TestLastName4-1</ln>
+			<pem>PrimaryEmail4-1@d3banking.com</pem>
+			<aem>AlternateEmail4-1@d3banking.com</aem>
+			<hph>7204564545</hph>
+			<wph>720 678 4564</wph>
+			<mph>7894 456 1525</mph>
+			<emp>false</emp>
+		</ct1>
+		<ct2>
+			<fn>TestFirstName4-2</fn>
+			<mn>TestMiddleName4-2</mn>
+			<ln>TestLastName4-2</ln>
+			<pem>PrimaryEmail4-2@d3banking.com</pem>
+			<aem>AlternateEmail4-2@d3banking.com</aem>
+			<hph>7204564542</hph>
+			<wph>720 678 4562</wph>
+			<mph>7894 456 1522</mph>
+			<emp>true</emp>
+		</ct2>
+      </busn>
+      <acctprodlst>
+        <acctprod uid="testAccProductId4-1">
+          <tp>checking</tp>
+          <nm>TestAccountProductName4-1</nm>
+          <alst>
+                <a	n = "ACHTransferFrom4-1" 	t = "string" 	d = "1">2014-04-02</a>
+          </alst>  
+        </acctprod>
+      </acctprodlst>
+      <alst>
+      	<a n="TestProductAttribute4-1" t = "string"  d = "1">TestProductAttribute4-1</a>
+      </alst>
+    </comp>
+    <comp uid="testCompany-5" puid="testCompany-1">
+      <tp>branch</tp>
+      <busn>
+        <nm>Test Business Name - 5</nm>
+        <ph>1234565</ph>
+        <paddr>
+			<a1>5-1 Any Physical Street</a1>
+			<a2>5-2 Any Physical Street</a2>
+			<a3>5-3 Any Physical Street</a3>
+			<a4>5-4 Any Physical Street</a4>
+			<ct>Englewood</ct>
+			<st>CO</st>
+			<cc>US</cc>
+			<pc>80112</pc>
+			<ln>-94.20885579</ln>
+            <lt>36.37312619</lt>
+		</paddr>
+        <maddr>
+			<a1>5-5 Any Mailing Street</a1>
+			<a2>5-6 Any Mailing Street</a2>
+			<a3>5-7 Any Mailing Street</a3>
+			<a4>5-8 Any Mailing Street</a4>
+			<ct>Highlands Ranch</ct>
+			<st>CO</st>
+			<cc>US</cc>
+			<pc>80111</pc>
+			<ln>-95.20885579</ln>
+            <lt>35.37316219</lt>
+		</maddr>
+		<ct1>
+			<fn>TestFirstName5-1</fn>
+			<mn>TestMiddleName5-1</mn>
+			<ln>TestLastName5-1</ln>
+			<pem>PrimaryEmail5-1@d3banking.com</pem>
+			<aem>AlternateEmail5-1@d3banking.com</aem>
+			<hph>7204564545</hph>
+			<wph>720 678 4564</wph>
+			<mph>7894 456 1525</mph>
+			<emp>false</emp>
+		</ct1>
+		<ct2>
+			<fn>TestFirstName5-2</fn>
+			<mn>TestMiddleName5-2</mn>
+			<ln>TestLastName5-2</ln>
+			<pem>PrimaryEmail5-2@d3banking.com</pem>
+			<aem>AlternateEmail5-2@d3banking.com</aem>
+			<hph>7204564542</hph>
+			<wph>720 678 4562</wph>
+			<mph>7894 456 1522</mph>
+			<emp>true</emp>
+		</ct2>
+      </busn>
+      <acctprodlst>
+        <acctprod uid="testAccProductId5-1">
+          <tp>checking</tp>
+          <nm>TestAccountProductName5-1</nm>
+          <alst>
+                <a	n = "ACHTransferFrom5-1" 	t = "string" 	d = "1">2014-04-02</a>
+          </alst>  
+        </acctprod>
+      </acctprodlst>
+      <alst>
+      	<a n="TestProductAttribute5-1" t = "string"  d = "1">TestProductAttribute5-1</a>
+      </alst>
+    </comp>
+    <comp uid="testCompany-6" puid="ROOT">
+      <tp>root</tp>
+      <busn>
+        <nm>Test Business Name - 6</nm>
+        <ph>1234563</ph>
+        <paddr>
+			<a1>6-1 Any Physical Street</a1>
+			<a2>6-2 Any Physical Street</a2>
+			<a3>6-3 Any Physical Street</a3>
+			<a4>6-4 Any Physical Street</a4>
+			<ct>Englewood</ct>
+			<st>CO</st>
+			<cc>US</cc>
+			<pc>80112</pc>
+			<ln>-94.20885579</ln>
+            <lt>36.37312619</lt>
+		</paddr>
+        <maddr>
+			<a1>6-5 Any Mailing Street</a1>
+			<a2>6-6 Any Mailing Street</a2>
+			<a3>6-7 Any Mailing Street</a3>
+			<a4>6-8 Any Mailing Street</a4>
+			<ct>Highlands Ranch</ct>
+			<st>CO</st>
+			<cc>US</cc>
+			<pc>80111</pc>
+			<ln>-95.20885579</ln>
+            <lt>35.37316219</lt>
+		</maddr>
+		<ct1>
+			<fn>TestFirstName6-1</fn>
+			<mn>TestMiddleName6-1</mn>
+			<ln>TestLastName6-1</ln>
+			<pem>PrimaryEmail6-1@d3banking.com</pem>
+			<aem>AlternateEmail6-1@d3banking.com</aem>
+			<hph>7204564545</hph>
+			<wph>720 678 4564</wph>
+			<mph>7894 456 1525</mph>
+			<emp>false</emp>
+		</ct1>
+		<ct2>
+			<fn>TestFirstName6-2</fn>
+			<mn>TestMiddleName6-2</mn>
+			<ln>TestLastName6-2</ln>
+			<pem>PrimaryEmail6-2@d3banking.com</pem>
+			<aem>AlternateEmail6-2@d3banking.com</aem>
+			<hph>7204564542</hph>
+			<wph>720 678 4562</wph>
+			<mph>7894 456 1522</mph>
+			<emp>true</emp>
+		</ct2>
+      </busn>
+      <acctprodlst>
+      </acctprodlst>
+      <alst>
+      	<a n="TestProductAttribute6-1" t = "string"  d = "1">TestProductAttribute6-1</a>
+      </alst>
+    </comp>
+   </complst>
+</conduit>

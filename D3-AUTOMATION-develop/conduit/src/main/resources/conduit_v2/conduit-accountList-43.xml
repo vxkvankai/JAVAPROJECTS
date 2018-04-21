@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<conduit>
+  <hdr>
+    <ver>2.0</ver>
+    <rqid>01234567890</rqid>
+    <authn u="user" p="password"/>
+    <txndtrng bdt="2013-09-01" edt="2013-09-30"/>
+    <parse>ftrue</parse>
+  </hdr>
+
+  <acctlst>
+    <acct uid="acct-uid-001" cuid="com-uid-002">
+      <produid>acctprod-uid-002</produid>
+      <nm>Checking Account</nm>
+      <rttn>123456789</rttn>
+      <nbr>1234 1234 1234 1234</nbr>
+      <bal>4567.123456</bal>
+      <sts>open</sts>
+      <cc>USD</cc>
+      <avbal>456.12</avbal>
+      <rstr>0</rstr>
+      <estmt>both</estmt>
+      <opndt>2013-01-01</opndt>
+      <clsdt>2015-01-01</clsdt>
+      <txnlst>
+        <txn uid="txn-uid-002"
+        tp="d"
+        am="789.123456"
+        pa="456.120"
+        ia="456.78"
+        oa="789045.45"
+        pd="2013-09-11"
+        pn="0"
+        mc="1234"
+        rb = "123.78"
+        od="2013-09-10"
+        tc="TXN-CODE"
+        cn="1001"
+        dn = "DEP NUM-1"
+        im="checkimg-1001.jpg"
+        ps="55">
+          <nm>Dillard Credit Card</nm>
+          <mm>Transaction-2</mm>
+        </txn>
+      </txnlst>
+    </acct>
+  </acctlst>
+</conduit>

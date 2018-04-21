@@ -1,0 +1,50 @@
+!*****> Imports & DB Connection
+|Import fixture|
+|dbfit.fixture|
+
+!|DatabaseEnvironment|sqlserver|
+|Connect|${dbURL}|${dbUserName}|${dbUserName}|${dbName}|
+
+!|dbfit.fixture.DatabaseEnvironment|
+|set option|bind symbols|true|
+
+!|smartrics.rest.fitnesse.fixture.RestFixtureConfig|
+|http.client.connection.timeout|10000|
+****!
+!*****> Variables
+!define charValue !-{~`@#$%^&*()_+-=[{}]|:;'?,./}-!
+!define longValue {01234567890testfitne_s01234567890testfitne_s01234567890testfitne_s01234567890testfitne_s01234567890testfitne_s}
+!define numValue {0123456789}
+!define stringInput {ThisIsTEstStringValue}
+!define userLoginID {fitTestLogin}
+!define personFirstName {Arna}
+!define branchID {1}
+!define companyID {1}
+****!
+!*****> Clean-up Test Data
+
+!|Query|!- SELECT DAY(SYSDATETIME()) as Day, Year(SYSDATETIME()) as Year, Month(SYSDATETIME()) as Month, (CASE WHEN Month(SYSDATETIME()) = '1' THEN '1.0' END) as Month1, DAY(DATEADD(s,-1,DATEADD(mm, DATEDIFF(m,0,GETDATE())+1,0))) as lastDay, 
+           MONTH(DATEADD(MONTH, -1, SYSDATETIME())) as lastMonth-!|
+|Day?|Year?|Month?|Month1?|lastDay?|lastMonth?|
+|>>todayDay|>>todayYear|>>todayMonth|>>todayMonth1|>>lastDayOfCurrentMonth|>>lastMonth|
+
+!|Query|!- select USER_ID from [OLB_USER] where LOGIN_ID = '-!${userName}'|
+|USER_ID?|
+|>>userID|
+
+!|Execute|!-update [CREDENTIALS] set PASSWORD = 'q7hmqEHHFhwpUxzeJyp2vMS4BrN1YvEp+Q9HvhQudtY=' where PROFILE_NAME = 'user1 DEFAULT'
+            update COMPANY_ATTRIBUTES set ATTRIBUTE_VALUE = 'flow.username.password.then.question' where ATTRIBUTE_NAME = 'attr.login.flow.id' and COMPANY_STRUCTURE_ID = 1-!|
+
+!|Execute|!-delete from [TERMS_OF_SERVICE_ACCEPTANCE] where USER_LOGIN_ID = '-!${userName}!-'
+            delete from [TERMS_OF_SERVICE_ACCEPTANCE] where USER_LOGIN_ID = '-!${userLoginID}!-'-!|
+
+!|Execute|!-delete FROM [OLB_USER] where LOGIN_ID like 'fitTestLogin%' or LOGIN_ID like 'PasswordIsDisqualify%'
+            delete FROM [ADMIN_USER] where LOGIN_ID like 'fitTestLogin%' or LOGIN_ID like 'PasswordIsDisqualify%'
+            delete FROM [PERSON] where LAST_NAME = 'Badyelkhan'
+            delete FROM [ADDRESS] where ADDRESS1 = '1234 Admin Ln' or ADDRESS1 = '5555 Cornhusker Highway'
+            delete FROM [CREDENTIALS] where PROFILE_NAME like 'fitTestLogin%' or PROFILE_NAME like 'PasswordIsDisqualify%'
+            delete FROM [TERMS_OF_SERVICE_ACCEPTANCE] where USER_LOGIN_ID like 'fitTestLogin%' -!|
+
+!|DatabaseEnvironment|
+|commit|
+****!

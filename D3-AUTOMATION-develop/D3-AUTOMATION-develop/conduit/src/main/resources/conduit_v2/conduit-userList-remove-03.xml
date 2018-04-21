@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<conduit>
+  <hdr>
+    <ver>2.0</ver>
+    <rqid>01234567890</rqid>
+    <authn u="user" p="password"/>
+    <txndtrng bdt="2013-09-01" edt="2013-09-30"/>
+    <parse>ftrue</parse>
+  </hdr>
+   <usrlst>
+    <usr uid="usr-uid-010" cuid="com-uid-002" del = "true">
+      <login>testLogin10</login>
+      <txid>111-00-2222</txid>
+      <txtp>s</txtp>
+      <lock>1</lock>
+      <m>1</m>
+      <enbl>1</enbl>
+      <emlopt>0</emlopt>
+      <dob>1969-01-01</dob>
+      <g>m</g>
+      <bpid>billpay-id-001</bpid>
+      <bpsts>a</bpsts>
+      <crsc>700</crsc>
+      <crdt>2013-09-01</crdt>
+      <cls>VALUED-CUSTOMER</cls>
+      <psn>
+        <fn>TestFirstName1-1</fn>
+		<mn>TestMiddleName1-1</mn>
+		<ln>TestLastName1-1</ln>
+		<pem>PrimaryEmail1-1@d3banking.com</pem>
+		<aem>AlternateEmail1-1@d3banking.com</aem>
+		<hph>7204564545</hph>
+		<wph>720 678 4564</wph>
+		<mph>7894 456 1525</mph>
+		<emp>1</emp>
+        <paddr>
+			<a1>1-1 Any Physical Street</a1>
+			<a2>1-2 Any Physical Street</a2>
+			<a3>1-3 Any Physical Street</a3>
+			<a4>1-4 Any Physical Street</a4>
+			<ct>Englewood</ct>
+			<st>CO</st>
+			<cc>US</cc>
+			<pc>80112</pc>
+			<ln>-94.20885579</ln>
+            <lt>36.37312619</lt>
+		</paddr>
+        <maddr>
+			<a1>1-5 Any Mailing Street</a1>
+			<a2>1-6 Any Mailing Street</a2>
+			<a3>1-7 Any Mailing Street</a3>
+			<a4>1-8 Any Mailing Street</a4>
+			<ct>Highlands Ranch</ct>
+			<st>CO</st>
+			<cc>US</cc>
+			<pc>80111-4561</pc>
+			<ln>-95.20885579</ln>
+            <lt>35.37316219</lt>
+		</maddr>
+      </psn>
+	</usr>
+  </usrlst>
+</conduit>

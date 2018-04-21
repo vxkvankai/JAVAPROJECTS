@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<conduit>
+  <hdr>
+    <ver>2.0</ver>
+    <rqid>01234567890</rqid>
+    <authn u="user" p="password"/>
+    <txndtrng bdt="2013-09-01" edt="2013-09-30"/>
+    <parse>ftrue</parse>
+  </hdr>
+   <usrlst>
+    <usr uid="usr-uid-001" cuid="com-uid-002">
+      <psn>
+		<ln>TestLastName1-1</ln>
+        <paddr>
+			<a1>1-1 Any Physical Street</a1>
+			<a2 del="true"/>
+			<a3 del="true"/>
+			<a4 del="true"/>
+			<ct>Englewood</ct>
+			<st>CO</st>
+			<cc del="true"/>
+			<pc>80112</pc>
+			<ln del="true"/>
+            <lt del="true"/>
+		</paddr>
+      </psn>
+	</usr>
+  </usrlst>
+</conduit>

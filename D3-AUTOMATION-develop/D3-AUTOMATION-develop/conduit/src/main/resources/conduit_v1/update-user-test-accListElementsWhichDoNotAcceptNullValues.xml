@@ -1,0 +1,137 @@
+<?xml version="1.0"?>
+<conduitUserRequest xmlns="http://lodosoftware.com/conduit/user">
+    <version>1.0</version>
+    <authentication>
+        <username>userName</username>
+        <password>password</password>
+    </authentication>
+    <transactionDateRange>
+        <beginDate>2012-05-24</beginDate>
+        <endDate>2012-05-30</endDate>
+    </transactionDateRange>
+    <userList>
+        <user directId="ArnaTestUser-1" directId2="TestuserDirectID2">
+            <loginId>TestUserLoginID1</loginId>
+            <branchExternalId>ArnaTest-1</branchExternalId>
+            <interfaceId>9999</interfaceId>
+            <taxId>304-26-2460</taxId>
+            <taxIdType>SSN</taxIdType>
+            <locked>false</locked>
+            <userEnabled>false</userEnabled>
+            <emailOptOut>false</emailOptOut>
+            <dateOfBirth>1980-08-24</dateOfBirth>
+            <gender>F</gender>
+            <billpaySubscriberId>316492460304</billpaySubscriberId>
+            <creditScore>800</creditScore>
+            <creditScoreDate>2012-04-20</creditScoreDate>
+            <userClass>DOUBLE-PLATNUM</userClass>
+            <credentials>
+                <profileName>updatedProfileName</profileName>
+                <password>UpdatedP@ssw0rd1</password>
+                <secretQuestion1>This is just update test, right?</secretQuestion1>
+                <secretAnswer1>Yes</secretAnswer1>
+                <secretQuestion2>This is just update test, right?</secretQuestion2>
+                <secretAnswer2>Yes</secretAnswer2>
+                <secretQuestion3>This is just update test, right?</secretQuestion3>
+                <secretAnswer3>Yes</secretAnswer3>
+            </credentials>
+            <person>
+                <firstName>UpdatedFirstName</firstName>
+                <lastName>UpdatedLastName</lastName>
+                <primaryEmail>updated@lodosoftware.com</primaryEmail>
+                <homePhone>304-304-4566</homePhone>
+                <employee>true</employee>
+                <physicalAddress>
+                    <address1>Updated Address1</address1>
+                    <address2>Updated Address2</address2>
+                    <address3>Updated Address3</address3>
+                    <address4>Updated Address4</address4>
+                    <city>UpdatedCityName</city>
+                    <state>CO</state>
+                    <countryCode>US</countryCode>
+                    <postalCode>78945</postalCode>
+                </physicalAddress>
+                <mailingAddress>
+					<address1>Updated Mailing Address1</address1>
+					<address2>Updated Mailing Address2</address2>
+					 <address3>Updated Mailing Address3</address3>
+					<address4>Updated Mailing Address4</address4>
+					<city>UpdateCity</city>
+					<state>AR</state>
+					<countryCode>US</countryCode>
+					<postalCode>78945</postalCode>
+				</mailingAddress>
+            </person>
+            <userAccountList>
+                <userAccount action="associate">
+                    <accountDirectId>accountDirectID1-1</accountDirectId>
+                    <nickname>Updated NickName for UserAccount</nickname>
+                    <excluded>true</excluded>
+                    <hidden>true</hidden>
+                    <hideByAdmin>true</hideByAdmin>
+                    <displayOrder>12</displayOrder>
+                </userAccount>
+            </userAccountList>
+        </user>
+    </userList>
+    <accountList>
+        <account directId="accountDirectID1-1">
+			<branchExternalId>Updated Branch ExternalID</branchExternalId>
+			<accountName>Updated Account Name</accountName>
+			<accountNumber>4565-7894-1562-7894</accountNumber>
+			<accountType></accountType>
+			<accountClass></accountClass>
+			<balance></balance>
+			<accountStatus>accountstatus.closed</accountStatus>
+			<rateOfReturn></rateOfReturn>
+			<restricted></restricted>
+			<availableBalance></availableBalance>
+			<creditLimit>10000.45</creditLimit>
+			<currencyCode></currencyCode>
+			<availableCredit></availableCredit>
+			<cashAdvanceLimit>250.15</cashAdvanceLimit>
+			<availableCashLimit>456.12</availableCashLimit>
+			<minimumPaymentDue>78.15</minimumPaymentDue>
+			<paymentDueDate>2012-06-02</paymentDueDate>
+			<interestRate>10.12</interestRate>
+			<maturityDate>2012-12-20</maturityDate>
+			<previousAmountDue>12.45</previousAmountDue>
+			<pastAmountDue>45.78</pastAmountDue>
+			<financeCharges>72.25</financeCharges>
+			<estatements>false</estatements>
+			<holdAmount>25.47</holdAmount>
+			<accountOpenDate>2012-05-20</accountOpenDate>
+			<accountClosedDate>2012-06-20</accountClosedDate>
+			<aggregationStatus>aggstatus.success</aggregationStatus>
+			<lastDepositAmount>453.74</lastDepositAmount>
+			<lastDepositDate>2012-04-20</lastDepositDate>
+			<lastPaymentDate>2012-04-14</lastPaymentDate>
+			<loanDate>2011-07-20</loanDate>
+			<rewardsBalance>452.75</rewardsBalance>
+			<pointsAccrued>45000.00</pointsAccrued>
+			<pointsRedeemed>100.50</pointsRedeemed>
+			<apr>21.45</apr>
+            <transactionList>
+                <transaction directId="1268206987">
+                    <amount>45.78</amount>
+                    <name>UpdatedTransaction Name</name>
+                    <postDate>2012-06-29</postDate>
+                    <type>1</type>
+                    <pending>true</pending>
+                    <memo>Updated test</memo>
+                    <mcc>458</mcc>
+                    <principalAmount>45.45</principalAmount>
+					<interestAmount>12.12</interestAmount>
+					<otherAmount>78.78</otherAmount>
+					<currencyCode>USD</currencyCode>
+					<runningBalance>53.25</runningBalance>
+					<originationDate>2012-02-21</originationDate>
+					<tranCode>78</tranCode>
+					<checkNum>1245</checkNum>
+					<imageId>2</imageId>
+					<postingSeq>78</postingSeq>                  
+                </transaction>
+            </transactionList>
+        </account>
+    </accountList>
+</conduitUserRequest>

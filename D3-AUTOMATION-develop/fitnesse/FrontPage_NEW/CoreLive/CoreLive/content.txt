@@ -1,0 +1,10 @@
+!*****> '''!style_darkRed[eStatement]'''
+ 
+''all valid data''
+
+|!-smartrics.rest.fitnesse.service.fixture-!|
+
+
+''invalid acctUid''
+''invalid compUid''
+****!

@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<conduitUserRequest xmlns="http://lodosoftware.com/conduit/user">
+	<version>1.0</version>
+	<userList>
+		<user directId="BR-1234-CID-9999" directId2="1234">
+			<userAccountList>
+			<userAccount action="associate">
+				<accountDirectId>DDA-CHECKING-123</accountDirectId>
+				<nickname>My Checking Account</nickname>
+				<excluded>false</excluded>
+				<hidden>false</hidden>
+				<hideByAdmin>false</hideByAdmin>
+				<displayOrder>1</displayOrder>
+			</userAccount>
+			<userAccount action="disassociate">
+				<accountDirectId>DDA-SAVINGS-123</accountDirectId>
+			</userAccount>
+			</userAccountList>
+		</user>
+</userList>
+</conduitUserRequest>
+
+
+

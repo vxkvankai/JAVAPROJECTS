@@ -1,0 +1,31 @@
+!*****> !style_green[1. SYSTEM]
+
+!*****> '''1.1 SYSTEM/ABOUT'''
+'''1.1 System/About (returns system information including rest api )'''
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest/system/about|
+|setHeader|!- appKey : -!${institutionNum}!- 
+Content-Type : application/json
+userToken : -!%encodedUserToken%|
+|comment|!- appKey : -!${institutionNum}!- 
+Content-Type : application/json
+userToken : -!%encodedUserToken%|
+|GET||200|||
+|let||js|response.jsonbody.About.Copyright|!-LodoSoftware-!|
+****!
+!*****> '''1.2 ECHO'''
+'''1.2 Echo'''
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest/system/echo|
+|setHeader|!- appKey : -!${institutionNum}!- 
+Content-Type : application/json-!|
+|GET||200|||
+****!
+!*****> '''1.3 SYSTEM/INIT'''
+'''1.3 System/Init'''
+#|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest/system/init|
+#|setHeader|!- appKey : -!${institutionNum}!- 
+#Content-Type : application/json
+#userToken : -!%encodedUserToken%|
+#|setBody||
+#|POST||200|||
+****!
+****!

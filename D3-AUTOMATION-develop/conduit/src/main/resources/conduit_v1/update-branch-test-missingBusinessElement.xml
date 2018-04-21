@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<conduitBranchRequest xmlns="http://lodosoftware.com/conduit/branch">
+    <version>1.0</version>
+    <authentication>
+        <username>user</username>
+        <password>password</password>
+    </authentication>
+    <branchList>
+        <branch externalId="ArnaTest-1" parentExternalId="DEFAULT">
+        </branch>
+
+    </branchList>
+</conduitBranchRequest>
+

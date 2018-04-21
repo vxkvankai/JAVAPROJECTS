@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Self_Service_Service_Regression_Tests" verbose="2">
+    <listeners>
+        <listener class-name="com.d3.tests.listeners.ProjectListener"/>
+        <listener class-name="com.d3.tests.listeners.TestListener"/>
+    </listeners>
+    <test name="Self_Service_Regression">
+        <packages>
+            <package name="com.d3.tests.consumer.core.selfservice"/>
+        </packages>
+    </test>
+</suite>

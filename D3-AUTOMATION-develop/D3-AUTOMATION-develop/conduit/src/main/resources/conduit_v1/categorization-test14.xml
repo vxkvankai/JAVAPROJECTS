@@ -1,0 +1,280 @@
+<?xml version="1.0"?>
+<conduitUserRequest xmlns="http://lodosoftware.com/conduit/user">
+    <version>1.0</version>
+    <authentication>
+        <username>userName</username>
+        <password>password</password>
+    </authentication>
+    <transactionDateRange>
+        <beginDate>2010-05-24</beginDate>
+        <endDate>2013-05-30</endDate>
+    </transactionDateRange>
+    <userList>
+       <user directId="CategorizationUserDirectID">
+            <loginId>CatLoginID</loginId>
+            <branchExternalId>DEFAULT-BRANCH</branchExternalId>
+            <userAccountList>
+                <userAccount action="associate">
+                    <accountDirectId>AutoCatDirectID-12</accountDirectId>
+                    <nickname>AutoCategorizationTest-12</nickname>
+                    <excluded>false</excluded>
+                    <hidden>false</hidden>
+                    <hideByAdmin>false</hideByAdmin>
+                    <displayOrder>1</displayOrder>
+                </userAccount>
+            </userAccountList>
+        </user>
+        <user directId="SecondUserDirectID">
+            <loginId>SecondUserLoginID</loginId>
+            <branchExternalId>DEFAULT-BRANCH</branchExternalId>
+            <userAccountList>
+                <userAccount action="associate">
+                    <accountDirectId>SecondUserAccDirectID1</accountDirectId>
+                    <nickname>SecondUserNickName1</nickname>
+                    <excluded>false</excluded>
+                    <hidden>false</hidden>
+                    <hideByAdmin>false</hideByAdmin>
+                    <displayOrder>1</displayOrder>
+                </userAccount>
+                  <userAccount action="associate">
+                    <accountDirectId>SecondUserAccDirectID2</accountDirectId>
+                    <nickname>SecondUserNickName2</nickname>
+                    <excluded>false</excluded>
+                    <hidden>false</hidden>
+                    <hideByAdmin>false</hideByAdmin>
+                    <displayOrder>1</displayOrder>
+                </userAccount>
+            </userAccountList>
+        </user>
+    </userList>
+    <accountList>
+ <account directId="AutoCatDirectID-12">
+            <accountName>AutoCatTestAccountName-12</accountName>
+            <branchExternalId>DEFAULT-BRANCH</branchExternalId>
+			<accountProductExternalId>DEFAULT_COMPANY_CHECKING</accountProductExternalId>
+			<routingTransitNumber>ROUNTNUM1</routingTransitNumber>
+            <accountNumber>9292f28e23f70e9a9a4ca03545489ff1</accountNumber>
+            <accountClass>accountclass.deposit</accountClass>
+            <accountType>accounttype.banking.checking</accountType>
+            <balance>145.00</balance>
+            <transactionList>
+                <transaction directId="AutoCatTestDirectID-12-1">
+                    <amount>456.55</amount>
+                    <name>Categorization Test</name>
+                    <postDate>2012-05-17</postDate>
+                    <type>1</type>
+                    <pending>false</pending>
+                    <postingSeq>4</postingSeq>
+                </transaction>
+                <transaction directId="AutoCatTestDirectID-12-2">
+                    <amount>456.55</amount>
+                    <name>Categorization Test Rule</name>
+                    <postDate>2012-05-17</postDate>
+                    <type>1</type>
+                    <pending>false</pending>
+                    <postingSeq>4</postingSeq>
+                </transaction>
+                <transaction directId="AutoCatTestDirectID-12-3">
+                    <amount>456.55</amount>
+                    <name>Categorization Test Rule Renaming</name>
+                    <postDate>2012-05-17</postDate>
+                    <type>1</type>
+                    <pending>false</pending>
+                    <postingSeq>4</postingSeq>
+                </transaction>
+                <transaction directId="AutoCatTestDirectID-12-4">
+                    <amount>456.55</amount>
+                    <name>Categorization Test Rule</name>
+                    <postDate>2012-05-17</postDate>
+                    <type>1</type>
+                    <pending>false</pending>
+                    <postingSeq>4</postingSeq>
+                </transaction>
+                <transaction directId="AutoCatTestDirectID-12-5">
+                    <amount>456.55</amount>
+                    <name>Categorization # Test</name>
+                    <postDate>2012-05-17</postDate>
+                    <type>1</type>
+                    <pending>false</pending>
+                    <postingSeq>4</postingSeq>
+                </transaction>
+                <transaction directId="AutoCatTestDirectID-12-6">
+                    <amount>456.55</amount>
+                    <name>Categorization &quot;, &lt;,  Test &gt;</name>
+                    <postDate>2012-05-17</postDate>
+                    <type>1</type>
+                    <pending>false</pending>
+                    <postingSeq>4</postingSeq>
+                </transaction>
+                <transaction directId="AutoCatTestDirectID-12-7">
+                    <amount>456.55</amount>
+                    <name>Categorization &amp; Test</name>
+                    <postDate>2012-05-17</postDate>
+                    <type>1</type>
+                    <pending>false</pending>
+                    <postingSeq>4</postingSeq>
+                </transaction>
+                <transaction directId="AutoCatTestDirectID-12-8">
+                    <amount>456.55</amount>
+                    <name>Categorization 	Test</name>
+                    <postDate>2012-05-17</postDate>
+                    <type>1</type>
+                    <pending>false</pending>
+                    <postingSeq>4</postingSeq>
+                </transaction>
+            </transactionList>
+        </account>
+        <account directId="SecondUserAccDirectID1">
+            <accountName>AutoCatTestAccountName1-1</accountName>
+            <branchExternalId>DEFAULT-BRANCH</branchExternalId>
+			<accountProductExternalId>DEFAULT_COMPANY_CHECKING</accountProductExternalId>
+			<routingTransitNumber>ROUNTNUM1</routingTransitNumber>
+            <accountNumber>9292f28e23f70e9a9a4ca03545489ff1</accountNumber>
+            <accountClass>accountclass.deposit</accountClass>
+            <accountType>accounttype.banking.checking</accountType>
+            <balance>145.00</balance>
+            <transactionList>
+                <transaction directId="AutoCatTestDirectID1-1">
+                    <amount>456.55</amount>
+                    <name>Categorization Test</name>
+                    <postDate>2012-05-17</postDate>
+                    <type>1</type>
+                    <pending>false</pending>
+                    <postingSeq>4</postingSeq>
+                </transaction>
+                <transaction directId="AutoCatTestDirectID1-2">
+                    <amount>456.55</amount>
+                    <name>Categorization Test Rule</name>
+                    <postDate>2012-05-17</postDate>
+                    <type>1</type>
+                    <pending>false</pending>
+                    <postingSeq>4</postingSeq>
+                </transaction>
+                <transaction directId="AutoCatTestDirectID1-3">
+                    <amount>456.55</amount>
+                    <name>Categorization Test Rule Renaming</name>
+                    <postDate>2012-05-17</postDate>
+                    <type>1</type>
+                    <pending>false</pending>
+                    <postingSeq>4</postingSeq>
+                </transaction>
+                <transaction directId="AutoCatTestDirectID1-4">
+                    <amount>456.55</amount>
+                    <name>Categorization Test Rule</name>
+                    <postDate>2012-05-17</postDate>
+                    <type>1</type>
+                    <pending>false</pending>
+                    <postingSeq>4</postingSeq>
+                </transaction>
+                <transaction directId="AutoCatTestDirectID1-5">
+                    <amount>456.55</amount>
+                    <name>Categorization # Test</name>
+                    <postDate>2012-05-17</postDate>
+                    <type>1</type>
+                    <pending>false</pending>
+                    <postingSeq>4</postingSeq>
+                </transaction>
+                <transaction directId="AutoCatTestDirectID1-6">
+                    <amount>456.55</amount>
+                    <name>Categorization &quot;, &lt;,  Test &gt;</name>
+                    <postDate>2012-05-17</postDate>
+                    <type>1</type>
+                    <pending>false</pending>
+                    <postingSeq>4</postingSeq>
+                </transaction>
+                <transaction directId="AutoCatTestDirectID1-7">
+                    <amount>456.55</amount>
+                    <name>Categorization &amp; Test</name>
+                    <postDate>2012-05-17</postDate>
+                    <type>1</type>
+                    <pending>false</pending>
+                    <postingSeq>4</postingSeq>
+                </transaction>
+                <transaction directId="AutoCatTestDirectID1-8">
+                    <amount>456.55</amount>
+                    <name>Categorization 	Test</name>
+                    <postDate>2012-05-17</postDate>
+                    <type>1</type>
+                    <pending>false</pending>
+                    <postingSeq>4</postingSeq>
+                </transaction>
+            </transactionList>
+        </account>
+       <account directId="SecondUserAccDirectID2">
+            <accountName>AutoCatTestAccountName2-1</accountName>
+            <branchExternalId>DEFAULT-BRANCH</branchExternalId>
+			<accountProductExternalId>DEFAULT_COMPANY_CHECKING</accountProductExternalId>
+			<routingTransitNumber>ROUNTNUM1</routingTransitNumber>
+            <accountNumber>9292f28e23f70e9a9a4ca03545489ff1</accountNumber>
+            <accountClass>accountclass.deposit</accountClass>
+            <accountType>accounttype.banking.checking</accountType>
+            <balance>145.00</balance>
+            <transactionList>
+                <transaction directId="AutoCatTestDirectID2-1">
+                    <amount>456.55</amount>
+                    <name>Categorization Test</name>
+                    <postDate>2012-05-17</postDate>
+                    <type>1</type>
+                    <pending>false</pending>
+                    <postingSeq>4</postingSeq>
+                </transaction>
+                <transaction directId="AutoCatTestDirectID2-2">
+                    <amount>456.55</amount>
+                    <name>Categorization Test Rule</name>
+                    <postDate>2012-05-17</postDate>
+                    <type>1</type>
+                    <pending>false</pending>
+                    <postingSeq>4</postingSeq>
+                </transaction>
+                <transaction directId="AutoCatTestDirectID2-3">
+                    <amount>456.55</amount>
+                    <name>Categorization Test Rule Renaming</name>
+                    <postDate>2012-05-17</postDate>
+                    <type>1</type>
+                    <pending>false</pending>
+                    <postingSeq>4</postingSeq>
+                </transaction>
+                <transaction directId="AutoCatTestDirectID2-4">
+                    <amount>456.55</amount>
+                    <name>Categorization Test Rule</name>
+                    <postDate>2012-05-17</postDate>
+                    <type>1</type>
+                    <pending>false</pending>
+                    <postingSeq>4</postingSeq>
+                </transaction>
+                <transaction directId="AutoCatTestDirectID2-5">
+                    <amount>456.55</amount>
+                    <name>Categorization # Test</name>
+                    <postDate>2012-05-17</postDate>
+                    <type>1</type>
+                    <pending>false</pending>
+                    <postingSeq>4</postingSeq>
+                </transaction>
+                <transaction directId="AutoCatTestDirectID2-6">
+                    <amount>456.55</amount>
+                    <name>Categorization &quot;, &lt;,  Test &gt;</name>
+                    <postDate>2012-05-17</postDate>
+                    <type>1</type>
+                    <pending>false</pending>
+                    <postingSeq>4</postingSeq>
+                </transaction>
+                <transaction directId="AutoCatTestDirectID2-7">
+                    <amount>456.55</amount>
+                    <name>Categorization &amp; Test</name>
+                    <postDate>2012-05-17</postDate>
+                    <type>1</type>
+                    <pending>false</pending>
+                    <postingSeq>4</postingSeq>
+                </transaction>
+                <transaction directId="AutoCatTestDirectID2-8">
+                    <amount>456.55</amount>
+                    <name>Categorization 	Test</name>
+                    <postDate>2012-05-17</postDate>
+                    <type>1</type>
+                    <pending>false</pending>
+                    <postingSeq>4</postingSeq>
+                </transaction>
+            </transactionList>
+        </account>
+    </accountList>
+</conduitUserRequest>

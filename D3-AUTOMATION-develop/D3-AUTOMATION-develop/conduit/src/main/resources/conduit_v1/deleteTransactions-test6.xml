@@ -1,0 +1,215 @@
+<?xml version="1.0"?>
+<conduitUserRequest xmlns="http://lodosoftware.com/conduit/user">
+    <version>1.0</version>
+    <authentication>
+        <username>userName</username>
+        <password>password</password>
+    </authentication>
+    <transactionDateRange>
+        <beginDate></beginDate>
+        <endDate></endDate>
+    </transactionDateRange>
+    <userList>
+        <user directId="ArnaTestUser-1">
+            <loginId>TestUserLoginID1</loginId>
+            <branchExternalId>ArnaTest-1</branchExternalId>
+            <taxId>304-26-2460</taxId>
+            <taxIdType>SSN</taxIdType>
+            <locked>false</locked>
+            <userEnabled>false</userEnabled>
+            <emailOptOut>false</emailOptOut>
+            <dateOfBirth>1980-08-24</dateOfBirth>
+            <gender>F</gender>
+            <billpaySubscriberId>316492460304</billpaySubscriberId>
+            <creditScore>800</creditScore>
+            <creditScoreDate>2012-04-20</creditScoreDate>
+            <userClass>DOUBLE-PLATNUM</userClass>
+            <person>
+                <firstName>Arna</firstName>
+                <lastName>Badyelkhan</lastName>
+                <primaryEmail>abadyelkhan@lodosoftware.com</primaryEmail>
+                <homePhone>304-304-2460</homePhone>
+                <employee>false</employee>
+                <physicalAddress>
+                    <address1>9568 Missouri Ave</address1>
+                    <city>LOWELL</city>
+                    <state>AR</state>
+                    <countryCode>US</countryCode>
+                    <postalCode>72745-9551</postalCode>
+                </physicalAddress>
+            </person>
+            <userAccountList>
+                <userAccount action="associate">
+                    <accountDirectId>accountDirectID1-1</accountDirectId>
+                    <nickname>daa9ad60dfefa4065812a439f7f00ae0</nickname>
+                    <excluded>false</excluded>
+                    <hidden>false</hidden>
+                    <hideByAdmin>false</hideByAdmin>
+                    <displayOrder>1</displayOrder>
+                </userAccount>
+                <userAccount action="associate">
+                    <accountDirectId>accountDirectID1-2</accountDirectId>
+                    <nickname>NickName1-1</nickname>
+                    <excluded>false</excluded>
+                    <hidden>false</hidden>
+                    <hideByAdmin>false</hideByAdmin>
+                    <displayOrder>1</displayOrder>
+                </userAccount>
+                <userAccount action="associate">
+                    <accountDirectId>accountDirectID1-3</accountDirectId>
+                    <nickname>NickName1-2</nickname>
+                    <excluded>false</excluded>
+                    <hidden>false</hidden>
+                    <hideByAdmin>false</hideByAdmin>
+                    <displayOrder>1</displayOrder>
+                </userAccount>
+                <userAccount action="associate">
+                    <accountDirectId>accountDirectID1-4</accountDirectId>
+                    <nickname>NickName1-3</nickname>
+                    <excluded>false</excluded>
+                    <hidden>false</hidden>
+                    <hideByAdmin>false</hideByAdmin>
+                    <displayOrder>1</displayOrder>
+                </userAccount>
+                <userAccount action="associate">
+                    <accountDirectId>accountDirectID1-5</accountDirectId>
+                    <nickname>NickName1-4</nickname>
+                    <excluded>false</excluded>
+                    <hidden>false</hidden>
+                    <hideByAdmin>false</hideByAdmin>
+                    <displayOrder>1</displayOrder>
+                </userAccount>
+                <userAccount action="associate">
+                    <accountDirectId>accountDirectID1-6</accountDirectId>
+                    <nickname>NickName1-5</nickname>
+                    <excluded>false</excluded>
+                    <hidden>false</hidden>
+                    <hideByAdmin>false</hideByAdmin>
+                    <displayOrder>1</displayOrder>
+                </userAccount>
+                <userAccount action="associate">
+                    <accountDirectId>accountDirectID1-7</accountDirectId>
+                    <nickname>NickName1-6</nickname>
+                    <excluded>false</excluded>
+                    <hidden>false</hidden>
+                    <hideByAdmin>false</hideByAdmin>
+                    <displayOrder>1</displayOrder>
+                </userAccount>
+                <userAccount action="associate">
+                    <accountDirectId>accountDirectID1-8</accountDirectId>
+                    <nickname>NickName1-7</nickname>
+                    <excluded>false</excluded>
+                    <hidden>false</hidden>
+                    <hideByAdmin>false</hideByAdmin>
+                    <displayOrder>1</displayOrder>
+                </userAccount>
+            </userAccountList>
+        </user>
+    </userList>
+    <accountList>
+        <account directId="accountDirectID1-1">
+            <accountName>AccountName1-1</accountName>
+            <branchExternalId>ArnaTest-1</branchExternalId>
+            <routingTransitNumber>ROUNTNUM1</routingTransitNumber>	
+            <accountProductExternalId>DEFAULT_COMPANY_CHECKING</accountProductExternalId>
+            <accountNumber>9292f28e23f70e9a9a4ca03545489ff1</accountNumber>
+            <accountClass>accountclass.deposit</accountClass>
+            <accountType>accounttype.banking.checking</accountType>
+            <balance>-400.15</balance>
+            <transactionList>
+            </transactionList>
+        </account>
+        <account directId="accountDirectID1-2">
+            <accountName>AccountName1-2</accountName>
+            <branchExternalId>ArnaTest-1</branchExternalId>
+            <routingTransitNumber>ROUNTNUM1</routingTransitNumber>	
+            <accountProductExternalId>DEFAULT_COMPANY_CHECKING</accountProductExternalId>
+            <accountNumber>879f8417ffc8cfebc0ffe73d3316d263</accountNumber>
+            <accountClass>accountclass.deposit</accountClass>
+            <accountType>accounttype.banking.savings</accountType>
+            <balance>879.62</balance>
+            <transactionList>
+            </transactionList>
+        </account>
+        <account directId="accountDirectID1-3">
+            <accountName>AccountName1-3</accountName>
+            <branchExternalId>ArnaTest-1</branchExternalId>
+            <routingTransitNumber>ROUNTNUM1</routingTransitNumber>	
+            <accountProductExternalId>DEFAULT_COMPANY_CHECKING</accountProductExternalId>
+            <accountNumber>46e4f908f107ac45d00cde9628ccd450</accountNumber>
+            <accountClass>accountclass.deposit</accountClass>
+            <accountType>accounttype.banking.savings</accountType>
+            <balance>952.55</balance>
+            <transactionList>
+            </transactionList>
+        </account>
+        <account directId="accountDirectID1-4">
+            <accountName>AccountName1-4</accountName>
+            <branchExternalId>ArnaTest-1</branchExternalId>
+            <routingTransitNumber>ROUNTNUM1</routingTransitNumber>	
+            <accountProductExternalId>DEFAULT_COMPANY_CHECKING</accountProductExternalId>
+            <accountNumber>ff5b4739da0f334771282db7764dae81</accountNumber>
+            <accountClass>accountclass.loan</accountClass>
+            <accountType>accounttype.mortgage</accountType>
+            <balance>0.00</balance>
+            <transactionList>
+            </transactionList>
+        </account>
+        <account directId="accountDirectID1-5">
+            <accountName>AccountName1-5</accountName>
+            <branchExternalId>ArnaTest-1</branchExternalId>
+            <routingTransitNumber>ROUNTNUM1</routingTransitNumber>	
+            <accountProductExternalId>DEFAULT_COMPANY_CHECKING</accountProductExternalId>
+            <accountNumber>be780f859ee8db3158b526cf35be2811</accountNumber>
+            <accountClass>accountclass.loan</accountClass>
+            <accountType>accounttype.mortgage</accountType>
+            <balance>0.00</balance>
+            <transactionList>
+            </transactionList>
+        </account>
+        <account directId="accountDirectID1-6">
+            <accountName>AccountName1-6</accountName>
+            <branchExternalId>ArnaTest-1</branchExternalId>
+            <routingTransitNumber>ROUNTNUM1</routingTransitNumber>	
+            <accountProductExternalId>DEFAULT_COMPANY_CHECKING</accountProductExternalId>
+            <accountNumber>2fde4d2a499bf6636a44eb56c90c21cd</accountNumber>
+            <accountClass>accountclass.deposit</accountClass>
+            <accountType>accounttype.banking.checking</accountType>
+            <balance>5674.35</balance>
+            <transactionList>
+            </transactionList>
+        </account>
+        <account directId="accountDirectID1-7">
+            <accountName>AccountName1-7</accountName>
+            <branchExternalId>ArnaTest-1</branchExternalId>
+            <routingTransitNumber>ROUNTNUM1</routingTransitNumber>	
+            <accountProductExternalId>DEFAULT_COMPANY_CHECKING</accountProductExternalId>
+            <accountNumber>7c0227da6ec6f06691d04cc1ff745654</accountNumber>
+            <accountClass>accountclass.loan</accountClass>
+            <accountType>accounttype.mortgage</accountType>
+            <balance>143076.32</balance>
+            <transactionList>
+            </transactionList>
+        </account>
+        <account directId="accountDirectID1-8">
+            <accountName>AccountName1-8</accountName>
+            <branchExternalId>ArnaTest-1</branchExternalId>
+            <routingTransitNumber>ROUNTNUM1</routingTransitNumber>	
+            <accountProductExternalId>DEFAULT_COMPANY_CHECKING</accountProductExternalId>
+            <accountNumber>6a1472169c7185ddf5cecbfbaa3f7625</accountNumber>
+            <accountClass>accountclass.loan</accountClass>
+            <accountType>accounttype.loan</accountType>
+            <balance>3209.30</balance>
+            <transactionList>
+                <transaction directId="directID8-1">
+                    <amount>20.14</amount>
+                    <name>transactionNickName1</name>
+                    <postDate>2012-05-20</postDate>
+                    <type>0</type>
+                    <pending>false</pending>
+                    <postingSeq>70</postingSeq> 
+                </transaction>
+            </transactionList>
+        </account>
+    </accountList>
+</conduitUserRequest>

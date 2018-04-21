@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<conduitUserRequest xmlns="http://lodosoftware.com/conduit/user" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <version>1.0</version>
+    <requestId>requestId</requestId>
+    <authentication>
+        <username>userName</username>
+        <password>password</password>
+    </authentication>
+    <userList>
+        <user directId="ArnaTestUser-1" directId2="TestuserDirectID2">
+     		<userMigration>
+				<messageList>
+					<message>
+						<externalId>categoryExternalIdTest1-3</externalId>
+						<categoryType>categorytype.income</categoryType>
+						<categoryLevel></categoryLevel>
+						<categoryGroup>test</categoryGroup>
+					</message>
+				</messageList>
+			</userMigration>
+        </user>
+    </userList>
+</conduitUserRequest>

@@ -1,0 +1,966 @@
+!*****> !style_green[1. ALERT]
+!*****>  Create Test Data
+
+''Create Accounts''
+
+!|Execute|!-insert into [OLB_ACCOUNT]([BRANCH_ID],[STATUS],[INTERFACE_ID],[ACCOUNT_NAME],[ACCOUNT_NUMBER],[ACCOUNT_TYPE],[ACCOUNT_CLASS]
+      ,[BALANCE],[SYNC_DATE],[CREATED_DATE],[ACCOUNT_STATUS],[AVAILABLE_BALANCE],[DIRECT_CONNECT],[DIRECT_ID]
+      ,[OUTSTANDING_BALANCE],[INTEREST_RATE],[LOAN_AMOUNT],[ACCOUNT_OPEN_DATE]
+      ,[APR]) values (1, 'accountstatus.open', null,'TransactionSearchTest1', null, 'accounttype.annuity', 
+      'accountclass.otherasset', 10.17, SYSDATETIME(), SYSDATETIME(), null, 10.17, 0, 'TestDirectID1', 10.00, 12.11, 12000.00, SYSDATETIME(), 15)-!|
+
+!|Query|!-select [ACCOUNT_ID] from [OLB_ACCOUNT] where ACCOUNT_NAME = 'TransactionSearchTest1'-!|
+|[ACCOUNT_ID]?|
+|>>account1|
+
+!|Execute|!-insert into [USER_ACCOUNT_JOIN]([USER_ID],[ACCOUNT_ID],[NICKNAME],[EXCLUDED],[HIDDEN],[HIDE_BY_ADMIN]) 
+		  values (-!@userID2!-, -!@account1!-, SYSDATETIME(), 0,0,0)-!|
+
+!|Query|!-select ID from [USER_ACCOUNT_JOIN] where ACCOUNT_ID =-!@account1|
+|[ID]?|
+|>>userAccJoinID1|
+
+!|Execute|!-insert into [OLB_ACCOUNT]([BRANCH_ID],[STATUS],[INTERFACE_ID],[ACCOUNT_NAME],[ACCOUNT_NUMBER],[ACCOUNT_TYPE],[ACCOUNT_CLASS]
+      ,[BALANCE],[SYNC_DATE],[CREATED_DATE],[ACCOUNT_STATUS],[AVAILABLE_BALANCE],[DIRECT_CONNECT],[DIRECT_ID]
+      ,[OUTSTANDING_BALANCE],[INTEREST_RATE],[LOAN_AMOUNT],[ACCOUNT_OPEN_DATE]
+      ,[APR]) values (1, 'accountstatus.open', null,'TransactionSearchTest2', null, 'accounttype.annuity', 
+      'accountclass.otherasset', 10.17, SYSDATETIME(), SYSDATETIME(), null, 10.17, 0, 'TestDirectID2', 10.00, 12.11, 12000.00, SYSDATETIME(), 15)-!|
+
+!|Query|!-select [ACCOUNT_ID] from [OLB_ACCOUNT] where ACCOUNT_NAME = 'TransactionSearchTest2'-!|
+|[ACCOUNT_ID]?|
+|>>account2|
+
+!|Execute|!-insert into [USER_ACCOUNT_JOIN]([USER_ID],[ACCOUNT_ID],[NICKNAME],[EXCLUDED],[HIDDEN],[HIDE_BY_ADMIN]) 
+		  values (-!@userID2!-, -!@account2!-, SYSDATETIME(), 0,0,0)-!|
+
+!|Query|!-select ID from [USER_ACCOUNT_JOIN] where ACCOUNT_ID =-!@account2|
+|[ID]?|
+|>>userAccJoinID2|
+
+!|DatabaseEnvironment|
+|commit|
+
+****!
+!*****> '''1.1 POST ALERT'''
+!*****> '''1.1 POST ALERT(/alerts)'''
+
+ '''1.1.1 all fields are set to be null'''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest/alerts|
+|setHeader|!- appKey : -!${institutionNum}!- 
+Content-Type : application/json
+userToken : %encodedUser2Token%-!|
+|comment|!- appKey : -!${institutionNum}!- 
+Content-Type : application/json
+userToken : %encodedUser2Token%-!|
+|setBody|!-
+{
+    "UserAlert": {
+        "id": null, 
+        "UserId": null, 
+        "UserAccountId": null, 
+        "CategoryId": null, 
+        "AlertEnabled": null, 
+        "DeliveryFrequency": null, 
+        "FreqAttr1": null, 
+        "FreqAttr2": null, 
+        "FreqAttr3": null, 
+        "FreqAttr4": null, 
+        "DNDAction": null, 
+        "Description": null, 
+        "AlertDefinition": null,
+        "AlertUserDestList": null,
+        "AlertProps": null
+    }
+}
+-!|
+|POST||400|||
+|let|$errMsg|js|response.jsonbody.message||
+
+!|com.lodosoftware.fitnesse.fixtures.LodosoftwareFixtures|
+|symbolName|str|isContain?|
+|errMsg|!-Argument AlertUserDestList is undefined.-!|true|
+
+'''1.1.2 alertUserDestList set to not null, and rest fields are null'''
+
+!|Query|!-select TOP 2 ALERT_ID from [ALERT_DEFINITION] where COMPANY_ID = 1-!|
+|ALERT_ID?|
+|>>alertDefId|
+|>>alertDefId2|
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest/alerts|
+|setHeader|!- appKey : -!${institutionNum}!- 
+Content-Type : application/json
+userToken : %encodedUser2Token%-!|
+|setBody|!-
+{
+    "UserAlert": {
+        "id": null, 
+        "UserId": null, 
+        "UserAccountId": null, 
+        "CategoryId": null, 
+        "AlertEnabled": null, 
+        "DeliveryFrequency": null, 
+        "FreqAttr1": null, 
+        "FreqAttr2": null, 
+        "FreqAttr3": null, 
+        "FreqAttr4": null, 
+        "DNDAction": null, 
+        "Description": null, 
+        "AlertDefinition": null,
+        "AlertUserDestList": [
+            {
+                "UserAlertDest": {
+                    "Name": "Arna Test Inbox Dest", 
+                    "Enabled": true, 
+                    "PrimeDest": false, 
+                    "AltDest": false, 
+                    "Format": "format.default", 
+                    "AlertDestType": {
+                        "AlertDestType": {
+                            "DestType": "dest.inbox"
+                        }
+                    }
+                }
+            }, 
+            {
+                "UserAlertDest": {
+                    "Name": "Arna Test Email Dest", 
+                    "DestAddress": "abadyelkhan@lodosoftware.com", 
+                    "Enabled": true, 
+                    "Format": "format.ehtml", 
+                    "PrimeDest": true, 
+                    "AltDest": false, 
+                    "AlertDestType": {
+                        "AlertDestType": {
+                            "DestType": "dest.email"
+                        }
+                    }
+                }
+            }
+        ], 
+        "AlertProps": null
+    }
+}
+
+-!|
+|POST||400|||
+|let|$errMsg|js|response.jsonbody.message||
+
+!|com.lodosoftware.fitnesse.fixtures.LodosoftwareFixtures|
+|symbolName|str|isContain?|
+|errMsg|!-Argument AlertDefinition is undefined-!|true|
+
+'''1.1.3 alertUserDestList, alertDest set to not null, and rest fields are null'''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest/alerts|
+|setHeader|!- appKey : -!${institutionNum}!- 
+Content-Type : application/json
+userToken : %encodedUser2Token%-!|
+|setBody|!-
+{
+    "UserAlert": {
+        "id": null, 
+        "UserId": null, 
+        "UserAccountId": null, 
+        "CategoryId": null, 
+        "AlertEnabled": true, 
+        "DeliveryFrequency": null, 
+        "FreqAttr1": null, 
+        "FreqAttr2": null, 
+        "FreqAttr3": null, 
+        "FreqAttr4": null, 
+        "DNDAction": null, 
+        "Description": null, 
+        "AlertDefinition": {
+            "AlertDefinition": {
+                "id": -!%alertDefId%!-
+            }
+        }, 
+       "AlertUserDestList": [
+            {
+                "UserAlertDest": {
+                    "Name": "Arna Test Inbox Dest", 
+                    "Enabled": true, 
+                    "PrimeDest": false, 
+                    "AltDest": false, 
+                    "Format": "format.default", 
+                    "AlertDestType": {
+                        "AlertDestType": {
+                            "DestType": "dest.inbox"
+                        }
+                    }
+                }
+            }, 
+            {
+                "UserAlertDest": {
+                    "Name": "Arna Test Email Dest", 
+                    "DestAddress": "abadyelkhan@lodosoftware.com", 
+                    "Enabled": true, 
+                    "Format": "format.ehtml", 
+                    "PrimeDest": true, 
+                    "AltDest": false, 
+                    "AlertDestType": {
+                        "AlertDestType": {
+                            "DestType": "dest.email"
+                        }
+                    }
+                }
+            }
+        ], 
+        "AlertProps": null
+    }
+}
+-!|
+|POST||400|||
+|let|$errMsg|js|response.jsonbody.message||
+
+!|com.lodosoftware.fitnesse.fixtures.LodosoftwareFixtures|
+|symbolName|str|isContain?|
+|errMsg|!-Argument AlertProps is undefined-!|true|
+
+'''1.1.4 userAccountId set to none-existing number'''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest/alerts|
+|setHeader|!- appKey : -!${institutionNum}!- 
+Content-Type : application/json
+userToken : %encodedUser2Token%-!|
+|setBody|!-
+{
+    "UserAlert": {
+        "id": null, 
+        "UserId": null, 
+        "UserAccountId": 123465465, 
+        "CategoryId": null, 
+        "AlertEnabled": true, 
+        "DeliveryFrequency": null, 
+        "FreqAttr1": null, 
+        "FreqAttr2": null, 
+        "FreqAttr3": null, 
+        "FreqAttr4": null, 
+        "DNDAction": null, 
+        "Description": null, 
+        "AlertDefinition": {
+            "AlertDefinition": {
+                "id": -!%alertDefId%!-
+            }
+        }, 
+       "AlertUserDestList": [
+            {
+                "UserAlertDest": {
+                    "Name": "Arna Test Inbox Dest", 
+                    "Enabled": true, 
+                    "PrimeDest": false, 
+                    "AltDest": false, 
+                    "Format": "format.default", 
+                    "AlertDestType": {
+                        "AlertDestType": {
+                            "DestType": "dest.inbox"
+                        }
+                    }
+                }
+            }
+        ], 
+        "AlertProps": {
+            "operator": "LT", 
+            "threshold": "10.25"
+        }
+    }
+}
+-!|
+|POST||200|||
+|let|$userAlertId1|js|!-response.jsonbody.UserAlert.id-!||
+|let|$UserAlertDestId1|js|!-response.jsonbody.UserAlert.AlertUserDestList[0].UserAlertDest.id-!||
+|let|$AlertDestTypeId1|js|!-response.jsonbody.UserAlert.AlertUserDestList[0].UserAlertDest.AlertDestType.AlertDestType.id-!||
+|let||js|!-response.jsonbody.UserAlert.UserAccountId-!|123465465|
+|comment|APDB-570|
+
+'''1.1.5 categoryId set to none-existing categoryId'''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest/alerts|
+|setHeader|!- appKey : -!${institutionNum}!- 
+Content-Type : application/json
+userToken : %encodedUser2Token%-!|
+|setBody|!-
+{
+    "UserAlert": {
+        "id": null, 
+        "UserId": null, 
+        "UserAccountId": null, 
+        "CategoryId": 11111, 
+        "AlertEnabled": true, 
+        "DeliveryFrequency": null, 
+        "FreqAttr1": null, 
+        "FreqAttr2": null, 
+        "FreqAttr3": null, 
+        "FreqAttr4": null, 
+        "DNDAction": null, 
+        "Description": null, 
+        "AlertDefinition": {
+            "AlertDefinition": {
+                "id": -!%alertDefId%!-
+            }
+        }, 
+       "AlertUserDestList": [
+            {
+                "UserAlertDest": {
+                    "Name": "Arna Test Inbox Dest", 
+                    "Enabled": true, 
+                    "PrimeDest": false, 
+                    "AltDest": false, 
+                    "Format": "format.default", 
+                    "AlertDestType": {
+                        "AlertDestType": {
+                            "DestType": "dest.inbox"
+                        }
+                    }
+                }
+            }
+        ], 
+        "AlertProps": {
+            "operator": "LT", 
+            "threshold": "10.25"
+        }
+    }
+}
+-!|
+|POST||200|||
+|let|$userAlertId2|js|!-response.jsonbody.UserAlert.id-!||
+|let|$UserAlertDestId2|js|!-response.jsonbody.UserAlert.AlertUserDestList[0].UserAlertDest.id-!||
+|let|$AlertDestTypeId2|js|!-response.jsonbody.UserAlert.AlertUserDestList[0].UserAlertDest.AlertDestType.AlertDestType.id-!||
+|let||js|!-response.jsonbody.UserAlert.CategoryId-!|11111|
+
+'''1.1.6 non-existent userDestId'''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest/alerts|
+|setHeader|!- appKey : -!${institutionNum}!- 
+Content-Type : application/json
+userToken : %encodedUser2Token%-!|
+|setBody|!-
+{
+    "UserAlert": {
+        "id": null, 
+        "UserId": null, 
+        "UserAccountId": null, 
+        "CategoryId": 11111, 
+        "AlertEnabled": true, 
+        "DeliveryFrequency": null, 
+        "FreqAttr1": null, 
+        "FreqAttr2": null, 
+        "FreqAttr3": null, 
+        "FreqAttr4": null, 
+        "DNDAction": null, 
+        "Description": null, 
+        "AlertDefinition": {
+            "AlertDefinition": {
+                "id": 9785
+            }
+        }, 
+       "AlertUserDestList": [
+            {
+                "UserAlertDest": {
+                    "Name": "None-exist Alert Def test", 
+                    "Enabled": true, 
+                    "PrimeDest": false, 
+                    "AltDest": false, 
+                    "Format": "format.default", 
+                    "AlertDestType": {
+                        "AlertDestType": {
+                            "DestType": "dest.inbox"
+                        }
+                    }
+                }
+            }
+        ], 
+        "AlertProps": {
+            "operator": "LT", 
+            "threshold": "10.25"
+        }
+    }
+}
+-!|
+|POST||500|||
+|comment|DDB-69|
+
+'''1.1.7 all set to not null values'''
+
+!|Query|!-SELECT 
+       [ALERT_ENABLED]
+      ,[ALERT_TYPE]
+      ,[DESCRIPTION]
+      ,[SCHEDULABLE]
+       from [ALERT_DEFINITION] where ALERT_ID = -!@alertDefId|
+|[ALERT_ENABLED]?|[ALERT_TYPE]?|[DESCRIPTION]?|[SCHEDULABLE]?|
+|>>ALERT_ENABLED|>>ALERT_TYPE|>>DESCRIPTION|>>SCHEDULABLE|
+
+!|Query|!-SELECT 
+       [VALUE]
+      ,[NAME]
+  FROM [ALERT_DEFINITION_PROPS] where ALERT_ID = -! @alertDefId|
+|[VALUE]?|[NAME]?|
+|>>ALERT_DEFINITION_PROPS_value|>>ALERT_DEFINITION_PROPS_name|
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest/alerts|
+|setHeader|!- appKey : -!${institutionNum}!- 
+Content-Type : application/json
+userToken : %encodedUser2Token%-!|
+|setBody|!-
+{
+    "UserAlert": { 
+        "UserId": "-!%userID2%!-", 
+        "UserAccountId": "-!%userAccJoinID1%!-",  
+        "CategoryId": 100, 
+        "AlertEnabled": true, 
+        "DeliveryFrequency": "always", 
+        "FreqAttr1": 1, 
+        "FreqAttr2": 2, 
+        "FreqAttr3": 3, 
+        "FreqAttr4": 4, 
+        "DNDAction": 4, 
+        "Description": "This is just test alerts rest services.", 
+        "AlertDefinition": {
+            "AlertDefinition": {
+                "id": -!%alertDefId%!-
+             }
+        }, 
+        "AlertUserDestList": [
+            {
+                "UserAlertDest": {
+                    "Name": "Arna Test Inbox Dest", 
+                    "Enabled": true, 
+                    "PrimeDest": false, 
+                    "AltDest": false, 
+                    "Format": "format.default", 
+                    "AlertDestType": {
+                        "AlertDestType": {
+                            "DestType": "dest.inbox"
+                        }
+                    }
+                }
+            }
+        ], 
+        "AlertProps": {
+            "operator": "LT", 
+            "threshold": "10.25"
+        }
+    }
+}
+-!|
+|POST||200|||
+|let|$userAlertId4|js|!-response.jsonbody.UserAlert.id-!||
+|let||js|!-response.jsonbody.UserAlert.UserId-!|%userID2%|
+|let||js|!-response.jsonbody.UserAlert.UserAccountId-!|%userAccJoinID1%|
+|let||js|!-response.jsonbody.UserAlert.CategoryId-!|100|
+|let||js|!-response.jsonbody.UserAlert.AlertEnabled-!|true|
+|let||js|!-response.jsonbody.UserAlert.DeliveryFrequency-!|always|
+|let||js|!-response.jsonbody.UserAlert.FreqAttr1-!|1.0|
+|let||js|!-response.jsonbody.UserAlert.FreqAttr2-!|2|
+|let||js|!-response.jsonbody.UserAlert.FreqAttr3-!|3|
+|let||js|!-response.jsonbody.UserAlert.FreqAttr4-!|4|
+|let||js|!-response.jsonbody.UserAlert.DNDAction-!|0.0|
+|let||js|!-response.jsonbody.UserAlert.Description-!|This is just test alerts rest services.|
+|let||js|!-response.jsonbody.UserAlert.AlertDefinition.AlertDefinition.id-!|%alertDefId%|
+|let||js|!-response.jsonbody.UserAlert.AlertDefinition.AlertDefinition.AlertEnabled-!|%ALERT_ENABLED%|
+|let||js|!-response.jsonbody.UserAlert.AlertDefinition.AlertDefinition.AlertType-!|%ALERT_TYPE%|
+|let||js|!-response.jsonbody.UserAlert.AlertDefinition.AlertDefinition.Description-!|%DESCRIPTION%|
+|let||js|!-response.jsonbody.UserAlert.AlertDefinition.AlertDefinition.Schedulable-!|%SCHEDULABLE%|
+|let||js|!-response.jsonbody.UserAlert.AlertDefinition.AlertDefinition.AlertProps-!||
+|let|$UserAlertDestId4|js|!-response.jsonbody.UserAlert.AlertUserDestList[0].UserAlertDest.id-!||
+|let||js|!-response.jsonbody.UserAlert.AlertUserDestList[0].UserAlertDest.UserId-!|%userID2%|
+|let||js|!-response.jsonbody.UserAlert.AlertUserDestList[0].UserAlertDest.Name-!|Arna Test Inbox Dest|
+|let||js|!-response.jsonbody.UserAlert.AlertUserDestList[0].UserAlertDest.Format-!|format.default|
+|let||js|!-response.jsonbody.UserAlert.AlertUserDestList[0].UserAlertDest.DestAddress-!|null|
+|let||js|!-response.jsonbody.UserAlert.AlertUserDestList[0].UserAlertDest.Enabled-!|true|
+|let||js|!-response.jsonbody.UserAlert.AlertUserDestList[0].UserAlertDest.PrimeDest-!|false|
+|let||js|!-response.jsonbody.UserAlert.AlertUserDestList[0].UserAlertDest.AltDest-!|false|
+|let|$AlertDestTypeId4|js|!-response.jsonbody.UserAlert.AlertUserDestList[0].UserAlertDest.AlertDestType.AlertDestType.id-!||
+|let||js|!-response.jsonbody.UserAlert.AlertUserDestList[0].UserAlertDest.AlertDestType.AlertDestType.DestType-!|dest.inbox|
+|let||js|!-response.jsonbody.UserAlert.AlertUserDestList[0].UserAlertDest.AlertDestType.AlertDestType.Description-!|null|
+|let||js|!-response.jsonbody.UserAlert.AlertUserDestList[0].UserAlertDest.AlertDestType.AlertDestType.Name-!|null|
+|let||js|!-response.jsonbody.UserAlert.AlertProps.operator-!|LT|
+|let||js|!-response.jsonbody.UserAlert.AlertProps.threshold-!|10.25|
+
+!|Query|!-select count (*) as alert from [ALERT_USER_ALERT] where [USER_ALERT_ID]= -!@userAlertId4|
+|alert?|
+|1|
+
+****!
+****!
+!*****> '''1.2 PUT ALERT'''
+!*****> '''1.2 PUT ALERT(/alerts/{alertId})'''
+
+ '''1.2.1 Update alert with same data'''
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest/alerts|
+|setHeader|!- appKey : -!${institutionNum}!- 
+Content-Type : application/json
+userToken : %encodedUser2Token%-!|
+|setBody|!-
+{
+    "UserAlert": { 
+        "id": -!%userAlertId4%!-,
+        "UserId": -!%userID2%!-, 
+        "UserAccountId": -!%userAccJoinID1%!-,  
+        "CategoryId": 100, 
+        "AlertEnabled": true, 
+        "DeliveryFrequency": "always", 
+        "FreqAttr1": 1, 
+        "FreqAttr2": 2, 
+        "FreqAttr3": 3, 
+        "FreqAttr4": 4, 
+        "DNDAction": 4, 
+        "Description": "This is just test alerts rest services.", 
+        "AlertDefinition": {
+            "AlertDefinition": {
+                "id": -!%alertDefId%!-,
+                "AlertEnabled": true, 
+                "AlertType": "account.reminder", 
+                "Description": "This is just test alerts rest services.", 
+                "Schedulable": true, 
+                "AlertProps": {
+                    "account.name": "STRING"
+                }
+            }
+        }, 
+        "AlertUserDestList": [
+            {
+                "UserAlertDest": {
+                    "id": -!%UserAlertDestId4%!-,
+                    "AlertDestType": {
+                        "AlertDestType": {
+                            "id": -!%AlertDestTypeId1%!-, 
+                            "DestType": "dest.inbox", 
+                            "Description": "User Inbox", 
+                            "Name": "Inbox"
+                        }
+                    }, 
+                    "UserId": -!%userID2%!-, 
+                    "Name": "Arna Test Inbox Dest", 
+                    "Format": "format.default", 
+                    "DestAddress": null, 
+                    "Enabled": true, 
+                    "PrimeDest": false, 
+                    "AltDest": false
+                }
+            }
+        ], 
+        "AlertProps": {
+            "operator": "LT", 
+            "threshold": "10.25"
+        }
+    }
+}
+-!|
+|PUT|/%userAlertId4%|200|||
+|let||js|!-response.jsonbody.UserAlert.id-!|%userAlertId4%|
+|let||js|!-response.jsonbody.UserAlert.UserId-!|%userID2%|
+|let||js|!-response.jsonbody.UserAlert.UserAccountId-!|%userAccJoinID1%|
+|let||js|!-response.jsonbody.UserAlert.CategoryId-!|100|
+|let||js|!-response.jsonbody.UserAlert.AlertEnabled-!|true|
+|let||js|!-response.jsonbody.UserAlert.DeliveryFrequency-!|always|
+|let||js|!-response.jsonbody.UserAlert.FreqAttr1-!|1.0|
+|let||js|!-response.jsonbody.UserAlert.FreqAttr2-!|2|
+|let||js|!-response.jsonbody.UserAlert.FreqAttr3-!|3|
+|let||js|!-response.jsonbody.UserAlert.FreqAttr4-!|4|
+|let||js|!-response.jsonbody.UserAlert.DNDAction-!|0.0|
+|let||js|!-response.jsonbody.UserAlert.Description-!|This is just test alerts rest services.|
+|let||js|!-response.jsonbody.UserAlert.AlertDefinition.AlertDefinition.id-!|%alertDefId%|
+|let||js|!-response.jsonbody.UserAlert.AlertDefinition.AlertDefinition.AlertEnabled-!|%ALERT_ENABLED%|
+|let||js|!-response.jsonbody.UserAlert.AlertDefinition.AlertDefinition.AlertType-!|%ALERT_TYPE%|
+|let||js|!-response.jsonbody.UserAlert.AlertDefinition.AlertDefinition.Description-!|%DESCRIPTION%|
+|let||js|!-response.jsonbody.UserAlert.AlertDefinition.AlertDefinition.Schedulable-!|%SCHEDULABLE%|
+|let||js|!-response.jsonbody.UserAlert.AlertDefinition.AlertDefinition.AlertProps-!||
+|let||js|!-response.jsonbody.UserAlert.AlertUserDestList[0].UserAlertDest.id-!|%UserAlertDestId4%|
+|let||js|!-response.jsonbody.UserAlert.AlertUserDestList[0].UserAlertDest.UserId-!|%userID2%|
+|let||js|!-response.jsonbody.UserAlert.AlertUserDestList[0].UserAlertDest.Name-!|Arna Test Inbox Dest|
+|let||js|!-response.jsonbody.UserAlert.AlertUserDestList[0].UserAlertDest.Format-!|format.default|
+|let||js|!-response.jsonbody.UserAlert.AlertUserDestList[0].UserAlertDest.DestAddress-!|null|
+|let||js|!-response.jsonbody.UserAlert.AlertUserDestList[0].UserAlertDest.Enabled-!|true|
+|let||js|!-response.jsonbody.UserAlert.AlertUserDestList[0].UserAlertDest.PrimeDest-!|false|
+|let||js|!-response.jsonbody.UserAlert.AlertUserDestList[0].UserAlertDest.AltDest-!|false|
+|let||js|!-response.jsonbody.UserAlert.AlertUserDestList[0].UserAlertDest.AlertDestType.AlertDestType.id-!|%AlertDestTypeId4%|
+|let||js|!-response.jsonbody.UserAlert.AlertUserDestList[0].UserAlertDest.AlertDestType.AlertDestType.DestType-!|dest.inbox|
+|let||js|!-response.jsonbody.UserAlert.AlertUserDestList[0].UserAlertDest.AlertDestType.AlertDestType.Description-!|User Inbox|
+|let||js|!-response.jsonbody.UserAlert.AlertUserDestList[0].UserAlertDest.AlertDestType.AlertDestType.Name-!|Inbox|
+|let||js|!-response.jsonbody.UserAlert.AlertProps.operator-!|LT|
+|let||js|!-response.jsonbody.UserAlert.AlertProps.threshold-!|10.25|
+
+
+'''1.2.2 Update alert with different data'''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest/alerts|
+|setHeader|!- appKey : -!${institutionNum}!- 
+Content-Type : application/json
+userToken : %encodedUser2Token%-!|
+|setBody|!-
+{
+    "UserAlert": { 
+        "id": -!%userAlertId4%!-,
+        "UserId": -!%userID2%!-,
+        "UserAccountId": "-!%userAccJoinID2%!-",  
+        "CategoryId": 104, 
+        "AlertEnabled": false, 
+        "DeliveryFrequency": "weekly", 
+        "FreqAttr1": 4, 
+        "FreqAttr2": 3, 
+        "FreqAttr3": 2, 
+        "FreqAttr4": 1, 
+        "DNDAction": 5, 
+        "Description": "This is testing to update the alert with different existing data.", 
+        "AlertDefinition": {
+            "AlertDefinition": {
+                "id": -!%alertDefId%!-
+             }
+        }, 
+        "AlertUserDestList": [
+            {
+                "UserAlertDest": {
+                    "id": -!%UserAlertDestId4%!-,
+                    "Name": "Arna Update Test Dest", 
+                    "Enabled": true, 
+                    "PrimeDest": true, 
+                    "AltDest": true, 
+                    "Format": "format.default", 
+                    "UserId": -!%userID2%!-,
+                    "AlertDestType": {
+                        "AlertDestType": {
+                            "id": 2, 
+                            "DestType": "dest.inbox"
+                        }
+                    }
+                }
+            }
+        ], 
+        "AlertProps": {
+            "operator": "LT", 
+            "threshold": "7800.45"
+        }
+    }
+}
+-!|
+|PUT|/%userAlertId4%|200|||
+|let||js|!-response.jsonbody.UserAlert.id-!|%userAlertId4%|
+|let||js|!-response.jsonbody.UserAlert.UserId-!|%userID2%|
+|let||js|!-response.jsonbody.UserAlert.UserAccountId-!|%userAccJoinID2%|
+|let||js|!-response.jsonbody.UserAlert.CategoryId-!|104|
+|let||js|!-response.jsonbody.UserAlert.AlertEnabled-!|false|
+|let||js|!-response.jsonbody.UserAlert.DeliveryFrequency-!|weekly|
+|let||js|!-response.jsonbody.UserAlert.FreqAttr1-!|4|
+|let||js|!-response.jsonbody.UserAlert.FreqAttr2-!|3|
+|let||js|!-response.jsonbody.UserAlert.FreqAttr3-!|2|
+|let||js|!-response.jsonbody.UserAlert.FreqAttr4-!|1.0|
+|let||js|!-response.jsonbody.UserAlert.DNDAction-!|0.0|
+|let||js|!-response.jsonbody.UserAlert.Description-!|This is testing to update the alert with different existing data.|
+|let||js|!-response.jsonbody.UserAlert.AlertDefinition.AlertDefinition.id-!|%alertDefId%|
+|let||js|!-response.jsonbody.UserAlert.AlertDefinition.AlertDefinition.AlertEnabled-!|%ALERT_ENABLED%|
+|let||js|!-response.jsonbody.UserAlert.AlertDefinition.AlertDefinition.AlertType-!|%ALERT_TYPE%|
+|let||js|!-response.jsonbody.UserAlert.AlertDefinition.AlertDefinition.Description-!|%DESCRIPTION%|
+|let||js|!-response.jsonbody.UserAlert.AlertDefinition.AlertDefinition.Schedulable-!|%SCHEDULABLE%|
+|let||js|!-response.jsonbody.UserAlert.AlertUserDestList[0].UserAlertDest.id-!|%UserAlertDestId4%|
+|let||js|!-response.jsonbody.UserAlert.AlertUserDestList[0].UserAlertDest.UserId-!|%userID2%|
+|let||js|!-response.jsonbody.UserAlert.AlertUserDestList[0].UserAlertDest.Name-!|Arna Update Test Dest|
+|let||js|!-response.jsonbody.UserAlert.AlertUserDestList[0].UserAlertDest.Format-!|format.default|
+|let||js|!-response.jsonbody.UserAlert.AlertUserDestList[0].UserAlertDest.DestAddress-!|null|
+|let||js|!-response.jsonbody.UserAlert.AlertUserDestList[0].UserAlertDest.Enabled-!|true|
+|let||js|!-response.jsonbody.UserAlert.AlertUserDestList[0].UserAlertDest.PrimeDest-!|true|
+|let||js|!-response.jsonbody.UserAlert.AlertUserDestList[0].UserAlertDest.AltDest-!|true|
+|let||js|!-response.jsonbody.UserAlert.AlertUserDestList[0].UserAlertDest.AlertDestType.AlertDestType.id-!|%AlertDestTypeId4%|
+|let||js|!-response.jsonbody.UserAlert.AlertUserDestList[0].UserAlertDest.AlertDestType.AlertDestType.DestType-!|dest.inbox|
+|let||js|!-response.jsonbody.UserAlert.AlertUserDestList[0].UserAlertDest.AlertDestType.AlertDestType.Description-!|null|
+|let||js|!-response.jsonbody.UserAlert.AlertUserDestList[0].UserAlertDest.AlertDestType.AlertDestType.Name-!|null|
+|let||js|!-response.jsonbody.UserAlert.AlertProps.operator-!|LT|
+|let||js|!-response.jsonbody.UserAlert.AlertProps.threshold-!|7800.45|
+
+'''1.2.3 without alertUserDestList and alertDestType'''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest/alerts|
+|setHeader|!- appKey : -!${institutionNum}!- 
+Content-Type : application/json
+userToken : %encodedUser2Token%-!|
+|setBody|!-
+{
+    "UserAlert": { 
+        "id": -!%userAlertId1%!-,
+        "AlertEnabled": true, 
+        "Description": "without dest-s", 
+        "AlertDefinition": {
+            "AlertDefinition": {
+                "id": -!%alertDefId%!-
+             }
+        }
+    }
+}
+-!|
+|PUT|/%userAlertId1%|400|||
+|let|$errMsg|js|!-response.jsonbody.message-!||
+
+!|com.lodosoftware.fitnesse.fixtures.LodosoftwareFixtures|
+|symbolName|str|isContain?|
+|errMsg|!-ErrorCode: 300002 - Argument AlertUserDestList is undefined-!|true|
+
+'''1.2.4 invalid userAlertId'''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest/alerts|
+|setHeader|!- appKey : -!${institutionNum}!- 
+Content-Type : application/json
+userToken : %encodedUser2Token%-!|
+|setBody|!-
+{
+    "UserAlert": { 
+        "id": -!%userAlertId4%!-,
+        "UserId": -!%userID2%!-,
+        "UserAccountId": "-!%userAccJoinID2%!-",  
+        "CategoryId": 104, 
+        "AlertEnabled": false, 
+        "DeliveryFrequency": "weekly", 
+        "FreqAttr1": 4, 
+        "FreqAttr2": 3, 
+        "FreqAttr3": 2, 
+        "FreqAttr4": 1, 
+        "DNDAction": 5, 
+        "Description": "This is testing to update the alert with different existing data.", 
+        "AlertDefinition": {
+            "AlertDefinition": {
+                "id": -!%alertDefId%!-
+             }
+        }, 
+        "AlertUserDestList": [
+            {
+                "UserAlertDest": {
+                    "id": -!%UserAlertDestId4%!-,
+                    "Name": "Arna Update Test Inbox Dest", 
+                    "Enabled": false, 
+                    "PrimeDest": true, 
+                    "AltDest": true, 
+                    "Format": "format.default", 
+                    "UserId": -!%userID2%!-,
+                    "AlertDestType": {
+                        "AlertDestType": {
+                            "id": 2, 
+                            "DestType": "dest.inbox"
+                        }
+                    }
+                }
+            }
+        ], 
+        "AlertProps": {
+            "operator": "LT", 
+            "threshold": "7800.45"
+        }
+    }
+}
+-!|
+|PUT|/123456789|200|||
+|comment|APDB-1211|
+#|let|$errMsg|js|!-response.jsonbody.message-!||
+
+!|com.lodosoftware.fitnesse.fixtures.LodosoftwareFixtures|
+|symbolName|str|isContain?|
+|errMsg|!--!|true|
+****!
+****!
+!*****> '''1.3 GET ALERT'''
+!*****> '''1.3.1 GET ALERT(/alerts)'''
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest/alerts|
+|setHeader|!- appKey : -!${institutionNum}!- 
+Content-Type : application/json
+userToken : %encodedUser2Token%-!|
+|setBody||
+|GET||200|||
+|let||js|!-response.jsonbody[0].id-!|%userAlertId1%|
+|let||js|!-response.jsonbody[1].id-!|%userAlertId2%|
+|let||js|!-response.jsonbody[2].id-!|%userAlertId4%|
+|let||js|!-response.jsonbody[2].UserId-!|%userID2%|
+|let||js|!-response.jsonbody[2].UserAccountId-!|%userAccJoinID2%|
+|let||js|!-response.jsonbody[2].CategoryId-!|104|
+|let||js|!-response.jsonbody[2].AlertEnabled-!|false|
+|let||js|!-response.jsonbody[2].DeliveryFrequency-!|weekly|
+|let||js|!-response.jsonbody[2].FreqAttr1-!|4|
+|let||js|!-response.jsonbody[2].FreqAttr2-!|3|
+|let||js|!-response.jsonbody[2].FreqAttr3-!|2|
+|let||js|!-response.jsonbody[2].FreqAttr4-!|1.0|
+|let||js|!-response.jsonbody[2].DNDAction-!|0.0|
+|let||js|!-response.jsonbody[2].Description-!|This is testing to update the alert with different existing data.|
+|let||js|!-response.jsonbody[2].AlertDefinition.AlertDefinition.id-!|%alertDefId%|
+|let||js|!-response.jsonbody[2].AlertDefinition.AlertDefinition.AlertEnabled-!|%ALERT_ENABLED%|
+|let||js|!-response.jsonbody[2].AlertDefinition.AlertDefinition.AlertType-!|%ALERT_TYPE%|
+|let||js|!-response.jsonbody[2].AlertDefinition.AlertDefinition.Description-!|%DESCRIPTION%|
+|let||js|!-response.jsonbody[2].AlertDefinition.AlertDefinition.Schedulable-!|%SCHEDULABLE%|
+|let||js|!-response.jsonbody[2].AlertDefinition.AlertDefinition.AlertProps-!||
+|let||js|!-response.jsonbody[2].AlertUserDestList[0].UserAlertDest.id-!|%UserAlertDestId4%|
+|let||js|!-response.jsonbody[2].AlertUserDestList[0].UserAlertDest.UserId-!|%userID2%|
+|let||js|!-response.jsonbody[2].AlertUserDestList[0].UserAlertDest.Name-!|Arna Update Test Inbox Dest|
+|let||js|!-response.jsonbody[2].AlertUserDestList[0].UserAlertDest.Format-!|format.default|
+|let||js|!-response.jsonbody[2].AlertUserDestList[0].UserAlertDest.DestAddress-!|null|
+|let||js|!-response.jsonbody[2].AlertUserDestList[0].UserAlertDest.Enabled-!|false|
+|let||js|!-response.jsonbody[2].AlertUserDestList[0].UserAlertDest.PrimeDest-!|true|
+|let||js|!-response.jsonbody[2].AlertUserDestList[0].UserAlertDest.AltDest-!|true|
+|let||js|!-response.jsonbody[2].AlertUserDestList[0].UserAlertDest.AlertDestType.AlertDestType.id-!|%AlertDestTypeId1%|
+|let||js|!-response.jsonbody[2].AlertUserDestList[0].UserAlertDest.AlertDestType.AlertDestType.DestType-!|dest.inbox|
+|let||js|!-response.jsonbody[2].AlertUserDestList[0].UserAlertDest.AlertDestType.AlertDestType.Description-!|null|
+|let||js|!-response.jsonbody[2].AlertUserDestList[0].UserAlertDest.AlertDestType.AlertDestType.Name-!|null|
+|let||js|!-response.jsonbody[2].AlertProps.operator-!|LT|
+|let||js|!-response.jsonbody[2].AlertProps.threshold-!|7800.45|
+****!
+!*****> '''1.3.2 GET ALERT(/alerts/definitions/{companyId})'''
+
+!|Query|!-SELECT [ALERT_TYPE] from [ALERT_DEFINITION] where COMPANY_ID = 1 ORDER by [ALERT_ID] asc-!|
+|[ALERT_TYPE]?|
+|>>alertType1|
+|>>alertType2|
+|>>alertType3|
+|>>alertType4|
+|>>alertType5|
+|>>alertType6|
+|>>alertType7|
+|>>alertType8|
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest/alerts|
+|setHeader|!- appKey : -!${institutionNum}!- 
+Content-Type : application/json
+userToken : %encodedUser2Token%-!|
+|setBody||
+|GET|/definitions/1|200|||
+|let||js|!-response.jsonbody[0].id-!||
+|let||js|!-response.jsonbody[0].AlertEnabled-!||
+|let||js|!-response.jsonbody[0].Description-!||
+|let||js|!-response.jsonbody[0].Schedulable-!||
+|let||js|!-response.jsonbody[0].AlertProps-!||
+|let||js|!-response.jsonbody[0].AlertType-!|%alertType1%|
+|let||js|!-response.jsonbody[1].AlertType-!|%alertType2%|
+|let||js|!-response.jsonbody[2].AlertType-!|%alertType3%|
+|let||js|!-response.jsonbody[3].AlertType-!|%alertType4%|
+|let||js|!-response.jsonbody[4].AlertType-!|%alertType5%|
+|let||js|!-response.jsonbody[5].AlertType-!|%alertType6%|
+|let||js|!-response.jsonbody[6].AlertType-!|%alertType7%|
+|let||js|!-response.jsonbody[7].AlertType-!|%alertType8%|
+****!
+!*****> '''1.3.3 GET ALERT(/alerts/destinations/current)'''
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest/alerts|
+|setHeader|!- appKey : -!${institutionNum}!- 
+Content-Type : application/json
+userToken : %encodedUser2Token%-!|
+|setBody||
+|GET|/destinations/current|200|||
+|let||js|!-response.jsonbody[0].id-!||
+|let||js|!-response.jsonbody[1].id-!||
+|let||js|!-response.jsonbody[0].AlertDestType.AlertDestType.id-!||
+|let||js|!-response.jsonbody[0].AlertDestType.AlertDestType.DestType-!||
+|let||js|!-response.jsonbody[0].AlertDestType.AlertDestType.Description-!||
+|let||js|!-response.jsonbody[0].AlertDestType.AlertDestType.Name-!||
+|let||js|!-response.jsonbody[0].Name-!||
+|let||js|!-response.jsonbody[0].Format-!||
+|let||js|!-response.jsonbody[0].DestAddress-!||
+|let||js|!-response.jsonbody[0].Enabled-!||
+|let||js|!-response.jsonbody[0].PrimeDest-!||
+|let||js|!-response.jsonbody[0].AltDest-!||
+|let||js|!-response.jsonbody[0].UserId-!|%userID2%|
+|comment|DDB-67, add validation here later using fixture|
+#|let|$str1|js|!-response.jsonbody[0].id-!|%UserAlertDestId1%|
+#|let|$str2|js|!-response.jsonbody[1].id-!|%UserAlertDestId4%|
+
+
+****!
+!*****> '''1.3.4 GET ALERT(/alerts/definitions/current)'''
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest/alerts|
+|setHeader|!- appKey : -!${institutionNum}!- 
+Content-Type : application/json
+userToken : %encodedUser2Token%-!|
+|setBody||
+|GET|/definitions/current|200|||
+|let||js|!-response.jsonbody[0].id-!||
+|let||js|!-response.jsonbody[0].AlertEnabled-!||
+|let||js|!-response.jsonbody[0].Description-!||
+|let||js|!-response.jsonbody[0].Schedulable-!||
+|let||js|!-response.jsonbody[0].AlertProps-!||
+|let||js|!-response.jsonbody[0].AlertType-!|%alertType1%|
+|let||js|!-response.jsonbody[1].AlertType-!|%alertType2%|
+|let||js|!-response.jsonbody[2].AlertType-!|%alertType3%|
+|let||js|!-response.jsonbody[3].AlertType-!|%alertType4%|
+|let||js|!-response.jsonbody[4].AlertType-!|%alertType5%|
+|let||js|!-response.jsonbody[5].AlertType-!|%alertType6%|
+|let||js|!-response.jsonbody[6].AlertType-!|%alertType7%|
+|let||js|!-response.jsonbody[7].AlertType-!|%alertType8%|
+****!
+!*****> '''1.3.5 GET ALERT(/alerts/definitions/type)'''
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest/alerts|
+|setHeader|!- appKey : -!${institutionNum}!- 
+Content-Type : application/json
+userToken : %encodedUser2Token%-!|
+|setBody||
+|GET|/definitions/type|200|||
+|let||js|!-response.jsonbody[0].id-!||
+|let||js|!-response.jsonbody[0].AlertEnabled-!||
+|let||js|!-response.jsonbody[0].Description-!||
+|let||js|!-response.jsonbody[0].Schedulable-!||
+|let||js|!-response.jsonbody[0].AlertProps-!||
+|let||js|!-response.jsonbody[0].AlertType-!|%alertType4%|
+|let||js|!-response.jsonbody[1].AlertType-!|%alertType4%|
+|let||js|!-response.jsonbody[2].AlertType-!|%alertType4%|
+
+****!
+!*****> '''1.3.6 GET ALERT(/alerts/destinations/types)'''
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest/alerts|
+|setHeader|!- appKey : -!${institutionNum}!- 
+Content-Type : application/json
+userToken : %encodedUser2Token%-!|
+|setBody||
+|GET|/destinations/types|200|||
+|let||js|!-response.jsonbody[0].id-!||
+|let||js|!-response.jsonbody[0].DestType-!|dest.inbox|
+|let||js|!-response.jsonbody[0].Description-!||
+|let||js|!-response.jsonbody[0].Name-!||
+|let||js|!-response.jsonbody[1].id-!||
+|let||js|!-response.jsonbody[1].DestType-!|dest.email|
+|let||js|!-response.jsonbody[1].Description-!||
+|let||js|!-response.jsonbody[1].Name-!||
+****!
+!*****> '''1.3.7 GET ALERT(/alerts//{alertUserId})'''
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest/alerts|
+|setHeader|!- appKey : -!${institutionNum}!- 
+Content-Type : application/json
+userToken : %encodedUser2Token%-!|
+|setBody||
+|GET|/%userAlertId4%|400|||
+|comment|DDB-68, when have fix review this again|
+
+****!
+****!
+!*****> '''1.4 DELETE ALERT'''
+!*****> '''1.4 DELETE ALERT(/alert/{alertUserId})'''
+
+ '''1.4.1 DELETE ALERT'''
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest/alerts|
+|setHeader|!- appKey : -!${institutionNum}!- 
+Content-Type : application/json
+userToken : %encodedUser2Token%-!|
+|DELETE|/%userAlertId1%|204|||
+|DELETE|/%userAlertId2%|204||||
+|DELETE|/%userAlertId4%|204|||
+|DELETE|/%userAlertId4%|204|||
+|let||js|!-response.jsonbody-!||
+
+!|Query|!-SELECT count(*) as totalDest from [ALERT_USER_DEST] where [USER_ID] = -! @userID2|
+|totalDest?|
+||
+
+!|Query|!-SELECT count(*) as total from [ALERT_USER_ALERT] where [USER_ID] = -! @userID2|
+|total?|
+|0|
+
+!|Query|!-select count(*) as total from [ALERT_USER_ALERT] as t1, [ALERT_USER_ALERT_PROPS] as t2 where t1.USER_ALERT_ID=t2.USER_ALERT_ID and t1.USER_ID = -! @userID2|
+|total?|
+|0|
+
+****!
+****!
+!*****>  Clean-up Test Data
+
+!|Execute|!-delete from [USER_ACCOUNT_JOIN] where [ID] = -! @userAccJoinID1!-
+            delete from [OLB_ACCOUNT] where [ACCOUNT_ID] = -! @account1!-
+            delete from [USER_ACCOUNT_JOIN] where [ID] = -! @userAccJoinID2!-
+            delete from [OLB_ACCOUNT] where [ACCOUNT_ID] = -! @account2!-
+            delete from [ALERT_USER_DEST] where [USER_ID] = -! @userID2|     
+!|DatabaseEnvironment|
+|commit|
+****!
+****!

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<conduit>
+  <hdr>
+    <ver>2.0</ver>
+    <rqid>01234567890</rqid>
+    <authn u="user" p="password"/>
+    <txndtrng bdt="2013-09-01" edt="2013-09-30"/>
+    <parse>ftrue</parse>
+  </hdr>
+  <complst>
+    <comp puid="ROOT">
+      <tp>institution</tp>
+      <busn>
+        <nm>Test Business Name - 1</nm>
+      </busn>
+    </comp>
+  </complst>
+</conduit>

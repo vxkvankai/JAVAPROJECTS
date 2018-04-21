@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<conduit>
+  <hdr>
+    <ver>2.0</ver>
+    <rqid>01234567890</rqid>
+    <authn u="user" p="password"/>
+    <txndtrng bdt="2013-09-01" edt="2013-09-30"/>
+    <parse>ftrue</parse>
+  </hdr>
+  <complst>
+    <comp uid="testCompany-1" puid="ROOT">
+      <tp>processor</tp>
+      <busn>
+        <nm>Test Business Name &amp; 1</nm>
+      </busn>
+      <acctprodlst>
+        <acctprod uid="testAccProductId1-1" del = "f">
+          <ac>a</ac>
+          <nm>TestAccountProductName1-1</nm> 
+        </acctprod>
+        <acctprod uid="testAccProductId1-2" del = "0">
+          <ac>l</ac>
+          <nm>TestAccountProductName1-2</nm> 
+        </acctprod>
+        <acctprod uid="testAccProductId1-3" del = "false">
+          <ac>asset</ac>
+          <nm>TestAccountProductName1-3</nm> 
+        </acctprod>
+        <acctprod uid="testAccProductId1-4" del = "false">
+          <ac>liability</ac>
+          <nm>TestAccountProductName1-4</nm>
+        </acctprod>
+      </acctprodlst>
+    </comp>
+    <comp uid="testCompany-2" puid="testCompany-1">
+      <tp>holding</tp>
+      <busn>
+        <nm>Test Business Name - 2</nm>
+      </busn>
+      <acctprodlst>
+        <acctprod uid="testAccProductId2-1" del = "false">
+          <ac>a</ac>
+          <nm>TestAccountProductName2-1</nm> 
+        </acctprod>
+      </acctprodlst>
+    </comp>
+   </complst>
+</conduit>

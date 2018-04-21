@@ -1,0 +1,23 @@
+
+<settings xmlns='http://maven.apache.org/SETTINGS/1.0.0'
+          xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+          xsi:schemaLocation='http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd'>
+    <servers>
+        <server>
+            <id>lodosoftware-nexus</id>
+            <username>${env.NEXUS_USER}</username>
+            <password>${env.NEXUS_PASSWORD}</password>
+        </server>
+    </servers>
+    <profiles>
+        <profile>
+            <id>hsqldb</id>
+            <properties>
+                <db.username></db.username>
+                <db.password></db.password>
+                <hibernate.show.sql>false</hibernate.show.sql>
+                <d3.control.hibernate.show.sql>false</d3.control.hibernate.show.sql>
+            </properties>
+        </profile>
+    </profiles>
+</settings>

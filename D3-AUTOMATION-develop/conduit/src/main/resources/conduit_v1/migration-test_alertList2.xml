@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<conduitUserRequest xmlns="http://lodosoftware.com/conduit/user" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <version>1.0</version>
+    <requestId>requestId</requestId>
+    <authentication>
+        <username>userName</username>
+        <password>password</password>
+    </authentication>
+    <transactionDateRange>
+        <beginDate>2012-05-24</beginDate>
+        <endDate>2014-05-30</endDate>
+    </transactionDateRange>
+    <userList>
+        <user directId="ArnaTestUser-1" directId2="TestuserDirectID2">
+     		<userMigration>
+				<alertDestinationList>
+					<alertDestination>
+						<externalId>alertDestinationExternalId3</externalId>
+						<name>Test2 alertDestination Email</name>
+						<type>dest.email</type>
+						<address>alertDestinationExternalId2@test.com</address>
+					</alertDestination>
+					<alertDestination>
+						<externalId>alertDestinationExternalId4</externalId>
+						<name>Test2 alertDestination InBox</name>
+						<type>dest.inbox</type>
+					</alertDestination>
+				</alertDestinationList>
+				<alertList>
+					<alert>
+						<alertType>balance.threshold</alertType>
+						<accountDirectId>accountDirectID1-1</accountDirectId>
+						<param1>LT</param1>
+						<value1>120.20</value1>
+						<deliveryFrequency>frequency.daily</deliveryFrequency>
+						<ignoreDnd>false</ignoreDnd>
+						<alertDestinationList>
+							<alertDestination>
+								<externalId>alertDestinationExternalId3</externalId>
+							</alertDestination>
+						</alertDestinationList>
+					</alert>
+					
+				</alertList>
+			</userMigration>
+        </user>
+    </userList>
+</conduitUserRequest>
+

@@ -1,0 +1,42 @@
+<configuration>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <!-- encoders are assigned the type
+             ch.qos.logback.classic.encoder.PatternLayoutEncoder by default -->
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %highlight(%-5level) %cyan(%logger{36}) - %highlight(%msg %n)</pattern>
+        </encoder>
+    </appender>
+
+    <timestamp key="time" datePattern="yyyy-MM-dd'_'HH-mm-ss"/>
+    <appender name="RootSiftAppender" class="ch.qos.logback.classic.sift.SiftingAppender">
+        <discriminator>
+            <Key>testname</Key>
+            <DefaultValue>pre_and_post_test_execution</DefaultValue>
+        </discriminator>
+        <sift>
+            <appender name="FILE-${testname}" class="ch.qos.logback.core.rolling.RollingFileAppender">
+                <File>target/test_logs/${testname}-${time}.html</File>
+                <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+                    <FileNamePattern>${testname}.%i.html</FileNamePattern>
+                    <MinIndex>1</MinIndex>
+                    <MaxIndex>100</MaxIndex>
+                </rollingPolicy>
+                <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+                    <MaxFileSize>50MB</MaxFileSize>
+                </triggeringPolicy>
+                <layout class="ch.qos.logback.classic.html.HTMLLayout">
+                    <pattern>%relative%thread%level%logger{0}%msg</pattern>
+                </layout>
+            </appender>
+        </sift>
+    </appender>
+
+    <root level="RootSiftAppender">
+        <appender-ref ref="RootSiftAppender"/>
+    </root>
+
+    <root level="INFO">
+        <appender-ref ref="STDOUT"/>
+    </root>
+</configuration>

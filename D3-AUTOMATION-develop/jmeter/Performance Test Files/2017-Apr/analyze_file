@@ -1,0 +1,38 @@
+#!/bin/bash
+
+# usage: bash analyze_file <summaryfile>
+
+
+# This function depends on the summary output being <responsetime>,<label>,.... to parse properly
+function logAverage {
+  cat $1 | grep "$2" | perl -F, -lane '$total += $F[0]; $req = $F[1]; END{print $req . " " . $total/$.}'
+}
+
+
+REQCOUNT=`cat $1 | grep '/d3rest/' | wc -l | sed 's; ;;g'`
+echo "Number of requests: ${REQCOUNT}"
+
+echo "Average Response Times:"
+
+logAverage $1 "Login"
+logAverage $1 "GET Challenge"
+logAverage $1 "POST User Name"
+logAverage $1 "POST Secret"
+logAverage $1 "GET Session 2"
+logAverage $1 "GET CSRF Session"
+logAverage $1 "GET UI"
+
+logAverage $1 "GET Accounts"
+logAverage $1 "GET DB Accounts"
+logAverage $1 "GET Cashflow"
+logAverage $1 "GET Categories"
+logAverage $1 "GET Messages"
+logAverage $1 "GET Profile Details"
+logAverage $1 "GET Transactions"
+
+logAverage $1 "GET MM Meta"
+logAverage $1 "GET MM Endpoints"
+logAverage $1 "GET MM Latest Transfers"
+logAverage $1 "GET MM Quickpay"
+# logAverage "GET MM Transfers"
+logAverage $1 "GET Approval Requests"

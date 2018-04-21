@@ -1,0 +1,87 @@
+<conduitMemoPostRequest xmlns="http://lodosoftware.com/conduit/memo">
+	<version>1.0</version>
+	<authentication>
+		<username>userName</username>
+		<password>password</password>
+	</authentication>
+	<accountList>
+		<account directId="DDA-CHECKING-123">
+			<branchExternalId>BRANCH4</branchExternalId>
+			<balance>4200.12</balance>
+			<availableBalance>3900.99</availableBalance>
+			<transactionList>
+				<transaction directId="DDA-CHECKING-123-201204201829326050">
+					<type>0</type>
+					<name>Long John Silver’s</name>
+					<memo>memo</memo>
+					<amount>8260.19</amount>
+					<principalAmount>34.45</principalAmount>
+					<interestAmount>67.78</interestAmount>
+					<postDate>2012-04-21</postDate>
+					<otherAmount>6.78</otherAmount>
+					<mcc>123</mcc>
+					<currencyCode>USD</currencyCode>
+					<pending>true</pending>
+					<runningBalance>9.99</runningBalance>
+					<originationDate>2012-04-21</originationDate>
+					<tranCode>99</tranCode>
+					<checkNum>999</checkNum>
+					<imageId>1</imageId>
+					<postingSeq>0000001</postingSeq>
+				</transaction>
+			</transactionList>
+		</account>
+		<account directId="DDA-CHECKING-456">
+			<branchExternalId>BRANCH-456</branchExternalId>
+			<balance>5500</balance>
+			<availableBalance>5100.99</availableBalance>
+			<transactionList>
+				<transaction directId="DDA-CHECKING-456-201204202829326050">
+					<type>0</type>
+					<name>Nordstrom’s</name>
+					<memo>memo</memo>
+					<amount>501.19</amount>
+					<principalAmount>12.23</principalAmount>
+					<interestAmount>34</interestAmount>
+					<postDate>2012-05-15</postDate>
+					<otherAmount>-89.07</otherAmount>
+					<mcc>522</mcc>
+					<currencyCode>USD</currencyCode>
+					<pending>true</pending>
+					<runningBalance>9.99</runningBalance>
+					<originationDate>2012-04-20</originationDate>
+					<tranCode>99</tranCode>
+					<checkNum>999</checkNum>
+					<imageId>1</imageId>
+					<postingSeq>34</postingSeq>
+				</transaction>
+			</transactionList>
+		</account>
+		<account directId="DDA-SAVINGS-123">
+			<branchExternalId>BRANCH-123</branchExternalId>
+			<balance>4600</balance>
+			<availableBalance>4500.65</availableBalance>
+			<transactionList>
+				<transaction directId="DDA-SAVINGS-123-201204201829326050">
+					<type>0</type>
+					<name>Studio 55</name>
+					<memo>memo</memo>
+					<amount>555.76</amount>
+					<principalAmount>78..56</principalAmount>
+					<interestAmount>45</interestAmount>
+					<postDate>2012-04-21</postDate>
+					<otherAmount>2.47</otherAmount>
+					<mcc>555</mcc>
+					<currencyCode>USD</currencyCode>
+					<pending>true</pending>
+					<runningBalance>999.99</runningBalance>
+					<originationDate>2012-04-21</originationDate>
+					<tranCode>99</tranCode>
+					<checkNum>999</checkNum>
+					<imageId>1</imageId>
+					<postingSeq>45</postingSeq>
+				</transaction>
+			</transactionList>
+		</account>
+	</accountList>
+</conduitMemoPostRequest>

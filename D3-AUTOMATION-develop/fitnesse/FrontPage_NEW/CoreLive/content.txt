@@ -1,0 +1,25 @@
+!*****> TEST VARIABLES
+!define serverName {192.168.1.21:8081}
+!define conduitDirPathWhereToDropFile {!-\\\\192.168.1.21\\conduit-data.v21\\-!}
+!define conduitFileDirPath {!-D:\\apps\\fitnesse\\conduitFile\\-!}
+****!
+
+!*****> DB CONNECTION INFO
+!define dbURL {192.168.1.21}
+!define dbUserName {d3qa}
+!define dbName {d3qa_v21}
+****!
+
+!*****> [VARIABLES]
+
+!define userLoginId {fitTestLogin}
+!define userLoginId2 {fitTestLogin2}
+!define userPassword {password}
+!define userPassword2 {password}
+!define answer {denver}
+!define answer2 {denver}
+!define credentialsId {1}
+!define token1 {c28d3b7a0662a4b7b8fcaa29cf0dd9e63bed8eb6d3559d7a990eea662324af1d}
+!define token2 {c28d3b7a0662a4b7b8fcaa29cf0dd9e63bed8eb6d3559d7a990eea662324af1c}
+!define conduitFileName {conduit-fitnesse-testFile1.xml}
+****!

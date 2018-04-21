@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<conduitUserRequest xmlns="http://lodosoftware.com/conduit/user">
+    <version>1.0</version>
+    <authentication>
+        <username>userName</username>
+        <password>password</password>
+    </authentication>
+    <transactionDateRange>
+        <beginDate>2012-05-24</beginDate>
+        <endDate>2012-05-30</endDate>
+    </transactionDateRange>
+    <accountList>
+        <account directId="accountDirectID1-1">
+		<branchExternalId>ArnaTest-1</branchExternalId>
+	    <accountProductExternalId>DEFAULT_COMPANY_CHECKING</accountProductExternalId>
+		<routingTransitNumber>TEST1</routingTransitNumber>
+		<accountName>Blue Free Checking</accountName>
+		<accountNumber>4321</accountNumber>
+		<accountType>accounttype.creditcard</accountType>
+		<accountClass>accountclass.creditcard</accountClass>
+		<balance>4000.45</balance>
+		<apr>10.00</apr>
+        </account>
+    </accountList>
+</conduitUserRequest>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Accounts_Service_Regression_Tests" verbose="2">
+    <listeners>
+        <listener class-name="com.d3.tests.listeners.ProjectListener"/>
+    </listeners>
+    <test name="Accounts_Regression">
+        <packages>
+            <package name="com.d3.tests.consumer.core.accounts"/>
+        </packages>
+    </test>
+</suite>

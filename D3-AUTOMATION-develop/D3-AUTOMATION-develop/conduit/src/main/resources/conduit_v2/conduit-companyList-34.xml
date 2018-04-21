@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<conduit>
+  <hdr>
+    <ver>2.0</ver>
+    <rqid>01234567890</rqid>
+    <authn u="user" p="password"/>
+    <txndtrng bdt="2013-09-01" edt="2013-09-30"/>
+    <parse>ftrue</parse>
+  </hdr>
+  <complst>
+    <comp uid="testCompany-1" puid="ROOT">
+      <acctprodlst>
+        <acctprod uid="testAccProductId1-New">
+          <ac>a</ac>
+          <nm>UpdatedTestAccountProductName1-New</nm>
+          <alst>
+                <a	n = "UpdatedACHTransferFrom1-New" 	t = "boolean" 	d = "14">false</a>
+          </alst>  
+        </acctprod>
+      </acctprodlst>
+      <alst>
+      	<a n="UpdatedTestProductAttribute1-New" t = "money"  d = "14">UpdatedTestProductAttribute1-New</a>
+      </alst>
+    </comp>
+   </complst>
+</conduit>

@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<conduit>
+  <hdr>
+    <ver>2.0</ver>
+    <rqid>01234567890</rqid>
+    <authn u="user" p="password"/>
+    <txndtrng bdt="2013-09-01" edt="2013-09-30"/>
+    <parse>ftrue</parse>
+  </hdr>
+
+  <usrmiglst>
+    <usrmig uid="usr-uid-001">
+	    <scxfrlst>
+	        <scxfr uid="scxfr-uid-001">
+	          <fauid>acct-uid-001</fauid>
+	          <tauid>acct-uid-002</tauid>
+	          <nm>onetime - TestSceduledTransfer!</nm>
+	          <mm>This is test running with junit tests!</mm>
+	          <freq>onetime</freq>
+	          <amt>99.000000</amt>
+	          <bdt>2014-01-05</bdt>
+	        </scxfr>
+	        <scxfr uid="scxfr-uid-002-1">
+	          <fauid>acct-uid-001</fauid>
+	          <tauid>acct-uid-002</tauid>
+	          <nm>semiweekly-TestSceduledTransfer-endDate!</nm>
+	          <mm>This is test running with junit tests!</mm>
+	          <freq>every2weeks</freq>
+	          <amt>99.000000</amt>
+	          <bdt>2014-01-05</bdt>
+	          <edt>2015-01-05</edt>
+	        </scxfr>
+	         <scxfr uid="scxfr-uid-002-2">
+	          <fauid>acct-uid-001</fauid>
+	          <tauid>acct-uid-002</tauid>
+	          <nm>semiweekly-TestSceduledTransfer - occurrences!</nm>
+	          <mm>This is test running with junit tests!</mm>
+	          <freq>every2weeks</freq>
+	          <amt>99.000000</amt>
+	          <bdt>2014-01-05</bdt>
+	          <alst>
+	            <a n="occurrences">2</a>
+	          </alst>
+	        </scxfr>
+	         <scxfr uid="scxfr-uid-002-3">
+	          <fauid>acct-uid-001</fauid>
+	          <tauid>acct-uid-002</tauid>
+	          <nm>semiweekly-TestSceduledTransfer - indefinite!</nm>
+	          <mm>This is test running with junit tests!</mm>
+	          <freq>every2weeks</freq>
+	          <amt>99.000000</amt>
+	          <bdt>2014-01-05</bdt>
+	          <alst>
+	            <a n="indefinite" t="integer" d="3">1</a>
+	          </alst>
+	        </scxfr>
+	        <scxfr uid="scxfr-uid-003-1">
+	          <fauid>acct-uid-001</fauid>
+	          <tauid>acct-uid-002</tauid>
+	          <nm>weekly: TestSceduledTransfer - endDate!</nm>
+	          <mm>This is test running with junit tests!</mm>
+	          <freq>everyweek</freq>
+	          <amt>99.000000</amt>
+	          <bdt>2014-01-05</bdt>
+	          <alst>
+	           <a n="indefinite" t="integer">1</a>
+	          </alst>
+	        </scxfr>
+	         <scxfr uid="scxfr-uid-003-2">
+	          <fauid>acct-uid-001</fauid>
+	          <tauid>acct-uid-002</tauid>
+	          <nm>weekly: TestSceduledTransfer - occurrences!</nm>
+	          <mm>This is test running with junit tests!</mm>
+	          <freq>everyweek</freq>
+	          <amt>99.000000</amt>
+	          <bdt>2014-01-05</bdt>
+	          <edt>2016-01-05</edt>
+	        </scxfr>
+	         <scxfr uid="scxfr-uid-003-3">
+	          <fauid>acct-uid-001</fauid>
+	          <tauid>acct-uid-002</tauid>
+	          <nm>weekly: TestSceduledTransfer - indefinite!</nm>
+	          <mm>This is test running with junit tests!</mm>
+	          <freq>everyweek</freq>
+	          <amt>99.000000</amt>
+	          <bdt>2014-01-05</bdt>
+	          <alst>
+	            <a n="occurrences">3</a>
+	          </alst>
+	        </scxfr>
+	        <scxfr uid="scxfr-uid-004-1">
+	          <fauid>acct-uid-001</fauid>
+	          <tauid>acct-uid-002</tauid>
+	          <nm>semimonthly: TestSceduledTransfer - endDate!</nm>
+	          <mm>This is test running with junit tests!</mm>
+	          <freq>everyyear</freq>
+	          <amt>99.000000</amt>
+	          <bdt>2014-01-05</bdt>
+	          <edt>2017-01-05</edt>
+	        </scxfr>
+	         <scxfr uid="scxfr-uid-004-2">
+	          <fauid>acct-uid-001</fauid>
+	          <tauid>acct-uid-002</tauid>
+	          <nm>semimonthly: TestSceduledTransfer - indefinite!</nm>
+	          <mm>This is test running with junit tests!</mm>
+	          <freq>everyyear</freq>
+	          <amt>99.000000</amt>
+	          <bdt>2014-01-05</bdt>
+	          <alst>
+	            <a n="indefinite" t="integer">1</a>
+	          </alst>
+	        </scxfr>
+	         <scxfr uid="scxfr-uid-004-3">
+	          <fauid>acct-uid-001</fauid>
+	          <tauid>acct-uid-002</tauid>
+	          <nm>semimonthly: TestSceduledTransfer - occurrences!</nm>
+	          <mm>This is test running with junit tests!</mm>
+	          <freq>everyyear</freq>
+	          <amt>99.000000</amt>
+	          <bdt>2014-01-05</bdt>
+	          <alst>
+	            <a n="occurrences">4</a>
+	          </alst>
+	        </scxfr>	        
+	        <scxfr uid="scxfr-uid-005-1">
+	          <fauid>acct-uid-001</fauid>
+	          <tauid>acct-uid-002</tauid>
+	          <nm>monthly: TestSceduledTransfer - endDate!</nm>
+	          <mm>This is test running with junit tests!</mm>
+	          <freq>lastdom</freq>
+	          <amt>99.000000</amt>
+	          <bdt>2014-01-05</bdt>
+	          <edt>2015-02-05</edt>
+	        </scxfr>
+	        <scxfr uid="scxfr-uid-005-2">
+	          <fauid>acct-uid-001</fauid>
+	          <tauid>acct-uid-002</tauid>
+	          <nm>monthly: TestSceduledTransfer - occurrences!</nm>
+	          <mm>This is test running with junit tests!</mm>
+	          <freq>lastdom</freq>
+	          <amt>99.000000</amt>
+	          <bdt>2014-01-05</bdt>
+	          <alst>
+	            <a n="occurrences">5</a>
+	          </alst>
+	        </scxfr>
+	        <scxfr uid="scxfr-uid-005-3">
+	          <fauid>acct-uid-001</fauid>
+	          <tauid>acct-uid-002</tauid>
+	          <nm>monthly: TestSceduledTransfer - indefinite!</nm>
+	          <mm>This is test running with junit tests!</mm>
+	          <freq>lastdom</freq>
+	          <amt>99.000000</amt>
+	          <bdt>2014-01-05</bdt>
+	          <alst>
+	            <a n="indefinite" t="integer">1</a>
+	          </alst>
+	        </scxfr>
+	        <scxfr uid="scxfr-uid-006-1">
+	          <fauid>acct-uid-001</fauid>
+	          <tauid>acct-uid-002</tauid>
+	          <nm>quarterly: TestSceduledTransfer - endDate!</nm>
+	          <mm>This is test running with junit tests!</mm>
+	          <freq>everymonth</freq>
+	          <amt>99.000000</amt>
+	          <bdt>2014-01-05</bdt>
+	          <edt>2015-03-05</edt>
+	        </scxfr>
+	        <scxfr uid="scxfr-uid-006-2">
+	          <fauid>acct-uid-001</fauid>
+	          <tauid>acct-uid-002</tauid>
+	          <nm>quarterly: TestSceduledTransfer - indefinte!</nm>
+	          <mm>This is test running with junit tests!</mm>
+	          <freq>everymonth</freq>
+	          <amt>99.000000</amt>
+	          <bdt>2014-01-05</bdt>
+	          <alst>
+	            <a n="indefinite" t="integer">1</a>
+	          </alst>
+	        </scxfr>
+	        <scxfr uid="scxfr-uid-006-3">
+	          <fauid>acct-uid-001</fauid>
+	          <tauid>acct-uid-002</tauid>
+	          <nm>quarterly: TestSceduledTransfer - occurrences!</nm>
+	          <mm>This is test running with junit tests!</mm>
+	          <freq>everymonth</freq>
+	          <amt>99.000000</amt>
+	          <bdt>2014-01-05</bdt>
+	          <alst>
+	            <a n="occurrences">6</a>
+	          </alst>
+	        </scxfr>
+	        <scxfr uid="scxfr-uid-007-1">
+	          <fauid>acct-uid-001</fauid>
+	          <tauid>acct-uid-002</tauid>
+	          <nm>semiannually: TestSceduledTransfer - endDate!</nm>
+	          <mm>This is test running with junit tests!</mm>
+	          <freq>every3months</freq>  <!--after DDB-1720 fix replace with semiannually -->
+	          <amt>99.000000</amt>
+	          <bdt>2014-01-05</bdt>
+	          <edt>2015-04-05</edt>
+	        </scxfr>
+	        <scxfr uid="scxfr-uid-007-2">
+	          <fauid>acct-uid-001</fauid>
+	          <tauid>acct-uid-002</tauid>
+	          <nm>semiannually: TestSceduledTransfer - indefinite!</nm>
+	          <mm>This is test running with junit tests!</mm>
+	          <freq>every3months</freq>  <!--after DDB-1720 fix replace with semiannually -->
+	          <amt>99.000000</amt>
+	          <bdt>2014-01-05</bdt>
+	          <alst>
+	            <a n="indefinite" t="integer">1</a>
+	          </alst>
+	        </scxfr>
+	        <scxfr uid="scxfr-uid-007-3">
+	          <fauid>acct-uid-001</fauid>
+	          <tauid>acct-uid-002</tauid>
+	          <nm>semiannually: TestSceduledTransfer - occurrences!</nm>
+	          <mm>This is test running with junit tests!</mm>
+	          <freq>every3months</freq>  <!--after DDB-1720 fix replace with semiannually -->
+	          <amt>99.000000</amt>
+	          <bdt>2014-01-05</bdt>
+	          <alst>
+	            <a n="occurrences">7</a>
+	          </alst>
+	        </scxfr>
+	        <scxfr uid="scxfr-uid-008-1">
+	          <fauid>acct-uid-001</fauid>
+	          <tauid>acct-uid-002</tauid>
+	          <nm>annually: TestSceduledTransfer - endDAte!</nm>
+	          <mm>This is test running with junit tests!</mm>
+	          <freq>every6months</freq>
+	          <amt>99.000000</amt>
+	          <bdt>2014-01-05</bdt>
+	          <edt>2015-05-05</edt>
+	        </scxfr>
+	        <scxfr uid="scxfr-uid-008-2">
+	          <fauid>acct-uid-001</fauid>
+	          <tauid>acct-uid-002</tauid>
+	          <nm>annually: TestSceduledTransfer indefinite!</nm>
+	          <mm>This is test running with junit tests!</mm>
+	          <freq>every6months</freq>
+	          <amt>99.000000</amt>
+	          <bdt>2014-01-05</bdt>
+	          <alst>
+	            <a n="indefinite" t="integer">1</a>
+	          </alst>
+	        </scxfr>
+	        <scxfr uid="scxfr-uid-008-3">
+	          <fauid>acct-uid-001</fauid>
+	          <tauid>acct-uid-002</tauid>
+	          <nm>annually: TestSceduledTransfer occurrences!</nm>
+	          <mm>This is test running with junit tests!</mm>
+	          <freq>every6months</freq>
+	          <amt>99.000000</amt>
+	          <bdt>2014-01-05</bdt>
+	          <alst>
+	            <a n="occurrences">8</a>
+	          </alst>
+	        </scxfr>
+	         <scxfr uid="scxfr-uid-009-1">
+	          <fauid>acct-uid-001</fauid>
+	          <tauid>acct-uid-002</tauid>
+	          <nm>scxfr-uid-009-1</nm>
+	          <mm>This is test running with junit tests!</mm>
+	          <freq>every2months</freq>
+	          <amt>99.000000</amt>
+	          <bdt>2014-01-05</bdt>
+	          <edt>2023-05-05</edt>
+	        </scxfr>
+	        <scxfr uid="scxfr-uid-009-2">
+	          <fauid>acct-uid-001</fauid>
+	          <tauid>acct-uid-002</tauid>
+	          <nm>scxfr-uid-009-2</nm>
+	          <mm>This is test running with junit tests!</mm>
+	          <freq>every2months</freq>
+	          <amt>99.000000</amt>
+	          <bdt>2014-01-05</bdt>
+	          <alst>
+	            <a n="indefinite" t="integer">1</a>
+	          </alst>
+	        </scxfr>
+	        <scxfr uid="scxfr-uid-009-3">
+	          <fauid>acct-uid-001</fauid>
+	          <tauid>acct-uid-002</tauid>
+	          <nm>scxfr-uid-009-3</nm>
+	          <mm>This is test running with junit tests!</mm>
+	          <freq>every2months</freq>
+	          <amt>99.000000</amt>
+	          <bdt>2014-01-05</bdt>
+	          <alst>
+	            <a n="occurrences">9</a>
+	          </alst>
+	        </scxfr>
+	     </scxfrlst>
+    </usrmig>
+  </usrmiglst>
+</conduit>

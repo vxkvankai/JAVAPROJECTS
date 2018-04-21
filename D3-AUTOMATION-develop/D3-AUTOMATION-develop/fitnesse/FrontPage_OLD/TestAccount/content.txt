@@ -1,0 +1,3765 @@
+!*****> !style_green[5. ACCOUNTS]
+
+!*****> '''5.1 POST ACCOUNTS'''
+!*****> '''5.1.1 POST ACCOUNTS (create a new offline account)'''
+
+'''5.1.1.1 POST ACCOUNTS (ALL FIELDS ARE NULL IN THE JSON BODY)'''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest|
+|setHeader|!- appKey : -!${institutionNum}!- 
+Content-Type : application/json
+userToken : %encodedUser2Token%-!|
+|comment|!- appKey : -!${institutionNum}!- 
+Content-Type : application/json
+userToken : %encodedUser2Token%-!|
+|setBody|!-{
+    "Account": {
+        "AccountId": null, 
+        "AccountType": null, 
+        "AccountClass": null, 
+        "AccountingClass": null, 
+        "AccountName": null, 
+        "AccountNumber": null, 
+        "Status": null, 
+        "Exclude": null, 
+        "Hide": null, 
+        "CurrentBalance": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": null
+            }
+        }, 
+        "AvailableBalance": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": null
+            }
+        }, 
+        "AccountSource": null, 
+        "ProductName": null, 
+        "SyncDate": null, 
+        "InterestRate": {
+            "Percentage": {
+                "value": null, 
+                "precision": 2
+            }
+        }, 
+        "CreditLimit": null, 
+        "AvailableCredit": null, 
+        "CashAdvanceLimit": null, 
+        "MinimumPaymentDue": null, 
+        "PaymentDueDate": null, 
+        "RateOfReturn": null, 
+        "AvailableCashLimit": null, 
+        "StatementBalance": null, 
+        "PurchaseAPR": null, 
+        "OutstandingBalance": {
+            "Money": {
+                "currencyCode": null, 
+                "precision": 2, 
+                "value": null
+            }
+        }, 
+        "OriginationDate": null, 
+        "MaturityDate": null, 
+        "LoanAmount": {
+            "Money": {
+                "currencyCode": null, 
+                "precision": 2, 
+                "value": null
+            }
+        }, 
+        "PreviousAmountDue": null, 
+        "PastAmountDue": null, 
+        "FinanceCharges": null, 
+        "HoldAmount": null, 
+        "AccountOpenDate": {
+            "Date": {
+                "year": null, 
+                "month": null, 
+                "day": null
+            }
+        }, 
+        "AccountClosedDate": null, 
+        "LastStatementDate": null, 
+        "LastDepositAmount": null, 
+        "LastDepositDate": null, 
+        "LastPaymentAmount": null, 
+        "LastPaymentDate": null, 
+        "LoanDate": null, 
+        "RewardsBalance": null, 
+        "PointsAccrued": null, 
+        "PointsRedeemed": null, 
+        "APR": null
+    }
+}-!|
+|POST|/accounts|400|||
+|let|$errMsg|js|response.jsonbody.message||
+
+!|com.lodosoftware.fitnesse.fixtures.LodosoftwareFixtures|
+|symbolName|str|isContain?|
+|errMsg|!-ErrorCode: 200002 - Argument account-accountClass is undefined but is required.-!|true|
+
+'''5.1.1.2 POST ACCOUNTS (ALL FIELDS ARE WITH VALUES)'''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest|
+|setHeader|!- appKey : -!${institutionNum}!- 
+Content-Type : application/json
+userToken : %encodedUser2Token%-!|
+|setBody|!-{
+    "Account": {
+        "AccountId": null, 
+        "AccountType": "accounttype.loan", 
+        "AccountClass": "accountclass.loan", 
+        "AccountingClass": "accountclass.loan", 
+        "AccountName": "Create a New Account Fit Test", 
+        "AccountNumber": "1234 1234 1234 12324", 
+        "Status": "accountstatus.open", 
+        "Exclude": false, 
+        "Hide": false,  
+        "CurrentBalance": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": 4666.12
+            }
+        }, 
+        "AvailableBalance": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": 5612.12
+            }
+        }, 
+        "AccountSource": "account source", 
+        "ProductName": "product Name", 
+        "SyncDate": null, 
+        "InterestRate": {
+            "Percentage": {
+                "value": 4.12, 
+                "precision": 2
+            }
+        }, 
+         "CreditLimit": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": 4563.12
+            }
+        }, 
+         "AvailableCredit": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": 463.12
+            }
+        }, 
+          "CashAdvanceLimit": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": 63.12
+            }
+        }, 
+          "MinimumPaymentDue": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": 10.12
+            }
+        }, 
+        "PaymentDueDate": {
+            "Date": {
+                "year": 2012, 
+                "month": 12, 
+                "day": 10
+            }
+        }, 
+        "RateOfReturn": {
+            "Percentage": {
+                "value": 4.12, 
+                "precision": 2
+            }
+        }, 
+        "AvailableCashLimit": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": 500.12
+            }
+        }, 
+        "StatementBalance": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": 1000.45
+            }
+        }, 
+        "PurchaseAPR": {
+            "Percentage": {
+                "value": 12.01, 
+                "precision": 2
+            }
+        },  
+        "OutstandingBalance": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": 400.51
+            }
+        }, 
+        "OriginationDate": {
+            "Date": {
+                "year": 2012, 
+                "month": 12, 
+                "day": 15
+            }
+        }, 
+        "MaturityDate": {
+            "Date": {
+                "year": 2020, 
+                "month": 12, 
+                "day": 10
+            }
+        }, 
+        "LoanAmount": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": 456.12
+            }
+        }, 
+        "PreviousAmountDue": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": 46.12
+            }
+        }, 
+        "PastAmountDue": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": 16.12
+            }
+        },         
+        "FinanceCharges": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": 56.12
+            }
+        }, 
+        "HoldAmount": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": 789.11
+            }
+        },    
+        "AccountOpenDate": {
+            "Date": {
+                "year": 2010, 
+                "month": 11, 
+                "day": 5
+            }
+        }, 
+        "AccountClosedDate": {
+            "Date": {
+                "year": 2025, 
+                "month": 10, 
+                "day": 7
+            }
+        }, 
+        "LastStatementDate": {
+            "Date": {
+                "year": 2010, 
+                "month": 9, 
+                "day": 1
+            }
+        },       
+        "LastDepositAmount": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": 96.12
+            }
+        }, 
+        "LastPaymentAmount": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": 852.25
+            }
+        }, 
+        "LastDepositDate": {
+            "Date": {
+                "year": 2010, 
+                "month": 2, 
+                "day": 15
+            }
+        }, 
+        "LastPaymentDate": {
+            "Date": {
+                "year": 2010, 
+                "month": 3, 
+                "day": 15
+            }
+        }, 
+        "LoanDate": {
+            "Date": {
+                "year": 2010, 
+                "month": 4, 
+                "day": 23
+            }
+        }, 
+  "RewardsBalance" : {
+    "Decimal" : {
+      "value" : 100.0,
+      "precision" : 2
+    }
+  },
+  "PointsAccrued" : {
+    "Decimal" : {
+      "value" : 10000.0,
+      "precision" : 2
+    }
+  },
+  "PointsRedeemed" : {
+    "Decimal" : {
+      "value" : 100.0,
+      "precision" : 2
+    }
+  },
+         "APR": {
+            "Percentage": {
+                "value": 12.15, 
+                "precision": 2
+            }
+        }
+    }
+}-!|
+|POST|/accounts|200|||
+|let|$accountID1|js|!-response.jsonbody.Account.AccountId-!||
+|let||js|!-response.jsonbody.Account.AccountType-!|accounttype.loan|
+|let||js|!-response.jsonbody.Account.AccountClass-!|accountclass.loan|
+|let||js|!-response.jsonbody.Account.AccountingClass-!|accountclass.loan|
+|let||js|!-response.jsonbody.Account.AccountName-!|!-Create a New Account Fit Test-!|
+|let||js|!-response.jsonbody.Account.AccountNumber-!|!-1234 1234 1234 12324-!|
+|let||js|!-response.jsonbody.Account.Status-!|accountstatus.open|
+|let||js|!-response.jsonbody.Account.Exclude-!|false|
+|let||js|!-response.jsonbody.Account.Hide-!|false|
+|let||js|!-response.jsonbody.Account.CurrentBalance.Money.currencyCode-!|USD|
+|let||js|!-response.jsonbody.Account.CurrentBalance.Money.precision-!|2|
+|let||js|!-response.jsonbody.Account.CurrentBalance.Money.value-!|4666.12|
+|let||js|!-response.jsonbody.Account.AvailableBalance.Money.currencyCode-!|USD|
+|let||js|!-response.jsonbody.Account.AvailableBalance.Money.precision-!|2|
+|let||js|!-response.jsonbody.Account.AvailableBalance.Money.value-!|5612.12|
+|let||js|!-response.jsonbody.Account.IsAvailableBalance-!||
+|let||js|!-response.jsonbody.Account.AccountSource-!|account source|
+|let||js|!-response.jsonbody.Account.ProductName-!|product Name|
+|let||js|!-response.jsonbody.Account.SyncDate-!|null|
+|let||js|!-response.jsonbody.Account.InterestRate.Percentage.value-!|4.12|
+|let||js|!-response.jsonbody.Account.InterestRate.Percentage.precision-!|2|
+|let||js|!-response.jsonbody.Account.CreditLimit.Money.currencyCode-!|USD|
+|let||js|!-response.jsonbody.Account.CreditLimit.Money.precision-!|2|
+|let||js|!-response.jsonbody.Account.CreditLimit.Money.value-!|4563.12|
+|let||js|!-response.jsonbody.Account.AvailableCredit.Money.currencyCode-!|USD|
+|let||js|!-response.jsonbody.Account.AvailableCredit.Money.precision-!|2|
+|let||js|!-response.jsonbody.Account.AvailableCredit.Money.value-!|463.12|
+|let||js|!-response.jsonbody.Account.CashAdvanceLimit.Money.currencyCode-!|USD|
+|let||js|!-response.jsonbody.Account.CashAdvanceLimit.Money.precision-!|2|
+|let||js|!-response.jsonbody.Account.CashAdvanceLimit.Money.value-!|63.12|
+|let||js|!-response.jsonbody.Account.MinimumPaymentDue.Money.currencyCode-!|USD|
+|let||js|!-response.jsonbody.Account.MinimumPaymentDue.Money.precision-!|2|
+|let||js|!-response.jsonbody.Account.MinimumPaymentDue.Money.value-!|10.12|
+|let||js|!-response.jsonbody.Account.PaymentDueDate.Date.year-!|2012|
+|let||js|!-response.jsonbody.Account.PaymentDueDate.Date.month-!|12|
+|let||js|!-response.jsonbody.Account.PaymentDueDate.Date.day-!|10|
+|let||js|!-response.jsonbody.Account.RateOfReturn.Percentage.value-!|4.12|
+|let||js|!-response.jsonbody.Account.RateOfReturn.Percentage.precision-!|2|
+|let||js|!-response.jsonbody.Account.AvailableCashLimit.Money.currencyCode-!|USD|
+|let||js|!-response.jsonbody.Account.AvailableCashLimit.Money.precision-!|2|
+|let||js|!-response.jsonbody.Account.AvailableCashLimit.Money.value-!|500.12|
+|let||js|!-response.jsonbody.Account.StatementBalance.Money.currencyCode-!|USD|
+|let||js|!-response.jsonbody.Account.StatementBalance.Money.precision-!|2|
+|let||js|!-response.jsonbody.Account.StatementBalance.Money.value-!|1000.45|
+|let||js|!-response.jsonbody.Account.PurchaseAPR.Percentage.value-!|12.01|
+|let||js|!-response.jsonbody.Account.PurchaseAPR.Percentage.precision-!|2|
+|let||js|!-response.jsonbody.Account.OutstandingBalance.Money.currencyCode-!|USD|
+|let||js|!-response.jsonbody.Account.OutstandingBalance.Money.precision-!|2|
+|let||js|!-response.jsonbody.Account.OutstandingBalance.Money.value-!|400.51|
+|let||js|!-response.jsonbody.Account.OriginationDate.Date.year-!|2012|
+|let||js|!-response.jsonbody.Account.OriginationDate.Date.month-!|12|
+|let||js|!-response.jsonbody.Account.OriginationDate.Date.day-!|15|
+|let||js|!-response.jsonbody.Account.MaturityDate.Date.year-!|2020|
+|let||js|!-response.jsonbody.Account.MaturityDate.Date.month-!|12|
+|let||js|!-response.jsonbody.Account.MaturityDate.Date.day-!|10|
+|let||js|!-response.jsonbody.Account.LoanAmount.Money.currencyCode-!|USD|
+|let||js|!-response.jsonbody.Account.LoanAmount.Money.precision-!|2|
+|let||js|!-response.jsonbody.Account.LoanAmount.Money.value-!|456.12|
+|let||js|!-response.jsonbody.Account.PreviousAmountDue.Money.currencyCode-!|USD|
+|let||js|!-response.jsonbody.Account.PreviousAmountDue.Money.precision-!|2|
+|let||js|!-response.jsonbody.Account.PreviousAmountDue.Money.value-!|46.12|
+|let||js|!-response.jsonbody.Account.PastAmountDue.Money.currencyCode-!|USD|
+|let||js|!-response.jsonbody.Account.PastAmountDue.Money.precision-!|2|
+|let||js|!-response.jsonbody.Account.PastAmountDue.Money.value-!|16.12|
+|let||js|!-response.jsonbody.Account.FinanceCharges.Money.currencyCode-!|USD|
+|let||js|!-response.jsonbody.Account.FinanceCharges.Money.precision-!|2|
+|let||js|!-response.jsonbody.Account.FinanceCharges.Money.value-!|56.12|
+|let||js|!-response.jsonbody.Account.HoldAmount.Money.currencyCode-!|USD|
+|let||js|!-response.jsonbody.Account.HoldAmount.Money.precision-!|2|
+|let||js|!-response.jsonbody.Account.HoldAmount.Money.value-!|789.11|
+|let||js|!-response.jsonbody.Account.AccountOpenDate.Date.year-!|2010|
+|let||js|!-response.jsonbody.Account.AccountOpenDate.Date.month-!|11|
+|let||js|!-response.jsonbody.Account.AccountOpenDate.Date.day-!|5|
+|let||js|!-response.jsonbody.Account.AccountClosedDate.Date.year-!|2025|
+|let||js|!-response.jsonbody.Account.AccountClosedDate.Date.month-!|10|
+|let||js|!-response.jsonbody.Account.AccountClosedDate.Date.day-!|7|
+|let||js|!-response.jsonbody.Account.LastStatementDate.Date.year-!|2010|
+|let||js|!-response.jsonbody.Account.LastStatementDate.Date.month-!|9|
+|let||js|!-response.jsonbody.Account.LastStatementDate.Date.day-!|1.0|
+|let||js|!-response.jsonbody.Account.LastDepositAmount.Money.currencyCode-!|USD|
+|let||js|!-response.jsonbody.Account.LastDepositAmount.Money.precision-!|2|
+|let||js|!-response.jsonbody.Account.LastDepositAmount.Money.value-!|96.12|
+|let||js|!-response.jsonbody.Account.LastPaymentAmount.Money.currencyCode-!|USD|
+|let||js|!-response.jsonbody.Account.LastPaymentAmount.Money.precision-!|2|
+|let||js|!-response.jsonbody.Account.LastPaymentAmount.Money.value-!|852.25|
+|let||js|!-response.jsonbody.Account.LastDepositDate.Date.year-!|2010|
+|let||js|!-response.jsonbody.Account.LastDepositDate.Date.month-!|2|
+|let||js|!-response.jsonbody.Account.LastDepositDate.Date.day-!|15|
+|let||js|!-response.jsonbody.Account.LoanDate.Date.year-!|2010|
+|let||js|!-response.jsonbody.Account.LoanDate.Date.month-!|4|
+|let||js|!-response.jsonbody.Account.LoanDate.Date.day-!|23|
+|let||js|!-response.jsonbody.Account.APR.Percentage.value-!|12.15|
+|let||js|!-response.jsonbody.Account.APR.Percentage.precision-!|2|
+|let||js|!-response.jsonbody.Account.RewardsBalance.Decimal.value-!|100|
+|let||js|!-response.jsonbody.Account.RewardsBalance.Decimal.precision-!|2|
+|let||js|!-response.jsonbody.Account.PointsAccrued.Decimal.value-!|10000|
+|let||js|!-response.jsonbody.Account.PointsAccrued.Decimal.precision-!|2|
+|let||js|!-response.jsonbody.Account.PointsRedeemed.Decimal.value-!|100|
+|let||js|!-response.jsonbody.Account.PointsRedeemed.Decimal.precision-!|2|
+
+'''5.1.1.3 POST ACCOUNTS (RECREATE WITH EXACT SAME VALUES)'''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest|
+|setHeader|!- appKey : -!${institutionNum}!- 
+Content-Type : application/json
+userToken : %encodedUser2Token%-!|
+|setBody|!-{
+    "Account": {
+        "AccountId": null, 
+        "AccountType": "accounttype.loan", 
+        "AccountClass": "accountclass.loan", 
+        "AccountingClass": "accountclass.loan", 
+        "AccountName": "Create a New Account Fit Test", 
+        "AccountNumber": "1234 1234 1234 12324", 
+        "Status": "accountstatus.open", 
+        "Exclude": false, 
+        "Hide": false, 
+        "CurrentBalance": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": 4666.12
+            }
+        }, 
+        "AvailableBalance": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": 5612.12
+            }
+        }, 
+        "AccountSource": "account source", 
+        "ProductName": "product Name", 
+        "SyncDate": null, 
+        "InterestRate": {
+            "Percentage": {
+                "value": 4.12, 
+                "precision": 2
+            }
+        }, 
+        "CreditLimit": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": 4563.12
+            }
+        }, 
+        "AvailableCredit": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": 463.12
+            }
+        }, 
+        "CashAdvanceLimit": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": 63.12
+            }
+        }, 
+        "MinimumPaymentDue": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": 10.12
+            }
+        }, 
+        "PaymentDueDate": {
+            "Date": {
+                "year": 2012, 
+                "month": 12, 
+                "day": 10
+            }
+        }, 
+        "RateOfReturn": {
+            "Percentage": {
+                "value": 4.12, 
+                "precision": 2
+            }
+        }, 
+        "AvailableCashLimit": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": 500.12
+            }
+        }, 
+        "StatementBalance": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": 1000.45
+            }
+        }, 
+        "PurchaseAPR": {
+            "Percentage": {
+                "value": 12.01, 
+                "precision": 2
+            }
+        }, 
+        "OutstandingBalance": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": 400.51
+            }
+        }, 
+        "OriginationDate": {
+            "Date": {
+                "year": 2012, 
+                "month": 12, 
+                "day": 15
+            }
+        }, 
+        "MaturityDate": {
+            "Date": {
+                "year": 2020, 
+                "month": 12, 
+                "day": 10
+            }
+        }, 
+        "LoanAmount": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": 456.12
+            }
+        }, 
+        "PreviousAmountDue": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": 46.12
+            }
+        }, 
+        "PastAmountDue": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": 16.12
+            }
+        }, 
+        "FinanceCharges": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": 56.12
+            }
+        }, 
+        "HoldAmount": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": 789.11
+            }
+        }, 
+        "AccountOpenDate": {
+            "Date": {
+                "year": 2010, 
+                "month": 11, 
+                "day": 5
+            }
+        }, 
+        "AccountClosedDate": {
+            "Date": {
+                "year": 2025, 
+                "month": 10, 
+                "day": 7
+            }
+        }, 
+        "LastStatementDate": {
+            "Date": {
+                "year": 2010, 
+                "month": 9, 
+                "day": 1
+            }
+        }, 
+        "LastDepositAmount": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": 96.12
+            }
+        }, 
+        "LastPaymentAmount": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": 852.25
+            }
+        }, 
+        "LastDepositDate": {
+            "Date": {
+                "year": 2010, 
+                "month": 2, 
+                "day": 15
+            }
+        }, 
+        "LastPaymentDate": {
+            "Date": {
+                "year": 2010, 
+                "month": 3, 
+                "day": 15
+            }
+        }, 
+        "LoanDate": {
+            "Date": {
+                "year": 2010, 
+                "month": 4, 
+                "day": 23
+            }
+        }, 
+        "RewardsBalance": {
+            "Decimal": {
+                "value": 100, 
+                "precision": 2
+            }
+        }, 
+        "PointsAccrued": {
+            "Decimal": {
+                "value": 10000, 
+                "precision": 2
+            }
+        }, 
+        "PointsRedeemed": {
+            "Decimal": {
+                "value": 100, 
+                "precision": 2
+            }
+        }, 
+        "APR": {
+            "Percentage": {
+                "value": 12.15, 
+                "precision": 2
+            }
+        }
+    }
+}-!|
+|POST|/accounts|200|||
+|let|$accountID2|js|!-response.jsonbody.Account.AccountId-!||
+|let||js|!-response.jsonbody.Account.AccountType-!|accounttype.loan|
+|let||js|!-response.jsonbody.Account.AccountClass-!|accountclass.loan|
+|let||js|!-response.jsonbody.Account.AccountingClass-!|accountclass.loan|
+|let||js|!-response.jsonbody.Account.AccountName-!|!-Create a New Account Fit Test-!|
+|let||js|!-response.jsonbody.Account.AccountNumber-!|!-1234 1234 1234 12324-!|
+|let||js|!-response.jsonbody.Account.Status-!|accountstatus.open|
+|let||js|!-response.jsonbody.Account.Exclude-!|false|
+|let||js|!-response.jsonbody.Account.Hide-!|false|
+|let||js|!-response.jsonbody.Account.CurrentBalance.Money.currencyCode-!|USD|
+|let||js|!-response.jsonbody.Account.CurrentBalance.Money.precision-!|2|
+|let||js|!-response.jsonbody.Account.CurrentBalance.Money.value-!|4666.12|
+|let||js|!-response.jsonbody.Account.AvailableBalance.Money.currencyCode-!|USD|
+|let||js|!-response.jsonbody.Account.AvailableBalance.Money.precision-!|2|
+|let||js|!-response.jsonbody.Account.AvailableBalance.Money.value-!|5612.12|
+|let||js|!-response.jsonbody.Account.IsAvailableBalance-!||
+|let||js|!-response.jsonbody.Account.AccountSource-!|account source|
+|let||js|!-response.jsonbody.Account.ProductName-!|product Name|
+|let||js|!-response.jsonbody.Account.SyncDate-!|null|
+|let||js|!-response.jsonbody.Account.InterestRate.Percentage.value-!|4.12|
+|let||js|!-response.jsonbody.Account.InterestRate.Percentage.precision-!|2|
+|let||js|!-response.jsonbody.Account.CreditLimit.Money.currencyCode-!|USD|
+|let||js|!-response.jsonbody.Account.CreditLimit.Money.precision-!|2|
+|let||js|!-response.jsonbody.Account.CreditLimit.Money.value-!|4563.12|
+|let||js|!-response.jsonbody.Account.AvailableCredit.Money.currencyCode-!|USD|
+|let||js|!-response.jsonbody.Account.AvailableCredit.Money.precision-!|2|
+|let||js|!-response.jsonbody.Account.AvailableCredit.Money.value-!|463.12|
+|let||js|!-response.jsonbody.Account.CashAdvanceLimit.Money.currencyCode-!|USD|
+|let||js|!-response.jsonbody.Account.CashAdvanceLimit.Money.precision-!|2|
+|let||js|!-response.jsonbody.Account.CashAdvanceLimit.Money.value-!|63.12|
+|let||js|!-response.jsonbody.Account.MinimumPaymentDue.Money.currencyCode-!|USD|
+|let||js|!-response.jsonbody.Account.MinimumPaymentDue.Money.precision-!|2|
+|let||js|!-response.jsonbody.Account.MinimumPaymentDue.Money.value-!|10.12|
+|let||js|!-response.jsonbody.Account.PaymentDueDate.Date.year-!|2012|
+|let||js|!-response.jsonbody.Account.PaymentDueDate.Date.month-!|12|
+|let||js|!-response.jsonbody.Account.PaymentDueDate.Date.day-!|10|
+|let||js|!-response.jsonbody.Account.RateOfReturn.Percentage.value-!|4.12|
+|let||js|!-response.jsonbody.Account.RateOfReturn.Percentage.precision-!|2|
+|let||js|!-response.jsonbody.Account.AvailableCashLimit.Money.currencyCode-!|USD|
+|let||js|!-response.jsonbody.Account.AvailableCashLimit.Money.precision-!|2|
+|let||js|!-response.jsonbody.Account.AvailableCashLimit.Money.value-!|500.12|
+|let||js|!-response.jsonbody.Account.StatementBalance.Money.currencyCode-!|USD|
+|let||js|!-response.jsonbody.Account.StatementBalance.Money.precision-!|2|
+|let||js|!-response.jsonbody.Account.StatementBalance.Money.value-!|1000.45|
+|let||js|!-response.jsonbody.Account.PurchaseAPR.Percentage.value-!|12.01|
+|let||js|!-response.jsonbody.Account.PurchaseAPR.Percentage.precision-!|2|
+|let||js|!-response.jsonbody.Account.OutstandingBalance.Money.currencyCode-!|USD|
+|let||js|!-response.jsonbody.Account.OutstandingBalance.Money.precision-!|2|
+|let||js|!-response.jsonbody.Account.OutstandingBalance.Money.value-!|400.51|
+|let||js|!-response.jsonbody.Account.OriginationDate.Date.year-!|2012|
+|let||js|!-response.jsonbody.Account.OriginationDate.Date.month-!|12|
+|let||js|!-response.jsonbody.Account.OriginationDate.Date.day-!|15|
+|let||js|!-response.jsonbody.Account.MaturityDate.Date.year-!|2020|
+|let||js|!-response.jsonbody.Account.MaturityDate.Date.month-!|12|
+|let||js|!-response.jsonbody.Account.MaturityDate.Date.day-!|10|
+|let||js|!-response.jsonbody.Account.LoanAmount.Money.currencyCode-!|USD|
+|let||js|!-response.jsonbody.Account.LoanAmount.Money.precision-!|2|
+|let||js|!-response.jsonbody.Account.LoanAmount.Money.value-!|456.12|
+|let||js|!-response.jsonbody.Account.PreviousAmountDue.Money.currencyCode-!|USD|
+|let||js|!-response.jsonbody.Account.PreviousAmountDue.Money.precision-!|2|
+|let||js|!-response.jsonbody.Account.PreviousAmountDue.Money.value-!|46.12|
+|let||js|!-response.jsonbody.Account.PastAmountDue.Money.currencyCode-!|USD|
+|let||js|!-response.jsonbody.Account.PastAmountDue.Money.precision-!|2|
+|let||js|!-response.jsonbody.Account.PastAmountDue.Money.value-!|16.12|
+|let||js|!-response.jsonbody.Account.FinanceCharges.Money.currencyCode-!|USD|
+|let||js|!-response.jsonbody.Account.FinanceCharges.Money.precision-!|2|
+|let||js|!-response.jsonbody.Account.FinanceCharges.Money.value-!|56.12|
+|let||js|!-response.jsonbody.Account.HoldAmount.Money.currencyCode-!|USD|
+|let||js|!-response.jsonbody.Account.HoldAmount.Money.precision-!|2|
+|let||js|!-response.jsonbody.Account.HoldAmount.Money.value-!|789.11|
+|let||js|!-response.jsonbody.Account.AccountOpenDate.Date.year-!|2010|
+|let||js|!-response.jsonbody.Account.AccountOpenDate.Date.month-!|11|
+|let||js|!-response.jsonbody.Account.AccountOpenDate.Date.day-!|5|
+|let||js|!-response.jsonbody.Account.AccountClosedDate.Date.year-!|2025|
+|let||js|!-response.jsonbody.Account.AccountClosedDate.Date.month-!|10|
+|let||js|!-response.jsonbody.Account.AccountClosedDate.Date.day-!|7|
+|let||js|!-response.jsonbody.Account.LastStatementDate.Date.year-!|2010|
+|let||js|!-response.jsonbody.Account.LastStatementDate.Date.month-!|9|
+|let||js|!-response.jsonbody.Account.LastStatementDate.Date.day-!|1.0|
+|let||js|!-response.jsonbody.Account.LastDepositAmount.Money.currencyCode-!|USD|
+|let||js|!-response.jsonbody.Account.LastDepositAmount.Money.precision-!|2|
+|let||js|!-response.jsonbody.Account.LastDepositAmount.Money.value-!|96.12|
+|let||js|!-response.jsonbody.Account.LastPaymentAmount.Money.currencyCode-!|USD|
+|let||js|!-response.jsonbody.Account.LastPaymentAmount.Money.precision-!|2|
+|let||js|!-response.jsonbody.Account.LastPaymentAmount.Money.value-!|852.25|
+|let||js|!-response.jsonbody.Account.LastDepositDate.Date.year-!|2010|
+|let||js|!-response.jsonbody.Account.LastDepositDate.Date.month-!|2|
+|let||js|!-response.jsonbody.Account.LastDepositDate.Date.day-!|15|
+|let||js|!-response.jsonbody.Account.LoanDate.Date.year-!|2010|
+|let||js|!-response.jsonbody.Account.LoanDate.Date.month-!|4|
+|let||js|!-response.jsonbody.Account.LoanDate.Date.day-!|23|
+|let||js|!-response.jsonbody.Account.APR.Percentage.value-!|12.15|
+|let||js|!-response.jsonbody.Account.APR.Percentage.precision-!|2|
+|let||js|!-response.jsonbody.Account.RewardsBalance.Decimal.value-!|100|
+|let||js|!-response.jsonbody.Account.RewardsBalance.Decimal.precision-!|2|
+|let||js|!-response.jsonbody.Account.PointsAccrued.Decimal.value-!|10000|
+|let||js|!-response.jsonbody.Account.PointsAccrued.Decimal.precision-!|2|
+|let||js|!-response.jsonbody.Account.PointsRedeemed.Decimal.value-!|100|
+|let||js|!-response.jsonbody.Account.PointsRedeemed.Decimal.precision-!|2|
+
+'''5.1.1.4 POST ACCOUNTS (MONEY VALUES ARE NEGATIVE AMOUNT)'''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest|
+|setHeader|!- appKey : -!${institutionNum}!- 
+Content-Type : application/json
+userToken : %encodedUser2Token%-!|
+|setBody|!-{
+    "Account": {
+        "AccountId": null, 
+        "AccountType": "accounttype.loan", 
+        "AccountClass": "accountclass.loan", 
+        "AccountingClass": "accountclass.loan", 
+        "AccountName": "Create a New Account Fit Test", 
+        "AccountNumber": "1234 1234 1234 12324", 
+        "Status": "accountstatus.open", 
+        "Exclude": false, 
+        "Hide": false, 
+        "CurrentBalance": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": -4666.12
+            }
+        }, 
+        "AvailableBalance": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": -5612.12
+            }
+        }, 
+        "AccountSource": "account source", 
+        "ProductName": "product Name", 
+        "SyncDate": null, 
+        "InterestRate": {
+            "Percentage": {
+                "value": 4.12, 
+                "precision": 2
+            }
+        }, 
+         "CreditLimit": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": -4563.12
+            }
+        }, 
+         "AvailableCredit": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": -463.12
+            }
+        }, 
+          "CashAdvanceLimit": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": -63.12
+            }
+        }, 
+          "MinimumPaymentDue": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": -10.12
+            }
+        }, 
+        "PaymentDueDate": {
+            "Date": {
+                "year": 2012, 
+                "month": 12, 
+                "day": 10
+            }
+        }, 
+        "RateOfReturn": {
+            "Percentage": {
+                "value": 4.12, 
+                "precision": 2
+            }
+        }, 
+        "AvailableCashLimit": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": -500.12
+            }
+        }, 
+        "StatementBalance": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": -1000.45
+            }
+        }, 
+        "PurchaseAPR": {
+            "Percentage": {
+                "value": 12.01, 
+                "precision": 2
+            }
+        },  
+        "OutstandingBalance": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": -400.51
+            }
+        }, 
+        "OriginationDate": {
+            "Date": {
+                "year": 2012, 
+                "month": 12, 
+                "day": 15
+            }
+        }, 
+        "MaturityDate": {
+            "Date": {
+                "year": 2020, 
+                "month": 12, 
+                "day": 10
+            }
+        }, 
+        "LoanAmount": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": -456.12
+            }
+        }, 
+        "PreviousAmountDue": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": -46.12
+            }
+        }, 
+        "PastAmountDue": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": -16.12
+            }
+        },         
+        "FinanceCharges": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": -56.12
+            }
+        }, 
+        "HoldAmount": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": -789.11
+            }
+        },    
+        "AccountOpenDate": {
+            "Date": {
+                "year": 2010, 
+                "month": 11, 
+                "day": 5
+            }
+        }, 
+        "AccountClosedDate": {
+            "Date": {
+                "year": 2025, 
+                "month": 10, 
+                "day": 7
+            }
+        }, 
+        "LastStatementDate": {
+            "Date": {
+                "year": 2010, 
+                "month": 9, 
+                "day": 1
+            }
+        },       
+        "LastDepositAmount": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": -96.1
+            }
+        }, 
+        "LastPaymentAmount": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": -852
+            }
+        }, 
+        "RewardsBalance":null,
+        "LastDepositDate": {
+            "Date": {
+                "year": 2010, 
+                "month": 2, 
+                "day": 15
+            }
+        }, 
+        "LastPaymentDate": {
+            "Date": {
+                "year": 2010, 
+                "month": 3, 
+                "day": 15
+            }
+        }, 
+        "LoanDate": {
+            "Date": {
+                "year": 2010, 
+                "month": 4, 
+                "day": 23
+            }
+        }, 
+        "PointsAccrued": null,
+        "PointsRedeemed": null,
+         "APR": {
+            "Percentage": {
+                "value": 12.15, 
+                "precision": 2
+            }
+        }
+    }
+}-!|
+|POST|/accounts|200|||
+|let|$accountID3|js|!-response.jsonbody.Account.AccountId-!||
+|let||js|!-response.jsonbody.Account.AccountType-!|accounttype.loan|
+|let||js|!-response.jsonbody.Account.AccountClass-!|accountclass.loan|
+|let||js|!-response.jsonbody.Account.AccountingClass-!|accountclass.loan|
+|let||js|!-response.jsonbody.Account.AccountName-!|!-Create a New Account Fit Test-!|
+|let||js|!-response.jsonbody.Account.AccountNumber-!|!-1234 1234 1234 12324-!|
+|let||js|!-response.jsonbody.Account.Status-!|accountstatus.open|
+|let||js|!-response.jsonbody.Account.Exclude-!|false|
+|let||js|!-response.jsonbody.Account.Hide-!|false|
+|let||js|!-response.jsonbody.Account.CurrentBalance.Money.currencyCode-!|USD|
+|let||js|!-response.jsonbody.Account.CurrentBalance.Money.precision-!|2|
+|let||js|!-response.jsonbody.Account.CurrentBalance.Money.value-!|-4666.12|
+|let||js|!-response.jsonbody.Account.AvailableBalance.Money.currencyCode-!|USD|
+|let||js|!-response.jsonbody.Account.AvailableBalance.Money.precision-!|2|
+|let||js|!-response.jsonbody.Account.AvailableBalance.Money.value-!|-5612.12|
+|let||js|!-response.jsonbody.Account.IsAvailableBalance-!||
+|let||js|!-response.jsonbody.Account.AccountSource-!|account source|
+|let||js|!-response.jsonbody.Account.ProductName-!|product Name|
+|let||js|!-response.jsonbody.Account.SyncDate-!|null|
+|let||js|!-response.jsonbody.Account.InterestRate.Percentage.value-!|4.12|
+|let||js|!-response.jsonbody.Account.InterestRate.Percentage.precision-!|2|
+|let||js|!-response.jsonbody.Account.CreditLimit.Money.currencyCode-!|USD|
+|let||js|!-response.jsonbody.Account.CreditLimit.Money.precision-!|2|
+|let||js|!-response.jsonbody.Account.CreditLimit.Money.value-!|-4563.12|
+|let||js|!-response.jsonbody.Account.AvailableCredit.Money.currencyCode-!|USD|
+|let||js|!-response.jsonbody.Account.AvailableCredit.Money.precision-!|2|
+|let||js|!-response.jsonbody.Account.AvailableCredit.Money.value-!|-463.12|
+|let||js|!-response.jsonbody.Account.CashAdvanceLimit.Money.currencyCode-!|USD|
+|let||js|!-response.jsonbody.Account.CashAdvanceLimit.Money.precision-!|2|
+|let||js|!-response.jsonbody.Account.CashAdvanceLimit.Money.value-!|-63.12|
+|let||js|!-response.jsonbody.Account.MinimumPaymentDue.Money.currencyCode-!|USD|
+|let||js|!-response.jsonbody.Account.MinimumPaymentDue.Money.precision-!|2|
+|let||js|!-response.jsonbody.Account.MinimumPaymentDue.Money.value-!|-10.12|
+|let||js|!-response.jsonbody.Account.PaymentDueDate.Date.year-!|2012|
+|let||js|!-response.jsonbody.Account.PaymentDueDate.Date.month-!|12|
+|let||js|!-response.jsonbody.Account.PaymentDueDate.Date.day-!|10|
+|let||js|!-response.jsonbody.Account.RateOfReturn.Percentage.value-!|4.12|
+|let||js|!-response.jsonbody.Account.RateOfReturn.Percentage.precision-!|2|
+|let||js|!-response.jsonbody.Account.AvailableCashLimit.Money.currencyCode-!|USD|
+|let||js|!-response.jsonbody.Account.AvailableCashLimit.Money.precision-!|2|
+|let||js|!-response.jsonbody.Account.AvailableCashLimit.Money.value-!|-500.12|
+|let||js|!-response.jsonbody.Account.StatementBalance.Money.currencyCode-!|USD|
+|let||js|!-response.jsonbody.Account.StatementBalance.Money.precision-!|2|
+|let||js|!-response.jsonbody.Account.StatementBalance.Money.value-!|-1000.45|
+|let||js|!-response.jsonbody.Account.PurchaseAPR.Percentage.value-!|12.01|
+|let||js|!-response.jsonbody.Account.PurchaseAPR.Percentage.precision-!|2|
+|let||js|!-response.jsonbody.Account.OutstandingBalance.Money.currencyCode-!|USD|
+|let||js|!-response.jsonbody.Account.OutstandingBalance.Money.precision-!|2|
+|let||js|!-response.jsonbody.Account.OutstandingBalance.Money.value-!|-400.51|
+|let||js|!-response.jsonbody.Account.OriginationDate.Date.year-!|2012|
+|let||js|!-response.jsonbody.Account.OriginationDate.Date.month-!|12|
+|let||js|!-response.jsonbody.Account.OriginationDate.Date.day-!|15|
+|let||js|!-response.jsonbody.Account.MaturityDate.Date.year-!|2020|
+|let||js|!-response.jsonbody.Account.MaturityDate.Date.month-!|12|
+|let||js|!-response.jsonbody.Account.MaturityDate.Date.day-!|10|
+|let||js|!-response.jsonbody.Account.LoanAmount.Money.currencyCode-!|USD|
+|let||js|!-response.jsonbody.Account.LoanAmount.Money.precision-!|2|
+|let||js|!-response.jsonbody.Account.LoanAmount.Money.value-!|-456.12|
+|let||js|!-response.jsonbody.Account.PreviousAmountDue.Money.currencyCode-!|USD|
+|let||js|!-response.jsonbody.Account.PreviousAmountDue.Money.precision-!|2|
+|let||js|!-response.jsonbody.Account.PreviousAmountDue.Money.value-!|-46.12|
+|let||js|!-response.jsonbody.Account.PastAmountDue.Money.currencyCode-!|USD|
+|let||js|!-response.jsonbody.Account.PastAmountDue.Money.precision-!|2|
+|let||js|!-response.jsonbody.Account.PastAmountDue.Money.value-!|-16.12|
+|let||js|!-response.jsonbody.Account.FinanceCharges.Money.currencyCode-!|USD|
+|let||js|!-response.jsonbody.Account.FinanceCharges.Money.precision-!|2|
+|let||js|!-response.jsonbody.Account.FinanceCharges.Money.value-!|-56.12|
+|let||js|!-response.jsonbody.Account.HoldAmount.Money.currencyCode-!|USD|
+|let||js|!-response.jsonbody.Account.HoldAmount.Money.precision-!|2|
+|let||js|!-response.jsonbody.Account.HoldAmount.Money.value-!|-789.11|
+|let||js|!-response.jsonbody.Account.AccountOpenDate.Date.year-!|2010|
+|let||js|!-response.jsonbody.Account.AccountOpenDate.Date.month-!|11|
+|let||js|!-response.jsonbody.Account.AccountOpenDate.Date.day-!|5|
+|let||js|!-response.jsonbody.Account.AccountClosedDate.Date.year-!|2025|
+|let||js|!-response.jsonbody.Account.AccountClosedDate.Date.month-!|10|
+|let||js|!-response.jsonbody.Account.AccountClosedDate.Date.day-!|7|
+|let||js|!-response.jsonbody.Account.LastStatementDate.Date.year-!|2010|
+|let||js|!-response.jsonbody.Account.LastStatementDate.Date.month-!|9|
+|let||js|!-response.jsonbody.Account.LastStatementDate.Date.day-!|1.0|
+|let||js|!-response.jsonbody.Account.LastDepositAmount.Money.currencyCode-!|USD|
+|let||js|!-response.jsonbody.Account.LastDepositAmount.Money.precision-!|2|
+|let||js|!-response.jsonbody.Account.LastDepositAmount.Money.value-!|-96.1|
+|let||js|!-response.jsonbody.Account.LastPaymentAmount.Money.currencyCode-!|USD|
+|let||js|!-response.jsonbody.Account.LastPaymentAmount.Money.precision-!|2|
+|let||js|!-response.jsonbody.Account.LastPaymentAmount.Money.value-!|-852|
+|let||js|!-response.jsonbody.Account.LastDepositDate.Date.year-!|2010|
+|let||js|!-response.jsonbody.Account.LastDepositDate.Date.month-!|2|
+|let||js|!-response.jsonbody.Account.LastDepositDate.Date.day-!|15|
+|let||js|!-response.jsonbody.Account.LoanDate.Date.year-!|2010|
+|let||js|!-response.jsonbody.Account.LoanDate.Date.month-!|4|
+|let||js|!-response.jsonbody.Account.LoanDate.Date.day-!|23|
+|let||js|!-response.jsonbody.Account.APR.Percentage.value-!|12.15|
+|let||js|!-response.jsonbody.Account.APR.Percentage.precision-!|2|
+|let||js|!-response.jsonbody.Account.RewardsBalance-!|null|
+|let||js|!-response.jsonbody.Account.PointsAccrued-!|null|
+|let||js|!-response.jsonbody.Account.PointsRedeemed-!|null|
+|let||js|!-response.jsonbody.Account.LastPaymentDate.Date.year-!|2010|
+|let||js|!-response.jsonbody.Account.LastPaymentDate.Date.month-!|3|
+|let||js|!-response.jsonbody.Account.LastPaymentDate.Date.day-!|15|
+****!
+****!
+!*****> '''5.2 PUT ACCOUNTS'''
+!*****> '''5.2.1 PUT ACCOUNTS (offline account)'''
+
+'''5.2.1.1 PUT ACCOUNTS (update offline account with same values)'''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest|
+|setHeader|!- appKey : -!${institutionNum}!- 
+Content-Type : application/json
+userToken : %encodedUser2Token%-!|
+|setBody|!-{
+    "Account": {
+        "AccountId": null, 
+        "AccountType": "accounttype.loan", 
+        "AccountClass": "accountclass.loan", 
+        "AccountingClass": "accountclass.loan", 
+        "AccountName": "Create a New Account Fit Test", 
+        "AccountNumber": "1234 1234 1234 12324", 
+        "Status": "accountstatus.open", 
+        "Exclude": false, 
+        "Hide": false, 
+        "CurrentBalance": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": 4666.12
+            }
+        }, 
+        "AvailableBalance": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": 5612.12
+            }
+        }, 
+        "AccountSource": "account source", 
+        "ProductName": "product Name", 
+        "SyncDate": null, 
+        "InterestRate": {
+            "Percentage": {
+                "value": 4.12, 
+                "precision": 2
+            }
+        }, 
+        "CreditLimit": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": 4563.12
+            }
+        }, 
+        "AvailableCredit": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": 463.12
+            }
+        }, 
+        "CashAdvanceLimit": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": 63.12
+            }
+        }, 
+        "MinimumPaymentDue": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": 10.12
+            }
+        }, 
+        "PaymentDueDate": {
+            "Date": {
+                "year": 2012, 
+                "month": 12, 
+                "day": 10
+            }
+        }, 
+        "RateOfReturn": {
+            "Percentage": {
+                "value": 4.12, 
+                "precision": 2
+            }
+        }, 
+        "AvailableCashLimit": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": 500.12
+            }
+        }, 
+        "StatementBalance": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": 1000.45
+            }
+        }, 
+        "PurchaseAPR": {
+            "Percentage": {
+                "value": 12.01, 
+                "precision": 2
+            }
+        }, 
+        "OutstandingBalance": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": 400.51
+            }
+        }, 
+        "OriginationDate": {
+            "Date": {
+                "year": 2012, 
+                "month": 12, 
+                "day": 15
+            }
+        }, 
+        "MaturityDate": {
+            "Date": {
+                "year": 2020, 
+                "month": 12, 
+                "day": 10
+            }
+        }, 
+        "LoanAmount": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": 456.12
+            }
+        }, 
+        "PreviousAmountDue": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": 46.12
+            }
+        }, 
+        "PastAmountDue": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": 16.12
+            }
+        }, 
+        "FinanceCharges": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": 56.12
+            }
+        }, 
+        "HoldAmount": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": 789.11
+            }
+        }, 
+        "AccountOpenDate": {
+            "Date": {
+                "year": 2010, 
+                "month": 11, 
+                "day": 5
+            }
+        }, 
+        "AccountClosedDate": {
+            "Date": {
+                "year": 2025, 
+                "month": 10, 
+                "day": 7
+            }
+        }, 
+        "LastStatementDate": {
+            "Date": {
+                "year": 2010, 
+                "month": 9, 
+                "day": 1
+            }
+        }, 
+        "LastDepositAmount": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": 96.12
+            }
+        }, 
+        "LastPaymentAmount": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": 852.25
+            }
+        }, 
+        "LastDepositDate": {
+            "Date": {
+                "year": 2010, 
+                "month": 2, 
+                "day": 15
+            }
+        }, 
+        "LastPaymentDate": {
+            "Date": {
+                "year": 2010, 
+                "month": 3, 
+                "day": 15
+            }
+        }, 
+        "LoanDate": {
+            "Date": {
+                "year": 2010, 
+                "month": 4, 
+                "day": 23
+            }
+        }, 
+        "RewardsBalance": {
+            "Decimal": {
+                "value": 100, 
+                "precision": 2
+            }
+        }, 
+        "PointsAccrued": {
+            "Decimal": {
+                "value": 10000, 
+                "precision": 2
+            }
+        }, 
+        "PointsRedeemed": {
+            "Decimal": {
+                "value": 100, 
+                "precision": 2
+            }
+        }, 
+        "APR": {
+            "Percentage": {
+                "value": 12.15, 
+                "precision": 2
+            }
+        }
+    }
+}
+-!|
+|PUT|/accounts/%accountID1%|200|||
+|let||js|!-response.jsonbody.Account.AccountId-!|%accountID1%|
+|let||js|!-response.jsonbody.Account.AccountType-!|accounttype.loan|
+|let||js|!-response.jsonbody.Account.AccountClass-!|accountclass.loan|
+|let||js|!-response.jsonbody.Account.AccountingClass-!|acct.class.liability|
+|let||js|!-response.jsonbody.Account.AccountName-!|!-Create a New Account Fit Test-!|
+|let||js|!-response.jsonbody.Account.AccountNumber-!|!-1234 1234 1234 12324-!|
+|let||js|!-response.jsonbody.Account.Status-!||
+|let||js|!-response.jsonbody.Account.Exclude-!|false|
+|let||js|!-response.jsonbody.Account.Hide-!|false|
+|let||js|!-response.jsonbody.Account.CurrentBalance.Money.currencyCode-!|USD|
+|let||js|!-response.jsonbody.Account.CurrentBalance.Money.precision-!|2|
+|let||js|!-response.jsonbody.Account.CurrentBalance.Money.value-!|5612.12|
+|let||js|!-response.jsonbody.Account.AvailableBalance.Money.currencyCode-!|USD|
+|let||js|!-response.jsonbody.Account.AvailableBalance.Money.precision-!|2|
+|let||js|!-response.jsonbody.Account.AvailableBalance.Money.value-!|5612.12|
+|let||js|!-response.jsonbody.Account.IsAvailableBalance-!||
+|let||js|!-response.jsonbody.Account.AccountSource-!|Offline|
+|let||js|!-response.jsonbody.Account.ProductName-!||
+|let||js|!-response.jsonbody.Account.SyncDate-!|null|
+|let||js|!-response.jsonbody.Account.InterestRate.Percentage.value-!|4.12|
+|let||js|!-response.jsonbody.Account.InterestRate.Percentage.precision-!|2|
+|let||js|!-response.jsonbody.Account.CreditLimit.Money.currencyCode-!|USD|
+|let||js|!-response.jsonbody.Account.CreditLimit.Money.precision-!|2|
+|let||js|!-response.jsonbody.Account.CreditLimit.Money.value-!|4563.12|
+|let||js|!-response.jsonbody.Account.AvailableCredit.Money.currencyCode-!|USD|
+|let||js|!-response.jsonbody.Account.AvailableCredit.Money.precision-!|2|
+|let||js|!-response.jsonbody.Account.AvailableCredit.Money.value-!|463.12|
+|let||js|!-response.jsonbody.Account.CashAdvanceLimit.Money.currencyCode-!|USD|
+|let||js|!-response.jsonbody.Account.CashAdvanceLimit.Money.precision-!|2|
+|let||js|!-response.jsonbody.Account.CashAdvanceLimit.Money.value-!|63.12|
+|let||js|!-response.jsonbody.Account.MinimumPaymentDue.Money.currencyCode-!|USD|
+|let||js|!-response.jsonbody.Account.MinimumPaymentDue.Money.precision-!|2|
+|let||js|!-response.jsonbody.Account.MinimumPaymentDue.Money.value-!|10.12|
+|let||js|!-response.jsonbody.Account.PaymentDueDate.Date.year-!|2012|
+|let||js|!-response.jsonbody.Account.PaymentDueDate.Date.month-!|12|
+|let||js|!-response.jsonbody.Account.PaymentDueDate.Date.day-!|10|
+|let||js|!-response.jsonbody.Account.RateOfReturn.Percentage.value-!|4.12|
+|let||js|!-response.jsonbody.Account.RateOfReturn.Percentage.precision-!|2|
+|let||js|!-response.jsonbody.Account.AvailableCashLimit.Money.currencyCode-!|USD|
+|let||js|!-response.jsonbody.Account.AvailableCashLimit.Money.precision-!|2|
+|let||js|!-response.jsonbody.Account.AvailableCashLimit.Money.value-!|500.12|
+|let||js|!-response.jsonbody.Account.StatementBalance.Money.currencyCode-!|USD|
+|let||js|!-response.jsonbody.Account.StatementBalance.Money.precision-!|2|
+|let||js|!-response.jsonbody.Account.StatementBalance.Money.value-!|1000.45|
+|let||js|!-response.jsonbody.Account.PurchaseAPR.Percentage.value-!|12.01|
+|let||js|!-response.jsonbody.Account.PurchaseAPR.Percentage.precision-!|2|
+|let||js|!-response.jsonbody.Account.OutstandingBalance.Money.currencyCode-!|USD|
+|let||js|!-response.jsonbody.Account.OutstandingBalance.Money.precision-!|2|
+|let||js|!-response.jsonbody.Account.OutstandingBalance.Money.value-!|400.51|
+|let||js|!-response.jsonbody.Account.OriginationDate.Date.year-!|2012|
+|let||js|!-response.jsonbody.Account.OriginationDate.Date.month-!|12|
+|let||js|!-response.jsonbody.Account.OriginationDate.Date.day-!|15|
+|let||js|!-response.jsonbody.Account.MaturityDate.Date.year-!|2020|
+|let||js|!-response.jsonbody.Account.MaturityDate.Date.month-!|12|
+|let||js|!-response.jsonbody.Account.MaturityDate.Date.day-!|10|
+|let||js|!-response.jsonbody.Account.LoanAmount.Money.currencyCode-!|USD|
+|let||js|!-response.jsonbody.Account.LoanAmount.Money.precision-!|2|
+|let||js|!-response.jsonbody.Account.LoanAmount.Money.value-!|456.12|
+|let||js|!-response.jsonbody.Account.PreviousAmountDue.Money.currencyCode-!|USD|
+|let||js|!-response.jsonbody.Account.PreviousAmountDue.Money.precision-!|2|
+|let||js|!-response.jsonbody.Account.PreviousAmountDue.Money.value-!|46.12|
+|let||js|!-response.jsonbody.Account.PastAmountDue.Money.currencyCode-!|USD|
+|let||js|!-response.jsonbody.Account.PastAmountDue.Money.precision-!|2|
+|let||js|!-response.jsonbody.Account.PastAmountDue.Money.value-!|16.12|
+|let||js|!-response.jsonbody.Account.FinanceCharges.Money.currencyCode-!|USD|
+|let||js|!-response.jsonbody.Account.FinanceCharges.Money.precision-!|2|
+|let||js|!-response.jsonbody.Account.FinanceCharges.Money.value-!|56.12|
+|let||js|!-response.jsonbody.Account.HoldAmount.Money.currencyCode-!|USD|
+|let||js|!-response.jsonbody.Account.HoldAmount.Money.precision-!|2|
+|let||js|!-response.jsonbody.Account.HoldAmount.Money.value-!|789.11|
+|let||js|!-response.jsonbody.Account.AccountOpenDate.Date.year-!|2010|
+|let||js|!-response.jsonbody.Account.AccountOpenDate.Date.month-!|11|
+|let||js|!-response.jsonbody.Account.AccountOpenDate.Date.day-!|5|
+|let||js|!-response.jsonbody.Account.AccountClosedDate.Date.year-!|2025|
+|let||js|!-response.jsonbody.Account.AccountClosedDate.Date.month-!|10|
+|let||js|!-response.jsonbody.Account.AccountClosedDate.Date.day-!|7|
+|let||js|!-response.jsonbody.Account.LastStatementDate.Date.year-!|2010|
+|let||js|!-response.jsonbody.Account.LastStatementDate.Date.month-!|9|
+|let||js|!-response.jsonbody.Account.LastStatementDate.Date.day-!|1.0|
+|let||js|!-response.jsonbody.Account.LastDepositAmount.Money.currencyCode-!|USD|
+|let||js|!-response.jsonbody.Account.LastDepositAmount.Money.precision-!|2|
+|let||js|!-response.jsonbody.Account.LastDepositAmount.Money.value-!|96.12|
+|let||js|!-response.jsonbody.Account.LastPaymentAmount.Money.currencyCode-!|USD|
+|let||js|!-response.jsonbody.Account.LastPaymentAmount.Money.precision-!|2|
+|let||js|!-response.jsonbody.Account.LastPaymentAmount.Money.value-!|852.25|
+|let||js|!-response.jsonbody.Account.LastDepositDate.Date.year-!|2010|
+|let||js|!-response.jsonbody.Account.LastDepositDate.Date.month-!|2|
+|let||js|!-response.jsonbody.Account.LastDepositDate.Date.day-!|15|
+|let||js|!-response.jsonbody.Account.LoanDate.Date.year-!|2010|
+|let||js|!-response.jsonbody.Account.LoanDate.Date.month-!|4|
+|let||js|!-response.jsonbody.Account.LoanDate.Date.day-!|23|
+|let||js|!-response.jsonbody.Account.APR.Percentage.value-!|12.15|
+|let||js|!-response.jsonbody.Account.APR.Percentage.precision-!|2|
+|let||js|!-response.jsonbody.Account.RewardsBalance.Decimal.value-!|100|
+|let||js|!-response.jsonbody.Account.RewardsBalance.Decimal.precision-!|2|
+|let||js|!-response.jsonbody.Account.PointsAccrued.Decimal.value-!|10000|
+|let||js|!-response.jsonbody.Account.PointsAccrued.Decimal.precision-!|2|
+|let||js|!-response.jsonbody.Account.PointsRedeemed-!|null|
+
+'''5.2.1.2 PUT ACCOUNTS (update offline account with different values)'''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest|
+|setHeader|!- appKey : -!${institutionNum}!- 
+Content-Type : application/json
+userToken : %encodedUser2Token%-!|
+|setBody|!-{
+    "Account": {
+        "AccountId": null, 
+        "AccountType": "accounttype.termlifeinsurance", 
+        "AccountClass": "accountclass.insurance", 
+        "AccountingClass": "accountclass.insurance", 
+        "AccountName": "Update Test with Fit", 
+        "AccountNumber": "1234 1234 1234 7894", 
+        "Status": "accountstatus.frozen", 
+        "Exclude": true, 
+        "Hide": true, 
+        "CurrentBalance": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": -789.8
+            }
+        }, 
+        "AvailableBalance": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": null
+            }
+        }, 
+        "AccountSource": "update", 
+        "ProductName": "update", 
+        "SyncDate": null, 
+        "InterestRate": {
+            "Percentage": {
+                "value": 7, 
+                "precision": 2
+            }
+        }, 
+        "CreditLimit": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": -12.000
+            }
+        }, 
+        "AvailableCredit": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": 456.856
+            }
+        }, 
+        "CashAdvanceLimit": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": 45.01
+            }
+        }, 
+        "MinimumPaymentDue": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": -12.40
+            }
+        }, 
+        "PaymentDueDate": {
+            "Date": {
+                "year": 2013, 
+                "month": 1, 
+                "day": 10
+            }
+        }, 
+        "RateOfReturn": {
+            "Percentage": {
+                "value": 7.10, 
+                "precision": 2
+            }
+        }, 
+        "AvailableCashLimit": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": 45.122
+            }
+        }, 
+        "StatementBalance": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": 45.78
+            }
+        }, 
+        "PurchaseAPR": {
+            "Percentage": {
+                "value": 14, 
+                "precision": 2
+            }
+        }, 
+        "OutstandingBalance": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": 45.12
+            }
+        }, 
+        "OriginationDate": {
+            "Date": {
+                "year": 2013, 
+                "month": 11, 
+                "day": 14
+            }
+        }, 
+        "MaturityDate": {
+            "Date": {
+                "year": 2021, 
+                "month": 11, 
+                "day": 11
+            }
+        }, 
+        "LoanAmount": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": 45.12
+            }
+        }, 
+        "PreviousAmountDue": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": 78.42
+            }
+        }, 
+        "PastAmountDue": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": 42.13
+            }
+        }, 
+        "FinanceCharges": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": 86.95
+            }
+        }, 
+        "HoldAmount": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": 52.36
+            }
+        }, 
+        "AccountOpenDate": {
+            "Date": {
+                "year": 2011, 
+                "month": 12, 
+                "day": 6
+            }
+        }, 
+        "AccountClosedDate": {
+            "Date": {
+                "year": 2024, 
+                "month": 11, 
+                "day": 8
+            }
+        }, 
+        "LastStatementDate": {
+            "Date": {
+                "year": 2011, 
+                "month": 10, 
+                "day": 2
+            }
+        }, 
+        "LastDepositAmount": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": 45.85
+            }
+        }, 
+        "LastPaymentAmount": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": 752.12
+            }
+        }, 
+        "LastDepositDate": {
+            "Date": {
+                "year": 2011, 
+                "month": 3, 
+                "day": 14
+            }
+        }, 
+        "LastPaymentDate": {
+            "Date": {
+                "year": 2010, 
+                "month": 3, 
+                "day": 15
+            }
+        }, 
+        "LoanDate": {
+            "Date": {
+                "year": 2011, 
+                "month": 3, 
+                "day": 24
+            }
+        }, 
+        "RewardsBalance": {
+            "Decimal": {
+                "value": 400, 
+                "precision": 2
+            }
+        }, 
+        "PointsAccrued": {
+            "Decimal": {
+                "value": 4561, 
+                "precision": 2
+            }
+        }, 
+        "PointsRedeemed": {
+            "Decimal": {
+                "value": 200, 
+                "precision": 2
+            }
+        }, 
+        "APR": {
+            "Percentage": {
+                "value": 45.12, 
+                "precision": 2
+            }
+        }
+    }
+}
+-!|
+|PUT|/accounts/%accountID1%|200|||
+|let||js|!-response.jsonbody.Account.AccountId-!|%accountID1%|
+|let||js|!-response.jsonbody.Account.AccountType-!|accounttype.termlifeinsurance|
+|let||js|!-response.jsonbody.Account.AccountClass-!|accountclass.insurance|
+|let||js|!-response.jsonbody.Account.AccountingClass-!|acct.class.asset|
+|let||js|!-response.jsonbody.Account.AccountName-!|!-Update Test with Fit-!|
+|let||js|!-response.jsonbody.Account.AccountNumber-!|!-1234 1234 1234 7894-!|
+|let||js|!-response.jsonbody.Account.Status-!|accountstatus.frozen|
+|let||js|!-response.jsonbody.Account.Exclude-!|true|
+|let||js|!-response.jsonbody.Account.Hide-!|true|
+|let||js|!-response.jsonbody.Account.CurrentBalance.Money.currencyCode-!|USD|
+|let||js|!-response.jsonbody.Account.CurrentBalance.Money.precision-!|2|
+|let||js|!-response.jsonbody.Account.CurrentBalance.Money.value-!|-789.8|
+|let||js|!-response.jsonbody.Account.AvailableBalance.Money.currencyCode-!|USD|
+|let||js|!-response.jsonbody.Account.AvailableBalance.Money.precision-!|0.0|
+|let||js|!-response.jsonbody.Account.AvailableBalance.Money.value-!|0.0|
+|let||js|!-response.jsonbody.Account.IsAvailableBalance-!||
+|let||js|!-response.jsonbody.Account.AccountSource-!|Offline|
+|let||js|!-response.jsonbody.Account.ProductName-!||
+|let||js|!-response.jsonbody.Account.SyncDate-!|null|
+|let||js|!-response.jsonbody.Account.InterestRate.Percentage.value-!|7|
+|let||js|!-response.jsonbody.Account.InterestRate.Percentage.precision-!|2|
+|let||js|!-response.jsonbody.Account.CreditLimit.Money.currencyCode-!|USD|
+|let||js|!-response.jsonbody.Account.CreditLimit.Money.precision-!|2|
+|let||js|!-response.jsonbody.Account.CreditLimit.Money.value-!|-12|
+|let||js|!-response.jsonbody.Account.AvailableCredit.Money.currencyCode-!|USD|
+|let||js|!-response.jsonbody.Account.AvailableCredit.Money.precision-!|2|
+|let||js|!-response.jsonbody.Account.AvailableCredit.Money.value-!|456.86|
+|let||js|!-response.jsonbody.Account.CashAdvanceLimit.Money.currencyCode-!|USD|
+|let||js|!-response.jsonbody.Account.CashAdvanceLimit.Money.precision-!|2|
+|let||js|!-response.jsonbody.Account.CashAdvanceLimit.Money.value-!|45.01|
+|let||js|!-response.jsonbody.Account.MinimumPaymentDue.Money.currencyCode-!|USD|
+|let||js|!-response.jsonbody.Account.MinimumPaymentDue.Money.precision-!|2|
+|let||js|!-response.jsonbody.Account.MinimumPaymentDue.Money.value-!|-12.4|
+|let||js|!-response.jsonbody.Account.PaymentDueDate.Date.year-!|2013|
+|let||js|!-response.jsonbody.Account.PaymentDueDate.Date.month-!|1.0|
+|let||js|!-response.jsonbody.Account.PaymentDueDate.Date.day-!|10|
+|let||js|!-response.jsonbody.Account.RateOfReturn.Percentage.value-!|7.1|
+|let||js|!-response.jsonbody.Account.RateOfReturn.Percentage.precision-!|2|
+|let||js|!-response.jsonbody.Account.AvailableCashLimit.Money.currencyCode-!|USD|
+|let||js|!-response.jsonbody.Account.AvailableCashLimit.Money.precision-!|2|
+|let||js|!-response.jsonbody.Account.AvailableCashLimit.Money.value-!|45.12|
+|let||js|!-response.jsonbody.Account.StatementBalance.Money.currencyCode-!|USD|
+|let||js|!-response.jsonbody.Account.StatementBalance.Money.precision-!|2|
+|let||js|!-response.jsonbody.Account.StatementBalance.Money.value-!|45.78|
+|let||js|!-response.jsonbody.Account.PurchaseAPR.Percentage.value-!|14|
+|let||js|!-response.jsonbody.Account.PurchaseAPR.Percentage.precision-!|2|
+|let||js|!-response.jsonbody.Account.OutstandingBalance.Money.currencyCode-!|USD|
+|let||js|!-response.jsonbody.Account.OutstandingBalance.Money.precision-!|2|
+|let||js|!-response.jsonbody.Account.OutstandingBalance.Money.value-!|45.12|
+|let||js|!-response.jsonbody.Account.OriginationDate.Date.year-!|2013|
+|let||js|!-response.jsonbody.Account.OriginationDate.Date.month-!|11|
+|let||js|!-response.jsonbody.Account.OriginationDate.Date.day-!|14|
+|let||js|!-response.jsonbody.Account.MaturityDate.Date.year-!|2021|
+|let||js|!-response.jsonbody.Account.MaturityDate.Date.month-!|11|
+|let||js|!-response.jsonbody.Account.MaturityDate.Date.day-!|11|
+|let||js|!-response.jsonbody.Account.LoanAmount.Money.currencyCode-!|USD|
+|let||js|!-response.jsonbody.Account.LoanAmount.Money.precision-!|2|
+|let||js|!-response.jsonbody.Account.LoanAmount.Money.value-!|45.12|
+|let||js|!-response.jsonbody.Account.PreviousAmountDue.Money.currencyCode-!|USD|
+|let||js|!-response.jsonbody.Account.PreviousAmountDue.Money.precision-!|2|
+|let||js|!-response.jsonbody.Account.PreviousAmountDue.Money.value-!|78.42|
+|let||js|!-response.jsonbody.Account.PastAmountDue.Money.currencyCode-!|USD|
+|let||js|!-response.jsonbody.Account.PastAmountDue.Money.precision-!|2|
+|let||js|!-response.jsonbody.Account.PastAmountDue.Money.value-!|42.13|
+|let||js|!-response.jsonbody.Account.FinanceCharges.Money.currencyCode-!|USD|
+|let||js|!-response.jsonbody.Account.FinanceCharges.Money.precision-!|2|
+|let||js|!-response.jsonbody.Account.FinanceCharges.Money.value-!|86.95|
+|let||js|!-response.jsonbody.Account.HoldAmount.Money.currencyCode-!|USD|
+|let||js|!-response.jsonbody.Account.HoldAmount.Money.precision-!|2|
+|let||js|!-response.jsonbody.Account.HoldAmount.Money.value-!|52.36|
+|let||js|!-response.jsonbody.Account.AccountOpenDate.Date.year-!|2011|
+|let||js|!-response.jsonbody.Account.AccountOpenDate.Date.month-!|12|
+|let||js|!-response.jsonbody.Account.AccountOpenDate.Date.day-!|6|
+|let||js|!-response.jsonbody.Account.AccountClosedDate.Date.year-!|2024|
+|let||js|!-response.jsonbody.Account.AccountClosedDate.Date.month-!|11|
+|let||js|!-response.jsonbody.Account.AccountClosedDate.Date.day-!|8|
+|let||js|!-response.jsonbody.Account.LastStatementDate.Date.year-!|2011|
+|let||js|!-response.jsonbody.Account.LastStatementDate.Date.month-!|10|
+|let||js|!-response.jsonbody.Account.LastStatementDate.Date.day-!|2|
+|let||js|!-response.jsonbody.Account.LastDepositAmount.Money.currencyCode-!|USD|
+|let||js|!-response.jsonbody.Account.LastDepositAmount.Money.precision-!|2|
+|let||js|!-response.jsonbody.Account.LastDepositAmount.Money.value-!|45.85|
+|let||js|!-response.jsonbody.Account.LastPaymentAmount.Money.currencyCode-!|USD|
+|let||js|!-response.jsonbody.Account.LastPaymentAmount.Money.precision-!|2|
+|let||js|!-response.jsonbody.Account.LastPaymentAmount.Money.value-!|752.12|
+|let||js|!-response.jsonbody.Account.LastDepositDate.Date.year-!|2011|
+|let||js|!-response.jsonbody.Account.LastDepositDate.Date.month-!|3|
+|let||js|!-response.jsonbody.Account.LastDepositDate.Date.day-!|14|
+|let||js|!-response.jsonbody.Account.LastPaymentDate.Date.year-!|2010|
+|let||js|!-response.jsonbody.Account.LastPaymentDate.Date.month-!|3|
+|let||js|!-response.jsonbody.Account.LastPaymentDate.Date.day-!|15|
+|let||js|!-response.jsonbody.Account.LoanDate.Date.year-!|2011|
+|let||js|!-response.jsonbody.Account.LoanDate.Date.month-!|3|
+|let||js|!-response.jsonbody.Account.LoanDate.Date.day-!|24|
+|let||js|!-response.jsonbody.Account.APR.Percentage.value-!|45.12|
+|let||js|!-response.jsonbody.Account.APR.Percentage.precision-!|2|
+|let||js|!-response.jsonbody.Account.RewardsBalance.Decimal.value-!|400|
+|let||js|!-response.jsonbody.Account.RewardsBalance.Decimal.precision-!|2|
+|let||js|!-response.jsonbody.Account.PointsAccrued.Decimal.value-!|4561|
+|let||js|!-response.jsonbody.Account.PointsAccrued.Decimal.precision-!|2|
+|let||js|!-response.jsonbody.Account.PointsRedeemed-!|null|
+
+'''5.2.1.3 PUT ACCOUNTS (update offline account with null values)'''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest|
+|setHeader|!- appKey : -!${institutionNum}!- 
+Content-Type : application/json
+userToken : %encodedUser2Token%-!|
+|setBody|!-{
+    "Account": {
+        "AccountId": null, 
+        "AccountType": null, 
+        "AccountClass": null, 
+        "AccountingClass": null, 
+        "AccountName": null, 
+        "AccountNumber": null, 
+        "Status": null, 
+        "Exclude": null, 
+        "Hide": null, 
+        "CurrentBalance": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": null
+            }
+        }, 
+        "AvailableBalance": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": null
+            }
+        }, 
+        "AccountSource": null, 
+        "ProductName": null, 
+        "SyncDate": null, 
+        "InterestRate": {
+            "Percentage": {
+                "value": null, 
+                "precision": 2
+            }
+        }, 
+        "CreditLimit": null, 
+        "AvailableCredit": null, 
+        "CashAdvanceLimit": null, 
+        "MinimumPaymentDue": null, 
+        "PaymentDueDate": null, 
+        "RateOfReturn": null, 
+        "AvailableCashLimit": null, 
+        "StatementBalance": null, 
+        "PurchaseAPR": null, 
+        "OutstandingBalance": {
+            "Money": {
+                "currencyCode": null, 
+                "precision": 2, 
+                "value": null
+            }
+        }, 
+        "OriginationDate": null, 
+        "MaturityDate": null, 
+        "LoanAmount": {
+            "Money": {
+                "currencyCode": null, 
+                "precision": 2, 
+                "value": null
+            }
+        }, 
+        "PreviousAmountDue": null, 
+        "PastAmountDue": null, 
+        "FinanceCharges": null, 
+        "HoldAmount": null, 
+        "AccountOpenDate": {
+            "Date": {
+                "year": null, 
+                "month": null, 
+                "day": null
+            }
+        }, 
+        "AccountClosedDate": null, 
+        "LastStatementDate": null, 
+        "LastDepositAmount": null, 
+        "LastDepositDate": null, 
+        "LastPaymentAmount": null, 
+        "LastPaymentDate": null, 
+        "LoanDate": null, 
+        "RewardsBalance": null, 
+        "PointsAccrued": null, 
+        "PointsRedeemed": null, 
+        "APR": null
+    }
+}-!|
+|PUT|/accounts/%accountID1%|400|||
+|let|$errMsg|js|!-response.jsonbody.message-!||
+
+!|com.lodosoftware.fitnesse.fixtures.LodosoftwareFixtures|
+|symbolName|str|isContain?|
+|errMsg|!-ErrorCode: 200002 - Argument account-accountClass is undefined but is required.-!|true|
+
+****!
+!*****> '''5.2.2 PUT ACCOUNTS (internal account)'''
+
+!*****> '''Create An Internal Account'''
+!|Execute|!-insert into [OLB_ACCOUNT]([BRANCH_ID],[STATUS],[INTERFACE_ID],[ACCOUNT_NAME],[ACCOUNT_NUMBER],[ACCOUNT_TYPE],[ACCOUNT_CLASS]
+      ,[BALANCE],[SYNC_DATE],[CREATED_DATE],[ACCOUNT_STATUS],[AVAILABLE_BALANCE],[DIRECT_CONNECT],[DIRECT_ID]
+      ,[OUTSTANDING_BALANCE],[INTEREST_RATE],[LOAN_AMOUNT],[ACCOUNT_OPEN_DATE]
+      ,[APR]) values (1, 'accountstatus.open', null,'FitAccountTest1', null, 'accounttype.annuity', 
+      'accountclass.otherasset', 10.17, SYSDATETIME(), SYSDATETIME(), null, 10.17, 0, 'TestDirectID1', 10.00, 12.11, 12000.00, SYSDATETIME(), 15)-!|
+!|Query|!-select [ACCOUNT_ID] from [OLB_ACCOUNT] where ACCOUNT_NAME = 'FitAccountTest1'-!|
+|[ACCOUNT_ID]?|
+|>>account4|
+!|Execute|!-insert into [USER_ACCOUNT_JOIN]([USER_ID],[ACCOUNT_ID],[NICKNAME],[EXCLUDED],[HIDDEN],[HIDE_BY_ADMIN]) 
+		  values (-!@userID2!-, -!@account4!-, SYSDATETIME(), 0,0,0)-!|
+
+!|Query|!-select ID from [USER_ACCOUNT_JOIN] where ACCOUNT_ID = -!@account4|
+|ID?|
+|>>userAccountID4|
+!|DatabaseEnvironment|
+|commit|
+****!
+
+'''5.2.2.1 PUT Accounts (update user nickname with string, exclude to true, hide to true, account class and type)'''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest|
+|setHeader|!- appKey : -!${institutionNum}!- 
+Content-Type : application/json
+userToken : %encodedUser2Token%-!|
+|comment|!- appKey : -!${institutionNum}!- 
+Content-Type : application/json
+userToken : %encodedUser2Token%-!|
+|setBody|!-{
+    "Account": {
+        "AccountId": null, 
+        "AccountType": "accounttype.banking.checking", 
+        "AccountClass": "accountclass.deposit", 
+        "AccountingClass": "accountclass.loan", 
+        "AccountName": "NickNameUpdateTestByFit", 
+        "AccountNumber": "1234 1234 1234 12324", 
+        "Status": "accountstatus.open", 
+        "Exclude": true, 
+        "Hide": true, 
+        "CurrentBalance": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": -4666.12
+            }
+        }, 
+        "AvailableBalance": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": -5612.12
+            }
+        }, 
+        "AccountSource": "account source", 
+        "ProductName": "product Name", 
+        "SyncDate": null, 
+        "InterestRate": {
+            "Percentage": {
+                "value": 4.12, 
+                "precision": 2
+            }
+        }, 
+        "CreditLimit": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": -4563.12
+            }
+        }, 
+        "AvailableCredit": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": -463.12
+            }
+        }, 
+        "CashAdvanceLimit": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": -63.12
+            }
+        }, 
+        "MinimumPaymentDue": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": -10.12
+            }
+        }, 
+        "PaymentDueDate": {
+            "Date": {
+                "year": 2012, 
+                "month": 12, 
+                "day": 10
+            }
+        }, 
+        "RateOfReturn": {
+            "Percentage": {
+                "value": 4.12, 
+                "precision": 2
+            }
+        }, 
+        "AvailableCashLimit": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": -500.12
+            }
+        }, 
+        "StatementBalance": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": -1000.45
+            }
+        }, 
+        "PurchaseAPR": {
+            "Percentage": {
+                "value": 12.01, 
+                "precision": 2
+            }
+        }, 
+        "OutstandingBalance": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": -400.51
+            }
+        }, 
+        "OriginationDate": {
+            "Date": {
+                "year": 2012, 
+                "month": 12, 
+                "day": 15
+            }
+        }, 
+        "MaturityDate": {
+            "Date": {
+                "year": 2020, 
+                "month": 12, 
+                "day": 10
+            }
+        }, 
+        "LoanAmount": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": -456.12
+            }
+        }, 
+        "PreviousAmountDue": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": -46.12
+            }
+        }, 
+        "PastAmountDue": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": -16.12
+            }
+        }, 
+        "FinanceCharges": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": -56.12
+            }
+        }, 
+        "HoldAmount": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": -789.11
+            }
+        }, 
+        "AccountOpenDate": {
+            "Date": {
+                "year": 2010, 
+                "month": 11, 
+                "day": 5
+            }
+        }, 
+        "AccountClosedDate": {
+            "Date": {
+                "year": 2025, 
+                "month": 10, 
+                "day": 7
+            }
+        }, 
+        "LastStatementDate": {
+            "Date": {
+                "year": 2010, 
+                "month": 9, 
+                "day": 1
+            }
+        }, 
+        "LastDepositAmount": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": -96.1
+            }
+        }, 
+        "LastPaymentAmount": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": -852
+            }
+        }, 
+        "RewardsBalance": null, 
+        "LastDepositDate": {
+            "Date": {
+                "year": 2010, 
+                "month": 2, 
+                "day": 15
+            }
+        }, 
+        "LastPaymentDate": {
+            "Date": {
+                "year": 2010, 
+                "month": 3, 
+                "day": 15
+            }
+        }, 
+        "LoanDate": {
+            "Date": {
+                "year": 2010, 
+                "month": 4, 
+                "day": 23
+            }
+        }, 
+        "PointsAccrued": null, 
+        "PointsRedeemed": null, 
+        "APR": {
+            "Percentage": {
+                "value": 12.15, 
+                "precision": 2
+            }
+        }
+    }
+}-!|
+|PUT|/accounts/%userAccountID4%|200|||
+|let||js|!-response.jsonbody.Account.AccountId-!|%userAccountID4%|
+|let||js|!-response.jsonbody.Account.AccountType-!||
+|let||js|!-response.jsonbody.Account.AccountClass-!||
+|let||js|!-response.jsonbody.Account.Hide-!|true|
+|let||js|!-response.jsonbody.Account.Exclude-!|true|
+|let||js|!-response.jsonbody.Account.AccountName-!|!-NickNameUpdateTestByFit-!|
+
+'''5.2.2.2 PUT Accounts (update exclude and hide to null, name to empty value)'''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest|
+|setHeader|!- appKey : -!${institutionNum}!- 
+Content-Type : application/json
+userToken : %encodedUser2Token%-!|
+|setBody|!-{
+    "Account": {
+        "AccountId": null, 
+        "AccountType": "accounttype.creditcard", 
+        "AccountClass": "accountclass.creditcard", 
+        "AccountingClass": "accountclass.loan", 
+        "AccountName": "", 
+        "AccountNumber": "1234 1234 1234 12324", 
+        "Status": "accountstatus.open", 
+        "Exclude": null, 
+        "Hide": null,  
+        "CurrentBalance": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": -4666.12
+            }
+        }, 
+        "AvailableBalance": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": -5612.12
+            }
+        }, 
+        "AccountSource": "account source", 
+        "ProductName": "product Name", 
+        "SyncDate": null, 
+        "InterestRate": {
+            "Percentage": {
+                "value": 4.12, 
+                "precision": 2
+            }
+        }, 
+        "CreditLimit": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": -4563.12
+            }
+        }, 
+        "AvailableCredit": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": -463.12
+            }
+        }, 
+        "CashAdvanceLimit": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": -63.12
+            }
+        }, 
+        "MinimumPaymentDue": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": -10.12
+            }
+        }, 
+        "PaymentDueDate": {
+            "Date": {
+                "year": 2012, 
+                "month": 12, 
+                "day": 10
+            }
+        }, 
+        "RateOfReturn": {
+            "Percentage": {
+                "value": 4.12, 
+                "precision": 2
+            }
+        }, 
+        "AvailableCashLimit": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": -500.12
+            }
+        }, 
+        "StatementBalance": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": -1000.45
+            }
+        }, 
+        "PurchaseAPR": {
+            "Percentage": {
+                "value": 12.01, 
+                "precision": 2
+            }
+        }, 
+        "OutstandingBalance": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": -400.51
+            }
+        }, 
+        "OriginationDate": {
+            "Date": {
+                "year": 2012, 
+                "month": 12, 
+                "day": 15
+            }
+        }, 
+        "MaturityDate": {
+            "Date": {
+                "year": 2020, 
+                "month": 12, 
+                "day": 10
+            }
+        }, 
+        "LoanAmount": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": -456.12
+            }
+        }, 
+        "PreviousAmountDue": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": -46.12
+            }
+        }, 
+        "PastAmountDue": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": -16.12
+            }
+        }, 
+        "FinanceCharges": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": -56.12
+            }
+        }, 
+        "HoldAmount": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": -789.11
+            }
+        }, 
+        "AccountOpenDate": {
+            "Date": {
+                "year": 2010, 
+                "month": 11, 
+                "day": 5
+            }
+        }, 
+        "AccountClosedDate": {
+            "Date": {
+                "year": 2025, 
+                "month": 10, 
+                "day": 7
+            }
+        }, 
+        "LastStatementDate": {
+            "Date": {
+                "year": 2010, 
+                "month": 9, 
+                "day": 1
+            }
+        }, 
+        "LastDepositAmount": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": -96.1
+            }
+        }, 
+        "LastPaymentAmount": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": -852
+            }
+        }, 
+        "RewardsBalance": null, 
+        "LastDepositDate": {
+            "Date": {
+                "year": 2010, 
+                "month": 2, 
+                "day": 15
+            }
+        }, 
+        "LastPaymentDate": {
+            "Date": {
+                "year": 2010, 
+                "month": 3, 
+                "day": 15
+            }
+        }, 
+        "LoanDate": {
+            "Date": {
+                "year": 2010, 
+                "month": 4, 
+                "day": 23
+            }
+        }, 
+        "PointsAccrued": null, 
+        "PointsRedeemed": null, 
+        "APR": {
+            "Percentage": {
+                "value": 12.15, 
+                "precision": 2
+            }
+        }
+    }
+}-!|
+|PUT|/accounts/%userAccountID4%|200|||
+|let||js|!-response.jsonbody.Account.AccountId-!|%userAccountID4%|
+|let||js|!-response.jsonbody.Account.AccountType-!|!-accounttype.annuity-!|
+|let||js|!-response.jsonbody.Account.AccountClass-!|!-accountclass.otherasset-!|
+|let||js|!-response.jsonbody.Account.Hide-!|false|
+|let||js|!-response.jsonbody.Account.Exclude-!|false|
+|let||js|!-response.jsonbody.Account.AccountName-!|!-FitAccountTest1-!|
+
+'''5.2.2.3 PUT Accounts (update exclude and hide to false)'''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest|
+|setHeader|!- appKey : -!${institutionNum}!- 
+Content-Type : application/json
+userToken : %encodedUser2Token%-!|
+|setBody|!-{
+    "Account": {
+        "AccountId": null, 
+        "AccountType": "accounttype.rothira", 
+        "AccountClass": "accountclass.investment", 
+        "AccountingClass": "accountclass.loan", 
+        "AccountName": "ThisIsTestAccountByFit", 
+        "AccountNumber": "1234 1234 1234 12324", 
+        "Status": "accountstatus.open", 
+        "Exclude": false, 
+        "Hide": false, 
+        "CurrentBalance": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": -4666.12
+            }
+        }, 
+        "AvailableBalance": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": -5612.12
+            }
+        }, 
+        "AccountSource": "account source", 
+        "ProductName": "product Name", 
+        "SyncDate": null, 
+        "InterestRate": {
+            "Percentage": {
+                "value": 4.12, 
+                "precision": 2
+            }
+        }, 
+         "CreditLimit": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": -4563.12
+            }
+        }, 
+         "AvailableCredit": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": -463.12
+            }
+        }, 
+          "CashAdvanceLimit": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": -63.12
+            }
+        }, 
+          "MinimumPaymentDue": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": -10.12
+            }
+        }, 
+        "PaymentDueDate": {
+            "Date": {
+                "year": 2012, 
+                "month": 12, 
+                "day": 10
+            }
+        }, 
+        "RateOfReturn": {
+            "Percentage": {
+                "value": 4.12, 
+                "precision": 2
+            }
+        }, 
+        "AvailableCashLimit": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": -500.12
+            }
+        }, 
+        "StatementBalance": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": -1000.45
+            }
+        }, 
+        "PurchaseAPR": {
+            "Percentage": {
+                "value": 12.01, 
+                "precision": 2
+            }
+        },  
+        "OutstandingBalance": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": -400.51
+            }
+        }, 
+        "OriginationDate": {
+            "Date": {
+                "year": 2012, 
+                "month": 12, 
+                "day": 15
+            }
+        }, 
+        "MaturityDate": {
+            "Date": {
+                "year": 2020, 
+                "month": 12, 
+                "day": 10
+            }
+        }, 
+        "LoanAmount": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": -456.12
+            }
+        }, 
+        "PreviousAmountDue": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": -46.12
+            }
+        }, 
+        "PastAmountDue": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": -16.12
+            }
+        },         
+        "FinanceCharges": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": -56.12
+            }
+        }, 
+        "HoldAmount": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": -789.11
+            }
+        },    
+        "AccountOpenDate": {
+            "Date": {
+                "year": 2010, 
+                "month": 11, 
+                "day": 5
+            }
+        }, 
+        "AccountClosedDate": {
+            "Date": {
+                "year": 2025, 
+                "month": 10, 
+                "day": 7
+            }
+        }, 
+        "LastStatementDate": {
+            "Date": {
+                "year": 2010, 
+                "month": 9, 
+                "day": 1
+            }
+        },       
+        "LastDepositAmount": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": -96.1
+            }
+        }, 
+        "LastPaymentAmount": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": -852
+            }
+        }, 
+        "RewardsBalance":null,
+        "LastDepositDate": {
+            "Date": {
+                "year": 2010, 
+                "month": 2, 
+                "day": 15
+            }
+        }, 
+        "LastPaymentDate": {
+            "Date": {
+                "year": 2010, 
+                "month": 3, 
+                "day": 15
+            }
+        }, 
+        "LoanDate": {
+            "Date": {
+                "year": 2010, 
+                "month": 4, 
+                "day": 23
+            }
+        }, 
+        "PointsAccrued": null,
+        "PointsRedeemed": null,
+         "APR": {
+            "Percentage": {
+                "value": 12.15, 
+                "precision": 2
+            }
+        }
+    }
+}-!|
+|PUT|/accounts/%userAccountID4%|200|||
+|let||js|!-response.jsonbody.Account.AccountId-!|%userAccountID4%|
+|let||js|!-response.jsonbody.Account.AccountType-!||
+|let||js|!-response.jsonbody.Account.AccountClass-!||
+|let||js|!-response.jsonbody.Account.Hide-!|false|
+|let||js|!-response.jsonbody.Account.Exclude-!|false|
+|let||js|!-response.jsonbody.Account.AccountName-!|!-ThisIsTestAccountByFit-!|
+
+'''5.2.2.3 PUT Accounts (non-existing userAccountID)'''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest|
+|setHeader|!- appKey : -!${institutionNum}!- 
+Content-Type : application/json
+userToken : %encodedUser2Token%-!|
+|setBody|!-{
+    "Account": {
+        "AccountId": null, 
+        "AccountType": "accounttype.banking.checking", 
+        "AccountClass": "accountclass.deposit", 
+        "AccountingClass": "accountclass.loan", 
+        "AccountName": "NickNameUpdateTestByFit", 
+        "AccountNumber": "1234 1234 1234 12324", 
+        "Status": "accountstatus.open", 
+        "Exclude": true, 
+        "Hide": true, 
+        "CurrentBalance": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": -4666.12
+            }
+        }, 
+        "AvailableBalance": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": -5612.12
+            }
+        },  
+        "AccountSource": "account source", 
+        "ProductName": "product Name", 
+        "SyncDate": null, 
+        "InterestRate": {
+            "Percentage": {
+                "value": 4.12, 
+                "precision": 2
+            }
+        }, 
+         "CreditLimit": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": -4563.12
+            }
+        }, 
+         "AvailableCredit": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": -463.12
+            }
+        }, 
+          "CashAdvanceLimit": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": -63.12
+            }
+        }, 
+          "MinimumPaymentDue": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": -10.12
+            }
+        }, 
+        "PaymentDueDate": {
+            "Date": {
+                "year": 2012, 
+                "month": 12, 
+                "day": 10
+            }
+        }, 
+        "RateOfReturn": {
+            "Percentage": {
+                "value": 4.12, 
+                "precision": 2
+            }
+        }, 
+        "AvailableCashLimit": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": -500.12
+            }
+        }, 
+        "StatementBalance": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": -1000.45
+            }
+        }, 
+        "PurchaseAPR": {
+            "Percentage": {
+                "value": 12.01, 
+                "precision": 2
+            }
+        },  
+        "OutstandingBalance": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": -400.51
+            }
+        }, 
+        "OriginationDate": {
+            "Date": {
+                "year": 2012, 
+                "month": 12, 
+                "day": 15
+            }
+        }, 
+        "MaturityDate": {
+            "Date": {
+                "year": 2020, 
+                "month": 12, 
+                "day": 10
+            }
+        }, 
+        "LoanAmount": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": -456.12
+            }
+        }, 
+        "PreviousAmountDue": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": -46.12
+            }
+        }, 
+        "PastAmountDue": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": -16.12
+            }
+        },         
+        "FinanceCharges": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": -56.12
+            }
+        }, 
+        "HoldAmount": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": -789.11
+            }
+        },    
+        "AccountOpenDate": {
+            "Date": {
+                "year": 2010, 
+                "month": 11, 
+                "day": 5
+            }
+        }, 
+        "AccountClosedDate": {
+            "Date": {
+                "year": 2025, 
+                "month": 10, 
+                "day": 7
+            }
+        }, 
+        "LastStatementDate": {
+            "Date": {
+                "year": 2010, 
+                "month": 9, 
+                "day": 1
+            }
+        },       
+        "LastDepositAmount": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": -96.1
+            }
+        }, 
+        "LastPaymentAmount": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": -852
+            }
+        }, 
+        "RewardsBalance":null,
+        "LastDepositDate": {
+            "Date": {
+                "year": 2010, 
+                "month": 2, 
+                "day": 15
+            }
+        }, 
+        "LastPaymentDate": {
+            "Date": {
+                "year": 2010, 
+                "month": 3, 
+                "day": 15
+            }
+        }, 
+        "LoanDate": {
+            "Date": {
+                "year": 2010, 
+                "month": 4, 
+                "day": 23
+            }
+        }, 
+        "PointsAccrued": null,
+        "PointsRedeemed": null,
+         "APR": {
+            "Percentage": {
+                "value": 12.15, 
+                "precision": 2
+            }
+        }
+    }
+}-!|
+|PUT|/accounts/12312|400|||
+|let|$errMsg|js|!-response.jsonbody.message-!||
+
+!|com.lodosoftware.fitnesse.fixtures.LodosoftwareFixtures|
+|symbolName|str|isContain?|
+|errMsg|!-ErrorCode: 200001 - Argument userAccount-Id is invalid.-!|true|
+****!
+!*****> '''5.2.3 PUT ACCOUNTS (external account)'''
+
+!*****> '''Create An External Account'''
+!|Execute|!-insert into [OLB_ACCOUNT]([BRANCH_ID],[STATUS],[INTERFACE_ID],[ACCOUNT_NAME],[ACCOUNT_NUMBER],[ACCOUNT_TYPE],[ACCOUNT_CLASS]
+      ,[BALANCE],[SYNC_DATE],[CREATED_DATE],[ACCOUNT_STATUS],[AVAILABLE_BALANCE],[DIRECT_CONNECT],[DIRECT_ID]
+      ,[OUTSTANDING_BALANCE],[INTEREST_RATE],[LOAN_AMOUNT],[ACCOUNT_OPEN_DATE]
+      ,[APR], [INSTITUTION_ID]) values (1, 'accountstatus.open', 456,'FitAccountTest2', null, 'accounttype.annuity', 
+      'accountclass.otherasset', 10.17, SYSDATETIME(), SYSDATETIME(), null, 10.17, 0, null, 10.00, 12.11, 12000.00, SYSDATETIME(), 15, 1)-!|
+!|Query|!-select [ACCOUNT_ID] from [OLB_ACCOUNT] where ACCOUNT_NAME = 'FitAccountTest2'-!|
+|[ACCOUNT_ID]?|
+|>>account5|
+!|Execute|!-insert into [USER_ACCOUNT_JOIN]([USER_ID],[ACCOUNT_ID],[NICKNAME],[EXCLUDED],[HIDDEN],[HIDE_BY_ADMIN]) 
+		  values (-!@userID2!-, -!@account5!-, SYSDATETIME(), 0,0,0)-!|
+
+!|Query|!-select ID from [USER_ACCOUNT_JOIN] where ACCOUNT_ID = -!@account5|
+|ID?|
+|>>userAccountID5|
+!|DatabaseEnvironment|
+|commit|
+****!
+
+'''5.2.3.1 PUT Accounts (update user nickname with string, exclude to true, hide to true, account class and type)'''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest|
+|setHeader|!- appKey : -!${institutionNum}!- 
+Content-Type : application/json
+userToken : %encodedUser2Token%-!|
+|comment|!- appKey : -!${institutionNum}!- 
+Content-Type : application/json
+userToken : %encodedUser2Token%-!|
+|setBody|!-{
+    "Account": {
+        "AccountId": null, 
+        "AccountType": "accounttype.banking.checking", 
+        "AccountClass": "accountclass.deposit", 
+        "AccountingClass": "accountclass.loan", 
+        "AccountName": "NickNameUpdateTestByFit", 
+        "AccountNumber": "1234 1234 1234 12324", 
+        "Status": "accountstatus.open", 
+        "Exclude": true, 
+        "Hide": true, 
+        "CurrentBalance": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": -4666.12
+            }
+        }, 
+        "AvailableBalance": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": -5612.12
+            }
+        }, 
+        "AccountSource": "account source", 
+        "ProductName": "product Name", 
+        "SyncDate": null, 
+        "InterestRate": {
+            "Percentage": {
+                "value": 4.12, 
+                "precision": 2
+            }
+        }, 
+        "CreditLimit": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": -4563.12
+            }
+        }, 
+        "AvailableCredit": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": -463.12
+            }
+        }, 
+        "CashAdvanceLimit": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": -63.12
+            }
+        }, 
+        "MinimumPaymentDue": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": -10.12
+            }
+        }, 
+        "PaymentDueDate": {
+            "Date": {
+                "year": 2012, 
+                "month": 12, 
+                "day": 10
+            }
+        }, 
+        "RateOfReturn": {
+            "Percentage": {
+                "value": 4.12, 
+                "precision": 2
+            }
+        }, 
+        "AvailableCashLimit": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": -500.12
+            }
+        }, 
+        "StatementBalance": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": -1000.45
+            }
+        }, 
+        "PurchaseAPR": {
+            "Percentage": {
+                "value": 12.01, 
+                "precision": 2
+            }
+        }, 
+        "OutstandingBalance": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": -400.51
+            }
+        }, 
+        "OriginationDate": {
+            "Date": {
+                "year": 2012, 
+                "month": 12, 
+                "day": 15
+            }
+        }, 
+        "MaturityDate": {
+            "Date": {
+                "year": 2020, 
+                "month": 12, 
+                "day": 10
+            }
+        }, 
+        "LoanAmount": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": -456.12
+            }
+        }, 
+        "PreviousAmountDue": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": -46.12
+            }
+        }, 
+        "PastAmountDue": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": -16.12
+            }
+        }, 
+        "FinanceCharges": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": -56.12
+            }
+        }, 
+        "HoldAmount": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": -789.11
+            }
+        }, 
+        "AccountOpenDate": {
+            "Date": {
+                "year": 2010, 
+                "month": 11, 
+                "day": 5
+            }
+        }, 
+        "AccountClosedDate": {
+            "Date": {
+                "year": 2025, 
+                "month": 10, 
+                "day": 7
+            }
+        }, 
+        "LastStatementDate": {
+            "Date": {
+                "year": 2010, 
+                "month": 9, 
+                "day": 1
+            }
+        }, 
+        "LastDepositAmount": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": -96.1
+            }
+        }, 
+        "LastPaymentAmount": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": -852
+            }
+        }, 
+        "RewardsBalance": null, 
+        "LastDepositDate": {
+            "Date": {
+                "year": 2010, 
+                "month": 2, 
+                "day": 15
+            }
+        }, 
+        "LastPaymentDate": {
+            "Date": {
+                "year": 2010, 
+                "month": 3, 
+                "day": 15
+            }
+        }, 
+        "LoanDate": {
+            "Date": {
+                "year": 2010, 
+                "month": 4, 
+                "day": 23
+            }
+        }, 
+        "PointsAccrued": null, 
+        "PointsRedeemed": null, 
+        "APR": {
+            "Percentage": {
+                "value": 12.15, 
+                "precision": 2
+            }
+        }
+    }
+}-!|
+|PUT|/accounts/%userAccountID5%|200|||
+|let||js|!-response.jsonbody.Account.AccountId-!|%userAccountID5%|
+|let||js|!-response.jsonbody.Account.AccountType-!||
+|let||js|!-response.jsonbody.Account.AccountClass-!||
+|let||js|!-response.jsonbody.Account.Hide-!|true|
+|let||js|!-response.jsonbody.Account.Exclude-!|true|
+|let||js|!-response.jsonbody.Account.AccountName-!|!-NickNameUpdateTestByFit-!|
+
+'''5.2.3.2 PUT Accounts (update exclude and hide to null, name to empty value)'''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest|
+|setHeader|!- appKey : -!${institutionNum}!- 
+Content-Type : application/json
+userToken : %encodedUser2Token%-!|
+|setBody|!-{
+    "Account": {
+        "AccountId": null, 
+        "AccountType": "accounttype.banking.checking", 
+        "AccountClass": "accountclass.deposit", 
+        "AccountingClass": "accountclass.loan", 
+        "AccountName": "", 
+        "AccountNumber": "1234 1234 1234 12324", 
+        "Status": "accountstatus.open", 
+        "Exclude": null, 
+        "Hide": null, 
+        "CurrentBalance": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": -4666.12
+            }
+        }, 
+        "AvailableBalance": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": -5612.12
+            }
+        }, 
+        "AccountSource": "account source", 
+        "ProductName": "product Name", 
+        "SyncDate": null, 
+        "InterestRate": {
+            "Percentage": {
+                "value": 4.12, 
+                "precision": 2
+            }
+        }, 
+         "CreditLimit": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": -4563.12
+            }
+        }, 
+         "AvailableCredit": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": -463.12
+            }
+        }, 
+          "CashAdvanceLimit": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": -63.12
+            }
+        }, 
+          "MinimumPaymentDue": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": -10.12
+            }
+        }, 
+        "PaymentDueDate": {
+            "Date": {
+                "year": 2012, 
+                "month": 12, 
+                "day": 10
+            }
+        }, 
+        "RateOfReturn": {
+            "Percentage": {
+                "value": 4.12, 
+                "precision": 2
+            }
+        }, 
+        "AvailableCashLimit": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": -500.12
+            }
+        }, 
+        "StatementBalance": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": -1000.45
+            }
+        }, 
+        "PurchaseAPR": {
+            "Percentage": {
+                "value": 12.01, 
+                "precision": 2
+            }
+        },  
+        "OutstandingBalance": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": -400.51
+            }
+        }, 
+        "OriginationDate": {
+            "Date": {
+                "year": 2012, 
+                "month": 12, 
+                "day": 15
+            }
+        }, 
+        "MaturityDate": {
+            "Date": {
+                "year": 2020, 
+                "month": 12, 
+                "day": 10
+            }
+        }, 
+        "LoanAmount": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": -456.12
+            }
+        }, 
+        "PreviousAmountDue": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": -46.12
+            }
+        }, 
+        "PastAmountDue": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": -16.12
+            }
+        },         
+        "FinanceCharges": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": -56.12
+            }
+        }, 
+        "HoldAmount": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": -789.11
+            }
+        },    
+        "AccountOpenDate": {
+            "Date": {
+                "year": 2010, 
+                "month": 11, 
+                "day": 5
+            }
+        }, 
+        "AccountClosedDate": {
+            "Date": {
+                "year": 2025, 
+                "month": 10, 
+                "day": 7
+            }
+        }, 
+        "LastStatementDate": {
+            "Date": {
+                "year": 2010, 
+                "month": 9, 
+                "day": 1
+            }
+        },       
+        "LastDepositAmount": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": -96.1
+            }
+        }, 
+        "LastPaymentAmount": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": -852
+            }
+        }, 
+        "RewardsBalance":null,
+        "LastDepositDate": {
+            "Date": {
+                "year": 2010, 
+                "month": 2, 
+                "day": 15
+            }
+        }, 
+        "LastPaymentDate": {
+            "Date": {
+                "year": 2010, 
+                "month": 3, 
+                "day": 15
+            }
+        }, 
+        "LoanDate": {
+            "Date": {
+                "year": 2010, 
+                "month": 4, 
+                "day": 23
+            }
+        }, 
+        "PointsAccrued": null,
+        "PointsRedeemed": null,
+         "APR": {
+            "Percentage": {
+                "value": 12.15, 
+                "precision": 2
+            }
+        }
+    }
+}-!|
+|PUT|/accounts/%userAccountID5%|200|||
+|let||js|!-response.jsonbody.Account.AccountId-!|%userAccountID5%|
+|let||js|!-response.jsonbody.Account.AccountType-!||
+|let||js|!-response.jsonbody.Account.AccountClass-!||
+|let||js|!-response.jsonbody.Account.Hide-!|false|
+|let||js|!-response.jsonbody.Account.Exclude-!|false|
+|let||js|!-response.jsonbody.Account.AccountName-!||
+
+'''5.2.3.3 PUT Accounts (update exclude and hide to false)'''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest|
+|setHeader|!- appKey : -!${institutionNum}!- 
+Content-Type : application/json
+userToken : %encodedUser2Token%-!|
+|setBody|!-{
+    "Account": {
+        "AccountId": null, 
+        "AccountType": "accounttype.banking.checking", 
+        "AccountClass": "accountclass.deposit", 
+        "AccountingClass": "accountclass.loan", 
+        "AccountName": "ThisIsTestAccountByFit", 
+        "AccountNumber": "1234 1234 1234 12324", 
+        "Status": "accountstatus.open", 
+        "Exclude": false, 
+        "Hide": false, 
+        "CurrentBalance": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": -4666.12
+            }
+        }, 
+        "AvailableBalance": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": -5612.12
+            }
+        }, 
+        "AccountSource": "account source", 
+        "ProductName": "product Name", 
+        "SyncDate": null, 
+        "InterestRate": {
+            "Percentage": {
+                "value": 4.12, 
+                "precision": 2
+            }
+        }, 
+         "CreditLimit": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": -4563.12
+            }
+        }, 
+         "AvailableCredit": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": -463.12
+            }
+        }, 
+          "CashAdvanceLimit": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": -63.12
+            }
+        }, 
+          "MinimumPaymentDue": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": -10.12
+            }
+        }, 
+        "PaymentDueDate": {
+            "Date": {
+                "year": 2012, 
+                "month": 12, 
+                "day": 10
+            }
+        }, 
+        "RateOfReturn": {
+            "Percentage": {
+                "value": 4.12, 
+                "precision": 2
+            }
+        }, 
+        "AvailableCashLimit": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": -500.12
+            }
+        }, 
+        "StatementBalance": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": -1000.45
+            }
+        }, 
+        "PurchaseAPR": {
+            "Percentage": {
+                "value": 12.01, 
+                "precision": 2
+            }
+        },  
+        "OutstandingBalance": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": -400.51
+            }
+        }, 
+        "OriginationDate": {
+            "Date": {
+                "year": 2012, 
+                "month": 12, 
+                "day": 15
+            }
+        }, 
+        "MaturityDate": {
+            "Date": {
+                "year": 2020, 
+                "month": 12, 
+                "day": 10
+            }
+        }, 
+        "LoanAmount": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": -456.12
+            }
+        }, 
+        "PreviousAmountDue": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": -46.12
+            }
+        }, 
+        "PastAmountDue": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": -16.12
+            }
+        },         
+        "FinanceCharges": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": -56.12
+            }
+        }, 
+        "HoldAmount": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": -789.11
+            }
+        },    
+        "AccountOpenDate": {
+            "Date": {
+                "year": 2010, 
+                "month": 11, 
+                "day": 5
+            }
+        }, 
+        "AccountClosedDate": {
+            "Date": {
+                "year": 2025, 
+                "month": 10, 
+                "day": 7
+            }
+        }, 
+        "LastStatementDate": {
+            "Date": {
+                "year": 2010, 
+                "month": 9, 
+                "day": 1
+            }
+        },       
+        "LastDepositAmount": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": -96.1
+            }
+        }, 
+        "LastPaymentAmount": {
+            "Money": {
+                "currencyCode": "USD", 
+                "precision": 2, 
+                "value": -852
+            }
+        }, 
+        "RewardsBalance":null,
+        "LastDepositDate": {
+            "Date": {
+                "year": 2010, 
+                "month": 2, 
+                "day": 15
+            }
+        }, 
+        "LastPaymentDate": {
+            "Date": {
+                "year": 2010, 
+                "month": 3, 
+                "day": 15
+            }
+        }, 
+        "LoanDate": {
+            "Date": {
+                "year": 2010, 
+                "month": 4, 
+                "day": 23
+            }
+        }, 
+        "PointsAccrued": null,
+        "PointsRedeemed": null,
+         "APR": {
+            "Percentage": {
+                "value": 12.15, 
+                "precision": 2
+            }
+        }
+    }
+}-!|
+|PUT|/accounts/%userAccountID5%|200|||
+|let||js|!-response.jsonbody.Account.AccountId-!|%userAccountID5%|
+|let||js|!-response.jsonbody.Account.AccountType-!||
+|let||js|!-response.jsonbody.Account.AccountClass-!||
+|let||js|!-response.jsonbody.Account.Hide-!|false|
+|let||js|!-response.jsonbody.Account.Exclude-!|false|
+|let||js|!-response.jsonbody.Account.AccountName-!|!-ThisIsTestAccountByFit-!|
+|comment|OLB898|
+****!
+****!
+!*****> '''5.3 GET ACCOUNTS'''
+!*****> '''5.3.1 GET ACCOUNTS (list of accounts)'''
+'''5.3.1.1 Get Accounts (List all accounts)'''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest|
+|setHeader|!- appKey : -!${institutionNum}!- 
+Content-Type : application/json
+userToken : %encodedUser2Token%-!|
+|GET|/accounts|200|||
+|let||js|!-response.jsonbody[1].AccountId-!|%accountID2%|
+|let||js|!-response.jsonbody[1].AccountType-!|accounttype.loan|
+|let||js|!-response.jsonbody[1].AccountClass-!|accountclass.loan|
+|let||js|!-response.jsonbody[1].AccountingClass-!|acct.class.liability|
+|let||js|!-response.jsonbody[1].AccountName-!|!-Create a New Account Fit Test-!|
+|let||js|!-response.jsonbody[1].AccountNumber-!|!-1234 1234 1234 12324-!|
+|let||js|!-response.jsonbody[1].Status-!||
+|let||js|!-response.jsonbody[1].Exclude-!|false|
+|let||js|!-response.jsonbody[1].Hide-!|false|
+|let||js|!-response.jsonbody[1].Balance.Money.currencyCode-!|USD|
+|let||js|!-response.jsonbody[1].Balance.Money.precision-!|2|
+|let||js|!-response.jsonbody[1].Balance.Money.value-!|4666.12|
+|let||js|!-response.jsonbody[1].CurrentBalance.Money.currencyCode-!|USD|
+|let||js|!-response.jsonbody[1].CurrentBalance.Money.precision-!|2|
+|let||js|!-response.jsonbody[1].CurrentBalance.Money.value-!|5612.12|
+|let||js|!-response.jsonbody[1].AvailableBalance.Money.currencyCode-!|USD|
+|let||js|!-response.jsonbody[1].AvailableBalance.Money.precision-!|2|
+|let||js|!-response.jsonbody[1].AvailableBalance.Money.value-!|5612.12|
+|let||js|!-response.jsonbody[1].IsAvailableBalance-!||
+|let||js|!-response.jsonbody[1].AccountSource-!|Offline|
+|let||js|!-response.jsonbody[1].ProductName-!||
+|let||js|!-response.jsonbody[1].SyncDate-!|null|
+|let||js|!-response.jsonbody[1].InterestRate.Percentage.value-!|4.12|
+|let||js|!-response.jsonbody[1].InterestRate.Percentage.precision-!|2|
+|let||js|!-response.jsonbody[1].CreditLimit.Money.currencyCode-!|USD|
+|let||js|!-response.jsonbody[1].CreditLimit.Money.precision-!|2|
+|let||js|!-response.jsonbody[1].CreditLimit.Money.value-!|4563.12|
+|let||js|!-response.jsonbody[1].AvailableCredit.Money.currencyCode-!|USD|
+|let||js|!-response.jsonbody[1].AvailableCredit.Money.precision-!|2|
+|let||js|!-response.jsonbody[1].AvailableCredit.Money.value-!|463.12|
+|let||js|!-response.jsonbody[1].CashAdvanceLimit.Money.currencyCode-!|USD|
+|let||js|!-response.jsonbody[1].CashAdvanceLimit.Money.precision-!|2|
+|let||js|!-response.jsonbody[1].CashAdvanceLimit.Money.value-!|63.12|
+|let||js|!-response.jsonbody[1].MinimumPaymentDue.Money.currencyCode-!|USD|
+|let||js|!-response.jsonbody[1].MinimumPaymentDue.Money.precision-!|2|
+|let||js|!-response.jsonbody[1].MinimumPaymentDue.Money.value-!|10.12|
+|let||js|!-response.jsonbody[1].PaymentDueDate.Date.year-!|2012|
+|let||js|!-response.jsonbody[1].PaymentDueDate.Date.month-!|12|
+|let||js|!-response.jsonbody[1].PaymentDueDate.Date.day-!|10|
+|let||js|!-response.jsonbody[1].RateOfReturn.Percentage.value-!|4.12|
+|let||js|!-response.jsonbody[1].RateOfReturn.Percentage.precision-!|2|
+|let||js|!-response.jsonbody[1].AvailableCashLimit.Money.currencyCode-!|USD|
+|let||js|!-response.jsonbody[1].AvailableCashLimit.Money.precision-!|2|
+|let||js|!-response.jsonbody[1].AvailableCashLimit.Money.value-!|500.12|
+|let||js|!-response.jsonbody[1].StatementBalance.Money.currencyCode-!|USD|
+|let||js|!-response.jsonbody[1].StatementBalance.Money.precision-!|2|
+|let||js|!-response.jsonbody[1].StatementBalance.Money.value-!|1000.45|
+|let||js|!-response.jsonbody[1].PurchaseAPR.Percentage.value-!|12.01|
+|let||js|!-response.jsonbody[1].PurchaseAPR.Percentage.precision-!|2|
+|let||js|!-response.jsonbody[1].OutstandingBalance.Money.currencyCode-!|USD|
+|let||js|!-response.jsonbody[1].OutstandingBalance.Money.precision-!|2|
+|let||js|!-response.jsonbody[1].OutstandingBalance.Money.value-!|400.51|
+|let||js|!-response.jsonbody[1].OriginationDate.Date.year-!|2012|
+|let||js|!-response.jsonbody[1].OriginationDate.Date.month-!|12|
+|let||js|!-response.jsonbody[1].OriginationDate.Date.day-!|15|
+|let||js|!-response.jsonbody[1].MaturityDate.Date.year-!|2020|
+|let||js|!-response.jsonbody[1].MaturityDate.Date.month-!|12|
+|let||js|!-response.jsonbody[1].MaturityDate.Date.day-!|10|
+|let||js|!-response.jsonbody[1].LoanAmount.Money.currencyCode-!|USD|
+|let||js|!-response.jsonbody[1].LoanAmount.Money.precision-!|2|
+|let||js|!-response.jsonbody[1].LoanAmount.Money.value-!|456.12|
+|let||js|!-response.jsonbody[1].PreviousAmountDue.Money.currencyCode-!|USD|
+|let||js|!-response.jsonbody[1].PreviousAmountDue.Money.precision-!|2|
+|let||js|!-response.jsonbody[1].PreviousAmountDue.Money.value-!|46.12|
+|let||js|!-response.jsonbody[1].PastAmountDue.Money.currencyCode-!|USD|
+|let||js|!-response.jsonbody[1].PastAmountDue.Money.precision-!|2|
+|let||js|!-response.jsonbody[1].PastAmountDue.Money.value-!|16.12|
+|let||js|!-response.jsonbody[1].FinanceCharges.Money.currencyCode-!|USD|
+|let||js|!-response.jsonbody[1].FinanceCharges.Money.precision-!|2|
+|let||js|!-response.jsonbody[1].FinanceCharges.Money.value-!|56.12|
+|let||js|!-response.jsonbody[1].HoldAmount.Money.currencyCode-!|USD|
+|let||js|!-response.jsonbody[1].HoldAmount.Money.precision-!|2|
+|let||js|!-response.jsonbody[1].HoldAmount.Money.value-!|789.11|
+|let||js|!-response.jsonbody[1].AccountOpenDate.Date.year-!|2010|
+|let||js|!-response.jsonbody[1].AccountOpenDate.Date.month-!|11|
+|let||js|!-response.jsonbody[1].AccountOpenDate.Date.day-!|5|
+|let||js|!-response.jsonbody[1].AccountClosedDate.Date.year-!|2025|
+|let||js|!-response.jsonbody[1].AccountClosedDate.Date.month-!|10|
+|let||js|!-response.jsonbody[1].AccountClosedDate.Date.day-!|7|
+|let||js|!-response.jsonbody[1].LastStatementDate.Date.year-!|2010|
+|let||js|!-response.jsonbody[1].LastStatementDate.Date.month-!|9|
+|let||js|!-response.jsonbody[1].LastStatementDate.Date.day-!|1.0|
+|let||js|!-response.jsonbody[1].LastDepositAmount.Money.currencyCode-!|USD|
+|let||js|!-response.jsonbody[1].LastDepositAmount.Money.precision-!|2|
+|let||js|!-response.jsonbody[1].LastDepositAmount.Money.value-!|96.12|
+|let||js|!-response.jsonbody[1].LastPaymentAmount.Money.currencyCode-!|USD|
+|let||js|!-response.jsonbody[1].LastPaymentAmount.Money.precision-!|2|
+|let||js|!-response.jsonbody[1].LastPaymentAmount.Money.value-!|852.25|
+|let||js|!-response.jsonbody[1].LastDepositDate.Date.year-!|2010|
+|let||js|!-response.jsonbody[1].LastDepositDate.Date.month-!|2|
+|let||js|!-response.jsonbody[1].LastDepositDate.Date.day-!|15|
+|let||js|!-response.jsonbody[1].LoanDate.Date.year-!|2010|
+|let||js|!-response.jsonbody[1].LoanDate.Date.month-!|4|
+|let||js|!-response.jsonbody[1].LoanDate.Date.day-!|23|
+|let||js|!-response.jsonbody[1].APR.Percentage.value-!|12.15|
+|let||js|!-response.jsonbody[1].APR.Percentage.precision-!|2|
+|let||js|!-response.jsonbody[1].RewardsBalance.Decimal.value-!|100|
+|let||js|!-response.jsonbody[1].RewardsBalance.Decimal.precision-!|2|
+|let||js|!-response.jsonbody[1].PointsAccrued.Decimal.value-!|10000|
+|let||js|!-response.jsonbody[1].PointsAccrued.Decimal.precision-!|2|
+|let||js|!-response.jsonbody[1].PointsRedeemed-!|null|
+|let||js|!-response.jsonbody[0].AccountId-!|%accountID1%|
+|let||js|!-response.jsonbody[2].AccountId-!|%accountID3%|
+|let||js|!-response.jsonbody[3].AccountId-!|%userAccountID4%|
+|let||js|!-response.jsonbody[4].AccountId-!|%userAccountID5%|
+
+'''5.3.1.2 Get Accounts (if no accounts)'''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest|
+|setHeader|!- appKey : -!${fiApiKey}!- 
+Content-Type : application/json
+userToken : %fiEncodedUserToken%-!|
+|comment|!- appKey : -!${fiApiKey}!- 
+Content-Type : application/json
+userToken : %fiEncodedUserToken%-!|
+|GET|/accounts|400|||
+|let|$errMsg|js|!-response.jsonbody.message-!||
+
+!|com.lodosoftware.fitnesse.fixtures.LodosoftwareFixtures|
+|symbolName|str|isContain?|
+|errMsg|!-ErrorCode: 300201 - Operation requires Regular User.-!|true|
+
+****!
+!*****> '''5.3.2 GET ACCOUNTS (Account Classifiers)'''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest|
+|setHeader|!- appKey : -!${institutionNum}!- 
+Content-Type : application/json
+userToken : %encodedUser2Token%-!|
+|GET|/accounts/accountclassifiers|200|||
+|let||js|response.jsonbody[0].name||
+|let||js|response.jsonbody[0].key||
+|let||js|response.jsonbody[0].accountType||
+|let||js|response.jsonbody[0].accountClass||
+|let||js|response.jsonbody[1].name||
+|let||js|response.jsonbody[1].key||
+|let||js|response.jsonbody[1].accountType||
+|let||js|response.jsonbody[1].accountClass||
+****!
+****!
+!*****> '''5.4 DELETE ACCOUNTS'''
+
+'''5.4.1 DELETE OFFLINE ACCOUNTS'''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest|
+|setHeader|!- appKey : -!${institutionNum}!- 
+Content-Type : application/json
+userToken : %encodedUser2Token%-!|
+|DELETE|/accounts/%accountID1%|204|||
+|DELETE|/accounts/%accountID2%|204|||
+|DELETE|/accounts/%accountID3%|204|||
+
+'''5.4.2 DELETE INTERNAL ACCOUNTS'''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest|
+|setHeader|!- appKey : -!${institutionNum}!- 
+Content-Type : application/json
+userToken : %encodedUser2Token%-!|
+|DELETE|/accounts/%userAccountID4%|400|||
+|let|$errMsg|js|!-response.jsonbody.message-!||
+
+!|com.lodosoftware.fitnesse.fixtures.LodosoftwareFixtures|
+|symbolName|str|isContain?|
+|errMsg|!-ErrorCode: 200205 - Operation is not allowed for this type of account.-!|true|
+
+'''5.4.3 DELETE EXTERNAL ACCOUNTS'''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest|
+|setHeader|!- appKey : -!${institutionNum}!- 
+Content-Type : application/json
+userToken : %encodedUser2Token%-!|
+|DELETE|/accounts/%userAccountID5%|404|||
+|let|$errMsg|js|!-response.jsonbody.message-!||
+
+!|com.lodosoftware.fitnesse.fixtures.LodosoftwareFixtures|
+|symbolName|str|isContain?|
+|errMsg|!-Data requested by caller was not found.-!|true|
+
+!*****> '''Clean-Up Test Data'''
+
+!|Execute|!-delete from [USER_ACCOUNT_JOIN] where ID =-!@userAccountID4!-
+            delete from [USER_ACCOUNT_JOIN] where ID =-!@userAccountID5!-
+            delete from [OLB_ACCOUNT] where [ACCOUNT_ID]=-!@account4!-
+            delete from [OLB_ACCOUNT] where [ACCOUNT_ID]=-!@account5|
+
+!|DatabaseEnvironment|
+|commit|
+****!
+****!
+****!

@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<conduitBranchRequest xmlns="http://lodosoftware.com/conduit/branch">
+    <version>1.0</version>
+    <authentication>
+        <username>user</username>
+        <password>password</password>
+    </authentication>
+    <branchList>
+        <branch externalId="ArnaTest-1" parentExternalId="DEFAULT">
+            <business>
+                <name>UpdatedBusinessName</name>
+                <phone>3031111111</phone>
+                <physicalAddress>
+                    <address1>TEST UPDATE</address1>
+                    <city>UPDATED Denver</city>
+                    <state>AZ</state>
+                    <countryCode>US</countryCode>
+                    <postalCode>81111</postalCode>
+                    <geoCode>-94.2081456,11.111111,0</geoCode>
+                </physicalAddress>
+                <mailingAddress>
+                    <address1>UPDATE MAILING ADDRESS</address1>
+                    <city>DenverUpdated</city>
+                    <state>NJ</state>
+                    <countryCode>AFI</countryCode>
+                    <postalCode>87777</postalCode>
+                </mailingAddress>
+            </business>
+        </branch>
+    </branchList>
+</conduitBranchRequest>
+

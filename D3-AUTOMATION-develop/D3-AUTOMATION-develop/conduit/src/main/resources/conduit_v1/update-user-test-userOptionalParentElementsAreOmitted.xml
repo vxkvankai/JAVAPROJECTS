@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<conduitUserRequest xmlns="http://lodosoftware.com/conduit/user" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <version>1.0</version>
+    <authentication>
+        <username>userName</username>
+        <password>password</password>
+    </authentication>
+    <transactionDateRange>
+        <beginDate>2012-05-24</beginDate>
+        <endDate>2012-05-30</endDate>
+    </transactionDateRange>
+    <userList>
+        <user directId="ArnaTestUser-1" directId2="TestuserDirectID2">
+			<loginId>UpdateTestLoginID2</loginId>
+        </user>
+    </userList>
+</conduitUserRequest>

@@ -1,0 +1,532 @@
+!*****> !style_green[11. STATUS]
+
+!*****> Create Test Data
+
+''Create Accounts''
+
+!|Execute|!-insert into [OLB_ACCOUNT]([BRANCH_ID],[STATUS],[INTERFACE_ID],[ACCOUNT_NAME],[ACCOUNT_NUMBER],[ACCOUNT_TYPE],[ACCOUNT_CLASS]
+      ,[BALANCE],[SYNC_DATE],[CREATED_DATE],[ACCOUNT_STATUS],[AVAILABLE_BALANCE],[DIRECT_CONNECT],[DIRECT_ID]
+      ,[OUTSTANDING_BALANCE],[INTEREST_RATE],[LOAN_AMOUNT],[ACCOUNT_OPEN_DATE]
+      ,[APR]) values (1, 'accountstatus.open', null,'TransactionSearchTest1', null, 'accounttype.annuity', 
+      'accountclass.otherasset', 10.17, SYSDATETIME(), SYSDATETIME(), null, 10.17, 0, 'TestDirectID1', 10.00, 12.11, 12000.00, SYSDATETIME(), 15)-!|
+
+!|Query|!-select [ACCOUNT_ID] from [OLB_ACCOUNT] where ACCOUNT_NAME = 'TransactionSearchTest1'-!|
+|[ACCOUNT_ID]?|
+|>>account1|
+
+!|Execute|!-insert into [USER_ACCOUNT_JOIN]([USER_ID],[ACCOUNT_ID],[NICKNAME],[EXCLUDED],[HIDDEN],[HIDE_BY_ADMIN]) 
+		  values (-!@userID2!-, -!@account1!-, SYSDATETIME(), 0,0,0)-!|
+
+!|Query|!-select ID from [USER_ACCOUNT_JOIN] where ACCOUNT_ID =-!@account1|
+|[ID]?|
+|>>userAccJoinID1|
+
+
+''Create Transactions''
+
+!|Execute|!-insert into [OLB_TRANSACTION]([ACCOUNT_ID],[INTERFACE_ID],[TYPE],[NAME],[AMOUNT],[POST_DATE],[CREATED_DATE],[DIRECT_ID])
+		values (-!@account1!-,null, 0 , 'FitTestTransaction', 100.46, SYSDATETIME(), SYSDATETIME(), 'FitTestTrDirectID1')
+             insert into [OLB_TRANSACTION]([ACCOUNT_ID],[INTERFACE_ID],[TYPE],[NAME],[AMOUNT],[POST_DATE],[CREATED_DATE],[DIRECT_ID])
+		values (-!@account1!-,null, 0 , 'FitTestTransaction', 200.46, DATEADD(MONTH, -1, SYSDATETIME()), SYSDATETIME(), 'FitTestTrDirectID2')
+             insert into [OLB_TRANSACTION]([ACCOUNT_ID],[INTERFACE_ID],[TYPE],[NAME],[AMOUNT],[POST_DATE],[CREATED_DATE],[DIRECT_ID])
+		values (-!@account1!-,null, 1 , 'FitTestTransaction', 300.46, SYSDATETIME(), SYSDATETIME(), 'FitTestTrDirectID3')
+             insert into [OLB_TRANSACTION]([ACCOUNT_ID],[INTERFACE_ID],[TYPE],[NAME],[AMOUNT],[POST_DATE],[CREATED_DATE],[DIRECT_ID])
+		values (-!@account1!-,null, 1 , 'FitTestTransaction', 400.46, DATEADD(MONTH, -1, SYSDATETIME()), SYSDATETIME(), 'FitTestTrDirectID4')
+             insert into [OLB_TRANSACTION]([ACCOUNT_ID],[INTERFACE_ID],[TYPE],[NAME],[AMOUNT],[POST_DATE],[CREATED_DATE],[DIRECT_ID])
+		values (-!@account1!-,null, 0 , 'FitTestTransaction', 500.46, SYSDATETIME(), SYSDATETIME(), 'FitTestTrDirectID5')
+             insert into [OLB_TRANSACTION]([ACCOUNT_ID],[INTERFACE_ID],[TYPE],[NAME],[AMOUNT],[POST_DATE],[CREATED_DATE],[DIRECT_ID])
+		values (-!@account1!-,null, 0 , 'FitTestTransaction', 600.46, SYSDATETIME(), SYSDATETIME(), 'FitTestTrDirectID6')
+             insert into [OLB_TRANSACTION]([ACCOUNT_ID],[INTERFACE_ID],[TYPE],[NAME],[AMOUNT],[POST_DATE],[CREATED_DATE],[DIRECT_ID])
+		values (-!@account1!-,null, 0 , 'FitTestTransaction', 700.46, SYSDATETIME(), SYSDATETIME(), 'FitTestTrDirectID7')
+             insert into [OLB_TRANSACTION]([ACCOUNT_ID],[INTERFACE_ID],[TYPE],[NAME],[AMOUNT],[POST_DATE],[CREATED_DATE],[DIRECT_ID])
+		values (-!@account1!-,null, 1 , 'FitTestTransaction', 100.46, DATEADD(DAY, -1, SYSDATETIME()), SYSDATETIME(), 'FitTestTrDirectID8')
+             insert into [OLB_TRANSACTION]([ACCOUNT_ID],[INTERFACE_ID],[TYPE],[NAME],[AMOUNT],[POST_DATE],[CREATED_DATE],[DIRECT_ID])
+		values (-!@account1!-,null, 0 , 'FitTestTransaction', 200.46, SYSDATETIME(), SYSDATETIME(), 'FitTestTrDirectID9')
+             insert into [OLB_TRANSACTION]([ACCOUNT_ID],[INTERFACE_ID],[TYPE],[NAME],[AMOUNT],[POST_DATE],[CREATED_DATE],[DIRECT_ID])
+		values (-!@account1!-,null, 0 , 'FitTestTransaction', 300.46, DATEADD(MONTH, -1, SYSDATETIME()), SYSDATETIME(), 'FitTestTrDirectID10')
+             insert into [OLB_TRANSACTION]([ACCOUNT_ID],[INTERFACE_ID],[TYPE],[NAME],[AMOUNT],[POST_DATE],[CREATED_DATE],[DIRECT_ID])
+		values (-!@account1!-,null, 0 , 'bFitTestTransaction', 600.46, DATEADD(MONTH, -1, SYSDATETIME()), SYSDATETIME(), 'FitTestTrDirectID11')
+             insert into [OLB_TRANSACTION]([ACCOUNT_ID],[INTERFACE_ID],[TYPE],[NAME],[AMOUNT],[POST_DATE],[CREATED_DATE],[DIRECT_ID])
+		values (-!@account1!-,null, 0 , 'aFitTestTransaction', 500.46, SYSDATETIME(), SYSDATETIME(), 'FitTestTrDirectID12')-!|
+!|Query|!-select ID from [OLB_TRANSACTION] where DIRECT_ID = 'FitTestTrDirectID1'-!|
+| [ID]?|
+|>>trID1|
+!|Query|!-select ID from [OLB_TRANSACTION] where DIRECT_ID = 'FitTestTrDirectID2'-!|
+| [ID]?|
+|>>trID2|
+!|Query|!-select ID from [OLB_TRANSACTION] where DIRECT_ID = 'FitTestTrDirectID3'-!|
+| [ID]?|
+|>>trID3|
+!|Query|!-select ID from [OLB_TRANSACTION] where DIRECT_ID = 'FitTestTrDirectID4'-!|
+| [ID]?|
+|>>trID4|
+!|Query|!-select ID from [OLB_TRANSACTION] where DIRECT_ID = 'FitTestTrDirectID5'-!|
+| [ID]?|
+|>>trID5|
+!|Query|!-select ID from [OLB_TRANSACTION] where DIRECT_ID = 'FitTestTrDirectID6'-!|
+| [ID]?|
+|>>trID6|
+!|Query|!-select ID from [OLB_TRANSACTION] where DIRECT_ID = 'FitTestTrDirectID7'-!|
+| [ID]?|
+|>>trID7|
+!|Query|!-select ID from [OLB_TRANSACTION] where DIRECT_ID = 'FitTestTrDirectID8'-!|
+| [ID]?|
+|>>trID8|
+!|Query|!-select ID from [OLB_TRANSACTION] where DIRECT_ID = 'FitTestTrDirectID9'-!|
+| [ID]?|
+|>>trID9|
+!|Query|!-select ID from [OLB_TRANSACTION] where DIRECT_ID = 'FitTestTrDirectID10'-!|
+| [ID]?|
+|>>trID10|
+!|Query|!-select ID from [OLB_TRANSACTION] where DIRECT_ID = 'FitTestTrDirectID11'-!|
+| [ID]?|
+|>>trID11|
+!|Query|!-select ID from [OLB_TRANSACTION] where DIRECT_ID = 'FitTestTrDirectID12'-!|
+| [ID]?|
+|>>trID12|
+!|Execute|!-insert into [USER_TRANSACTION_JOIN]([TRANSACTION_ID],[USER_ID]) values(-!@trID1!-, -!@userID2!-)
+            insert into [USER_TRANSACTION_JOIN]([TRANSACTION_ID],[USER_ID]) values(-!@trID2!-, -!@userID2!-)
+            insert into [USER_TRANSACTION_JOIN]([TRANSACTION_ID],[USER_ID]) values(-!@trID3!-, -!@userID2!-)
+            insert into [USER_TRANSACTION_JOIN]([TRANSACTION_ID],[USER_ID]) values(-!@trID4!-, -!@userID2!-)
+            insert into [USER_TRANSACTION_JOIN]([TRANSACTION_ID],[USER_ID]) values(-!@trID5!-, -!@userID2!-)
+            insert into [USER_TRANSACTION_JOIN]([TRANSACTION_ID],[USER_ID]) values(-!@trID6!-, -!@userID2!-)
+            insert into [USER_TRANSACTION_JOIN]([TRANSACTION_ID],[USER_ID]) values(-!@trID7!-, -!@userID2!-)
+            insert into [USER_TRANSACTION_JOIN]([TRANSACTION_ID],[USER_ID]) values(-!@trID8!-, -!@userID2!-)
+            insert into [USER_TRANSACTION_JOIN]([TRANSACTION_ID],[USER_ID]) values(-!@trID9!-, -!@userID2!-)
+            insert into [USER_TRANSACTION_JOIN]([TRANSACTION_ID],[USER_ID]) values(-!@trID10!-, -!@userID2!-)
+            insert into [USER_TRANSACTION_JOIN]([TRANSACTION_ID],[USER_ID]) values(-!@trID11!-, -!@userID2!-)
+            insert into [USER_TRANSACTION_JOIN]([TRANSACTION_ID],[USER_ID]) values(-!@trID12!-, -!@userID2!-)-!|
+
+!|Query|!-select t2.ID from [OLB_TRANSACTION] as t1, [USER_TRANSACTION_JOIN] as t2 where t1.ID=t2.TRANSACTION_ID and t1.DIRECT_ID = 'FitTestTrDirectID1'-!|
+| ID?|
+|>>userTransactionJoinID1|
+!|Query|!-select t2.ID from [OLB_TRANSACTION] as t1, [USER_TRANSACTION_JOIN] as t2 where t1.ID=t2.TRANSACTION_ID and t1.DIRECT_ID = 'FitTestTrDirectID2'-!|
+| ID?|
+|>>userTransactionJoinID2|
+!|Query|!-select t2.ID from [OLB_TRANSACTION] as t1, [USER_TRANSACTION_JOIN] as t2 where t1.ID=t2.TRANSACTION_ID and t1.DIRECT_ID = 'FitTestTrDirectID3'-!|
+| ID?|
+|>>userTransactionJoinID3|
+!|Query|!-select t2.ID from [OLB_TRANSACTION] as t1, [USER_TRANSACTION_JOIN] as t2 where t1.ID=t2.TRANSACTION_ID and t1.DIRECT_ID = 'FitTestTrDirectID4'-!|
+| ID?|
+|>>userTransactionJoinID4|
+!|Query|!-select t2.ID from [OLB_TRANSACTION] as t1, [USER_TRANSACTION_JOIN] as t2 where t1.ID=t2.TRANSACTION_ID and t1.DIRECT_ID = 'FitTestTrDirectID5'-!|
+| ID?|
+|>>userTransactionJoinID5|
+!|Query|!-select t2.ID from [OLB_TRANSACTION] as t1, [USER_TRANSACTION_JOIN] as t2 where t1.ID=t2.TRANSACTION_ID and t1.DIRECT_ID = 'FitTestTrDirectID6'-!|
+| ID?|
+|>>userTransactionJoinID6|
+!|Query|!-select t2.ID from [OLB_TRANSACTION] as t1, [USER_TRANSACTION_JOIN] as t2 where t1.ID=t2.TRANSACTION_ID and t1.DIRECT_ID = 'FitTestTrDirectID7'-!|
+| ID?|
+|>>userTransactionJoinID7|
+!|Query|!-select t2.ID from [OLB_TRANSACTION] as t1, [USER_TRANSACTION_JOIN] as t2 where t1.ID=t2.TRANSACTION_ID and t1.DIRECT_ID = 'FitTestTrDirectID8'-!|
+| ID?|
+|>>userTransactionJoinID8|
+!|Query|!-select t2.ID from [OLB_TRANSACTION] as t1, [USER_TRANSACTION_JOIN] as t2 where t1.ID=t2.TRANSACTION_ID and t1.DIRECT_ID = 'FitTestTrDirectID9'-!|
+| ID?|
+|>>userTransactionJoinID9|
+!|Query|!-select t2.ID from [OLB_TRANSACTION] as t1, [USER_TRANSACTION_JOIN] as t2 where t1.ID=t2.TRANSACTION_ID and t1.DIRECT_ID = 'FitTestTrDirectID10'-!|
+| ID?|
+|>>userTransactionJoinID10|
+!|Query|!-select t2.ID from [OLB_TRANSACTION] as t1, [USER_TRANSACTION_JOIN] as t2 where t1.ID=t2.TRANSACTION_ID and t1.DIRECT_ID = 'FitTestTrDirectID11'-!|
+| ID?|
+|>>userTransactionJoinID11|
+!|Query|!-select t2.ID from [OLB_TRANSACTION] as t1, [USER_TRANSACTION_JOIN] as t2 where t1.ID=t2.TRANSACTION_ID and t1.DIRECT_ID = 'FitTestTrDirectID12'-!|
+| ID?|
+|>>userTransactionJoinID12|
+
+!|Execute|!-insert into[SPLIT_CATEGORIZATION]([USER_TRANSACTION_JOIN_ID],[CATEGORY_ID],[SPLIT_AMOUNT]) values(-!@userTransactionJoinID1!-, 1, 100.46)
+            insert into[SPLIT_CATEGORIZATION]([USER_TRANSACTION_JOIN_ID],[CATEGORY_ID],[SPLIT_AMOUNT]) values(-!@userTransactionJoinID2!-, 1, 200.46)
+            insert into[SPLIT_CATEGORIZATION]([USER_TRANSACTION_JOIN_ID],[CATEGORY_ID],[SPLIT_AMOUNT]) values(-!@userTransactionJoinID3!-, 100, 300.46)
+            insert into[SPLIT_CATEGORIZATION]([USER_TRANSACTION_JOIN_ID],[CATEGORY_ID],[SPLIT_AMOUNT]) values(-!@userTransactionJoinID4!-, 100, 400.46)
+            insert into[SPLIT_CATEGORIZATION]([USER_TRANSACTION_JOIN_ID],[CATEGORY_ID],[SPLIT_AMOUNT]) values(-!@userTransactionJoinID5!-, 1, 500.46)
+            insert into[SPLIT_CATEGORIZATION]([USER_TRANSACTION_JOIN_ID],[CATEGORY_ID],[SPLIT_AMOUNT]) values(-!@userTransactionJoinID6!-, 1, 600.46)
+            insert into[SPLIT_CATEGORIZATION]([USER_TRANSACTION_JOIN_ID],[CATEGORY_ID],[SPLIT_AMOUNT]) values(-!@userTransactionJoinID7!-, 1, 700.46)
+            insert into[SPLIT_CATEGORIZATION]([USER_TRANSACTION_JOIN_ID],[CATEGORY_ID],[SPLIT_AMOUNT]) values(-!@userTransactionJoinID8!-, 100, 100.46)
+            insert into[SPLIT_CATEGORIZATION]([USER_TRANSACTION_JOIN_ID],[CATEGORY_ID],[SPLIT_AMOUNT]) values(-!@userTransactionJoinID9!-, 1, 200.46)
+            insert into[SPLIT_CATEGORIZATION]([USER_TRANSACTION_JOIN_ID],[CATEGORY_ID],[SPLIT_AMOUNT]) values(-!@userTransactionJoinID10!-, 1, 300.46)
+            insert into[SPLIT_CATEGORIZATION]([USER_TRANSACTION_JOIN_ID],[CATEGORY_ID],[SPLIT_AMOUNT]) values(-!@userTransactionJoinID11!-, 1, 600.46)
+            insert into[SPLIT_CATEGORIZATION]([USER_TRANSACTION_JOIN_ID],[CATEGORY_ID],[SPLIT_AMOUNT]) values(-!@userTransactionJoinID12!-, 1, 500.46)-!|
+
+!|Query|!-SELECT ID from [SPLIT_CATEGORIZATION] where [USER_TRANSACTION_JOIN_ID] = -!@userTransactionJoinID1|
+| ID?|
+|>>splitID1|
+!|Query|!-SELECT ID from [SPLIT_CATEGORIZATION] where [USER_TRANSACTION_JOIN_ID] = -!@userTransactionJoinID2|
+| ID?|
+|>>splitID2|
+!|Query|!-SELECT ID from [SPLIT_CATEGORIZATION] where [USER_TRANSACTION_JOIN_ID] = -!@userTransactionJoinID3|
+| ID?|
+|>>splitID3|
+!|Query|!-SELECT ID from [SPLIT_CATEGORIZATION] where [USER_TRANSACTION_JOIN_ID] = -!@userTransactionJoinID4|
+| ID?|
+|>>splitID4|
+!|Query|!-SELECT ID from [SPLIT_CATEGORIZATION] where [USER_TRANSACTION_JOIN_ID] = -!@userTransactionJoinID5|
+| ID?|
+|>>splitID5|
+!|Query|!-SELECT ID from [SPLIT_CATEGORIZATION] where [USER_TRANSACTION_JOIN_ID] = -!@userTransactionJoinID6|
+| ID?|
+|>>splitID6|
+!|Query|!-SELECT ID from [SPLIT_CATEGORIZATION] where [USER_TRANSACTION_JOIN_ID] = -!@userTransactionJoinID7|
+| ID?|
+|>>splitID7|
+!|Query|!-SELECT ID from [SPLIT_CATEGORIZATION] where [USER_TRANSACTION_JOIN_ID] = -!@userTransactionJoinID8|
+| ID?|
+|>>splitID8|
+!|Query|!-SELECT ID from [SPLIT_CATEGORIZATION] where [USER_TRANSACTION_JOIN_ID] = -!@userTransactionJoinID9|
+| ID?|
+|>>splitID9|
+!|Query|!-SELECT ID from [SPLIT_CATEGORIZATION] where [USER_TRANSACTION_JOIN_ID] = -!@userTransactionJoinID10|
+| ID?|
+|>>splitID10|
+!|Query|!-SELECT ID from [SPLIT_CATEGORIZATION] where [USER_TRANSACTION_JOIN_ID] = -!@userTransactionJoinID11|
+| ID?|
+|>>splitID11|
+!|Query|!-SELECT ID from [SPLIT_CATEGORIZATION] where [USER_TRANSACTION_JOIN_ID] = -!@userTransactionJoinID12|
+| ID?|
+|>>splitID12|	
+!|DatabaseEnvironment|
+|commit|
+****!
+!*****> '''11.1 STATUS (/status/{months})'''
+
+'''11.1.1 Budget = false'''
+
+!*****> Calculation
+
+!|Query|!-select SUM(t3.amount) as actualIncomeAmount from [USER_TRANSACTION_JOIN] as t1, [SPLIT_CATEGORIZATION] as t2, [OLB_TRANSACTION] as t3, [CATEGORY] as t4
+ where t3.ID=t1.TRANSACTION_ID and t1.ID=t2.USER_TRANSACTION_JOIN_ID and t2.CATEGORY_ID=t4.ID and
+ t4.CATEGORY_TYPE like '%income%' and t3.POST_DATE >= DATEADD(month, DATEDIFF(month, 0, GETDATE()), 0)-!|
+|actualIncomeAmount?|
+|>>actualIncomeAmount1| 
+
+!|Query|!-select CONVERT(decimal(10,0), (select SUM(t3.amount) from [USER_TRANSACTION_JOIN] as t1, [SPLIT_CATEGORIZATION] as t2, [OLB_TRANSACTION] as t3, [CATEGORY] as t4
+ where t3.ID=t1.TRANSACTION_ID and t1.ID=t2.USER_TRANSACTION_JOIN_ID and t2.CATEGORY_ID=t4.ID and
+ t4.CATEGORY_TYPE like '%income%' and t3.POST_DATE >= DATEADD(month, DATEDIFF(month, 0, GETDATE()), 0))) as actualIncomeAmountInt-!|
+|actualIncomeAmountInt?|
+|>>actualIncomeAmountInt1|
+
+!|Query|!-select SUM(t3.amount) as actualExpenseAmount from [USER_TRANSACTION_JOIN] as t1, [SPLIT_CATEGORIZATION] as t2, [OLB_TRANSACTION] as t3, [CATEGORY] as t4
+ where t3.ID=t1.TRANSACTION_ID and t1.ID=t2.USER_TRANSACTION_JOIN_ID and t2.CATEGORY_ID=t4.ID and
+ t4.CATEGORY_TYPE like '%expense%' and t3.POST_DATE >= DATEADD(month, DATEDIFF(month, 0, GETDATE()), 0)-!|
+|actualExpenseAmount?|
+|>>actualExpenseAmount1|
+
+!|Query|!-select (CONVERT(decimal(10,0),((-!@!-actualIncomeAmount1--!@!-actualExpenseAmount1)/-!@!-actualIncomeAmount1)*100)) as actualPercentSaved-!|
+|actualPercentSaved?|
+|>>actualPercentSaved1|
+
+!|Query|!-select (CONVERT(decimal(10,2),(-!@!-actualIncomeAmount1--!@!-actualExpenseAmount1))) as availableCash-!|
+|availableCash?|
+|>>availableCash1|
+
+!|Query|!- select CONVERT(decimal(10,0), (SELECT (CASE WHEN -!@actualPercentSaved1!->= 10 THEN 5 WHEN -!@actualPercentSaved1!->= 6 THEN 4 WHEN -!@actualPercentSaved1!->= 3 THEN 3 WHEN -!@actualPercentSaved1!->= 3 THEN 2 ELSE 1.0 END))) as rating-!|
+|rating?|
+|>>rating1|
+
+
+!|Query|!-select SUM(t3.amount) as actualIncomeAmount from [USER_TRANSACTION_JOIN] as t1, [SPLIT_CATEGORIZATION] as t2, [OLB_TRANSACTION] as t3, [CATEGORY] as t4
+ where t3.ID=t1.TRANSACTION_ID and t1.ID=t2.USER_TRANSACTION_JOIN_ID and t2.CATEGORY_ID=t4.ID and
+ t4.CATEGORY_TYPE like '%income%' and t3.POST_DATE < DATEADD(month, DATEDIFF(month, 0, GETDATE()), 0)-!|
+|actualIncomeAmount?|
+|>>actualIncomeAmount2| 
+
+!|Query|!-select CONVERT(decimal(10,0), (select SUM(t3.amount) from [USER_TRANSACTION_JOIN] as t1, [SPLIT_CATEGORIZATION] as t2, [OLB_TRANSACTION] as t3, [CATEGORY] as t4
+ where t3.ID=t1.TRANSACTION_ID and t1.ID=t2.USER_TRANSACTION_JOIN_ID and t2.CATEGORY_ID=t4.ID and
+ t4.CATEGORY_TYPE like '%income%' and t3.POST_DATE< DATEADD(month, DATEDIFF(month, 0, GETDATE()), 0))) as actualIncomeAmountInt-!|
+|actualIncomeAmountInt?|
+|>>actualIncomeAmountInt2|
+
+!|Query|!-select SUM(t3.amount) as actualExpenseAmount from [USER_TRANSACTION_JOIN] as t1, [SPLIT_CATEGORIZATION] as t2, [OLB_TRANSACTION] as t3, [CATEGORY] as t4
+ where t3.ID=t1.TRANSACTION_ID and t1.ID=t2.USER_TRANSACTION_JOIN_ID and t2.CATEGORY_ID=t4.ID and
+ t4.CATEGORY_TYPE like '%expense%' and t3.POST_DATE < DATEADD(month, DATEDIFF(month, 0, GETDATE()), 0)-!|
+|actualExpenseAmount?|
+|>>actualExpenseAmount2|
+
+!|Query|!-select (CONVERT(decimal(10,0),((-!@!-actualIncomeAmount2--!@!-actualExpenseAmount2)/-!@!-actualIncomeAmount2)*100)) as actualPercentSaved-!|
+|actualPercentSaved?|
+|>>actualPercentSaved2|
+
+!|Query|!-select (CONVERT(decimal(10,2),(-!@!-actualIncomeAmount2--!@!-actualExpenseAmount2))) as availableCash-!|
+|availableCash?|
+|>>availableCash2|
+
+!|Query|!- select CONVERT(decimal(10,0), (SELECT (CASE WHEN -!@actualPercentSaved2!->= 10 THEN 5 WHEN -!@actualPercentSaved2!->= 6 THEN 4 WHEN -!@actualPercentSaved2!->= 3 THEN 3 WHEN -!@actualPercentSaved2!->= 3 THEN 2 ELSE 1.0 END))) as rating-!|
+|rating?|
+|>>rating2|
+
+!|Query|!-SELECT(CASE WHEN Month(SYSDATETIME()) = '1' THEN Year(DATEADD(Year, -1, SYSDATETIME())) ELSE Year(SYSDATETIME())  END) as YearForLastMonth-!|
+|YearForLastMonth?|
+|>>YearForLastMonth|
+
+****!
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest/status|
+|setHeader|!- appKey : -!${institutionNum}!- 
+Content-Type : application/json
+userToken : %encodedUser2Token%-!|
+|comment|!- appKey : -!${institutionNum}!- 
+Content-Type : application/json
+userToken : %encodedUser2Token%-!|
+|GET|/2|200|||
+|let||js|response.jsonbody[0].year|%YearForLastMonth%|
+|let||js|response.jsonbody[0].month|%lastMonth1%|
+|let||js|response.jsonbody[0].expenses.Money.currencyCode|USD|
+|let||js|response.jsonbody[0].expenses.Money.precision|2|
+|let||js|response.jsonbody[0].expenses.Money.value|%actualExpenseAmount2%|
+|let||js|response.jsonbody[0].income.Money.currencyCode|USD|
+|let||js|response.jsonbody[0].income.Money.precision|2|
+|let||js|response.jsonbody[0].income.Money.value|%actualIncomeAmount2%|
+|let||js|response.jsonbody[0].actualPercentSaved|%actualPercentSaved2%|
+|let||js|response.jsonbody[0].rating|%rating2%|
+|let||js|response.jsonbody[0].forecastPercentSaved|0.0|
+|let||js|response.jsonbody[0].forecastAmountSaved.Money.currencyCode|USD|
+|let||js|response.jsonbody[0].forecastAmountSaved.Money.precision|2|
+|let||js|response.jsonbody[0].forecastAmountSaved.Money.value|0.0|
+|let||js|response.jsonbody[0].hasCreatedBudget|false|
+|let||js|response.jsonbody[0].availableCash.Money.currencyCode|USD|
+|let||js|response.jsonbody[0].availableCash.Money.precision|2|
+|let||js|response.jsonbody[0].availableCash.Money.value|%availableCash2%|
+|let||js|response.jsonbody[1].year|%todayYear%|
+|let||js|response.jsonbody[1].month|%todayMonth1%|
+|let||js|response.jsonbody[1].expenses.Money.currencyCode|USD|
+|let||js|response.jsonbody[1].expenses.Money.precision|2|
+|let||js|response.jsonbody[1].expenses.Money.value|%actualExpenseAmount1%|
+|let||js|response.jsonbody[1].income.Money.currencyCode|USD|
+|let||js|response.jsonbody[1].income.Money.precision|2|
+|let||js|response.jsonbody[1].income.Money.value|%actualIncomeAmount1%|
+|let||js|response.jsonbody[1].actualPercentSaved|%actualPercentSaved1%|
+|let||js|response.jsonbody[1].rating|%rating1%|
+|let||js|response.jsonbody[1].forecastPercentSaved|0.0|
+|let||js|response.jsonbody[1].forecastAmountSaved.Money.currencyCode|USD|
+|let||js|response.jsonbody[1].forecastAmountSaved.Money.precision|2|
+|let||js|response.jsonbody[1].forecastAmountSaved.Money.value|0.0|
+|let||js|response.jsonbody[1].hasCreatedBudget|false|
+|let||js|response.jsonbody[1].availableCash.Money.currencyCode|USD|
+|let||js|response.jsonbody[1].availableCash.Money.precision|2|
+|let||js|response.jsonbody[1].availableCash.Money.value|%availableCash1%|
+
+'''11.1.2 Budget = true'''
+
+****!
+!*****> '''11.2 STATUS (/status)'''
+
+!*****> '''11.2.1 STATUS  (account=include, hidden=false), budget=false'''
+
+!*****> Calculation
+
+!|Query|!-select SUM(t3.amount) as actualIncomeAmount from [USER_TRANSACTION_JOIN] as t1, [SPLIT_CATEGORIZATION] as t2, [OLB_TRANSACTION] as t3, [CATEGORY] as t4
+ where t3.ID=t1.TRANSACTION_ID and t1.ID=t2.USER_TRANSACTION_JOIN_ID and t2.CATEGORY_ID=t4.ID and
+ t4.CATEGORY_TYPE like '%income%' and t3.POST_DATE >= DATEADD(month, DATEDIFF(month, 0, GETDATE()), 0)-!|
+|actualIncomeAmount?|
+|>>actualIncomeAmount| 
+
+!|Query|!-select CONVERT(decimal(10,0), (select SUM(t3.amount) from [USER_TRANSACTION_JOIN] as t1, [SPLIT_CATEGORIZATION] as t2, [OLB_TRANSACTION] as t3, [CATEGORY] as t4
+ where t3.ID=t1.TRANSACTION_ID and t1.ID=t2.USER_TRANSACTION_JOIN_ID and t2.CATEGORY_ID=t4.ID and
+ t4.CATEGORY_TYPE like '%income%' and t3.POST_DATE >= DATEADD(month, DATEDIFF(month, 0, GETDATE()), 0))) as actualIncomeAmountInt-!|
+|actualIncomeAmountInt?|
+|>>actualIncomeAmountInt|
+
+!|Query|!-select SUM(t3.amount) as actualExpenseAmount from [USER_TRANSACTION_JOIN] as t1, [SPLIT_CATEGORIZATION] as t2, [OLB_TRANSACTION] as t3, [CATEGORY] as t4
+ where t3.ID=t1.TRANSACTION_ID and t1.ID=t2.USER_TRANSACTION_JOIN_ID and t2.CATEGORY_ID=t4.ID and
+ t4.CATEGORY_TYPE like '%expense%' and t3.POST_DATE >= DATEADD(month, DATEDIFF(month, 0, GETDATE()), 0)-!|
+|actualExpenseAmount?|
+|>>actualExpenseAmount|
+
+!|Query|!-select (CONVERT(decimal(10,0),((-!@!-actualIncomeAmount--!@!-actualExpenseAmount)/-!@!-actualIncomeAmount)*100)) as actualPercentSaved-!|
+|actualPercentSaved?|
+|>>actualPercentSaved|
+
+!|Query|!-select (CONVERT(decimal(10,2),(-!@!-actualIncomeAmount--!@!-actualExpenseAmount))) as availableCash-!|
+|availableCash?|
+|>>availableCash|
+
+!|Query|!- select CONVERT(decimal(10,0), (SELECT (CASE WHEN -!@actualPercentSaved!->= 10 THEN 5 WHEN -!@actualPercentSaved!->= 6 THEN 4 WHEN -!@actualPercentSaved!->= 3 THEN 3 WHEN -!@actualPercentSaved!->= 3 THEN 2 ELSE 1.0 END))) as rating-!|
+|rating?|
+|>>rating|
+
+****!
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest/status|
+|setHeader|!- appKey : -!${institutionNum}!- 
+Content-Type : application/json
+userToken : %encodedUser2Token%-!|
+|GET|/|200|||
+|let||js|response.jsonbody.!-MonthlyStatus-!.expenses.Money.currencyCode|USD|
+|let||js|response.jsonbody.!-MonthlyStatus-!.expenses.Money.precision|2|
+|let||js|response.jsonbody.!-MonthlyStatus-!.expenses.Money.value|%actualExpenseAmount%|
+|let||js|response.jsonbody.!-MonthlyStatus-!.income.Money.currencyCode|USD|
+|let||js|response.jsonbody.!-MonthlyStatus-!.income.Money.precision|2|
+|let||js|response.jsonbody.!-MonthlyStatus-!.income.Money.value|%actualIncomeAmount%|
+|let||js|response.jsonbody.!-MonthlyStatus-!.actualPercentSaved|%actualPercentSaved%|
+|let||js|response.jsonbody.!-MonthlyStatus-!.rating|%rating%|
+|let||js|response.jsonbody.!-MonthlyStatus-!.forecastPercentSaved|0.0|
+|let||js|response.jsonbody.!-MonthlyStatus-!.forecastAmountSaved.Money.currencyCode|USD|
+|let||js|response.jsonbody.!-MonthlyStatus-!.forecastAmountSaved.Money.precision|2|
+|let||js|response.jsonbody.!-MonthlyStatus-!.forecastAmountSaved.Money.value|0.0|
+|let||js|response.jsonbody.!-MonthlyStatus-!.hasCreatedBudget|false|
+|let||js|response.jsonbody.!-MonthlyStatus-!.year|%todayYear%|
+|let||js|response.jsonbody.!-MonthlyStatus-!.month|%todayMonth1%|
+|let||js|response.jsonbody.!-MonthlyStatus-!.availableCash.Money.currencyCode|USD|
+|let||js|response.jsonbody.!-MonthlyStatus-!.availableCash.Money.precision|2|
+|let||js|response.jsonbody.!-MonthlyStatus-!.availableCash.Money.value|%availableCash%|
+****!
+!*****> '''11.2.2 STATUS (excluded account)'''   
+!*****> Setup Account As Excluded
+!|Execute|!-update [USER_ACCOUNT_JOIN] set EXCLUDED = 1 where ACCOUNT_ID = -!@account1|
+
+!|DatabaseEnvironment|
+|commit|
+****!
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest/status|
+|setHeader|!- appKey : -!${institutionNum}!- 
+Content-Type : application/json
+userToken : %encodedUser2Token%-!|
+|GET|/|200|||
+|let||js|response.jsonbody.!-MonthlyStatus-!.expenses.Money.currencyCode|USD|
+|let||js|response.jsonbody.!-MonthlyStatus-!.expenses.Money.precision|0.0|
+|let||js|response.jsonbody.!-MonthlyStatus-!.expenses.Money.value|0.0|
+|let||js|response.jsonbody.!-MonthlyStatus-!.income.Money.currencyCode|USD|
+|let||js|response.jsonbody.!-MonthlyStatus-!.income.Money.precision|0.0|
+|let||js|response.jsonbody.!-MonthlyStatus-!.income.Money.value|0.0|
+|let||js|response.jsonbody.!-MonthlyStatus-!.actualPercentSaved|0.0|
+|let||js|response.jsonbody.!-MonthlyStatus-!.rating|2|
+|let||js|response.jsonbody.!-MonthlyStatus-!.forecastPercentSaved||
+|let||js|response.jsonbody.!-MonthlyStatus-!.forecastAmountSaved.Money.currencyCode|USD|
+|let||js|response.jsonbody.!-MonthlyStatus-!.forecastAmountSaved.Money.precision|2|
+|let||js|response.jsonbody.!-MonthlyStatus-!.forecastAmountSaved.Money.value||
+|let||js|response.jsonbody.!-MonthlyStatus-!.hasCreatedBudget||
+|let||js|response.jsonbody.!-MonthlyStatus-!.year|%todayYear%|
+|let||js|response.jsonbody.!-MonthlyStatus-!.month|%todayMonth1%|
+|let||js|response.jsonbody.!-MonthlyStatus-!.availableCash.Money.currencyCode|USD|
+|let||js|response.jsonbody.!-MonthlyStatus-!.availableCash.Money.precision|0.0|
+|let||js|response.jsonbody.!-MonthlyStatus-!.availableCash.Money.value|0.0|
+!*****> Setup Account As Non-Excluded
+!|Execute|!-update [USER_ACCOUNT_JOIN] set EXCLUDED = 0 where ACCOUNT_ID = -!@account1|
+
+!|DatabaseEnvironment|
+|commit|
+****! 
+****!
+!*****> '''11.2.3 STATUS (hidden account)'''   
+!*****> Setup Account As Hidden
+!|Execute|!-update [USER_ACCOUNT_JOIN] set HIDDEN= 1 where ACCOUNT_ID = -!@account1|
+
+!|DatabaseEnvironment|
+|commit|
+****!
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest/status|
+|setHeader|!- appKey : -!${institutionNum}!- 
+Content-Type : application/json
+userToken : %encodedUser2Token%-!|
+|GET|/|200|||
+|let||js|response.jsonbody.!-MonthlyStatus-!.expenses.Money.currencyCode|USD|
+|let||js|response.jsonbody.!-MonthlyStatus-!.expenses.Money.precision|0.0|
+|let||js|response.jsonbody.!-MonthlyStatus-!.expenses.Money.value|0.0|
+|let||js|response.jsonbody.!-MonthlyStatus-!.income.Money.currencyCode|USD|
+|let||js|response.jsonbody.!-MonthlyStatus-!.income.Money.precision|0.0|
+|let||js|response.jsonbody.!-MonthlyStatus-!.income.Money.value|0.0|
+|let||js|response.jsonbody.!-MonthlyStatus-!.actualPercentSaved|0.0|
+|let||js|response.jsonbody.!-MonthlyStatus-!.rating|2|
+|let||js|response.jsonbody.!-MonthlyStatus-!.forecastPercentSaved||
+|let||js|response.jsonbody.!-MonthlyStatus-!.forecastAmountSaved.Money.currencyCode|USD|
+|let||js|response.jsonbody.!-MonthlyStatus-!.forecastAmountSaved.Money.precision|2|
+|let||js|response.jsonbody.!-MonthlyStatus-!.forecastAmountSaved.Money.value||
+|let||js|response.jsonbody.!-MonthlyStatus-!.hasCreatedBudget||
+|let||js|response.jsonbody.!-MonthlyStatus-!.year|%todayYear%|
+|let||js|response.jsonbody.!-MonthlyStatus-!.month|%todayMonth1%|
+|let||js|response.jsonbody.!-MonthlyStatus-!.availableCash.Money.currencyCode|USD|
+|let||js|response.jsonbody.!-MonthlyStatus-!.availableCash.Money.precision|0.0|
+|let||js|response.jsonbody.!-MonthlyStatus-!.availableCash.Money.value|0.0|
+!*****> Setup Account As Non-Hidden
+!|Execute|!-update [USER_ACCOUNT_JOIN] set HIDDEN= 0 where ACCOUNT_ID = -!@account1|
+
+!|DatabaseEnvironment|
+|commit|
+****! 
+****!
+****!
+!*****> '''11.3 STATUS (/status/spending/{months})''' 
+
+!*****> Calculation
+
+!|Query|!-select SUM(t3.amount) as actualExpenseAmount from [USER_TRANSACTION_JOIN] as t1, [SPLIT_CATEGORIZATION] as t2, [OLB_TRANSACTION] as t3, [CATEGORY] as t4
+ where t3.ID=t1.TRANSACTION_ID and t1.ID=t2.USER_TRANSACTION_JOIN_ID and t2.CATEGORY_ID=t4.ID and
+ t4.CATEGORY_TYPE like '%expense%' and t3.POST_DATE >= DATEADD(month, DATEDIFF(month, 0, GETDATE()), 0)-!|
+|actualExpenseAmount?|
+|>>actualExpenseAmount1|
+
+!|Query|!-select SUM(t3.amount) as actualExpenseAmount from [USER_TRANSACTION_JOIN] as t1, [SPLIT_CATEGORIZATION] as t2, [OLB_TRANSACTION] as t3, [CATEGORY] as t4
+ where t3.ID=t1.TRANSACTION_ID and t1.ID=t2.USER_TRANSACTION_JOIN_ID and t2.CATEGORY_ID=t4.ID and
+ t4.CATEGORY_TYPE like '%expense%' and t3.POST_DATE < DATEADD(month, DATEDIFF(month, 0, GETDATE()), 0)-!|
+|actualExpenseAmount?|
+|>>actualExpenseAmount2|
+
+****!
+
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest/status/spending|
+|setHeader|!- appKey : -!${institutionNum}!- 
+Content-Type : application/json
+userToken : %encodedUser2Token%-!|
+|GET|/2|200|||
+|let||js|!-response.jsonbody[0].category-!|Uncategorized Expense|
+|let||js|!-response.jsonbody[0].amounts[0].CategoryAmount.month-!|%todayMonth1%| 
+|let||js|!-response.jsonbody[0].amounts[0].CategoryAmount.year-!|%todayYear%|
+|let||js|!-response.jsonbody[0].amounts[0].CategoryAmount.amount.Money.currencyCode-!|USD| 
+|let||js|!-response.jsonbody[0].amounts[0].CategoryAmount.amount.Money.precision-!|2| 
+|let||js|!-response.jsonbody[0].amounts[0].CategoryAmount.amount.Money.value-!|%actualExpenseAmount1%| 
+|let||js|!-response.jsonbody[0].amounts[1].CategoryAmount.month-!|%lastMonth1%| 
+|let||js|!-response.jsonbody[0].amounts[1].CategoryAmount.year-!|%YearForLastMonth%|
+|let||js|!-response.jsonbody[0].amounts[1].CategoryAmount.amount.Money.currencyCode-!|USD| 
+|let||js|!-response.jsonbody[0].amounts[1].CategoryAmount.amount.Money.precision-!|2| 
+|let||js|!-response.jsonbody[0].amounts[1].CategoryAmount.amount.Money.value-!|%actualExpenseAmount2%| 
+
+****!
+!*****>  Clean-up Test Data
+
+!|Execute|!-delete FROM [CATEGORIZATION_RULE] where USER_ID = -! @userID2 !-
+            delete from [RENAMING_RULE] where USER_ID = -! @userID2 !-
+            delete [CATEGORIZATION_RULE] where RULE_NAME = 'FITTESTTRANSACTION'
+            delete [TRANSIENT_USER_EVENT]-!|
+!|Execute|!-delete from [SPLIT_CATEGORIZATION] where [ID] = -! @splitID1 !-
+            delete from [SPLIT_CATEGORIZATION] where [ID] = -! @splitID2 !-
+            delete from [SPLIT_CATEGORIZATION] where [ID] = -! @splitID3 !-
+            delete from [SPLIT_CATEGORIZATION] where [ID] = -! @splitID4 !-
+            delete from [SPLIT_CATEGORIZATION] where [ID] = -! @splitID5 !-
+            delete from [SPLIT_CATEGORIZATION] where [ID] = -! @splitID6 !-
+            delete from [SPLIT_CATEGORIZATION] where [ID] = -! @splitID7 !-
+            delete from [SPLIT_CATEGORIZATION] where [ID] = -! @splitID8 !-
+            delete from [SPLIT_CATEGORIZATION] where [ID] = -! @splitID9 !-
+            delete from [SPLIT_CATEGORIZATION] where [ID] = -! @splitID10 !-
+            delete from [SPLIT_CATEGORIZATION] where [ID] = -! @splitID11 !-
+            delete from [SPLIT_CATEGORIZATION] where [ID] = -! @splitID12 !-
+            delete from [SPLIT_CATEGORIZATION] where [ID] = -! @spID2!-
+            delete from [SPLIT_CATEGORIZATION] where [ID] = -! @spID3!-
+            delete from [SPLIT_CATEGORIZATION] where [ID] = -! @spID4!-
+            delete from [USER_TRANSACTION_JOIN] where [ID] = -! @userTransactionJoinID1!-
+            delete from [USER_TRANSACTION_JOIN] where [ID] = -! @userTransactionJoinID2!-
+            delete from [USER_TRANSACTION_JOIN] where [ID] = -! @userTransactionJoinID3!-
+            delete from [USER_TRANSACTION_JOIN] where [ID] = -! @userTransactionJoinID4!-
+            delete from [USER_TRANSACTION_JOIN] where [ID] = -! @userTransactionJoinID5!-
+            delete from [USER_TRANSACTION_JOIN] where [ID] = -! @userTransactionJoinID6!-
+            delete from [USER_TRANSACTION_JOIN] where [ID] = -! @userTransactionJoinID7!-
+            delete from [USER_TRANSACTION_JOIN] where [ID] = -! @userTransactionJoinID8!-
+            delete from [USER_TRANSACTION_JOIN] where [ID] = -! @userTransactionJoinID9!-
+            delete from [USER_TRANSACTION_JOIN] where [ID] = -! @userTransactionJoinID10!-
+            delete from [USER_TRANSACTION_JOIN] where [ID] = -! @userTransactionJoinID11!-
+            delete from [USER_TRANSACTION_JOIN] where [ID] = -! @userTransactionJoinID12!-
+            delete from [OLB_TRANSACTION] where [ID] = -! @trID1!-
+            delete from [OLB_TRANSACTION] where [ID] = -! @trID2!-
+            delete from [OLB_TRANSACTION] where [ID] = -! @trID3!-
+            delete from [OLB_TRANSACTION] where [ID] = -! @trID4!-
+            delete from [OLB_TRANSACTION] where [ID] = -! @trID5!-
+            delete from [OLB_TRANSACTION] where [ID] = -! @trID6!-
+            delete from [OLB_TRANSACTION] where [ID] = -! @trID7!-
+            delete from [OLB_TRANSACTION] where [ID] = -! @trID8!-
+            delete from [OLB_TRANSACTION] where [ID] = -! @trID9!-
+            delete from [OLB_TRANSACTION] where [ID] = -! @trID10!-
+            delete from [OLB_TRANSACTION] where [ID] = -! @trID11!-
+            delete from [OLB_TRANSACTION] where [ID] = -! @trID12!-
+            delete from [USER_ACCOUNT_JOIN] where [ID] = -! @userAccJoinID1!-
+            delete from [OLB_ACCOUNT] where [ACCOUNT_ID] = -! @account1|
+!|DatabaseEnvironment|
+|commit|
+****!
+****!

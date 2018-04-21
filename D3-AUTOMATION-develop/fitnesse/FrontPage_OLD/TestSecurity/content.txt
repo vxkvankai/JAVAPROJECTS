@@ -1,0 +1,485 @@
+!*****> !style_green[1. SECURITY]
+!*****> '''1.1 Consumer User'''
+'''1.1.1 Sign In (no/none existing apiKey value )'''
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest/challenge|
+|setHeader|!- appKey : null
+Content-Type : application/json
+Accept : application/json-!|
+|setBody|!-{"AuthenticationChallenge":{"authToken":null,"isAuthenticated":null,"errorMessage":null,"nextChallenge":null,"currentChallenge":null,"isChallengeSuccess":null,"challengeList":null}}-!|
+|POST||403|||
+|setHeader|!- appKey : 20
+Content-Type : application/json
+Accept : application/json-!|
+|setBody|!-{"AuthenticationChallenge":{"authToken":null,"isAuthenticated":null,"errorMessage":null,"nextChallenge":null,"currentChallenge":null,"isChallengeSuccess":null,"challengeList":null}}-!|
+|POST||403|||
+
+'''1.1.2 Sign In (incorrect user name/password)'''
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest/challenge|
+|setHeader|!- appKey : -!${institutionNum}!- 
+Content-Type : application/json
+Accept : application/json-!|
+|setBody|!-{"AuthenticationChallenge":{"authToken":null,"isAuthenticated":false,"errorMessage":null,"nextChallenge":"challenge.type.username.and.password","currentChallenge":"challenge.type.username.and.password","isChallengeSuccess":true,"challengeList":[{"AuthenticationChallengeItem":{"key":"challenge.item.type.username","value":"IncorrectUserName"}},{"AuthenticationChallengeItem":{"key":"challenge.item.type.password","value":"-!${userPassword}!-"}}]}}-!|
+|POST||200|||
+|let|errorMsg|js|response.jsonbody.AuthenticationChallenge.errorMessage|invalid.credentials|
+|let|auth|js|response.jsonbody.AuthenticationChallenge.isAuthenticated|false|
+|let|auth|js|response.jsonbody.AuthenticationChallenge.isChallengeSuccess|false|
+|setBody|!-{"AuthenticationChallenge":{"authToken":null,"isAuthenticated":false,"errorMessage":null,"nextChallenge":"challenge.type.username.and.password","currentChallenge":"challenge.type.username.and.password","isChallengeSuccess":true,"challengeList":[{"AuthenticationChallengeItem":{"key":"challenge.item.type.username","value":"-!${userName}!-"}},{"AuthenticationChallengeItem":{"key":"challenge.item.type.password","value":"IncorrectPassword"}}]}}-!|
+|POST||200|||
+|let|errorMsg|js|response.jsonbody.AuthenticationChallenge.errorMessage|invalid.credentials|
+|let|auth|js|response.jsonbody.AuthenticationChallenge.isAuthenticated|false|
+|let|auth|js|response.jsonbody.AuthenticationChallenge.isChallengeSuccess|false|
+
+'''1.1.3 Sign In (login succeed)'''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest/challenge|
+|setHeader|!- appKey : -!${institutionNum}!- 
+Content-Type : application/json
+Accept : application/json-!|
+|setBody|!-{"AuthenticationChallenge":{"authToken":null,"isAuthenticated":null,"errorMessage":null,"nextChallenge":null,"currentChallenge":null,"isChallengeSuccess":null,"challengeList":null}}-!|
+|POST||200|||
+|let|errorMsg|js|response.jsonbody.AuthenticationChallenge.errorMessage|null|
+|let|auth|js|response.jsonbody.AuthenticationChallenge.isAuthenticated|false|
+|setBody|!-{"AuthenticationChallenge":{"authToken":null,"isAuthenticated":false,"errorMessage":null,"nextChallenge":"challenge.type.username.and.password","currentChallenge":"challenge.type.username.and.password","isChallengeSuccess":true,"challengeList":[{"AuthenticationChallengeItem":{"key":"challenge.item.type.username","value":"-!${userName}!-"}},{"AuthenticationChallengeItem":{"key":"challenge.item.type.password","value":"-!${userPassword}!-"}}]}}-!|
+|POST||200|||
+|let|$token|js|response.jsonbody.AuthenticationChallenge.authToken||
+|let|errorMsg|js|response.jsonbody.AuthenticationChallenge.errorMessage|null|
+|let|auth|js|response.jsonbody.AuthenticationChallenge.isAuthenticated|false|
+
+!|com.lodosoftware.fitnesse.fixtures.LodosoftwareFixtures|
+|symbolName|=getToken?|
+|token|myToken|
+
+
+'''1.1.4 Sign In (null/incorrect secret question answer)'''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest/challenge|
+|setHeader|!- appKey : -!${institutionNum}!- 
+Content-Type : application/json
+Accept : application/json-!|
+|setBody|!-{"AuthenticationChallenge":{"authToken":"-!%myToken%!-","isAuthenticated":false,"errorMessage":null,"nextChallenge":"challenge.type.secret.question","currentChallenge":"challenge.type.secret.question","isChallengeSuccess":true,"challengeList":[{"AuthenticationChallengeItem":{"key":"challenge.item.type.secret.question","value":null}}]}}-!|
+|POST||200|||
+|let|errorMsg|js|response.jsonbody.AuthenticationChallenge.errorMessage|!-ErrorCode: 40006 - Unable to find question-!|
+|let|auth|js|response.jsonbody.AuthenticationChallenge.isAuthenticated|false|
+|let|auth|js|response.jsonbody.AuthenticationChallenge.isChallengeSuccess|false|
+|setBody|!-{"AuthenticationChallenge":{"authToken":"-!%myToken%!-","isAuthenticated":false,"errorMessage":null,"nextChallenge":"challenge.type.secret.question","currentChallenge":"challenge.type.secret.question","isChallengeSuccess":true,"challengeList":[{"AuthenticationChallengeItem":{"key":"challenge.item.type.secret.question","value":"IncorrectQuestion"}}]}}-!|
+|POST||200|||
+|let|errorMsg|js|response.jsonbody.AuthenticationChallenge.errorMessage|!-ErrorCode: 40007 - invalid.credentials-!|
+|let|auth|js|response.jsonbody.AuthenticationChallenge.isAuthenticated|false|
+|let|auth|js|response.jsonbody.AuthenticationChallenge.isChallengeSuccess|false|
+
+'''1.1.5 Sign In (secret question answer succeed)'''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest/challenge|
+|setHeader|!- appKey : -!${institutionNum}!- 
+Content-Type : application/json
+Accept : application/json-!|
+|setBody|!-{"AuthenticationChallenge":{"authToken":"-!%myToken%!-","isAuthenticated":false,"errorMessage":null,"nextChallenge":"challenge.type.secret.question","currentChallenge":"challenge.type.secret.question","isChallengeSuccess":true,"challengeList":[{"AuthenticationChallengeItem":{"key":"challenge.item.type.secret.question","value":"-!${secretQuestionAnswer}!-"}}]}}-!|
+|POST||200|||
+|let|authenticated|js|response.jsonbody.AuthenticationChallenge.isAuthenticated|false|
+|let|$userToken|js|response.jsonbody.AuthenticationChallenge.authToken||
+
+
+'''1.1.6 Sign In (Disagree/Agree with TOS)'''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest/challenge|
+|setHeader|!- appKey : -!${institutionNum}!- 
+Content-Type : application/json
+Accept : application/json-!|
+|setBody|!-{
+    "AuthenticationChallenge": {
+        "authToken": "-!%encodedUserToken%!-", 
+        "isAuthenticated": false, 
+        "errorMessage": null, 
+        "nextChallenge": "challenge.type.terms.of.service", 
+        "currentChallenge": "challenge.type.secret.question", 
+        "isChallengeSuccess": true, 
+        "challengeList": [
+            {
+                "AuthenticationChallengeItem": {
+                    "key": "challenge.item.type.terms.of.service", 
+                    "value": ""
+                }
+            }
+        ]
+    }
+}
+-!|
+|POST||200|||
+|let||js|response.jsonbody.AuthenticationChallenge.isAuthenticated|false|
+|let||js|response.jsonbody.AuthenticationChallenge.errorMessage|!-ErrorCode: 20004 - auth.session.not.found -!|
+|setBody|!-{
+    "AuthenticationChallenge": {
+        "authToken": "-!%encodedUserToken%!-", 
+        "isAuthenticated": false, 
+        "errorMessage": null, 
+        "nextChallenge": "challenge.type.terms.of.service", 
+        "currentChallenge": "challenge.type.secret.question", 
+        "isChallengeSuccess": true, 
+        "challengeList": [
+            {
+                "AuthenticationChallengeItem": {
+                    "key": "challenge.item.type.terms.of.service", 
+                    "value": "false"
+                }
+            }
+        ]
+    }
+}
+-!|
+|POST||200|||
+|let||js|response.jsonbody.AuthenticationChallenge.isAuthenticated|false|
+|let||js|response.jsonbody.AuthenticationChallenge.errorMessage|!-ErrorCode: 20004 - auth.session.not.found -!|
+|setBody|!-{
+    "AuthenticationChallenge": {
+        "authToken": "-!%userToken%!-", 
+        "isAuthenticated": false, 
+        "errorMessage": null, 
+        "nextChallenge": "challenge.type.terms.of.service", 
+        "currentChallenge": "challenge.type.terms.of.service", 
+        "isChallengeSuccess": true, 
+        "challengeList": [
+            {
+                "AuthenticationChallengeItem": {
+                    "key": "challenge.item.type.terms.of.service", 
+                    "value": "true"
+                }
+            }
+        ]
+    }
+}
+-!|
+|POST||200|||
+|let||js|response.jsonbody.AuthenticationChallenge.isAuthenticated|true|
+|let|$userToken|js|response.jsonbody.AuthenticationChallenge.authToken||
+
+|!-org.eclg.fitnesse.tools.StringFixture-!|
+|value| =urlencode()|
+|%userToken%|encodedUserToken|
+
+
+'''1.1.7 Sign In (user account locked out)'''
+
+!|Execute|!-update [OLB_USER] set LOCKED = 1 where LOGIN_ID = '-!${userName}'|
+!|DatabaseEnvironment|
+|commit|
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest/challenge|
+|setHeader|!- appKey : -!${institutionNum}!- 
+Content-Type : application/json
+Accept : application/json-!|
+|setBody|!-{"AuthenticationChallenge":{"authToken":null,"isAuthenticated":false,"errorMessage":null,"nextChallenge":"challenge.type.username.and.password","currentChallenge":"challenge.type.username.and.password","isChallengeSuccess":true,"challengeList":[{"AuthenticationChallengeItem":{"key":"challenge.item.type.username","value":"-!${userName}!-"}},{"AuthenticationChallengeItem":{"key":"challenge.item.type.password","value":"-!${userPassword}!-"}}]}}-!|
+|POST||200|||
+
+!|Execute|!-update [OLB_USER] set LOCKED = 0 where LOGIN_ID = '-!${userName}'|
+!|DatabaseEnvironment|
+|commit|
+
+'''1.1.8 Sign In (user account disabled)'''
+
+!|Execute|!-update [OLB_USER] set [USER_ENABLED]= 0 where LOGIN_ID = '-!${userName}'|
+!|DatabaseEnvironment|
+|commit|
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest/challenge|
+|setHeader|!- appKey : -!${institutionNum}!- 
+Content-Type : application/json
+Accept : application/json-!|
+|setBody|!-{"AuthenticationChallenge":{"authToken":null,"isAuthenticated":false,"errorMessage":null,"nextChallenge":"challenge.type.username.and.password","currentChallenge":"challenge.type.username.and.password","isChallengeSuccess":true,"challengeList":[{"AuthenticationChallengeItem":{"key":"challenge.item.type.username","value":"-!${userName}!-"}},{"AuthenticationChallengeItem":{"key":"challenge.item.type.password","value":"-!${userPassword}!-"}}]}}-!|
+|POST||200|||
+|let|auth|js|response.jsonbody.AuthenticationChallenge.isAuthenticated|false|
+
+!|Execute|!-update [OLB_USER] set [USER_ENABLED]= 1 where LOGIN_ID = '-!${userName}'|
+!|DatabaseEnvironment|
+|commit|
+
+'''1.1.9 Sign In (password expired)'''
+
+!|Execute|!-update [CREDENTIALS] set [PASSWORD_EXPIRATION_DATE] = '2012-09-10' where ID = (select CREDENTIALS_ID from [OLB_USER] where LOGIN_ID = '-!${userName}')|
+!|DatabaseEnvironment|
+|commit|
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest/challenge|
+|setHeader|!- appKey : -!${institutionNum}!- 
+Content-Type : application/json
+Accept : application/json-!|
+|setBody|!-{"AuthenticationChallenge":{"authToken":null,"isAuthenticated":false,"errorMessage":null,"nextChallenge":"challenge.type.username.and.password","currentChallenge":"challenge.type.username.and.password","isChallengeSuccess":true,"challengeList":[{"AuthenticationChallengeItem":{"key":"challenge.item.type.username","value":"-!${userName}!-"}},{"AuthenticationChallengeItem":{"key":"challenge.item.type.password","value":"-!${userPassword}!-"}}]}}-!|
+|POST||200|||
+|let|auth|js|response.jsonbody.AuthenticationChallenge.isAuthenticated|false|
+
+!|Execute|!-update [CREDENTIALS] set [PASSWORD_EXPIRATION_DATE] = '2020-09-10' where ID = (select CREDENTIALS_ID from [OLB_USER] where LOGIN_ID = '-!${userName}')|
+!|DatabaseEnvironment|
+|commit|
+****!
+!*****> '''1.2 System User'''
+'''1.2.1 Sign In (no/none existing apiKey value )'''
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest/challenge|
+|setHeader|!- appKey : null
+Content-Type : application/json
+Accept : application/json-!|
+|setBody|!-{"AuthenticationChallenge":{"authToken":null,"isAuthenticated":null,"errorMessage":null,"nextChallenge":null,"currentChallenge":null,"isChallengeSuccess":null,"challengeList":null}}-!|
+|POST||403|||
+|setHeader|!- appKey : 20
+Content-Type : application/json
+Accept : application/json-!|
+|setBody|!-{"AuthenticationChallenge":{"authToken":null,"isAuthenticated":null,"errorMessage":null,"nextChallenge":null,"currentChallenge":null,"isChallengeSuccess":null,"challengeList":null}}-!|
+|POST||403|||
+
+'''1.2.2 Sign In (incorrect user name/password)'''
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest/challenge|
+|setHeader|!- appKey : -!${adminApiKey}!- 
+Content-Type : application/json
+Accept : application/json-!|
+|setBody|!-{"AuthenticationChallenge":{"authToken":null,"isAuthenticated":false,"errorMessage":null,"nextChallenge":"challenge.type.username.and.password","currentChallenge":"challenge.type.username.and.password","isChallengeSuccess":true,"challengeList":[{"AuthenticationChallengeItem":{"key":"challenge.item.type.username","value":"IncorrectUserName"}},{"AuthenticationChallengeItem":{"key":"challenge.item.type.password","value":"-!${adminUserPassword}!-"}}]}}-!|
+|POST||200|||
+|let|errorMsg|js|response.jsonbody.AuthenticationChallenge.errorMessage|invalid.credentials|
+|let|auth|js|response.jsonbody.AuthenticationChallenge.isAuthenticated|false|
+|let|auth|js|response.jsonbody.AuthenticationChallenge.isChallengeSuccess|false|
+|setBody|!-{"AuthenticationChallenge":{"authToken":null,"isAuthenticated":false,"errorMessage":null,"nextChallenge":"challenge.type.username.and.password","currentChallenge":"challenge.type.username.and.password","isChallengeSuccess":true,"challengeList":[{"AuthenticationChallengeItem":{"key":"challenge.item.type.username","value":"-!${adminUserName}!-"}},{"AuthenticationChallengeItem":{"key":"challenge.item.type.password","value":"IncorrectPassword"}}]}}-!|
+|POST||200|||
+|let|errorMsg|js|response.jsonbody.AuthenticationChallenge.errorMessage|invalid.credentials|
+|let|auth|js|response.jsonbody.AuthenticationChallenge.isAuthenticated|false|
+|let|auth|js|response.jsonbody.AuthenticationChallenge.isChallengeSuccess|false|
+|comment| JIRA OLB-479 has been created for not returning error code|
+
+'''1.2.3 Sign In (login succeed)'''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest/challenge|
+|setHeader|!- appKey : -!${adminApiKey}!- 
+Content-Type : application/json
+Accept : application/json-!|
+|setBody|!-{"AuthenticationChallenge":{"authToken":null,"isAuthenticated":null,"errorMessage":null,"nextChallenge":null,"currentChallenge":null,"isChallengeSuccess":null,"challengeList":null}}-!|
+|POST||200|||
+|let|errorMsg|js|response.jsonbody.AuthenticationChallenge.errorMessage|null|
+|let|auth|js|response.jsonbody.AuthenticationChallenge.isAuthenticated|false|
+|setBody|!-{"AuthenticationChallenge":{"authToken":null,"isAuthenticated":false,"errorMessage":null,"nextChallenge":"challenge.type.username.and.password","currentChallenge":"challenge.type.username.and.password","isChallengeSuccess":true,"challengeList":[{"AuthenticationChallengeItem":{"key":"challenge.item.type.username","value":"-!${adminUserName}!-"}},{"AuthenticationChallengeItem":{"key":"challenge.item.type.password","value":"-!${adminUserPassword}!-"}}]}}-!|
+|POST||200|||
+|let|$adminToken|js|response.jsonbody.AuthenticationChallenge.authToken||
+|let|errorMsg|js|response.jsonbody.AuthenticationChallenge.errorMessage|null|
+|let|auth|js|response.jsonbody.AuthenticationChallenge.isAuthenticated|false|
+
+!|com.lodosoftware.fitnesse.fixtures.LodosoftwareFixtures|
+|symbolName|=getToken?|
+|adminToken|adminTokenRcvd|
+
+'''1.2.4 Sign In (null/incorrect secret question answer)'''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest/challenge|
+|setHeader|!- appKey : -!${adminApiKey}!- 
+Content-Type : application/json
+Accept : application/json-!|
+|setBody|!-{"AuthenticationChallenge":{"authToken":"-!%adminTokenRcvd%!-","isAuthenticated":false,"errorMessage":null,"nextChallenge":"challenge.type.secret.question","currentChallenge":"challenge.type.secret.question","isChallengeSuccess":true,"challengeList":[{"AuthenticationChallengeItem":{"key":"challenge.item.type.secret.question","value":null}}]}}-!|
+|POST||200|||
+|let|errorMsg|js|response.jsonbody.AuthenticationChallenge.errorMessage|!-ErrorCode: 40006 - Unable to find question-!|
+|let|auth|js|response.jsonbody.AuthenticationChallenge.isAuthenticated|false|
+|let|auth|js|response.jsonbody.AuthenticationChallenge.isChallengeSuccess|false|
+|setBody|!-{"AuthenticationChallenge":{"authToken":"-!%adminTokenRcvd%!-","isAuthenticated":false,"errorMessage":null,"nextChallenge":"challenge.type.secret.question","currentChallenge":"challenge.type.secret.question","isChallengeSuccess":true,"challengeList":[{"AuthenticationChallengeItem":{"key":"challenge.item.type.secret.question","value":"IncorrectQuestion"}}]}}-!|
+|POST||200|||
+|let|errorMsg|js|response.jsonbody.AuthenticationChallenge.errorMessage|!-ErrorCode: 40007 - invalid.credentials-!|
+|let|auth|js|response.jsonbody.AuthenticationChallenge.isAuthenticated|false|
+|let|auth|js|response.jsonbody.AuthenticationChallenge.isChallengeSuccess|false|
+
+'''1.2.5 Sign In (secret question answer succeed)'''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest/challenge|
+|setHeader|!- appKey : -!${adminApiKey}!- 
+Content-Type : application/json
+Accept : application/json-!|
+|setBody|!-{"AuthenticationChallenge":{"authToken":"-!%adminTokenRcvd%!-","isAuthenticated":false,"errorMessage":null,"nextChallenge":"challenge.type.secret.question","currentChallenge":"challenge.type.secret.question","isChallengeSuccess":true,"challengeList":[{"AuthenticationChallengeItem":{"key":"challenge.item.type.secret.question","value":"-!${adminSecretQuestionAnswer}!-"}}]}}-!|
+|POST||200|||
+|let|authenticated|js|response.jsonbody.AuthenticationChallenge.isAuthenticated|true|
+|let|$userAdminToken|js|response.jsonbody.AuthenticationChallenge.authToken||
+
+|!-org.eclg.fitnesse.tools.StringFixture-!|
+|value| =urlencode()|
+|%userAdminToken%|encodedAdminUserToken|
+
+'''1.2.6 Sign In (user account locked out)'''
+
+!|Execute|!-update [OLB_USER] set LOCKED = 1 where LOGIN_ID = '-!${adminUserName}'|
+!|DatabaseEnvironment|
+|commit|
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest/challenge|
+|setHeader|!- appKey : -!${adminApiKey}!- 
+Content-Type : application/json
+Accept : application/json-!|
+|setBody|!-{"AuthenticationChallenge":{"authToken":null,"isAuthenticated":false,"errorMessage":null,"nextChallenge":"challenge.type.username.and.password","currentChallenge":"challenge.type.username.and.password","isChallengeSuccess":true,"challengeList":[{"AuthenticationChallengeItem":{"key":"challenge.item.type.username","value":"-!${adminUserName}!-"}},{"AuthenticationChallengeItem":{"key":"challenge.item.type.password","value":"-!${adminUserPassword}!-"}}]}}-!|
+|POST||200|||
+
+!|Execute|!-update [OLB_USER] set LOCKED = 0 where LOGIN_ID = '-!${adminUserName}'|
+!|DatabaseEnvironment|
+|commit|
+
+'''1.2.7 Sign In (user account disabled)'''
+
+!|Execute|!-update [OLB_USER] set [USER_ENABLED]= 0 where LOGIN_ID = '-!${adminUserName}'|
+!|DatabaseEnvironment|
+|commit|
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest/challenge|
+|setHeader|!- appKey : -!${adminApiKey}!- 
+Content-Type : application/json
+Accept : application/json-!|
+|setBody|!-{"AuthenticationChallenge":{"authToken":null,"isAuthenticated":false,"errorMessage":null,"nextChallenge":"challenge.type.username.and.password","currentChallenge":"challenge.type.username.and.password","isChallengeSuccess":true,"challengeList":[{"AuthenticationChallengeItem":{"key":"challenge.item.type.username","value":"-!${adminUserName}!-"}},{"AuthenticationChallengeItem":{"key":"challenge.item.type.password","value":"-!${adminUserPassword}!-"}}]}}-!|
+|POST||200|||
+|let|auth|js|response.jsonbody.AuthenticationChallenge.isAuthenticated|false|
+
+!|Execute|!-update [OLB_USER] set [USER_ENABLED]= 1 where LOGIN_ID = '-!${adminUserName}'|
+!|DatabaseEnvironment|
+|commit|
+
+'''1.2.8 Sign In (password expired)'''
+
+!|Execute|!-update [CREDENTIALS] set [PASSWORD_EXPIRATION_DATE] = '2012-09-10' where ID = (select CREDENTIALS_ID from [OLB_USER] where LOGIN_ID = '-!${adminUserName}')|
+!|DatabaseEnvironment|
+|commit|
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest/challenge|
+|setHeader|!- appKey : -!${adminApiKey}!- 
+Content-Type : application/json
+Accept : application/json-!|
+|setBody|!-{"AuthenticationChallenge":{"authToken":null,"isAuthenticated":false,"errorMessage":null,"nextChallenge":"challenge.type.username.and.password","currentChallenge":"challenge.type.username.and.password","isChallengeSuccess":true,"challengeList":[{"AuthenticationChallengeItem":{"key":"challenge.item.type.username","value":"-!${adminUserName}!-"}},{"AuthenticationChallengeItem":{"key":"challenge.item.type.password","value":"-!${adminUserPassword}!-"}}]}}-!|
+|POST||200|||
+|let|auth|js|response.jsonbody.AuthenticationChallenge.isAuthenticated|false|
+
+!|Execute|!-update [CREDENTIALS] set [PASSWORD_EXPIRATION_DATE] = '2020-09-10' where ID = (select CREDENTIALS_ID from [OLB_USER] where LOGIN_ID = '-!${adminUserName}')|
+!|DatabaseEnvironment|
+|commit|
+****!
+!*****> '''1.3 Insight User'''
+'''1.3.1 Sign In (no/none existing apiKey value )'''
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest/challenge|
+|setHeader|!- appKey : null
+Content-Type : application/json
+Accept : application/json-!|
+|setBody|!-{"AuthenticationChallenge":{"authToken":null,"isAuthenticated":null,"errorMessage":null,"nextChallenge":null,"currentChallenge":null,"isChallengeSuccess":null,"challengeList":null}}-!|
+|POST||403|||
+|setHeader|!- appKey : 20
+Content-Type : application/json
+Accept : application/json-!|
+|setBody|!-{"AuthenticationChallenge":{"authToken":null,"isAuthenticated":null,"errorMessage":null,"nextChallenge":null,"currentChallenge":null,"isChallengeSuccess":null,"challengeList":null}}-!|
+|POST||403|||
+
+'''1.3.2 Sign In (incorrect user name/password)'''
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest/challenge|
+|setHeader|!- appKey : -!${fiApiKey}!- 
+Content-Type : application/json
+Accept : application/json-!|
+|setBody|!-{"AuthenticationChallenge":{"authToken":null,"isAuthenticated":false,"errorMessage":null,"nextChallenge":"challenge.type.username.and.password","currentChallenge":"challenge.type.username.and.password","isChallengeSuccess":true,"challengeList":[{"AuthenticationChallengeItem":{"key":"challenge.item.type.username","value":"IncorrectUserName"}},{"AuthenticationChallengeItem":{"key":"challenge.item.type.password","value":"-!${fiUserPassword}!-"}}]}}-!|
+|POST||200|||
+|let|errorMsg|js|response.jsonbody.AuthenticationChallenge.errorMessage|invalid.credentials|
+|let|auth|js|response.jsonbody.AuthenticationChallenge.isAuthenticated|false|
+|let|auth|js|response.jsonbody.AuthenticationChallenge.isChallengeSuccess|false|
+|setBody|!-{"AuthenticationChallenge":{"authToken":null,"isAuthenticated":false,"errorMessage":null,"nextChallenge":"challenge.type.username.and.password","currentChallenge":"challenge.type.username.and.password","isChallengeSuccess":true,"challengeList":[{"AuthenticationChallengeItem":{"key":"challenge.item.type.username","value":"-!${fiUserName}!-"}},{"AuthenticationChallengeItem":{"key":"challenge.item.type.password","value":"IncorrectPassword"}}]}}-!|
+|POST||200|||
+|let|errorMsg|js|response.jsonbody.AuthenticationChallenge.errorMessage|invalid.credentials|
+|let|auth|js|response.jsonbody.AuthenticationChallenge.isAuthenticated|false|
+|let|auth|js|response.jsonbody.AuthenticationChallenge.isChallengeSuccess|false|
+|comment| JIRA OLB-479 has been created for not returning error code|
+
+'''1.3.3 Sign In (login succeed)'''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest/challenge|
+|setHeader|!- appKey : -!${fiApiKey}!- 
+Content-Type : application/json
+Accept : application/json-!|
+|setBody|!-{"AuthenticationChallenge":{"authToken":null,"isAuthenticated":null,"errorMessage":null,"nextChallenge":null,"currentChallenge":null,"isChallengeSuccess":null,"challengeList":null}}-!|
+|POST||200|||
+|let|errorMsg|js|response.jsonbody.AuthenticationChallenge.errorMessage|null|
+|let|auth|js|response.jsonbody.AuthenticationChallenge.isAuthenticated|false|
+|setBody|!-{"AuthenticationChallenge":{"authToken":null,"isAuthenticated":false,"errorMessage":null,"nextChallenge":"challenge.type.username.and.password","currentChallenge":"challenge.type.username.and.password","isChallengeSuccess":true,"challengeList":[{"AuthenticationChallengeItem":{"key":"challenge.item.type.username","value":"-!${fiUserName}!-"}},{"AuthenticationChallengeItem":{"key":"challenge.item.type.password","value":"-!${fiUserPassword}!-"}}]}}-!|
+|POST||200|||
+|let|$fiToken|js|response.jsonbody.AuthenticationChallenge.authToken||
+|let|errorMsg|js|response.jsonbody.AuthenticationChallenge.errorMessage|null|
+|let|auth|js|response.jsonbody.AuthenticationChallenge.isAuthenticated|false|
+
+!|com.lodosoftware.fitnesse.fixtures.LodosoftwareFixtures|
+|symbolName|=getToken?|
+|fiToken|fiTokenRcvd|
+
+'''1.3.4 Sign In (null/incorrect secret question answer)'''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest/challenge|
+|setHeader|!- appKey : -!${fiApiKey}!- 
+Content-Type : application/json
+Accept : application/json-!|
+|setBody|!-{"AuthenticationChallenge":{"authToken":"-!%fiTokenRcvd%!-","isAuthenticated":false,"errorMessage":null,"nextChallenge":"challenge.type.secret.question","currentChallenge":"challenge.type.secret.question","isChallengeSuccess":true,"challengeList":[{"AuthenticationChallengeItem":{"key":"challenge.item.type.secret.question","value":null}}]}}-!|
+|POST||200|||
+|let|errorMsg|js|response.jsonbody.AuthenticationChallenge.errorMessage|!-ErrorCode: 40006 - Unable to find question-!|
+|let|auth|js|response.jsonbody.AuthenticationChallenge.isAuthenticated|false|
+|let|auth|js|response.jsonbody.AuthenticationChallenge.isChallengeSuccess|false|
+|setBody|!-{"AuthenticationChallenge":{"authToken":"-!%fiTokenRcvd%!-","isAuthenticated":false,"errorMessage":null,"nextChallenge":"challenge.type.secret.question","currentChallenge":"challenge.type.secret.question","isChallengeSuccess":true,"challengeList":[{"AuthenticationChallengeItem":{"key":"challenge.item.type.secret.question","value":"IncorrectQuestion"}}]}}-!|
+|POST||200|||
+|let|errorMsg|js|response.jsonbody.AuthenticationChallenge.errorMessage|!-ErrorCode: 40007 - invalid.credentials-!|
+|let|auth|js|response.jsonbody.AuthenticationChallenge.isAuthenticated|false|
+|let|auth|js|response.jsonbody.AuthenticationChallenge.isChallengeSuccess|false|
+
+'''1.3.5 Sign In (secret question answer succeed)'''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest/challenge|
+|setHeader|!- appKey : -!${fiApiKey}!- 
+Content-Type : application/json
+Accept : application/json-!|
+|setBody|!-{"AuthenticationChallenge":{"authToken":"-!%fiTokenRcvd%!-","isAuthenticated":false,"errorMessage":null,"nextChallenge":"challenge.type.secret.question","currentChallenge":"challenge.type.secret.question","isChallengeSuccess":true,"challengeList":[{"AuthenticationChallengeItem":{"key":"challenge.item.type.secret.question","value":"-!${fiSecretQuestionAnswer}!-"}}]}}-!|
+|POST||200|||
+|let|authenticated|js|response.jsonbody.AuthenticationChallenge.isAuthenticated|true|
+|let|$userFiToken|js|response.jsonbody.AuthenticationChallenge.authToken||
+
+|!-org.eclg.fitnesse.tools.StringFixture-!|
+|value| =urlencode()|
+|%userFiToken%|fiEncodedUserToken|
+
+'''1.3.6 Sign In (user account locked out)'''
+
+!|Execute|!-update [OLB_USER] set LOCKED = 1 where LOGIN_ID = '-!${fiUserName}'|
+!|DatabaseEnvironment|
+|commit|
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest/challenge|
+|setHeader|!- appKey : -!${fiApiKey}!- 
+Content-Type : application/json
+Accept : application/json-!|
+|setBody|!-{"AuthenticationChallenge":{"authToken":null,"isAuthenticated":false,"errorMessage":null,"nextChallenge":"challenge.type.username.and.password","currentChallenge":"challenge.type.username.and.password","isChallengeSuccess":true,"challengeList":[{"AuthenticationChallengeItem":{"key":"challenge.item.type.username","value":"-!${fiUserName}!-"}},{"AuthenticationChallengeItem":{"key":"challenge.item.type.password","value":"-!${fiUserPassword}!-"}}]}}-!|
+|POST||200|||
+
+!|Execute|!-update [OLB_USER] set LOCKED = 0 where LOGIN_ID = '-!${fiUserName}'|
+!|DatabaseEnvironment|
+|commit|
+
+'''1.3.7 Sign In (user account disabled)'''
+
+!|Execute|!-update [OLB_USER] set [USER_ENABLED]= 0 where LOGIN_ID = '-!${fiUserName}'|
+!|DatabaseEnvironment|
+|commit|
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest/challenge|
+|setHeader|!- appKey : -!${fiApiKey}!- 
+Content-Type : application/json
+Accept : application/json-!|
+|setBody|!-{"AuthenticationChallenge":{"authToken":null,"isAuthenticated":false,"errorMessage":null,"nextChallenge":"challenge.type.username.and.password","currentChallenge":"challenge.type.username.and.password","isChallengeSuccess":true,"challengeList":[{"AuthenticationChallengeItem":{"key":"challenge.item.type.username","value":"-!${fiUserName}!-"}},{"AuthenticationChallengeItem":{"key":"challenge.item.type.password","value":"-!${fiUserPassword}!-"}}]}}-!|
+|POST||200|||
+|let|auth|js|response.jsonbody.AuthenticationChallenge.isAuthenticated|false|
+
+!|Execute|!-update [OLB_USER] set [USER_ENABLED]= 1 where LOGIN_ID = '-!${fiUserName}'|
+!|DatabaseEnvironment|
+|commit|
+
+'''1.3.8 Sign In (password expired)'''
+
+!|Execute|!-update [CREDENTIALS] set [PASSWORD_EXPIRATION_DATE] = '2012-09-10' where ID = (select CREDENTIALS_ID from [OLB_USER] where LOGIN_ID = '-!${fiUserName}')|
+!|DatabaseEnvironment|
+|commit|
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest/challenge|
+|setHeader|!- appKey : -!${fiApiKey}!- 
+Content-Type : application/json
+Accept : application/json-!|
+|setBody|!-{"AuthenticationChallenge":{"authToken":null,"isAuthenticated":false,"errorMessage":null,"nextChallenge":"challenge.type.username.and.password","currentChallenge":"challenge.type.username.and.password","isChallengeSuccess":true,"challengeList":[{"AuthenticationChallengeItem":{"key":"challenge.item.type.username","value":"-!${fiUserName}!-"}},{"AuthenticationChallengeItem":{"key":"challenge.item.type.password","value":"-!${fiUserPassword}!-"}}]}}-!|
+|POST||200|||
+|let|auth|js|response.jsonbody.AuthenticationChallenge.isAuthenticated|false|
+
+!|Execute|!-update [CREDENTIALS] set [PASSWORD_EXPIRATION_DATE] = '2020-09-10' where ID = (select CREDENTIALS_ID from [OLB_USER] where LOGIN_ID = '-!${fiUserName}')|
+!|DatabaseEnvironment|
+|commit|
+****!
+****!

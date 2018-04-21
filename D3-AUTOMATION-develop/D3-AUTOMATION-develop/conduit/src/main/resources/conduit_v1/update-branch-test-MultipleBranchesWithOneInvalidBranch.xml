@@ -1,0 +1,81 @@
+<?xml version="1.0"?>
+<conduitBranchRequest xmlns="http://lodosoftware.com/conduit/branch">
+    <version>1.0</version>
+    <authentication>
+        <username>user</username>
+        <password>password</password>
+    </authentication>
+    <branchList>
+        <branch externalId="ArnaTest-1" parentExternalId="DEFAULT">
+            <business>
+                <name>UpdateMultipleBranchesWithOneInvalid</name>
+                <phone>303-455-4879</phone>
+                <physicalAddress>
+                    <address1>304 S INVERNESS, Updated </address1>
+                    <city>Highlands Ranch</city>
+                    <state>CA</state>
+                    <countryCode>US</countryCode>
+                    <postalCode>78945</postalCode>
+                    <geoCode>-94.2081456,36.3731619,0</geoCode>
+                </physicalAddress>
+            </business>
+        </branch>
+        <branch externalId="1234567" parentExternalId="DEFAULT">
+            <business>
+                <name>1234567</name>
+                <phone>303-555-5656</phone>
+                <physicalAddress>
+                    <address1>304 S INVERNESS, 1234567 </address1>
+                    <city>ENGLEWOOD</city>
+                    <state>123456789</state>
+                    <countryCode>US</countryCode>
+                    <postalCode>80112</postalCode>
+                    <geoCode>-94.2082557,36.3731619,0</geoCode>
+                </physicalAddress>
+            </business>
+        </branch>
+        <branch externalId="~!@#$%^*()_+=-`{}|\\][:;?,./]" parentExternalId="DEFAULT">
+            <business>
+                <name>~!@#$%^*()_+=-`{}|\\][:;?,./]</name>
+                <phone>303-555-5656</phone>
+                <physicalAddress>
+                    <address1>304 S INVERNESS, SUITE 395 </address1>
+                    <city>ENGLEWOOD</city>
+                    <state>CO</state>
+                    <countryCode>US</countryCode>
+                    <postalCode>80112</postalCode>
+                    <geoCode>-94.2082557,36.3731619,0</geoCode>
+                </physicalAddress>
+            </business>
+        </branch>
+        <branch externalId="BusinessNameNumeric" parentExternalId="DEFAULT">
+            <business>
+                <name>1234567</name>
+                <phone>303-555-5656</phone>
+                <physicalAddress>
+                    <address1>304 S INVERNESS, SUITE 395 </address1>
+                    <city>ENGLEWOOD</city>
+                    <state>CO</state>
+                    <countryCode>US</countryCode>
+                    <postalCode>80112</postalCode>
+                    <geoCode>-94.2082557,36.3731619,0</geoCode>
+                </physicalAddress>
+            </business>
+        </branch>
+        <branch externalId="BusinessNameChars" parentExternalId="DEFAULT">
+            <business>
+                <name>BusinessNameChars</name>
+                <phone>303-555-5656</phone>
+                <physicalAddress>
+                    <address1>304 S INVERNESS, SUITE 395 </address1>
+                    <city>ENGLEWOOD</city>
+                    <state>CO</state>
+                    <countryCode>US</countryCode>
+                    <postalCode>80112</postalCode>
+                    <geoCode>-94.2082557,36.3731619,0</geoCode>
+                </physicalAddress>
+            </business>
+        </branch>
+    </branchList>
+</conduitBranchRequest>
+

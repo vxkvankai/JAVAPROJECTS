@@ -1,0 +1,180 @@
+!*****> !style_green[OMITWORD]
+!*****> '''1.1 POST OMITWORD'''
+!*****> '''1.1.1 POST OMITWORD (/omitwords)'''
+
+'''1.1.1.1 Consumer User'''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest|
+|setHeader|!- appKey : -!${institutionNum}!- 
+Content-Type : application/json
+userToken : %encodedUser2Token%-!|
+|setBody|!-{
+    "OmitWord": {
+        "id": null,
+        "word": null
+    }
+}-!|
+|POST|/omitwords|400|||
+|let|$errMsg|js|response.jsonbody.message||
+
+!|com.lodosoftware.fitnesse.fixtures.LodosoftwareFixtures|
+|symbolName|str|isContain?|
+|errMsg|!-Operation requires Admin User.-!|true|
+
+'''1.1.1.2 Admin User (null values)'''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest|
+|setHeader|!- appKey : -!${adminApiKey}!- 
+Content-Type : application/json
+userToken : %encodedAdminUserToken%-!|
+|setBody|!-{
+    "OmitWord": {
+        "id": null,
+        "word": null
+    }
+}-!|
+|POST|/omitwords|400|||
+|let|$errMsg|js|response.jsonbody.message||
+
+!|com.lodosoftware.fitnesse.fixtures.LodosoftwareFixtures|
+|symbolName|str|isContain?|
+|errMsg|!-Argument wordSTOToSave-word is undefined but is required.-!|true|
+
+'''1.1.1.3 Admin User (word is not null)'''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest|
+|setHeader|!- appKey : -!${adminApiKey}!- 
+Content-Type : application/json
+userToken : %encodedAdminUserToken%-!|
+|setBody|!-{
+    "OmitWord": {
+        "id": null,
+        "word": "FITNESSE#TEST"
+    }
+}-!|
+|POST|/omitwords|200|||
+|let|$Id1|js|!-response.jsonbody.OmitWord.id-!||
+|let||js|!-response.jsonbody.OmitWord.word-!|!-FITNESSE#TEST-!|
+|setBody|!-{
+    "OmitWord": {
+        "word": "FITNESSE#TEST"
+    }
+}-!|
+|POST|/omitwords|200|||
+|let|$Id2|js|!-response.jsonbody.OmitWord.id-!||
+|let||js|!-response.jsonbody.OmitWord.word-!|!-FITNESSE#TEST-!|
+****!
+****!
+!*****> '''1.2 PUT OMITWORD'''
+!*****> '''1.2.1 PUT OMITWORD (/omitwords//{wordId})'''
+
+'''1.2.1.1 word to null value'''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest|
+|setHeader|!- appKey : -!${adminApiKey}!- 
+Content-Type : application/json
+userToken : %encodedAdminUserToken%-!|
+|setBody|!-{
+    "OmitWord": {
+        "word": null
+    }
+}-!|
+|PUT|/omitwords/%Id1%|400|||
+|let|$errMsg|js|response.jsonbody.message||
+
+!|com.lodosoftware.fitnesse.fixtures.LodosoftwareFixtures|
+|symbolName|str|isContain?|
+|errMsg|!-Argument wordSTOToSave-word is undefined but is required.-!|true|
+
+'''1.2.1.2 word to not null value'''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest|
+|setHeader|!- appKey : -!${adminApiKey}!- 
+Content-Type : application/json
+userToken : %encodedAdminUserToken%-!|
+|setBody|!-{
+    "OmitWord": {
+        "word": "Updated Test Word"
+    }
+}-!|
+|PUT|/omitwords/%Id1%|200|||
+|let||js|!-response.jsonbody.OmitWord.id-!|%Id1%|
+|let||js|!-response.jsonbody.OmitWord.word-!|!-Updated Test Word-!|
+
+'''1.2.1.3 non-existing ID'''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest|
+|setHeader|!- appKey : -!${adminApiKey}!- 
+Content-Type : application/json
+userToken : %encodedAdminUserToken%-!|
+|setBody|!-{
+    "OmitWord": {
+        "word": "None existingID"
+    }
+}-!|
+|PUT|/omitwords/01234567|400|||
+|let|$errMsg|js|response.jsonbody.message||
+
+!|com.lodosoftware.fitnesse.fixtures.LodosoftwareFixtures|
+|symbolName|str|isContain?|
+|errMsg|!-Unable to find omit word to update id:-!|true|
+
+****!
+****!
+!*****> '''1.3 GET OMITWORD'''
+!*****> '''1.3.1 GET OMITWORD (/omitwords/list)'''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest|
+|setHeader|!- appKey : -!${adminApiKey}!- 
+Content-Type : application/json
+userToken : %encodedAdminUserToken%-!|
+|setBody||
+|GET|/omitwords/list|200|||
+|let||js|!-response.jsonbody[0].id-!||
+|let||js|!-response.jsonbody[0].word-!||
+|let||js|!-response.jsonbody[1].id-!||
+|let||js|!-response.jsonbody[1].word-!||
+
+
+****!
+!*****> '''1.3.2 GET OMITWORD (/omitwords/{wordId})'''
+
+'''1.3.1.1 non-existing ID'''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest|
+|setHeader|!- appKey : -!${adminApiKey}!- 
+Content-Type : application/json
+userToken : %encodedAdminUserToken%-!|
+|GET|/omitwords/01234567|400|||
+|let|$errMsg|js|response.jsonbody.message||
+
+!|com.lodosoftware.fitnesse.fixtures.LodosoftwareFixtures|
+|symbolName|str|isContain?|
+|errMsg|!-Omit word not found for specified id-!|true|
+
+'''1.3.1.2 existing ID'''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest|
+|setHeader|!- appKey : -!${adminApiKey}!- 
+Content-Type : application/json
+userToken : %encodedAdminUserToken%-!|
+|GET|/omitwords/%Id1%|200|||
+|let||js|!-response.jsonbody.OmitWord.id-!|%Id1%|
+|let||js|!-response.jsonbody.OmitWord.word-!|!-Updated Test Word-!|
+****!
+****!
+!*****> '''1.4 DELETE OMITWORD'''
+!*****> '''1.4.1 DELETE OMITWORD (/omitwords/{wordId})'''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest|
+|setHeader|!- appKey : -!${adminApiKey}!- 
+Content-Type : application/json
+userToken : %encodedAdminUserToken%-!|
+|setBody||
+|DELETE|/omitwords/%Id1%|204|||
+|DELETE|/omitwords/%Id2%|204|||
+|DELETE|/omitwords/%Id1%|204|||
+
+****!
+****!
+****!

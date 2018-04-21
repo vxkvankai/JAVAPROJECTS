@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<conduitBranchRequest xmlns="http://lodosoftware.com/conduit/branch">
+    <version>1.0</version>
+    <authentication>
+        <username>user</username>
+        <password>password</password>
+    </authentication>
+    <branchList>
+        <branch externalId="MailAddressCountryNull" parentExternalId="DEFAULT">
+            <business>
+                <name>ARNA TEST BUSINESS NAME-1</name>
+                <phone>303-555-5656</phone>
+                <physicalAddress>
+                    <address1>304 S INVERNESS, SUITE 395 </address1>
+                    <city>ENGLEWOOD</city>
+                    <state>CO</state>
+                    <countryCode></countryCode>
+                    <postalCode>80112</postalCode>
+                    <geoCode>-94.2082557,36.3731619,0</geoCode>
+                </physicalAddress>
+                <mailingAddress>
+                    <address1>PO BOX 1229</address1>
+                    <city>BENTONVILLE</city>
+                    <state>AR</state>
+                    <countryCode></countryCode>
+                    <postalCode>72712</postalCode>
+                </mailingAddress>
+            </business>
+        </branch>
+    </branchList>
+</conduitBranchRequest>
+

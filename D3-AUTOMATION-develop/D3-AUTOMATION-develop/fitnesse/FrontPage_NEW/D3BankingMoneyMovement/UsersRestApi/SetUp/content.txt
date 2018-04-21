@@ -1,0 +1,203 @@
+!*****> !style_darkRed[DB CONNECTION]
+|Import fixture|
+|dbfit.fixture|
+
+!|DatabaseEnvironment|sqlserver|
+|Connect|${dbURL}|${dbUserName}|${dbUserName}|${dbName}|
+
+!|dbfit.fixture.DatabaseEnvironment|
+|set option|bind symbols|true|
+
+!|smartrics.rest.fitnesse.fixture.RestFixtureConfig|
+|http.client.connection.timeout|50000|
+
+****!
+!*****> !style_darkRed[VARIABLES]
+****!
+!*****> !style_darkRed[CREATE TEST DATA]
+
+!|Query|!-Select source_company_id as cuid from [company] where structure = 'INSTITUTION'-!|
+|cuid?|
+|>>cuid|
+
+!|com.lodosoftware.fitnesse.fixtures.LodoSoftFitFixtures|
+|symbolName|=getSymbolValue?|
+|cuid|cuidValue|
+
+!|com.lodosoftware.fitnesse.fixtures.LodoSoftFitFixtures|
+|cuid=|conduitFilePath|updateCompanySourceIdInConduitXMLFile?|
+|cuidValue|${conduitFileDirPath}conduit-fitnesse-testFile1.xml||
+
+!|com.lodosoftware.fitnesse.fixtures.LodoSoftFitFixtures|
+|loginId1|loginId2|conduitFilePath|updateUIDsInConduitXMLFile?|
+|${userLoginId}|${userLoginId2}|${conduitFileDirPath}conduit-fitnesse-testFile1.xml||
+
+!|com.lodosoftware.fitnesse.fixtures.LodoSoftFitFixtures|
+|loginId1|loginId2|conduitFilePath|updateLoginsInConduitXMLFile?|
+|${userLoginId}|${userLoginId2}|${conduitFileDirPath}conduit-fitnesse-testFile1.xml||
+
+
+!|com.lodosoftware.fitnesse.fixtures.LodoSoftFitFixtures|
+|conduitDirPathToDropFile|conduitFilePath|isFileProcesses?|
+|${conduitDirPathWhereToDropFile}|${conduitFileDirPath}${conduitFileName}|true|
+
+!|Execute|update [d3_user] set institution_id = ${institutionId}, credentials_id = ${credentialsId}, billpay_status= NULL, billpay_subscriber_id= NULL,  enrolled = 1 where login_id like'${userLoginId}%'|
+!|DatabaseEnvironment|
+|commit|
+
+
+!|Query|!-SELECT replace(convert(varchar, SYSDATETIME(), 111), '/', '-') as tDate,
+                 replace(convert(varchar, (select DATEADD(MONTH, +1, SYSDATETIME())), 111), '/', '-') as date1,
+                 replace(convert(varchar, (select DATEADD(Week, +2, SYSDATETIME())), 111), '/', '-') as date2,
+                 replace(convert(varchar, (select DATEADD(Week, +1, SYSDATETIME())), 111), '/', '-') as date3,
+                 replace(convert(varchar, (select DATEADD(MONTH, +2, SYSDATETIME())), 111), '/', '-') as date4,
+                 replace(convert(varchar, (select DATEADD(MONTH, +3, SYSDATETIME())), 111), '/', '-') as date5,
+                 replace(convert(varchar, (select DATEADD(MONTH, +6, SYSDATETIME())), 111), '/', '-') as date6,
+                 replace(convert(varchar, (select DATEADD(YEAR, +1, SYSDATETIME())), 111), '/', '-') as date7,
+                 replace(convert(varchar, (DATEADD(s,-1,DATEADD(mm, DATEDIFF(m,0, DATEADD(MONTH, +1, SYSDATETIME())),0))), 111), '/', '-') as date8-!|
+|tDate?|date1?|date2?|date3?|date4?|date5?|date6?|date7?|date8?|
+|>>todayDate|>>EVERY_MONTH|>>EVERY_TWO_WEEKS|>>EVERY_WEEK|>>EVERY_TWO_MONTHS|>>EVERY_THREE_MONTHS|>>EVERY_SIX_MONTHS|>>EVERY_YEAR|>>LAST_DAY_OF_MONTH|
+
+!|Query|!-SELECT 
+                 replace(convert(varchar, (select DATEADD(YEAR, -1, SYSDATETIME())), 111), '/', '-') as lastYear,
+                 replace(convert(varchar, (select DATEADD(YEAR, -2, SYSDATETIME())), 111), '/', '-') as twoLastYear,
+                 replace(convert(varchar, (select DATEADD(YEAR, -3, SYSDATETIME())), 111), '/', '-') as threeLastYear,
+                 replace(convert(varchar, (select DATEADD(YEAR, +1, SYSDATETIME())), 111), '/', '-') as nextYear,
+                 replace(convert(varchar, (select DATEADD(YEAR, +2, SYSDATETIME())), 111), '/', '-') as twoNextYear-!|
+|lastYear?|twoLastYear?|threeLastYear?|nextYear?|twoNextYear?|
+|>>lastYear|>>twoLastYear|>>threeLastYear|>>nextYear|>>twoNextYear|
+
+****!
+!*****> !style_darkRed[AUTH]
+
+!*****> !style_darkRed[1 POST]
+!*****> ''1.1 /auth/challenge''
+
+''first user''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest/auth/challenge|
+|setHeader|!-Content-Type : application/json-!|
+|setBody|!-{
+    "challenge": {
+        "type": "USER_NAME_PASSWORD", 
+        "items": [
+            {
+                "type": "USER_NAME", 
+                "response": "-!${userLoginId}!-"
+            }, 
+            {
+                "type": "PASSWORD", 
+                "response": "-!${userPassword}!-"
+            }
+        ]
+    }, 
+    "previousItems": [ ], 
+    "token": "-!${token1}!-", 
+    "isAuthenticated": false
+}-!|
+|POST||200|||
+|let||js|!-response.jsonbody.isAuthenticated-!|false|
+|let||js|!-response.jsonbody.token-!||
+|setBody|!-{
+    "challenge": {
+        "type": "SECRET_QUESTION", 
+        "items": [
+            {
+                "type": "SECRET_QUESTION", 
+                "value": "What is your mother's maiden name?", 
+                "response": "-!${answer}!-"
+            }
+        ]
+    }, 
+    "previousItems": [ ], 
+    "token": "-!${token1}!-", 
+    "isAuthenticated": false
+}-!|
+|POST||200|||
+|let||js|!-response.jsonbody.isAuthenticated-!||
+|let||js|!-response.jsonbody.token-!||
+|setBody|!-{
+    "challenge": {
+        "type": "TERMS_OF_SERVICE", 
+        "items": [
+            {
+                "type": "TERMS_OF_SERVICE", 
+                "value": "<html> Welcome <p> Our online financial management tools allow you to track spending behaviors, categorize expenses, and set goals to help you easily manage your finances and budget. <p> Ready to get started? Click the 'Accept' button below to begin using this new powerful financial management tool. </html>", 
+                "response": true
+            }
+        ]
+    }, 
+    "previousItems": [ ], 
+    "token": "-!${token1}!-", 
+    "isAuthenticated": false
+}-!|
+|POST||200|||
+|let||js|!-response.jsonbody.isAuthenticated-!|true|
+|let|$cookie1|header|sid=(.+); Path||
+
+''second user''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest/auth/challenge|
+|setHeader|!-Content-Type : application/json-!|
+|setBody|!-{
+    "challenge": {
+        "type": "USER_NAME_PASSWORD", 
+        "items": [
+            {
+                "type": "USER_NAME", 
+                "response": "-!${userLoginId2}!-"
+            }, 
+            {
+                "type": "PASSWORD", 
+                "response": "-!${userPassword2}!-"
+            }
+        ]
+    }, 
+    "previousItems": [ ], 
+    "token": "-!${token2}!-", 
+    "isAuthenticated": false
+}-!|
+|POST||200|||
+|let||js|!-response.jsonbody.isAuthenticated-!|false|
+|let||js|!-response.jsonbody.token-!||
+|setBody|!-{
+    "challenge": {
+        "type": "SECRET_QUESTION", 
+        "items": [
+            {
+                "type": "SECRET_QUESTION", 
+                "value": "What is your mother's maiden name?", 
+                "response": "-!${answer2}!-"
+            }
+        ]
+    }, 
+    "previousItems": [ ], 
+    "token": "-!${token2}!-", 
+    "isAuthenticated": false
+}-!|
+|POST||200|||
+|comment|DDB-1526|
+|let||js|!-response.jsonbody.isAuthenticated-!||
+|let|$cookie2|header|sid=(.+); Path||
+|setBody|!-{
+    "challenge": {
+        "type": "TERMS_OF_SERVICE", 
+        "items": [
+            {
+                "type": "TERMS_OF_SERVICE", 
+                "value": "<html> Welcome <p> Our online financial management tools allow you to track spending behaviors, categorize expenses, and set goals to help you easily manage your finances and budget. <p> Ready to get started? Click the 'Accept' button below to begin using this new powerful financial management tool. </html>", 
+                "response": true
+            }
+        ]
+    }, 
+    "previousItems": [ ], 
+    "token": "-!${token2}!-", 
+    "isAuthenticated": false
+}-!|
+|POST||200|||
+|let||js|!-response.jsonbody.isAuthenticated-!|true|
+|let|$cookie2|header|sid=(.+); Path||
+
+****!
+****!
+****!

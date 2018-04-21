@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<conduit>
+  <hdr>
+    <ver>2.0</ver>
+    <rqid>01234567890</rqid>
+    <authn u="user" p="password"/>
+    <txndtrng bdt="2013-09-01" edt="2013-09-30"/>
+    <parse>ftrue</parse>
+  </hdr>
+  <complst>
+    <comp uid="com-uid-001" puid="ROOT">
+      <tp>institution</tp>
+      <busn>
+        <nm>Test Business Name -1</nm>
+        <paddr>
+			<a1>111 Any Physical Street</a1>
+			<ct>Englewood</ct>
+			<st>CO</st>
+			<pc>80112</pc>
+		</paddr>
+        <maddr>
+			<a1>555 Any Mailing Street</a1>
+			<ct>Highlands Ranch</ct>
+			<st>CO</st>
+			<pc>80111</pc>
+		</maddr>
+		<ct1>
+		    <fn>TestFirstName</fn>
+			<ln>TestLastName</ln>
+		</ct1>
+		<ct2>
+		    <fn>TestFirstName2</fn>
+			<ln>TestLastName2</ln>
+		</ct2>
+      </busn>
+      <acctprodlst>
+        <acctprod uid="acctprod-uid-001">
+          <ac>a</ac>
+          <nm>TestAccountProductName-1</nm>
+          <alst>
+          </alst>  
+        </acctprod>
+      </acctprodlst>
+      <alst>
+      </alst>
+    </comp>
+    <comp uid="com-uid-002" puid="com-uid-001">
+      <tp>branch</tp>
+      <busn>
+        <nm>Test Business Name -2</nm>
+        <paddr>
+			<a1>111 Any Physical Street</a1>
+			<ct>Englewood</ct>
+			<st>CO</st>
+			<pc>80112</pc>
+		</paddr>
+        <maddr>
+			<a1>555 Any Mailing Street</a1>
+			<ct>Highlands Ranch</ct>
+			<st>CO</st>
+			<pc>80111</pc>
+		</maddr>
+		<ct1>
+		    <fn>TestFirstName2-1</fn>
+			<ln>TestLastName2-1</ln>
+		</ct1>
+		<ct2>
+		    <fn>TestFirstName2-2</fn>
+			<ln>TestLastName2-2</ln>
+		</ct2>
+      </busn>
+      <acctprodlst>
+        <acctprod uid="acctprod-uid-002">
+          <ac>l</ac>
+          <nm>TestAccountProductName-2</nm>
+          <alst>
+          </alst>  
+        </acctprod>
+      </acctprodlst>
+      <alst>
+      </alst>
+    </comp>
+   </complst>
+</conduit>

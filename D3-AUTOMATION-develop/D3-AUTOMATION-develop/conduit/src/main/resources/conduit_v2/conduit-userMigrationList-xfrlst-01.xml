@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<conduit>
+  <hdr>
+    <ver>2.0</ver>
+    <rqid>01234567890</rqid>
+    <authn u="user" p="password"/>
+    <txndtrng bdt="2013-09-01" edt="2013-09-30"/>
+    <parse>ftrue</parse>
+  </hdr>
+
+  <usrmiglst>
+    <usrmig uid="usr-uid-001">
+	    <xfrlst>
+	        <xfr uid="scxfr-uid-001">
+	          <fauid>acct-uid-001</fauid>
+	          <tauid>acct-uid-002</tauid>
+	          <nm>Transfer History test!</nm>
+	          <mm>This is test1 running with junit tests!</mm>
+	          <amt>666.66</amt>
+	          <postdt>2014-01-15</postdt>
+	          <postsq>1</postsq>
+	          <cnfmnbr>123</cnfmnbr>
+	        </xfr>
+	     </xfrlst>
+	     <xfrlst>
+	        <xfr uid="scxfr-uid-002">
+	          <fauid>acct-uid-001</fauid>
+	          <tauid>acct-uid-002</tauid>
+	          <nm>occurrences: Transfer History test!</nm>
+	          <mm>This is test2 running with junit tests!</mm>
+	          <amt>777.09</amt>
+	          <postdt>2014-01-16</postdt>
+	          <postsq>2</postsq>
+	          <cnfmnbr>124</cnfmnbr>
+	          <alst>
+	            <a n="occurrences">8</a>
+	          </alst>
+	        </xfr>
+	     </xfrlst>
+	     <xfrlst>
+	        <xfr uid="scxfr-uid-003">
+	          <fauid>acct-uid-001</fauid>
+	          <tauid>acct-uid-002</tauid>
+	          <nm>indefinite: Transfer History test!</nm>
+	          <mm>This is test3 running with junit tests!</mm>
+	          <amt>0.12</amt>
+	          <postdt>2014-01-17</postdt>
+	          <postsq>3</postsq>
+	          <cnfmnbr>125</cnfmnbr>
+	           <alst>
+	            <a n="indefinite" t="integer" d="3">1</a>
+	          </alst>
+	        </xfr>
+	     </xfrlst>
+    </usrmig>
+  </usrmiglst>
+</conduit>

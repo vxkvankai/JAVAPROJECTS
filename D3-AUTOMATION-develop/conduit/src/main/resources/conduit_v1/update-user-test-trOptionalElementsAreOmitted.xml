@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<conduitUserRequest xmlns="http://lodosoftware.com/conduit/user">
+    <version>1.0</version>
+    <authentication>
+        <username>userName</username>
+        <password>password</password>
+    </authentication>
+    <transactionDateRange>
+        <beginDate>2012-06-29</beginDate>
+        <endDate>2012-06-29</endDate>
+    </transactionDateRange>
+    <accountList>
+        <account directId="accountDirectID1-1">
+			<accountName>Updated Account Name</accountName>
+            <transactionList>
+                <transaction directId="1268206987">
+                    <amount>45.78</amount>
+                    <name>UpdatedTransaction Name</name>
+                    <postDate>2012-06-29</postDate>
+                    <type>1</type>
+                    <pending>true</pending>
+                    <postingSeq>78</postingSeq>
+					                  
+                </transaction>
+            </transactionList>
+        </account>
+    </accountList>
+</conduitUserRequest>

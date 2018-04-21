@@ -1,0 +1,258 @@
+!|Execute|!-delete from [system_event]
+delete from [conduit_stats]
+update [d3_user] set credentials_id = null where login_id like '-!${userLoginId}!-%'
+
+delete from [terms_of_service_acceptance] where user_id = (select id from d3_user where login_id = '-!${userLoginId}!-')
+WHILE((select count(*)from [alert_journal] as t1, [alert_journal_prop] as t2 where t1.id=t2.alert_journal_id and t1.user_id = (select id from d3_user where login_id = '-!${userLoginId}!-')) > 0) 
+BEGIN
+  delete from [alert_journal_prop] where alert_journal_id = 
+ (select top 1 t2.alert_journal_id from [alert_journal] as t1, [alert_journal_prop] as t2 where t1.id=t2.alert_journal_id and t1.user_id = (select id from d3_user where login_id = '-!${userLoginId}!-'))
+END
+delete from [alert_journal] where user_id = (select top 1 id from d3_user where login_id = '-!${userLoginId}!-')
+WHILE((select count (*) from [transfer] as t1, [internal_transfer] as t2 where t1.id=t2.id and t1.user_id = (select id from d3_user where login_id = '-!${userLoginId}!-')) > 0) 
+BEGIN
+  delete from [internal_transfer] where id = 
+ (select top 1 t2.id from [transfer] as t1, [internal_transfer] as t2 where t1.id=t2.id and t1.user_id = (select id from d3_user where login_id = '-!${userLoginId}!-'))
+END
+WHILE((select count (*) from [bill_pay_transfer] where id = (select top 1 t1.id from [bill_pay_transfer] as t1, [bill_pay_recipient] as t2, [bill_pay_payee] as t3 
+  where t1.[bill_pay_recipient_id] = t2.id and t2.[bill_pay_recip_data_id]=t3.id and t3.user_id = (select id from d3_user where login_id = '-!${userLoginId}!-'))) > 0) 
+BEGIN
+  delete from [bill_pay_transfer] where id = (select top 1 t1.id from [bill_pay_transfer] as t1, [bill_pay_recipient] as t2, [bill_pay_payee] as t3 
+  where t1.[bill_pay_recipient_id] = t2.id and t2.[bill_pay_recip_data_id]=t3.id and t3.user_id = (select id from d3_user where login_id = '-!${userLoginId}!-'))
+END
+delete from [transfer] where user_id = (select top 1 id from d3_user where login_id = '-!${userLoginId}!-')
+WHILE((select count (*) from [alert_user_alert] as t1, [alert_user_alert_prop] as t2 where t1.id=t2.user_alert_id and t1.user_id = (select id from d3_user where login_id = '-!${userLoginId}!-')) > 0) 
+BEGIN
+  delete from [alert_user_alert_prop] where user_alert_id = 
+ (select top 1 t2.user_alert_id from [alert_user_alert] as t1, [alert_user_alert_prop] as t2 where t1.id=t2.user_alert_id and t1.user_id = (select id from d3_user where login_id = '-!${userLoginId}!-'))
+END
+WHILE((select count (*) from [alert_user_alert] as t1, [alert_user_dest_join] as t2 where t1.id=t2.user_alert_id and t1.user_id = (select id from d3_user where login_id = '-!${userLoginId}!-')) > 0) 
+BEGIN
+  delete from [alert_user_dest_join] where user_alert_id = 
+ (select top 1 t2.user_alert_id from [alert_user_alert] as t1, [alert_user_dest_join] as t2 where t1.id=t2.user_alert_id and t1.user_id = (select id from d3_user where login_id = '-!${userLoginId}!-'))
+END
+WHILE((select count (*) from [user_account] as t1, [internal_account_recipient] as t2 where t1.id=t2.user_account_id and t1.user_id = (select id from d3_user where login_id = '-!${userLoginId}!-')) > 0) 
+BEGIN
+  delete from [internal_recurring_model] where recipient_id = 
+ (select top 1 t2.id from [user_account] as t1, [internal_account_recipient] as t2 where t1.id=t2.user_account_id and t1.user_id = (select id from d3_user where login_id = '-!${userLoginId}!-'))
+
+   delete from [internal_account_recipient] where user_account_id = 
+ (select top 1 t2.user_account_id from [user_account] as t1, [internal_account_recipient] as t2 where t1.id=t2.user_account_id and t1.user_id = (select id from d3_user where login_id = '-!${userLoginId}!-'))
+
+END
+WHILE((select count (*) from [user_account] as t1, [internal_account_recipient] as t2 where t1.id=t2.user_account_id and t1.user_id = (select id from d3_user where login_id = '-!${userLoginId}!-')) > 0) 
+BEGIN
+  delete from [internal_account_recipient] where [user_account_id] = 
+ (select top 1 t2.[user_account_id] from [user_account] as t1, [internal_account_recipient] as t2 where t1.id=t2.user_account_id and t1.user_id = (select id from d3_user where login_id = '-!${userLoginId}!-'))
+END
+delete from [alert_user_alert] where user_id = (select top 1 id from d3_user where login_id = '-!${userLoginId}!-') 
+delete from [recurring_model] where user_id = (select top 1 id from d3_user where login_id = '-!${userLoginId}!-')
+delete from [user_account] where user_id = (select top 1 id from d3_user where login_id = '-!${userLoginId}!-') 
+delete from [user_transaction] where user_id = (select top 1 id from d3_user where login_id = '-!${userLoginId}!-') 
+delete from [user_transaction_split] where user_id = (select top 1 id from d3_user where login_id = '-!${userLoginId}!-') 
+WHILE((select count (*) from [d3_account] as t1, [d3_transaction] as t2 where t1.id=t2.account_id and t1.source_account_id like 'acct--!${userLoginId}!--0%') > 0) 
+BEGIN
+  delete from [d3_transaction] where account_id = 
+ (select top 1 t2.account_id from [d3_account] as t1, [d3_transaction] as t2 where t1.id=t2.account_id and t1.source_account_id like 'acct--!${userLoginId}!--0%')
+END
+WHILE((select count (*) from [d3_account] as t1, [account_attribute] as t2 where t1.id=t2.account_id and t1.source_account_id like 'acct--!${userLoginId}!--0%') > 0) 
+BEGIN
+  delete from [account_attribute] where account_id = 
+ (select top 1 t2.account_id from [d3_account] as t1, [account_attribute] as t2 where t1.id=t2.account_id and t1.source_account_id like 'acct--!${userLoginId}!--0%')
+END
+WHILE((select count(*) from [internal_transfer] where [recipient_id] = 
+ (select top 1 t2.[recipient_id] from [recipient] as t1, [internal_transfer] as t2 where t1.id=t2.[recipient_id] and t1.user_id = (select id from d3_user where login_id = '-!${userLoginId}!-'))) > 0) 
+BEGIN
+  delete from [internal_transfer] where [recipient_id] = 
+ (select top 1 t2.[recipient_id] from [recipient] as t1, [internal_transfer] as t2 where t1.id=t2.[recipient_id] and t1.user_id = (select id from d3_user where login_id = '-!${userLoginId}!-'))
+END
+WHILE((select count(*) from [internal_account_recipient] where [user_account_id] = 
+ (select top 1 t2.[user_account_id] from [user_account] as t1, [internal_account_recipient] as t2, [d3_account] as t3
+  where t1.id=t2.[user_account_id] and t1.account_id=t3.id and t3.source_account_id like 'acct--!${userLoginId}!--0%')) > 0) 
+BEGIN
+  delete from [internal_account_recipient] where [user_account_id] = 
+ (select top 1 t2.[user_account_id] from [user_account] as t1, [internal_account_recipient] as t2, [d3_account] as t3
+  where t1.id=t2.[user_account_id] and t1.account_id=t3.id and t3.source_account_id like 'acct--!${userLoginId}!--0%')
+END
+WHILE((select count (*) from [user_account] where account_id = 
+ (select top 1 t2.account_id from [d3_account] as t1, [user_account] as t2 where t1.id=t2.account_id and t1.source_account_id like 'acct--!${userLoginId}!--0%')) > 0) 
+BEGIN
+  delete from [user_account] where account_id = 
+ (select top 1 t2.account_id from [d3_account] as t1, [user_account] as t2 where t1.id=t2.account_id and t1.source_account_id like 'acct--!${userLoginId}!--0%')
+END
+delete [d3_account] where source_account_id like 'acct--!${userLoginId}!--0%'
+delete from [user_message] where user_id = (select top 1 id from d3_user where login_id = '-!${userLoginId}!-')  
+delete from [user_session] where user_id = (select top 1 id from d3_user where login_id = '-!${userLoginId}!-') 
+delete from [alert_user_dest] where user_id = (select top 1 id from d3_user where login_id = '-!${userLoginId}!-')
+delete from [categorization_rule] where user_id = (select top 1 id from d3_user where login_id = '-!${userLoginId}!-')
+delete from [category] where user_id = (select top 1 id from d3_user where login_id = '-!${userLoginId}!-')
+WHILE((select count (*) from [recipient] as t1, [person_recipient] as t2 where t1.id=t2.id and t1.user_id = (select top 1 id from d3_user where login_id = '-!${userLoginId}!-')) > 0) 
+BEGIN
+  delete from [person_recipient] where id = 
+ (select top 1 t2.id from [recipient] as t1, [person_recipient] as t2 where t1.id=t2.id and t1.user_id = (select top 1 id from d3_user where login_id = '-!${userLoginId}!-'))
+END
+WHILE((select count (*) from [recipient] as t1, [company_recipient] as t2 where t1.id=t2.id and t1.user_id = (select top 1 id from d3_user where login_id = '-!${userLoginId}!-')) > 0) 
+BEGIN
+  delete from [company_recipient] where id = 
+ (select top 1 t2.id from [recipient] as t1, [company_recipient] as t2 where t1.id=t2.id and t1.user_id = (select top 1 id from d3_user where login_id = '-!${userLoginId}!-'))
+END
+WHILE((select count (*) from [recipient] as t1, [bill_pay_recipient] as t2 where t1.id=t2.id and t1.user_id = (select top 1 id from d3_user where login_id = '-!${userLoginId}!-')) > 0) 
+BEGIN
+  delete from [bill_pay_recipient] where id = 
+ (select top 1 t2.id from [recipient] as t1, [bill_pay_recipient] as t2 where t1.id=t2.id and t1.user_id = (select top 1 id from d3_user where login_id = '-!${userLoginId}!-'))
+END
+delete from [recipient] where user_id = (select top 1 id from d3_user where login_id = '-!${userLoginId}!-')
+delete from [renaming_rule] where  user_id = (select top 1 id from d3_user where login_id = '-!${userLoginId}!-')
+WHILE((select count (*) from [budget] as t1, [budget_period] as t2 where t1.id=t2.budget_id and t1.user_id = (select top 1 id from d3_user where login_id = '-!${userLoginId}!-')) > 0) 
+BEGIN
+ delete from [budget_category] where [budget_period_id] = 
+ (select top 1 t2.id from [budget] as t1, [budget_period] as t2 where t1.id=t2.budget_id and t1.user_id = (select top 1 id from d3_user where login_id = '-!${userLoginId}!-') )
+
+  delete from [budget_period] where id = 
+ (select top 1 t2.id from [budget] as t1, [budget_period] as t2 where t1.id=t2.budget_id and t1.user_id = (select top 1 id from d3_user where login_id = '-!${userLoginId}!-') )
+END
+delete from [budget] where  user_id = (select top 1 id from d3_user where login_id = '-!${userLoginId}!-') 
+
+WHILE((select count (*) from [bill_pay_payee] as t1, [bill_pay_payee_payment_service] as t2 where t1.id=t2.[bill_pay_payee_id] and t1.user_id = (select top 1 id from d3_user where login_id = '-!${userLoginId}!-')) > 0) 
+BEGIN
+  delete from [bill_pay_payee_payment_service] where [bill_pay_payee_id] = 
+ (select top 1 t2.[bill_pay_payee_id] from [bill_pay_payee] as t1, [bill_pay_payee_payment_service] as t2 where t1.id=t2.[bill_pay_payee_id] and t1.user_id = (select top 1 id from d3_user where login_id = '-!${userLoginId}!-'))
+END
+delete from [bill_pay_payee] where  user_id = (select top 1 id from d3_user where login_id = '-!${userLoginId}!-') 
+delete from [recurring_model] where user_id = (select top 1 id from d3_user where login_id = '-!${userLoginId}!-')
+
+
+WHILE((select count(*) from [internal_account_recipient] where [user_account_id] = 
+   (select top 1 t2.user_account_id from [user_account] as t1, [internal_account_recipient] as t2 where t1.id=t2.user_account_id and t1.user_id = (select id from d3_user where login_id = '-!${userLoginId}!-'))) > 0) 
+BEGIN
+   delete from [internal_account_recipient] where [user_account_id] = 
+   (select top 1 t2.user_account_id from [user_account] as t1, [internal_account_recipient] as t2 where t1.id=t2.user_account_id and t1.user_id = (select id from d3_user where login_id = '-!${userLoginId}!-'))
+END
+WHILE((select count(*) from [bill_pay_recipient] where [bill_pay_recip_data_id] = 
+   (select top 1 t2.[bill_pay_recip_data_id] from [bill_pay_payee] as t1, [bill_pay_recipient] as t2 where t1.id=t2.[bill_pay_recip_data_id] and t1.user_id = (select id from d3_user where login_id = '-!${userLoginId}!-'))) > 0) 
+BEGIN
+   delete from [bill_pay_recipient] where [bill_pay_recip_data_id] = 
+   (select top 1 t2.[bill_pay_recip_data_id] from [bill_pay_payee] as t1, [bill_pay_recipient] as t2 where t1.id=t2.[bill_pay_recip_data_id] and t1.user_id = (select id from d3_user where login_id = '-!${userLoginId}!-'))
+END
+delete from [recipient] where user_id = (select top 1 id from d3_user where login_id = '-!${userLoginId}!-')
+
+
+
+
+
+
+WHILE((select count(*)from [alert_journal] as t1, [alert_journal_prop] as t2 where t1.id=t2.alert_journal_id and t1.user_id = (select id from d3_user where login_id = '-!${userLoginId2}!-')) > 0) 
+BEGIN
+  delete from [alert_journal_prop] where alert_journal_id = 
+ (select top 1 t2.alert_journal_id from [alert_journal] as t1, [alert_journal_prop] as t2 where t1.id=t2.alert_journal_id and t1.user_id = (select id from d3_user where login_id = '-!${userLoginId2}!-'))
+END
+delete from [alert_journal] where user_id = (select top 1 id from d3_user where login_id = '-!${userLoginId2}!-')
+WHILE((select count (*) from [transfer] as t1, [internal_transfer] as t2 where t1.id=t2.id and t1.user_id = (select id from d3_user where login_id = '-!${userLoginId2}!-')) > 0) 
+BEGIN
+  delete from [internal_transfer] where id = 
+ (select top 1 t2.id from [transfer] as t1, [internal_transfer] as t2 where t1.id=t2.id and t1.user_id = (select id from d3_user where login_id = '-!${userLoginId2}!-'))
+END
+WHILE((select count (*) from [bill_pay_transfer] where id = (select top 1 t1.id from [bill_pay_transfer] as t1, [bill_pay_recipient] as t2, [bill_pay_payee] as t3 
+  where t1.[bill_pay_recipient_id] = t2.id and t2.[bill_pay_recip_data_id]=t3.id and t3.user_id = (select id from d3_user where login_id = '-!${userLoginId2}!-'))) > 0) 
+BEGIN
+  delete from [bill_pay_transfer] where id = (select top 1 t1.id from [bill_pay_transfer] as t1, [bill_pay_recipient] as t2, [bill_pay_payee] as t3 
+  where t1.[bill_pay_recipient_id] = t2.id and t2.[bill_pay_recip_data_id]=t3.id and t3.user_id = (select id from d3_user where login_id = '-!${userLoginId2}!-'))
+END
+delete from [transfer] where user_id = (select top 1 id from d3_user where login_id = '-!${userLoginId2}!-')
+WHILE((select count (*) from [alert_user_alert] as t1, [alert_user_alert_prop] as t2 where t1.id=t2.user_alert_id and t1.user_id = (select id from d3_user where login_id = '-!${userLoginId2}!-')) > 0) 
+BEGIN
+  delete from [alert_user_alert_prop] where user_alert_id = 
+ (select top 1 t2.user_alert_id from [alert_user_alert] as t1, [alert_user_alert_prop] as t2 where t1.id=t2.user_alert_id and t1.user_id = (select id from d3_user where login_id = '-!${userLoginId2}!-'))
+END
+WHILE((select count (*) from [alert_user_alert] as t1, [alert_user_dest_join] as t2 where t1.id=t2.user_alert_id and t1.user_id = (select id from d3_user where login_id = '-!${userLoginId2}!-')) > 0) 
+BEGIN
+  delete from [alert_user_dest_join] where user_alert_id = 
+ (select top 1 t2.user_alert_id from [alert_user_alert] as t1, [alert_user_dest_join] as t2 where t1.id=t2.user_alert_id and t1.user_id = (select id from d3_user where login_id = '-!${userLoginId2}!-'))
+END
+WHILE((select count (*) from [user_account] as t1, [internal_account_recipient] as t2 where t1.id=t2.user_account_id and t1.user_id = (select id from d3_user where login_id = '-!${userLoginId2}!-')) > 0) 
+BEGIN
+  delete from [internal_recurring_model] where recipient_id = 
+ (select top 1 t2.id from [user_account] as t1, [internal_account_recipient] as t2 where t1.id=t2.user_account_id and t1.user_id = (select id from d3_user where login_id = '-!${userLoginId2}!-'))
+
+   delete from [internal_account_recipient] where user_account_id = 
+ (select top 1 t2.user_account_id from [user_account] as t1, [internal_account_recipient] as t2 where t1.id=t2.user_account_id and t1.user_id = (select id from d3_user where login_id = '-!${userLoginId2}!-'))
+
+END
+WHILE((select count (*) from [user_account] as t1, [internal_account_recipient] as t2 where t1.id=t2.user_account_id and t1.user_id = (select id from d3_user where login_id = '-!${userLoginId2}!-')) > 0) 
+BEGIN
+  delete from [internal_account_recipient] where [user_account_id] = 
+ (select top 1 t2.[user_account_id] from [user_account] as t1, [internal_account_recipient] as t2 where t1.id=t2.user_account_id and t1.user_id = (select id from d3_user where login_id = '-!${userLoginId2}!-'))
+END
+delete from [alert_user_alert] where user_id = (select top 1 id from d3_user where login_id = '-!${userLoginId2}!-') 
+delete from [recurring_model] where user_id = (select top 1 id from d3_user where login_id = '-!${userLoginId2}!-')
+delete from [user_account] where user_id = (select top 1 id from d3_user where login_id = '-!${userLoginId2}!-') 
+delete from [user_transaction] where user_id = (select top 1 id from d3_user where login_id = '-!${userLoginId2}!-') 
+delete from [user_transaction_split] where user_id = (select top 1 id from d3_user where login_id = '-!${userLoginId2}!-') 
+WHILE((select count (*) from [d3_account] as t1, [d3_transaction] as t2 where t1.id=t2.account_id and t1.source_account_id like 'acct-fitTestLogin-0%') > 0) 
+BEGIN
+  delete from [d3_transaction] where account_id = 
+ (select top 1 t2.account_id from [d3_account] as t1, [d3_transaction] as t2 where t1.id=t2.account_id and t1.source_account_id like 'acct-fitTestLogin-0%')
+END
+WHILE((select count (*) from [d3_account] as t1, [account_attribute] as t2 where t1.id=t2.account_id and t1.source_account_id like 'acct-fitTestLogin-0%') > 0) 
+BEGIN
+  delete from [account_attribute] where account_id = 
+ (select top 1 t2.account_id from [d3_account] as t1, [account_attribute] as t2 where t1.id=t2.account_id and t1.source_account_id like 'acct-fitTestLogin-0%')
+END
+delete [d3_account] where source_account_id like 'acct-fitTestLogin-0%'
+delete from [user_message] where user_id = (select top 1 id from d3_user where login_id = '-!${userLoginId2}!-')  
+delete from [user_session] where user_id = (select top 1 id from d3_user where login_id = '-!${userLoginId2}!-') 
+delete from [alert_user_dest] where user_id = (select top 1 id from d3_user where login_id = '-!${userLoginId2}!-')
+delete from [categorization_rule] where user_id = (select top 1 id from d3_user where login_id = '-!${userLoginId2}!-')
+delete from [category] where user_id = (select top 1 id from d3_user where login_id = '-!${userLoginId2}!-')
+WHILE((select count (*) from [recipient] as t1, [person_recipient] as t2 where t1.id=t2.id and t1.user_id = (select top 1 id from d3_user where login_id = '-!${userLoginId2}!-')) > 0) 
+BEGIN
+  delete from [person_recipient] where id = 
+ (select top 1 t2.id from [recipient] as t1, [person_recipient] as t2 where t1.id=t2.id and t1.user_id = (select top 1 id from d3_user where login_id = '-!${userLoginId2}!-'))
+END
+WHILE((select count (*) from [recipient] as t1, [company_recipient] as t2 where t1.id=t2.id and t1.user_id = (select top 1 id from d3_user where login_id = '-!${userLoginId2}!-')) > 0) 
+BEGIN
+  delete from [company_recipient] where id = 
+ (select top 1 t2.id from [recipient] as t1, [company_recipient] as t2 where t1.id=t2.id and t1.user_id = (select top 1 id from d3_user where login_id = '-!${userLoginId2}!-'))
+END
+WHILE((select count (*) from [recipient] as t1, [bill_pay_recipient] as t2 where t1.id=t2.id and t1.user_id = (select top 1 id from d3_user where login_id = '-!${userLoginId2}!-')) > 0) 
+BEGIN
+  delete from [bill_pay_recipient] where id = 
+ (select top 1 t2.id from [recipient] as t1, [bill_pay_recipient] as t2 where t1.id=t2.id and t1.user_id = (select top 1 id from d3_user where login_id = '-!${userLoginId2}!-'))
+END
+delete from [recipient] where user_id = (select top 1 id from d3_user where login_id = '-!${userLoginId2}!-')
+delete from [renaming_rule] where  user_id = (select top 1 id from d3_user where login_id = '-!${userLoginId2}!-')
+WHILE((select count (*) from [budget] as t1, [budget_period] as t2 where t1.id=t2.budget_id and t1.user_id = (select top 1 id from d3_user where login_id = '-!${userLoginId2}!-')) > 0) 
+BEGIN
+ delete from [budget_category] where [budget_period_id] = 
+ (select top 1 t2.id from [budget] as t1, [budget_period] as t2 where t1.id=t2.budget_id and t1.user_id = (select top 1 id from d3_user where login_id = '-!${userLoginId2}!-') )
+
+  delete from [budget_period] where id = 
+ (select top 1 t2.id from [budget] as t1, [budget_period] as t2 where t1.id=t2.budget_id and t1.user_id = (select top 1 id from d3_user where login_id = '-!${userLoginId2}!-') )
+END
+delete from [budget] where  user_id = (select top 1 id from d3_user where login_id = '-!${userLoginId2}!-') 
+
+WHILE((select count (*) from [bill_pay_payee] as t1, [bill_pay_payee_payment_service] as t2 where t1.id=t2.[bill_pay_payee_id] and t1.user_id = (select top 1 id from d3_user where login_id = '-!${userLoginId2}!-')) > 0) 
+BEGIN
+  delete from [bill_pay_payee_payment_service] where [bill_pay_payee_id] = 
+ (select top 1 t2.[bill_pay_payee_id] from [bill_pay_payee] as t1, [bill_pay_payee_payment_service] as t2 where t1.id=t2.[bill_pay_payee_id] and t1.user_id = (select top 1 id from d3_user where login_id = '-!${userLoginId2}!-'))
+END
+delete from [bill_pay_payee] where  user_id = (select top 1 id from d3_user where login_id = '-!${userLoginId2}!-') 
+delete from [recurring_model] where user_id = (select top 1 id from d3_user where login_id = '-!${userLoginId2}!-')
+
+
+WHILE((select count(*) from [internal_account_recipient] where [user_account_id] = 
+   (select top 1 t2.user_account_id from [user_account] as t1, [internal_account_recipient] as t2 where t1.id=t2.user_account_id and t1.user_id = (select id from d3_user where login_id = '-!${userLoginId2}!-'))) > 0) 
+BEGIN
+   delete from [internal_account_recipient] where [user_account_id] = 
+   (select top 1 t2.user_account_id from [user_account] as t1, [internal_account_recipient] as t2 where t1.id=t2.user_account_id and t1.user_id = (select id from d3_user where login_id = '-!${userLoginId2}!-'))
+END
+WHILE((select count(*) from [bill_pay_recipient] where [bill_pay_recip_data_id] = 
+   (select top 1 t2.[bill_pay_recip_data_id] from [bill_pay_payee] as t1, [bill_pay_recipient] as t2 where t1.id=t2.[bill_pay_recip_data_id] and t1.user_id = (select id from d3_user where login_id = '-!${userLoginId2}!-'))) > 0) 
+BEGIN
+   delete from [bill_pay_recipient] where [bill_pay_recip_data_id] = 
+   (select top 1 t2.[bill_pay_recip_data_id] from [bill_pay_payee] as t1, [bill_pay_recipient] as t2 where t1.id=t2.[bill_pay_recip_data_id] and t1.user_id = (select id from d3_user where login_id = '-!${userLoginId2}!-'))
+END
+delete from [recipient] where user_id = (select top 1 id from d3_user where login_id = '-!${userLoginId2}!-')
+-!|
+!|DatabaseEnvironment|
+|commit|

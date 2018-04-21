@@ -1,0 +1,85 @@
+<?xml version="1.0"?>
+<conduitUserRequest xmlns="http://lodosoftware.com/conduit/user">
+    <version>1.0</version>
+    <authentication>
+        <username>userName</username>
+        <password>password</password>
+    </authentication>
+    <transactionDateRange>
+        <beginDate>2010-05-24</beginDate>
+        <endDate>2013-05-30</endDate>
+    </transactionDateRange>
+    <userList>
+        <user directId="UserDirectID2NullTest" directId2="">
+            <loginId>TestUserLoginID</loginId>
+            <branchExternalId>ArnaTest-1</branchExternalId>
+            <taxId>304-26-2460</taxId>
+            <taxIdType>SSN</taxIdType>
+            <locked>false</locked>
+            <userEnabled>true</userEnabled>
+            <emailOptOut>false</emailOptOut>
+            <dateOfBirth>1980-08-24</dateOfBirth>
+            <gender>F</gender>
+            <billpaySubscriberId>316492460304</billpaySubscriberId>
+            <creditScore>800</creditScore>
+            <creditScoreDate>2012-04-20</creditScoreDate>
+            <userClass>DOUBLE-PLATNUM</userClass>
+            <person>
+                <firstName>Arna</firstName>
+                <lastName>Badyelkhan</lastName>
+                <primaryEmail>abadyelkhan@lodosoftware.com</primaryEmail>
+                <homePhone>304-304-2460</homePhone>
+                <employee>true</employee>
+                <physicalAddress>
+                    <address1>9568 Missouri Ave</address1>
+                    <city>LOWELL</city>
+                    <state>AR</state>
+                    <countryCode>US</countryCode>
+                    <postalCode>72745-9551</postalCode>
+                </physicalAddress>
+            </person>
+            <credentials>
+                <profileName>arnatest2</profileName>
+                <password>P@ssw0rd</password>
+                <secretQuestion1>Where do you work?</secretQuestion1>
+                <secretAnswer1>LodoSoftware</secretAnswer1>
+                <secretQuestion2></secretQuestion2>
+                <secretAnswer2></secretAnswer2>
+                <secretQuestion3></secretQuestion3>
+                <secretAnswer3></secretAnswer3>
+            </credentials>
+            <userAccountList>
+                <userAccount action="associate">
+                    <accountDirectId>accountDirectID1-1</accountDirectId>
+                    <nickname>daa9ad60dfefa4065812a439f7f00ae0</nickname>
+                    <excluded>false</excluded>
+                    <hidden>false</hidden>
+                    <hideByAdmin>false</hideByAdmin>
+                    <displayOrder>1</displayOrder>
+                </userAccount>
+            </userAccountList>
+        </user>
+    </userList>
+    <accountList>
+        <account directId="accountDirectID1-1">
+            <accountName>AccountName1-1</accountName>
+            <branchExternalId>ArnaTest-1</branchExternalId>
+			<accountProductExternalId>DEFAULT_COMPANY_CHECKING</accountProductExternalId>
+	     	<routingTransitNumber>TEST1</routingTransitNumber>
+            <accountNumber>9292f28e23f70e9a9a4ca03545489ff1</accountNumber>
+            <accountClass>accountclass.deposit</accountClass>
+            <accountType>accounttype.banking.checking</accountType>
+            <balance>44400.84</balance>
+            <transactionList>
+                <transaction directId="1268206987">
+                    <amount>+000000000000300.00</amount>
+                    <name>84baa369a45e64d84435a0b1f2672e47</name>
+                    <postDate>2012-05-29</postDate>
+                    <type>0</type>
+                    <pending>false</pending>
+                    <postingSeq>1</postingSeq>
+                </transaction>
+            </transactionList>
+        </account>
+    </accountList>
+</conduitUserRequest>

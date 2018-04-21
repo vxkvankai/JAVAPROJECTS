@@ -1,0 +1,663 @@
+!*****> '''!style_darkRed[RECIPIENTS]'''
+
+!*****> !style_darkRed[1 POST]
+!*****> ''1.1 /d3api/recipients''
+!*****> ''EXECUTE PREREQUISITE REST APIs''
+
+!|Query|!-  select t1.id as UserAccIds, t2.account_name as accName from [user_account] as t1, [d3_account] as t2 
+            where t1.account_id=t2.id and t1.user_id = (select id from d3_user where login_id = '-!${userLoginId}!-') and t2.source_account_id like 'acct--!${userLoginId}!--0%'-! ORDER By t2.account_name|
+|UserAccIds?|accName?|
+|>>UserAccId1|>>accName1|
+|>>UserAccId2|>>accName2|
+|>>UserAccId3|>>accName3|
+|>>UserAccId4|>>accName4|
+|>>UserAccId5|>>accName5|
+|>>UserAccId6|>>accName6|
+|>>UserAccId7|>>accName7|
+|>>UserAccId8|>>accName8|
+|>>UserAccId9|>>accName9|
+|>>UserAccId10|>>accName10|
+|>>UserAccId11|>>accName11|
+|>>UserAccId12|>>accName12|
+|>>UserAccId13|>>accName13|
+|>>UserAccId14|>>accName14|
+|>>UserAccId15|>>accName15|
+|>>UserAccId16|>>accName16|
+|>>UserAccId17|>>accName17|
+|>>UserAccId18|>>accName18|
+|>>UserAccId19|>>accName19|
+|>>UserAccId20|>>accName20|
+|>>UserAccId21|>>accName21|
+|>>UserAccId22|>>accName22|
+|>>UserAccId23|>>accName23|
+|>>UserAccId24|>>accName24|
+|>>UserAccId25|>>accName25|
+|>>UserAccId26|>>accName26|
+|>>UserAccId27|>>accName27|
+|>>UserAccId28|>>accName28|
+
+!|Query|!-  select t1.id as UserAccIds from [user_account] as t1, [d3_account] as t2 
+            where t1.account_id=t2.id and t1.user_id = (select id from d3_user where login_id = '-!${userLoginId2}!-') and t2.source_account_id like 'acct--!${userLoginId}!--0%'-!|
+|UserAccIds?|
+|>>UserAccId29|
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest|
+|setHeader|!-Content-Type : application/json
+Cookie: sid=-!%cookie1%|
+|setBody|!-{
+    "phoneNumber": "4025554118", 
+    "email": "samuel.adamsiii@d3banking.com", 
+    "address": {
+        "street1": "11222 Lake Forest Dr", 
+        "street2": null, 
+        "city": "Denver", 
+        "state": "CO", 
+        "zip": "80247"
+    }, 
+    "userAccountId": "-!%UserAccId5%!-", 
+    "dateOfBirth": "1985-07-18", 
+    "taxId": "132454567"
+}-!|
+|POST|/users/current/billPayEnrollment|200|||
+****!
+
+''Create company type of recipient''
+
+!|Query|!-select top 1 id as categoryId, category_name from [category] where company_id = 1-!|
+|categoryId?|category_name?|
+|>>categoryId1|>>categoryName1|
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest/recipients|
+|setHeader|!-Content-Type : application/json
+Cookie: sid=-!%cookie1%|
+|setBody|!-{
+    "type": "COMPANY", 
+    "merchantZipRequired": false, 
+    "name": "PayToName", 
+    "nickname": "FitTestCreatedCompanyNickName", 
+    "accountNumber": "123456789", 
+    "address": {
+        "street1": "123 Inverness St", 
+        "street2": "Suit 304", 
+        "city": "Denver", 
+        "state": "CO", 
+        "zip": "80112"
+    }, 
+    "phoneNumber": "3036666666", 
+    "category": {
+        "id": -!%categoryId1%!-
+    }
+}-!|
+|POST||200|||
+|let||js|!-response.jsonbody.type-!|COMPANY|
+|let|$comRecipientId1|js|!-response.jsonbody.id-!||
+|let||js|!-response.jsonbody.deleted-!|false|
+|let||js|!-response.jsonbody.category.name-!|%categoryName1%|
+|let||js|!-response.jsonbody.name-!|!-PayToName-!|
+|let||js|!-response.jsonbody.nickname-!|!-FitTestCreatedCompanyNickName-!|
+|let||js|!-response.jsonbody.address.id-!||
+|let||js|!-response.jsonbody.address.street1-!|123 Inverness St|
+|let||js|!-response.jsonbody.address.street2-!|Suit 304|
+|let||js|!-response.jsonbody.address.city-!|Denver|
+|let||js|!-response.jsonbody.address.state-!|CO|
+|let||js|!-response.jsonbody.address.zip-!|80112|
+|let||js|!-response.jsonbody.phoneNumber-!|3036666666|
+|let||js|!-response.jsonbody.accountNumber-!|123456789|
+|let||js|!-response.jsonbody.merchantZipRequired-!||
+|let||js|!-response.jsonbody.recipientDetails.recurring-!||
+|let||js|!-response.jsonbody.recipientDetails.ebills-!||
+|let||js|!-response.jsonbody.recipientDetails.autoPay-!||
+
+''type is missing''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest/recipients|
+|setHeader|!-Content-Type : application/json
+Cookie: sid=-!%cookie1%|
+|setBody|!-{
+    "merchantZipRequired": false, 
+    "name": "PayToName", 
+    "nickname": "FitTestCreatedCompanyNickName1", 
+    "accountNumber": "123456789", 
+    "address": {
+        "street1": "123 Inverness St", 
+        "street2": "Suit 304", 
+        "city": "Denver", 
+        "state": "CO", 
+        "zip": "80112"
+    }, 
+    "phoneNumber": "3036666666", 
+    "category": {
+       "id": -!%categoryId1%!-
+    }
+}-!|
+|POST||400|||
+|let|$errMsg|js|response.jsonbody.message||
+
+!|com.lodosoftware.fitnesse.fixtures.LodoSoftFitFixtures|
+|symbolName|str|isContain?|
+|errMsg|!-FIELD_NAME: missing property 'type'-!|true|
+
+''non-supported type value''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest/recipients|
+|setHeader|!-Content-Type : application/json
+Cookie: sid=-!%cookie1%|
+|setBody|!-{
+    "type": "SOMETHING",  
+    "name": "PayToName", 
+    "nickname": "FitTestCreatedCompanyNickName1", 
+    "accountNumber": "123456789", 
+    "address": {
+        "street1": "123 Inverness St", 
+        "street2": "Suit 304", 
+        "city": "Denver", 
+        "state": "CO", 
+        "zip": "80112"
+    }, 
+    "phoneNumber": "3036666666", 
+    "category": {
+       "id": -!%categoryId1%!-
+    }
+}-!|
+|POST||400|||
+|let|$errMsg|js|response.jsonbody.message||
+
+!|com.lodosoftware.fitnesse.fixtures.LodoSoftFitFixtures|
+|symbolName|str|isContain?|
+|errMsg|!-Could not resolve type id-!|true|
+
+''name is omitted''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest/recipients|
+|setHeader|!-Content-Type : application/json
+Cookie: sid=-!%cookie1%|
+|setBody|!-{
+    "type": "COMPANY",   
+    "nickname": "FitTestCreatedCompanyNickName1", 
+    "accountNumber": "123456789", 
+    "address": {
+        "street1": "123 Inverness St", 
+        "street2": "Suit 304", 
+        "city": "Denver", 
+        "state": "CO", 
+        "zip": "80112"
+    }, 
+    "phoneNumber": "3036666666", 
+    "category": {
+       "id": -!%categoryId1%!-
+    }
+}-!|
+|POST||500|||
+|let|$errMsg|js|response.jsonbody[0].message|Missing required field|
+|comment|DDB-1542|
+
+''Nickname, accountNumber, street2 and category are omitted ''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest/recipients|
+|setHeader|!-Content-Type : application/json
+Cookie: sid=-!%cookie1%|
+|setBody|!-{
+    "type": "COMPANY",  
+    "name": "PayToName", 
+    "accountNumber": "123456789", 
+    "address": {
+        "street1": "123 Inverness St", 
+        "city": "Denver", 
+        "state": "CO", 
+        "zip": "80112"
+    }, 
+    "phoneNumber": "3036666666"
+}-!|
+|POST||200|||
+|let||js|!-response.jsonbody.type-!|COMPANY|
+|let|$comRecipientId2|js|!-response.jsonbody.id-!||
+
+''address is omitted''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest/recipients|
+|setHeader|!-Content-Type : application/json
+Cookie: sid=-!%cookie1%|
+|setBody|!-{
+    "type": "COMPANY",   
+    "name": "PayToName", 
+    "nickname": "FitTestCreatedCompanyNickName2", 
+    "accountNumber": "123456789", 
+    "phoneNumber": "3036666666", 
+    "category": {
+       "id": -!%categoryId1%!-
+    }
+}-!|
+|POST||500|||
+|let|$errMsg|js|response.jsonbody[0].message||
+|comment|DDB-1542|
+
+''phoneNum is omitted''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest/recipients|
+|setHeader|!-Content-Type : application/json
+Cookie: sid=-!%cookie1%|
+|setBody|!-{
+    "type": "COMPANY",   
+    "nickname": "FitTestCreatedCompanyNickName2", 
+    "name": "PayToName", 
+    "address": {
+        "street1": "123 Inverness St",  
+        "city": "Denver", 
+        "state": "CO", 
+        "zip": "80112"
+    }, 
+    "category": {
+       "id": -!%categoryId1%!-
+    }
+}-!|
+|POST||500|||
+|let|$errMsg|js|response.jsonbody[0].message|Missing required field|
+|comment|DDB-1542|
+
+''categoryId is omitted''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest/recipients|
+|setHeader|!-Content-Type : application/json
+Cookie: sid=-!%cookie1%|
+|setBody|!-{
+    "type": "COMPANY",   
+    "nickname": "FitTestCreatedCompanyNickName2", 
+    "accountNumber": "123456789", 
+    "address": {
+        "street1": "123 Inverness St",  
+        "city": "Denver", 
+        "state": "CO", 
+        "zip": "80112"
+    }, 
+    "category": {
+       "id": -!%categoryId1%!-
+    }
+}-!|
+|POST||500|||
+|comment|DDB-1542|
+
+''non-existent categoryId''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest/recipients|
+|setHeader|!-Content-Type : application/json
+Cookie: sid=-!%cookie1%|
+|setBody|!-{
+    "type": "COMPANY",   
+    "nickname": "FitTestCreatedCompanyNickName3", 
+    "accountNumber": "123456789", 
+    "address": {
+        "street1": "123 Inverness St",  
+        "city": "Denver", 
+        "state": "CO", 
+        "zip": "80112"
+    }, 
+    "category": {
+        "id": 477777777
+    }
+}-!|
+|POST||404|||
+|let|$errMsg|js|response.jsonbody.message||
+
+!|com.lodosoftware.fitnesse.fixtures.LodoSoftFitFixtures|
+|symbolName|str|isContain?|
+|errMsg|!-Data requested by caller was not found. Type=category-!|true|
+
+
+''Create person type of recipient''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest/recipients|
+|setHeader|!-Content-Type : application/json
+Cookie: sid=-!%cookie1%|
+|setBody|!-{
+    "type": "PERSON", 
+    "firstName": "TestFirstName", 
+    "lastName": "TestLastName", 
+    "nickname": "TestNickName1", 
+    "address": {
+        "street1": "123 Inverness St", 
+        "street2": "Suite 305", 
+        "city": "Englewood", 
+        "state": "CO", 
+        "zip": "80112"
+    }, 
+    "email": "test@d3banking.com", 
+    "phoneNumber": "3034564564", 
+    "category": {
+       "id": -!%categoryId1%!-
+    }
+}-!|
+|POST||200|||
+|let||js|!-response.jsonbody.type-!|PERSON|
+|let|$personRecipientId1|js|!-response.jsonbody.id-!||
+|let||js|!-response.jsonbody.deleted-!|false|
+|let||js|!-response.jsonbody.category.name-!|%categoryName1%|
+|let||js|!-response.jsonbody.name-!|!-TestFirstName TestLastName-!|
+|let||js|!-response.jsonbody.nickname-!|!-TestNickName1-!|
+|let||js|!-response.jsonbody.address.id-!||
+|let||js|!-response.jsonbody.address.street1-!|123 Inverness St|
+|let||js|!-response.jsonbody.address.street2-!|Suite 305|
+|let||js|!-response.jsonbody.address.city-!|Englewood|
+|let||js|!-response.jsonbody.address.state-!|CO|
+|let||js|!-response.jsonbody.address.zip-!|80112|
+|let||js|!-response.jsonbody.phoneNumber-!|3034564564|
+|let||js|!-response.jsonbody.merchantZipRequired-!||
+|let||js|!-response.jsonbody.recipientDetails.recurring-!||
+|let||js|!-response.jsonbody.recipientDetails.ebills-!||
+|let||js|!-response.jsonbody.recipientDetails.autoPay-!||
+|let||js|!-response.jsonbody.email-!|!-test@d3banking.com-!|
+|let||js|!-response.jsonbody.firstName-!|!-TestFirstName-!|
+|let||js|!-response.jsonbody.lastName-!|!-TestLastName-!|
+
+
+''firstName, lastName, nickname, street2, email, category are omitted''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest/recipients|
+|setHeader|!-Content-Type : application/json
+Cookie: sid=-!%cookie1%|
+|setBody|!-{
+    "type": "PERSON", 
+    "address": {
+        "street1": "123 Inverness St", 
+        "city": "Englewood", 
+        "state": "CO", 
+        "zip": "80112"
+    }, 
+    "phoneNumber": "3034564564"
+}-!|
+|POST||200|||
+|let||js|!-response.jsonbody.type-!|PERSON|
+|let|$personRecipientId2|js|!-response.jsonbody.id-!||
+****!
+!*****> ''1.2 /d3api/recipients/{id}/ebillForm (ebillsRestsApi tests cover)''
+****!
+!*****> ''1.3 /d3api/recipients/{id}/autopay (ebillsRestsApi tests cover)''
+
+
+'' All fields with values''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest/recipients|
+|setHeader|!-Content-Type : application/json
+Cookie: sid=-!%cookie1%|
+|setBody|!-{
+    "payAmount": "AMOUNT_DUE", 
+    "payOn": "UNSPECIFIED", 
+    "paymentScheduledAlert": false, 
+    "paymentSentAlert": false, 
+    "recipient": {
+        "type": "PERSON", 
+        "id": -!%personRecipientId1%!-
+    }, 
+    "userAccountId": -!%UserAccId5%!-,
+    "maxAuthorizedAmount": "4500", 
+    "fixedAmount": "52", 
+    "daysBefore": "ONE"
+}-!|
+|POST|/%personRecipientId1%/autoPay|500|||
+|comment|DDB-1541|
+****!
+!*****> ''1.4 /d3api/recipients/{id}/paperSuppression (ebillsRestsApi tests cover)''
+****!
+****!
+
+!*****> !style_darkRed[2 PUT]
+!*****> ''2.1 /d3api/recipients/{id}?modifyPending='boolean'''
+****!
+!*****> ''2.2 /d3api/recipients/{id}/removeEbill(ebillsRestsApi tests cover)''
+****!
+!*****> ''2.3 /d3api/recipients/{id}/removeRecurring?cancelPending=boolean (ebillsRestsApi tests cover)''
+****!
+!*****> ''2.4 /d3api/recipients/{id}/removeAutoPay (ebillsRestsApi tests cover)''
+****!
+!*****> ''2.5 /d3api/recipients/{id}/autopay (ebillsRestsApi tests cover)''
+****!
+****!
+
+!*****> !style_darkRed[3 GET]
+!*****> ''3.1 /d3api/recipients/{id}''
+''valid id''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest/recipients|
+|setHeader|!-Content-Type : application/json
+Cookie: sid=-!%cookie1%|
+|GET|/%comRecipientId1%|200|||
+|let||js|!-response.jsonbody.type-!|COMPANY|
+|let||js|!-response.jsonbody.version-!||
+|let||js|!-response.jsonbody.id-!|%comRecipientId1%|
+|let||js|!-response.jsonbody.deleted-!|false|
+|let||js|!-response.jsonbody.category.name-!||
+|let||js|!-response.jsonbody.name-!|!-PayToName-!|
+|let||js|!-response.jsonbody.nickname-!|!-FitTestCreatedCompanyNickName-!|
+|let||js|!-response.jsonbody.address.street1-!|123 Inverness St|
+|let||js|!-response.jsonbody.phoneNumber-!|3036666666|
+|let||js|!-response.jsonbody.accountNumber-!|123456789|
+|let||js|!-response.jsonbody.merchantZipRequired-!|false|
+|let||js|!-response.jsonbody.recipientDetails.ebills-!|false|
+|let||js|!-response.jsonbody.recipientDetails.autoPay-!|false|
+|let||js|!-response.jsonbody.payments-!|null|
+|GET|/%personRecipientId1%|200|||
+|let||js|!-response.jsonbody.type-!|PERSON|
+|let||js|!-response.jsonbody.version-!||
+|let||js|!-response.jsonbody.id-!|%personRecipientId1%|
+|let||js|!-response.jsonbody.deleted-!|false|
+|let||js|!-response.jsonbody.category.name-!||
+|let||js|!-response.jsonbody.name-!|!-TestFirstName TestLastName-!|
+|let||js|!-response.jsonbody.nickname-!|!-TestNickName1-!|
+|let||js|!-response.jsonbody.address.street1-!|123 Inverness St|
+|let||js|!-response.jsonbody.phoneNumber-!|3034564564|
+|let||js|!-response.jsonbody.merchantZipRequired-!|false|
+|let||js|!-response.jsonbody.recipientDetails.ebills-!|false|
+|let||js|!-response.jsonbody.recipientDetails.autoPay-!|false|
+|let||js|!-response.jsonbody.payments-!|null|
+|let||js|!-response.jsonbody.email-!|!-test@d3banking.com-!|
+|let||js|!-response.jsonbody.firstName-!|!-TestFirstName-!|
+|let||js|!-response.jsonbody.lastName-!|!-TestLastName-!|
+
+''invalid id''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest/recipients|
+|setHeader|!-Content-Type : application/json
+Cookie: sid=-!%cookie1%|
+|GET|/000111222|400|||
+|let||js|!-response.jsonbody.message-!|!-ErrorCode: 200002 - Argument recipient-111222 is undefined but is required.-!|
+
+****!
+!*****> ''3.2 /d3api/recipients?type=type&ebillAllowed=true (ebillsRestsApi tests cover)''
+
+''type = company"
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest/|
+|setHeader|!-Content-Type : application/json
+Cookie: sid=-!%cookie1%|
+|GET|recipients?type=company&ebillAllowed=true|404|||
+|let||js|!-response.jsonbody-!||
+|comment|JIRA|
+
+''type = person''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest/|
+|setHeader|!-Content-Type : application/json
+Cookie: sid=-!%cookie1%|
+|GET|recipients?type=person&ebillAllowed=true|404|||
+|let||js|!-response.jsonbody-!||
+
+''type = account'
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest/|
+|setHeader|!-Content-Type : application/json
+Cookie: sid=-!%cookie1%|
+|GET|recipients?type=account&ebillAllowed=true|404|||
+|let||js|!-response.jsonbody-!||
+
+''type = internal_account''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest/|
+|setHeader|!-Content-Type : application/json
+Cookie: sid=-!%cookie1%|
+|GET|recipients?type=internal_account&ebillAllowed=true|404|||
+|let||js|!-response.jsonbody-!||
+
+''ebillAllowed=false'
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest/|
+|setHeader|!-Content-Type : application/json
+Cookie: sid=-!%cookie1%|
+|GET|recipients?type=company&ebillAllowed=false|404|||
+|let||js|!-response.jsonbody-!||
+
+****!
+!*****> ''3.3 /d3api/recipients/{id}/paperSuppression (ebillsRestsApi tests cover)''
+
+''valid company recipientId''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest/recipients|
+|setHeader|!-Content-Type : application/json
+Cookie: sid=-!%cookie1%|
+|GET|/%comRecipientId1%/paperSuppression|500|||
+|comment|DDB-1543|
+
+
+''valid person recipientId''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest/recipients|
+|setHeader|!-Content-Type : application/json
+Cookie: sid=-!%cookie1%|
+|GET|/%personRecipientId1%/paperSuppression|500|||
+|comment|DDB-1543|
+
+''invalid id"
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest/recipients|
+|setHeader|!-Content-Type : application/json
+Cookie: sid=-!%cookie1%|
+|GET|/%comRecipientId1%/paperSuppression|500|||
+|comment|DDB-1543|
+
+****!
+!*****> ''3.4 /d3api/recipients/{id}/ebillForm (ebillsRestsApi tests cover)''
+
+''valid company recipientId''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest/recipients|
+|setHeader|!-Content-Type : application/json
+Cookie: sid=-!%cookie1%|
+|GET|/%comRecipientId1%/ebillForm|500|||
+|comment|JIRA|
+
+
+''valid person recipientId''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest/recipients|
+|setHeader|!-Content-Type : application/json
+Cookie: sid=-!%cookie1%|
+|GET|/%personRecipientId1%/ebillForm|500|||
+
+
+''invalid id"
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest/recipients|
+|setHeader|!-Content-Type : application/json
+Cookie: sid=-!%cookie1%|
+|GET|/%comRecipientId1%/ebillForm|500|||
+****!
+!*****> ''3.5 /d3api/recipients/{id}/ebillAccountDetails (ebillsRestsApi tests cover)''
+
+''valid company recipientId''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest/recipients|
+|setHeader|!-Content-Type : application/json
+Cookie: sid=-!%cookie1%|
+|GET|/%comRecipientId1%/ebillAccountDetails|500|||
+|comment|DDB-1544|
+
+
+''valid person recipientId''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest/recipients|
+|setHeader|!-Content-Type : application/json
+Cookie: sid=-!%cookie1%|
+|GET|/%personRecipientId1%/ebillAccountDetails|500|||
+
+
+''invalid id"
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest/recipients|
+|setHeader|!-Content-Type : application/json
+Cookie: sid=-!%cookie1%|
+|GET|/23423423/ebillAccountDetails|400|||
+|let|$errMsg|js|response.jsonbody.message||
+
+!|com.lodosoftware.fitnesse.fixtures.LodoSoftFitFixtures|
+|symbolName|str|isContain?|
+|errMsg|!-Argument billPayRecipient-23423423 is undefined but is required.-!|true|
+
+****!
+!*****> ''3.6 /d3api/recipients/{id}/autopay (ebillsRestsApi covers as well)''
+****!
+****!
+
+!*****> !style_darkRed[4 DELETE]
+!*****> ''4.1 /d3api/recipients/{id}?cancelPending=boolean''
+
+''invalid id, cancelPending = true''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest|
+|setHeader|!-Content-Type : application/json
+Cookie: sid=-!%cookie1%|
+|DELETE|/recipients/12345?cancelPending=true|400|||
+|let|$errMsg|js|response.jsonbody.message||
+
+!|com.lodosoftware.fitnesse.fixtures.LodoSoftFitFixtures|
+|symbolName|str|isContain?|
+|errMsg|!-Argument recipient-12345 is undefined but is required.-!|true|
+
+''valid id, cancelPending = false''
+
+!|com.lodosoftware.fitnesse.fixtures.LodoSoftFitFixtures|
+|symbolName|=getSymbolValue?|
+|comRecipientId1|comRecipientId1|
+|comRecipientId2|comRecipientId2|
+
+!|Query|!-SELECT COUNT(*) as total from [recipient] where id = -!@comRecipientId1|
+|total?|
+|1|
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest|
+|setHeader|!-Content-Type : application/json
+Cookie: sid=-!%cookie1%|
+|DELETE|/recipients/%comRecipientId1%?cancelPending=false|204|||
+
+!|Query|!-SELECT COUNT(*) as total from [recipient] where id = -!@comRecipientId1|
+|total?|
+|0|
+
+''valid id, true''
+
+!|Query|!-SELECT COUNT(*) as total from [recipient] where id = -!@comRecipientId2|
+|total?|
+|1|
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest|
+|setHeader|!-Content-Type : application/json
+Cookie: sid=-!%cookie1%|
+|DELETE|/recipients/%comRecipientId1%?cancelPending=true|400|||
+|DELETE|/recipients/%comRecipientId2%?cancelPending=true|204|||
+|DELETE|/recipients/%personRecipientId1%?cancelPending=true|204|||
+|DELETE|/recipients/%personRecipientId2%?cancelPending=true|204|||
+
+!|Query|!-SELECT COUNT(*) as total from [recipient] where id = -!@comRecipientId2|
+|total?|
+|0|
+
+''re-delete deleted one''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest|
+|setHeader|!-Content-Type : application/json
+Cookie: sid=-!%cookie1%|
+|DELETE|/recipients/%comRecipientId2%?cancelPending=true|400|||
+
+****!
+!*****> ''4.2 /d3api/recipients/{id}/autopay (CANNOT CONTINUE BECAUSE OF DDB-1541) (ebillsRestsApi tests cover)''
+****!
+****!
+
+****!

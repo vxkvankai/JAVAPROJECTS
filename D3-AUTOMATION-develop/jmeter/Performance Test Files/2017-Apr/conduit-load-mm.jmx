@@ -1,0 +1,406 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jmeterTestPlan version="1.2" properties="3.1" jmeter="3.1 r1770033">
+  <hashTree>
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="Conduit File MM Recipients and Transfers" enabled="true">
+      <stringProp name="TestPlan.comments"></stringProp>
+      <boolProp name="TestPlan.functional_mode">false</boolProp>
+      <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
+      <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+        <collectionProp name="Arguments.arguments"/>
+      </elementProp>
+      <stringProp name="TestPlan.user_define_classpath"></stringProp>
+    </TestPlan>
+    <hashTree>
+      <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="Defaults" enabled="true">
+        <collectionProp name="Arguments.arguments">
+          <elementProp name="numberOfAccounts" elementType="Argument">
+            <stringProp name="Argument.name">numberOfAccounts</stringProp>
+            <stringProp name="Argument.value">100000</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+            <stringProp name="Argument.desc">Number of users</stringProp>
+          </elementProp>
+          <elementProp name="groupOffset" elementType="Argument">
+            <stringProp name="Argument.name">groupOffset</stringProp>
+            <stringProp name="Argument.value">100</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="accountOffset" elementType="Argument">
+            <stringProp name="Argument.name">accountOffset</stringProp>
+            <stringProp name="Argument.value">1001</stringProp>
+            <stringProp name="Argument.desc">Starting account offset</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="accountPrefix" elementType="Argument">
+            <stringProp name="Argument.name">accountPrefix</stringProp>
+            <stringProp name="Argument.value">DDA-1-</stringProp>
+            <stringProp name="Argument.desc">Account UID prefix</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="sourceCompanyId" elementType="Argument">
+            <stringProp name="Argument.name">sourceCompanyId</stringProp>
+            <stringProp name="Argument.value">perf</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+            <stringProp name="Argument.desc">The company source ID to place accounts under</stringProp>
+          </elementProp>
+          <elementProp name="numOfThreads" elementType="Argument">
+            <stringProp name="Argument.name">numOfThreads</stringProp>
+            <stringProp name="Argument.value">1</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="conduitFileDropPath" elementType="Argument">
+            <stringProp name="Argument.name">conduitFileDropPath</stringProp>
+            <stringProp name="Argument.value">/tmp/work</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+            <stringProp name="Argument.desc">Default to user.home</stringProp>
+          </elementProp>
+          <elementProp name="suppressAlerts" elementType="Argument">
+            <stringProp name="Argument.name">suppressAlerts</stringProp>
+            <stringProp name="Argument.value">false</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+            <stringProp name="Argument.desc">Enable/disable alerts (supress flag)</stringProp>
+          </elementProp>
+          <elementProp name="threadMultiplier" elementType="Argument">
+            <stringProp name="Argument.name">threadMultiplier</stringProp>
+            <stringProp name="Argument.value">1</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+            <stringProp name="Argument.desc">Thread multiplier - only used for file name</stringProp>
+          </elementProp>
+          <elementProp name="serverName" elementType="Argument">
+            <stringProp name="Argument.name">serverName</stringProp>
+            <stringProp name="Argument.value">cond1</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+            <stringProp name="Argument.desc">Server name - only used for file name</stringProp>
+          </elementProp>
+          <elementProp name="userUidPrefix" elementType="Argument">
+            <stringProp name="Argument.name">userUidPrefix</stringProp>
+            <stringProp name="Argument.value">perf-test-acct-</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="userLoginPrefix" elementType="Argument">
+            <stringProp name="Argument.name">userLoginPrefix</stringProp>
+            <stringProp name="Argument.value">perf-</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="numExternalRecipients" elementType="Argument">
+            <stringProp name="Argument.name">numExternalRecipients</stringProp>
+            <stringProp name="Argument.value">2</stringProp>
+            <stringProp name="Argument.desc">number of external recipients</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="numInternalTransfers" elementType="Argument">
+            <stringProp name="Argument.name">numInternalTransfers</stringProp>
+            <stringProp name="Argument.value">2</stringProp>
+            <stringProp name="Argument.desc">number of internal transfers</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="numExternalTransfers" elementType="Argument">
+            <stringProp name="Argument.name">numExternalTransfers</stringProp>
+            <stringProp name="Argument.value">2</stringProp>
+            <stringProp name="Argument.desc">number of external transfers</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+        </collectionProp>
+      </Arguments>
+      <hashTree/>
+      <BeanShellPreProcessor guiclass="TestBeanGUI" testclass="BeanShellPreProcessor" testname="Reset defaults" enabled="true">
+        <boolProp name="resetInterpreter">false</boolProp>
+        <stringProp name="parameters"></stringProp>
+        <stringProp name="filename"></stringProp>
+        <stringProp name="script">// reset default if properties are given
+import java.text.SimpleDateFormat;
+
+if (props.get(&quot;numberOfAccounts&quot;) != null) {
+	vars.put(&quot;numberOfAccounts&quot;, props.get(&quot;numberOfAccounts&quot;));
+	vars.put(&quot;accountOffset&quot;, props.get(&quot;accountOffset&quot;));
+	vars.put(&quot;groupOffset&quot;, props.get(&quot;groupOffset&quot;));
+	vars.put(&quot;accountPrefix&quot;, props.get(&quot;accountPrefix&quot;));
+	vars.put(&quot;sourceCompanyId&quot;, props.get(&quot;sourceCompanyId&quot;));
+	vars.put(&quot;minMaxTxnsPerAcct&quot;, props.get(&quot;minMaxTxnsPerAcct&quot;));
+	vars.put(&quot;numOfThreads&quot;, props.get(&quot;numOfThreads&quot;));
+	vars.put(&quot;threadMultiplier&quot;, props.get(&quot;threadMultiplier&quot;));
+	vars.put(&quot;categorizeTransactions&quot;, props.get(&quot;categorizeTransactions&quot;));
+	vars.put(&quot;categorizationPercent&quot;, props.get(&quot;categorizationPercent&quot;));
+	vars.put(&quot;conduitFileDropPath&quot;, props.get(&quot;conduitFileDropPath&quot;));
+	vars.put(&quot;suppressAlerts&quot;, props.get(&quot;suppressAlerts&quot;));
+	vars.put(&quot;serverName&quot;, props.get(&quot;serverName&quot;));
+	vars.put(&quot;userUidPrefix&quot;, props.get(&quot;userUidPrefix&quot;));
+	vars.put(&quot;userLoginPrefix&quot;, props.get(&quot;userLoginPrefix&quot;));
+	vars.put(&quot;numExternalRecipients&quot;, props.get(&quot;numExternalRecipients&quot;));
+	vars.put(&quot;numInternalTransfers&quot;, props.get(&quot;numInternalTransfers&quot;));
+	vars.put(&quot;numExternalTransfers&quot;, props.get(&quot;numExternalTransfers&quot;));
+}
+if (vars.get(&quot;conduitFileDropPath&quot;).isEmpty()) {
+	vars.put(&quot;conduitFileDropPath&quot;, System.getProperty(&quot;user.home&quot;));
+}
+if (props.get(&quot;fileDateString&quot;) != null) {
+	vars.put(&quot;fileDate&quot;, props.get(&quot;fileDateString&quot;));
+} else {
+	vars.put(&quot;fileDate&quot;, new SimpleDateFormat(&quot;yyyyMMdd&quot;).format(new Date()));
+}
+</stringProp>
+      </BeanShellPreProcessor>
+      <hashTree/>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Thread" enabled="true">
+        <stringProp name="ThreadGroup.on_sample_error">stoptestnow</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">${__P(numOfGroups)}</stringProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">1</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+        <longProp name="ThreadGroup.start_time">1360810051000</longProp>
+        <longProp name="ThreadGroup.end_time">1360810051000</longProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+      </ThreadGroup>
+      <hashTree>
+        <BeanShellSampler guiclass="BeanShellSamplerGui" testclass="BeanShellSampler" testname="Conduit Header" enabled="true">
+          <stringProp name="BeanShellSampler.query">import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Random;
+
+Date fd = new SimpleDateFormat(&quot;yyyyMMdd&quot;).parse(vars.get(&quot;fileDate&quot;));
+if (fd == null) fd = new Date();
+
+String fileDate = new SimpleDateFormat(&quot;yyyyMMdd&quot;).format(fd);
+fileDate += &quot;-&quot; + new SimpleDateFormat(&quot;HHmmss&quot;).format(new Date());
+String fileName = &quot;conduit-${sourceCompanyId}&quot; + 
+    &quot;-mm&quot; +
+    &quot;-g&quot; + (vars.getIteration() + ${groupOffset}) +
+    &quot;-c${numberOfAccounts}&quot; + 
+    &quot;-&quot; + fileDate;
+
+vars.put(&quot;filename&quot;, fileName);
+String filePath = &quot;${conduitFileDropPath}/&quot; + fileName + &quot;.txt&quot;;
+vars.put(&quot;filePath&quot;, filePath);
+
+File file = new File(filePath);
+FileWriter fw = new FileWriter(file);
+BufferedWriter bw = new BufferedWriter(fw);
+
+vars.put(&quot;acctCount&quot;, &quot;0&quot;);
+
+bw.write(&quot;&lt;?xml version=\&quot;1.0\&quot; encoding=\&quot;UTF-8\&quot;?&gt;\n&quot; +
+		&quot;&lt;conduit-mig&gt;\n&quot; +
+		&quot;  &lt;hdr&gt;\n&quot; +
+		&quot;    &lt;ver&gt;3.0&lt;/ver&gt;\n&quot; +
+		&quot;    &lt;rqid&gt;&quot; + fileDate + &quot;&lt;/rqid&gt;\n&quot; +
+		&quot;  &lt;/hdr&gt;\n&quot; +
+		&quot;  &lt;usrmiglst&gt;\n&quot;);
+bw.flush();
+bw.close();
+</stringProp>
+          <stringProp name="BeanShellSampler.filename"></stringProp>
+          <stringProp name="BeanShellSampler.parameters"></stringProp>
+          <boolProp name="BeanShellSampler.resetInterpreter">false</boolProp>
+        </BeanShellSampler>
+        <hashTree/>
+        <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+          <boolProp name="LoopController.continue_forever">true</boolProp>
+          <stringProp name="LoopController.loops">${numberOfAccounts}</stringProp>
+        </LoopController>
+        <hashTree>
+          <BeanShellSampler guiclass="BeanShellSamplerGui" testclass="BeanShellSampler" testname="Add User Mig" enabled="true">
+            <stringProp name="BeanShellSampler.query">import java.util.Random;
+import java.text.SimpleDateFormat; 
+import java.util.Date; 
+
+long acctCount = ${acctCount};
+int numInternals = ${numInternalTransfers};
+int numRecipients = ${numExternalRecipients};
+int numExternals = ${numExternalTransfers};
+
+String nbr = &quot;&quot; + (vars.getIteration()+${groupOffset}) + &quot;-&quot; + (acctCount+${accountOffset});
+String digits = nbr.replaceAll(&quot;-&quot;,&quot;&quot;);
+while (digits.length() &lt; 10) digits = digits + &quot;0&quot;;
+String userUid = &quot;${userUidPrefix}&quot; + nbr;
+String accountUid1 = &quot;${accountPrefix}&quot; + nbr + &quot;-1&quot;;
+String accountUid2 = &quot;${accountPrefix}&quot; + nbr + &quot;-2&quot;;
+String xml =
+  &quot;    &lt;usrmig uid=\&quot;&quot; + userUid + &quot;\&quot;&gt;\n&quot;;
+if (numInternals&gt;0) {
+	xml += &quot;      &lt;scxfrlst&gt;\n&quot;;
+	for (i=1; i&lt;=numInternals; i++) {
+		Date futureDate = new Date();
+		futureDate.setDate(futureDate.getDate() + new Random().nextInt(100)+20);
+		String futureDateString = new SimpleDateFormat(&quot;yyyy-MM-dd&quot;).format(futureDate);
+xml +=  
+  &quot;        &lt;scxfr uid=\&quot;scxfr-&quot;+nbr+&quot;-&quot;+i+&quot;\&quot;&gt;\n&quot; +
+  &quot;          &lt;fauid&gt;&quot;+accountUid1+&quot;&lt;/fauid&gt;\n&quot; +
+  &quot;          &lt;tauid&gt;&quot;+accountUid2+&quot;&lt;/tauid&gt;\n&quot; +
+  &quot;          &lt;nm&gt;note contents&lt;/nm&gt;\n&quot; +
+  &quot;          &lt;mm&gt;memo contents&lt;/mm&gt;\n&quot; +
+  &quot;          &lt;freq&gt;onetime&lt;/freq&gt;\n&quot; +
+  &quot;          &lt;amt&gt;50.00&lt;/amt&gt;\n&quot; +
+  &quot;          &lt;bdt&gt;&quot;+futureDateString+&quot;&lt;/bdt&gt;\n&quot; +
+  &quot;        &lt;/scxfr&gt;\n&quot;;
+	}
+	xml += &quot;      &lt;/scxfrlst&gt;\n&quot;;
+}
+if (numRecipients&gt;0) {
+	xml += &quot;      &lt;extreciplst&gt;\n&quot;;
+	for (i=1; i&lt;=numRecipients; i++) {
+xml +=  
+  &quot;        &lt;extrecip uid=\&quot;extrecip-&quot;+nbr+&quot;-&quot;+i+&quot;\&quot;&gt;\n&quot; +
+  &quot;          &lt;nnm&gt;Ext Account &quot;+nbr+&quot;-&quot;+i+&quot;&lt;/nnm&gt;\n&quot; +
+  &quot;          &lt;finm&gt;Bank of the Best&lt;/finm&gt;\n&quot; +
+  &quot;          &lt;rtnbr&gt;123456780&lt;/rtnbr&gt;\n&quot; +
+  &quot;          &lt;nbr&gt;1234567890&quot;+new Random().nextInt(99000)+&quot;&lt;/nbr&gt;\n&quot; +
+  &quot;          &lt;at&gt;CHECKING&lt;/at&gt;\n&quot; +
+  &quot;        &lt;/extrecip&gt;\n&quot;;
+	}
+	xml += &quot;      &lt;/extreciplst&gt;\n&quot;;
+}
+if (numExternals&gt;0) {
+	xml += &quot;      &lt;extxfrlst&gt;\n&quot;;
+	for (i=1; i&lt;=numExternals; i++) {
+		Date pastDate = new Date();
+		pastDate.setDate(pastDate.getDate() - new Random().nextInt(100));
+		String pastDateString = new SimpleDateFormat(&quot;yyyy-MM-dd&quot;).format(pastDate);
+xml +=  
+  &quot;        &lt;extxfr uid=\&quot;extxfr-&quot;+nbr+&quot;-&quot;+i+&quot;\&quot;&gt;\n&quot; +
+  &quot;          &lt;amt&gt;20&lt;/amt&gt;\n&quot; +
+  &quot;          &lt;schdt&gt;&quot;+pastDateString+&quot;&lt;/schdt&gt;\n&quot; +
+  &quot;          &lt;iauid&gt;&quot;+accountUid1+&quot;&lt;/iauid&gt;\n&quot; +
+  &quot;          &lt;earuid&gt;extrecip-&quot;+nbr+&quot;-1&lt;/earuid&gt;\n&quot; +
+  &quot;          &lt;outbnd&gt;1&lt;/outbnd&gt;\n&quot; +
+  &quot;          &lt;sts&gt;processed&lt;/sts&gt;\n&quot; +
+  &quot;          &lt;ststxt&gt;Success&lt;/ststxt&gt;\n&quot; +
+  &quot;          &lt;pnm&gt;something&lt;/pnm&gt;\n&quot; +
+  &quot;        &lt;/extxfr&gt;\n&quot;;
+	}
+	xml += &quot;      &lt;/extxfrlst&gt;\n&quot;;
+}
+
+xml += &quot;    &lt;/usrmig&gt;\n\n&quot;;
+
+vars.put(&quot;xml&quot;, xml);
+vars.put(&quot;acctCount&quot;, &quot;&quot; + (acctCount + 1));
+</stringProp>
+            <stringProp name="BeanShellSampler.filename"></stringProp>
+            <stringProp name="BeanShellSampler.parameters"></stringProp>
+            <boolProp name="BeanShellSampler.resetInterpreter">false</boolProp>
+          </BeanShellSampler>
+          <hashTree/>
+          <BeanShellSampler guiclass="BeanShellSamplerGui" testclass="BeanShellSampler" testname="Write out" enabled="true">
+            <stringProp name="BeanShellSampler.query">
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+
+
+String xml = vars.get(&quot;xml&quot;);
+
+File file = new File(vars.get(&quot;filePath&quot;));
+FileWriter fw = new FileWriter(file, true);
+BufferedWriter bw = new BufferedWriter(fw);
+
+bw.write(xml);
+bw.flush();
+bw.close();
+</stringProp>
+            <stringProp name="BeanShellSampler.filename"></stringProp>
+            <stringProp name="BeanShellSampler.parameters"></stringProp>
+            <boolProp name="BeanShellSampler.resetInterpreter">false</boolProp>
+          </BeanShellSampler>
+          <hashTree/>
+        </hashTree>
+        <BeanShellSampler guiclass="BeanShellSamplerGui" testclass="BeanShellSampler" testname="Conduit End" enabled="true">
+          <stringProp name="BeanShellSampler.query">
+File file = new File(vars.get(&quot;filePath&quot;));
+FileWriter fw = new FileWriter(file, true);
+BufferedWriter bw = new BufferedWriter(fw);	
+
+bw.write(&quot;&lt;/usrmiglst&gt;\n&lt;/conduit-mig&gt;\n&quot;);
+bw.flush();
+bw.close();
+</stringProp>
+          <stringProp name="BeanShellSampler.filename"></stringProp>
+          <stringProp name="BeanShellSampler.parameters"></stringProp>
+          <boolProp name="BeanShellSampler.resetInterpreter">false</boolProp>
+        </BeanShellSampler>
+        <hashTree/>
+        <BeanShellSampler guiclass="BeanShellSamplerGui" testclass="BeanShellSampler" testname="Rename Conduit Files" enabled="true">
+          <stringProp name="BeanShellSampler.query">
+String path = &quot;${conduitFileDropPath}/&quot;;
+String name = &quot;${filename}&quot;;
+
+File txtFile = new File(path+name+&quot;.txt&quot;);	
+File xmlFile = new File(path+name+&quot;.xml&quot;);
+
+txtFile.renameTo(xmlFile);
+</stringProp>
+          <stringProp name="BeanShellSampler.filename"></stringProp>
+          <stringProp name="BeanShellSampler.parameters"></stringProp>
+          <boolProp name="BeanShellSampler.resetInterpreter">false</boolProp>
+        </BeanShellSampler>
+        <hashTree/>
+        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <threadCounts>true</threadCounts>
+              <idleTime>true</idleTime>
+            </value>
+          </objProp>
+          <objProp>
+            <name></name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>false</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>false</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+      </hashTree>
+    </hashTree>
+  </hashTree>
+</jmeterTestPlan>

@@ -1,0 +1,4 @@
+#!/bin/bash
+export JAVA_OPTS="$JAVA_OPTS -Xmx4096M"
+
+nohup groovy PerfLoader.groovy -p ./PerfLoader.config.amazon > stdout.txt &

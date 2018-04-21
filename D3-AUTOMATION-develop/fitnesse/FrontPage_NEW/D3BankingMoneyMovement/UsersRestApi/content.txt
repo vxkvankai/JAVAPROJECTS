@@ -1,0 +1,646 @@
+!*****> '''!style_darkRed[USERS]'''
+
+!*****> !style_darkRed[1 POST]
+
+!*****> ''1.1 /users/current/billPayEnrollment''
+
+!*****> ''EXECUTE PREREQUISITE REST APIs''
+
+!|Query|!-  select t1.id as UserAccIds, t2.account_name as accName from [user_account] as t1, [d3_account] as t2 
+            where t1.account_id=t2.id and t1.user_id = (select id from d3_user where login_id = '-!${userLoginId}!-') and t2.source_account_id like 'acct--!${userLoginId}!--0%'-! ORDER By t2.account_name|
+|UserAccIds?|accName?|
+|>>UserAccId1|>>accName1|
+|>>UserAccId2|>>accName2|
+|>>UserAccId3|>>accName3|
+|>>UserAccId4|>>accName4|
+|>>UserAccId5|>>accName5|
+|>>UserAccId6|>>accName6|
+|>>UserAccId7|>>accName7|
+|>>UserAccId8|>>accName8|
+|>>UserAccId9|>>accName9|
+|>>UserAccId10|>>accName10|
+|>>UserAccId11|>>accName11|
+|>>UserAccId12|>>accName12|
+|>>UserAccId13|>>accName13|
+|>>UserAccId14|>>accName14|
+|>>UserAccId15|>>accName15|
+|>>UserAccId16|>>accName16|
+|>>UserAccId17|>>accName17|
+|>>UserAccId18|>>accName18|
+|>>UserAccId19|>>accName19|
+|>>UserAccId20|>>accName20|
+|>>UserAccId21|>>accName21|
+|>>UserAccId22|>>accName22|
+|>>UserAccId23|>>accName23|
+|>>UserAccId24|>>accName24|
+|>>UserAccId25|>>accName25|
+|>>UserAccId26|>>accName26|
+|>>UserAccId27|>>accName27|
+|>>UserAccId28|>>accName28|
+
+!|Query|!-  select t1.id as UserAccIds from [user_account] as t1, [d3_account] as t2 
+            where t1.account_id=t2.id and t1.user_id = (select id from d3_user where login_id = '-!${userLoginId2}!-') and t2.source_account_id like 'acct--!${userLoginId}!--0%'-!|
+|UserAccIds?|
+|>>UserAccId29|
+****!
+
+''1.1.1 user whose' firstName and address are exist''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest|
+|setHeader|!-Content-Type : application/json
+Cookie: sid=-!%cookie1%|
+|comment|!-Content-Type : application/json
+Cookie: sid=-!%cookie1%|
+|setBody|!-{
+    "phoneNumber": "4025554118", 
+    "email": "samuel.adamsiii@d3banking.com", 
+    "address": {
+        "street1": "11222 Lake Forest Dr", 
+        "street2": null, 
+        "city": "Denver", 
+        "state": "CO", 
+        "zip": "80247"
+    }, 
+    "userAccountId": "-!%UserAccId5%!-", 
+    "dateOfBirth": "1985-07-18", 
+    "taxId": "132454567"
+}-!|
+|POST|/users/current/billPayEnrollment|200|||
+|let||js|!-response.jsonbody.enrolled-!|true|
+|let||js|!-response.jsonbody.lastLogin-!||
+|let||js|!-response.jsonbody.loginId-!|${userLoginId}|
+|let||js|!-response.jsonbody.billPayStatus-!|a|
+|let||js|!-response.jsonbody.person.alternateEmail-!|!-aem@d3banking.com-!|
+|let||js|!-response.jsonbody.person.firstName-!|!-FitnesseTestFirstName-!|
+|let||js|!-response.jsonbody.person.lastName-!|!-FitnesseTestLastName-!|
+|let||js|!-response.jsonbody.person.primaryEmail-!|!-abadyelkhan@d3banking.com-!|
+|let||js|!-response.jsonbody.person.mobilePhone-!|4025552233|
+|let||js|!-response.jsonbody.person.homePhone-!|4025551234|
+|let||js|!-response.jsonbody.person.workPhone-!|4025553333|
+|let||js|!-response.jsonbody.person.mailingAddress.state-!|CO|
+|let||js|!-response.jsonbody.person.mailingAddress.city-!|Aurora|
+|let||js|!-response.jsonbody.person.mailingAddress.postalCode-!|98745 4561|
+|let||js|!-response.jsonbody.person.mailingAddress.latitude-!|35.3731619|
+|let||js|!-response.jsonbody.person.mailingAddress.longitude-!|-94.20887579|
+|let||js|!-response.jsonbody.person.mailingAddress.countryCode-!|US|
+|let||js|!-response.jsonbody.person.mailingAddress.line1-!|!-3041 S MailingAddress-!|
+|let||js|!-response.jsonbody.person.mailingAddress.line2-!|!-3042 S MailingAddress-!|
+|let||js|!-response.jsonbody.person.mailingAddress.line3-!|!-3043 S MailingAddress-!|
+|let||js|!-response.jsonbody.person.mailingAddress.line4-!|!-3044 S MailingAddress-!|
+|let||js|!-response.jsonbody.person.physicalAddress.state-!|CO|
+|let||js|!-response.jsonbody.person.physicalAddress.city-!|Englewood|
+|let||js|!-response.jsonbody.person.physicalAddress.postalCode-!|80110|
+|let||js|!-response.jsonbody.person.physicalAddress.latitude-!|36.3731619|
+|let||js|!-response.jsonbody.person.physicalAddress.longitude-!|-94.20885579|
+|let||js|!-response.jsonbody.person.physicalAddress.countryCode-!|US|
+|let||js|!-response.jsonbody.person.physicalAddress.line1-!|3041 S INVERNESS|
+|let||js|!-response.jsonbody.person.physicalAddress.line2-!|3042 S INVERNESS|
+|let||js|!-response.jsonbody.person.physicalAddress.line3-!|3043 S INVERNESS|
+|let||js|!-response.jsonbody.person.physicalAddress.line4-!|3044 S INVERNESS|
+|comment|DDB-1371|
+
+
+''1.1.2 user whose' firstName and address are not exist''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest|
+|setHeader|!-Content-Type : application/json
+Cookie: sid=-!%cookie2%|
+|setBody|!-{
+    "phoneNumber": "4025554118", 
+    "email": "samuel.adamsiii@d3banking.com", 
+    "address": {
+        "street1": "11222 Lake Forest Dr", 
+        "street2": null, 
+        "city": "Denver", 
+        "state": "CO", 
+        "zip": "80247"
+    }, 
+    "userAccountId": "-!%UserAccId29%!-", 
+    "dateOfBirth": "1985-07-18", 
+    "taxId": "132454567"
+}-!|
+|POST|/users/current/billPayEnrollment|500|||
+|comment|DDB-1367|
+
+''1.1.3 phoneNumber omitted''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest|
+|setHeader|!-Content-Type : application/json
+Cookie: sid=-!%cookie1%|
+|setBody|!-{
+    "email": "samuel.adamsiii@d3banking.com", 
+    "address": {
+        "street1": "11222 Lake Forest Dr", 
+        "street2": null, 
+        "city": "Denver", 
+        "state": "CO", 
+        "zip": "80247"
+    }, 
+    "userAccountId": "-!%UserAccId1%!-", 
+    "dateOfBirth": "1985-07-18", 
+    "taxId": "132454567"
+}-!|
+|POST|/users/current/billPayEnrollment|400|||
+|let||js|response.jsonbody.fieldErrors[0].field|phoneNumber|
+|let||js|response.jsonbody.fieldErrors[0].message|may not be null|
+
+
+''1.1.4 email omitted''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest|
+|setHeader|!-Content-Type : application/json
+Cookie: sid=-!%cookie1%|
+|setBody|!-{
+    "phoneNumber": "4025554118", 
+    "address": {
+        "street1": "11222 Lake Forest Dr", 
+        "street2": null, 
+        "city": "Denver", 
+        "state": "CO", 
+        "zip": "80247"
+    }, 
+    "userAccountId": "-!%UserAccId1%!-", 
+    "dateOfBirth": "1985-07-18", 
+    "taxId": "132454567"
+}-!|
+|POST|/users/current/billPayEnrollment|400|||
+|let||js|response.jsonbody.fieldErrors[0].field|email|
+|let||js|response.jsonbody.fieldErrors[0].message|may not be null|
+
+''1.1.5 userAccountId omitted''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest|
+|setHeader|!-Content-Type : application/json
+Cookie: sid=-!%cookie1%|
+|setBody|!-{
+    "phoneNumber": "4025554118", 
+    "email": "samuel.adamsiii@d3banking.com", 
+    "address": {
+        "street1": "11222 Lake Forest Dr", 
+        "street2": null, 
+        "city": "Denver", 
+        "state": "CO", 
+        "zip": "80247"
+    }, 
+    "dateOfBirth": "1985-07-18", 
+    "taxId": "132454567"
+}-!|
+|POST|/users/current/billPayEnrollment|400|||
+|let||js|response.jsonbody.fieldErrors[0].field|userAccountId|
+|let||js|response.jsonbody.fieldErrors[0].message|may not be null|
+
+''1.1.6 dateOfBirth omitted''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest|
+|setHeader|!-Content-Type : application/json
+Cookie: sid=-!%cookie1%|
+|setBody|!-{
+    "phoneNumber": "4025554118", 
+    "email": "samuel.adamsiii@d3banking.com", 
+    "address": {
+        "street1": "11222 Lake Forest Dr", 
+        "street2": null, 
+        "city": "Denver", 
+        "state": "CO", 
+        "zip": "80247"
+    }, 
+    "userAccountId": "-!%UserAccId1%!-", 
+    "taxId": "132454567"
+}-!|
+|POST|/users/current/billPayEnrollment|400|||
+|let||js|response.jsonbody.fieldErrors[0].field|dateOfBirth|
+|let||js|response.jsonbody.fieldErrors[0].message|may not be null|
+
+''1.1.7 taxId omitted''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest|
+|setHeader|!-Content-Type : application/json
+Cookie: sid=-!%cookie1%|
+|setBody|!-{
+    "phoneNumber": "4025554118", 
+    "email": "samuel.adamsiii@d3banking.com", 
+    "address": {
+        "street1": "11222 Lake Forest Dr", 
+        "street2": null, 
+        "city": "Denver", 
+        "state": "CO", 
+        "zip": "80247"
+    }, 
+    "userAccountId": "-!%UserAccId1%!-", 
+    "dateOfBirth": "1985-07-18"
+}-!|
+|POST|/users/current/billPayEnrollment|400|||
+|let||js|response.jsonbody.fieldErrors[0].field|taxId|
+|let||js|response.jsonbody.fieldErrors[0].message|may not be null|
+
+''1.1.8 address street1 omitted''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest|
+|setHeader|!-Content-Type : application/json
+Cookie: sid=-!%cookie1%|
+|setBody|!-{
+    "phoneNumber": "4025554118", 
+    "email": "samuel.adamsiii@d3banking.com", 
+    "address": {
+        "street2": null, 
+        "city": "Denver", 
+        "state": "CO", 
+        "zip": "80247"
+    }, 
+    "userAccountId": "-!%UserAccId1%!-", 
+    "dateOfBirth": "1985-07-18", 
+    "taxId": "132454567"
+}-!|
+|POST|/users/current/billPayEnrollment|400|||
+|let|$errMsg|js|response.jsonbody.message||
+
+!|com.lodosoftware.fitnesse.fixtures.LodoSoftFitFixtures|
+|symbolName|str|isContain?|
+|errMsg|!-billPayStatus is invalid-!|true|
+
+''1.1.9 address omitted''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest|
+|setHeader|!-Content-Type : application/json
+Cookie: sid=-!%cookie1%|
+|setBody|!-{
+    "phoneNumber": "4025554118", 
+    "email": "samuel.adamsiii@d3banking.com", 
+    "userAccountId": "-!%UserAccId1%!-", 
+    "dateOfBirth": "1985-07-18", 
+    "taxId": "132454567"
+}-!|
+|POST|/users/current/billPayEnrollment|400|||
+|let||js|response.jsonbody.fieldErrors[0].field|address|
+|let||js|response.jsonbody.fieldErrors[0].message|may not be null|
+
+''1.1.10 address city omitted''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest|
+|setHeader|!-Content-Type : application/json
+Cookie: sid=-!%cookie1%|
+|setBody|!-{
+    "phoneNumber": "4025554118", 
+    "email": "samuel.adamsiii@d3banking.com", 
+    "address": {
+        "street1": "11222 Lake Forest Dr", 
+        "street2": null, 
+        "state": "CO", 
+        "zip": "80247"
+    }, 
+    "userAccountId": "-!%UserAccId1%!-", 
+    "dateOfBirth": "1985-07-18", 
+    "taxId": "132454567"
+}-!|
+|POST|/users/current/billPayEnrollment|400|||
+|let|$errMsg|js|response.jsonbody.message||
+
+!|com.lodosoftware.fitnesse.fixtures.LodoSoftFitFixtures|
+|symbolName|str|isContain?|
+|errMsg|!-billPayStatus is invalid-!|true|
+
+''1.1.11 address zip omitted''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest|
+|setHeader|!-Content-Type : application/json
+Cookie: sid=-!%cookie1%|
+|setBody|!-{
+    "phoneNumber": "4025554118", 
+    "email": "samuel.adamsiii@d3banking.com", 
+    "address": {
+        "street1": "11222 Lake Forest Dr", 
+        "street2": null, 
+        "city": "Denver", 
+        "state": "CO"
+    }, 
+    "userAccountId": "-!%UserAccId1%!-", 
+    "dateOfBirth": "1985-07-18", 
+    "taxId": "132454567"
+}-!|
+|POST|/users/current/billPayEnrollment|400|||
+|let|$errMsg|js|response.jsonbody.message||
+
+!|com.lodosoftware.fitnesse.fixtures.LodoSoftFitFixtures|
+|symbolName|str|isContain?|
+|errMsg|!-billPayStatus is invalid-!|true|
+
+''1.1.12 address state omitted''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest|
+|setHeader|!-Content-Type : application/json
+Cookie: sid=-!%cookie1%|
+|setBody|!-{
+    "phoneNumber": "4025554118", 
+    "email": "samuel.adamsiii@d3banking.com", 
+    "address": {
+        "street1": "11222 Lake Forest Dr", 
+        "street2": null, 
+        "city": "Denver", 
+        "zip": "80247"
+    }, 
+    "userAccountId": "-!%UserAccId1%!-", 
+    "dateOfBirth": "1985-07-18", 
+    "taxId": "132454567"
+}-!|
+|POST|/users/current/billPayEnrollment|400|||
+|let|$errMsg|js|response.jsonbody.message||
+
+!|com.lodosoftware.fitnesse.fixtures.LodoSoftFitFixtures|
+|symbolName|str|isContain?|
+|errMsg|!-billPayStatus is invalid-!|true|
+
+''1.1.13 taxId more than 10 chars''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest|
+|setHeader|!-Content-Type : application/json
+Cookie: sid=-!%cookie1%|
+|setBody|!-{
+    "phoneNumber": "4025554118", 
+    "email": "samuel.adamsiii@d3banking.com", 
+    "address": {
+        "street1": "11222 Lake Forest Dr", 
+        "street2": null, 
+        "city": "Denver", 
+        "state": "CO", 
+        "zip": "80247"
+    }, 
+    "userAccountId": "-!%UserAccId1%!-", 
+    "dateOfBirth": "1985-07-18", 
+    "taxId": "1324545678901"
+}-!|
+|POST|/users/current/billPayEnrollment|400|||
+|let||js|response.jsonbody.fieldErrors[0].field|taxId|
+|let||js|response.jsonbody.fieldErrors[0].message|!-must match "^[0-9]{9,10}$"-!|
+
+''1.1.14 incorrect dateOfBirth formatted value''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest|
+|setHeader|!-Content-Type : application/json
+Cookie: sid=-!%cookie1%|
+|setBody|!-{
+    "phoneNumber": "4025554118", 
+    "email": "samuel.adamsiii@d3banking.com", 
+    "address": {
+        "street1": "11222 Lake Forest Dr", 
+        "street2": null, 
+        "city": "Denver", 
+        "state": "CO", 
+        "zip": "80247"
+    }, 
+    "userAccountId": "-!%UserAccId1%!-", 
+    "dateOfBirth": "1985-13-18", 
+    "taxId": "132454567"
+}-!|
+|POST|/users/current/billPayEnrollment|400|||
+|let|$errMsg|js|response.jsonbody.message||
+
+!|com.lodosoftware.fitnesse.fixtures.LodoSoftFitFixtures|
+|symbolName|str|isContain?|
+|errMsg|!-Value 13 for monthOfYear must be in the range-!|true|
+
+''1.1.15 invalid userAccountId''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest|
+|setHeader|!-Content-Type : application/json
+Cookie: sid=-!%cookie1%|
+|setBody|!-{
+    "phoneNumber": "4025554118", 
+    "email": "samuel.adamsiii@d3banking.com", 
+    "address": {
+        "street1": "11222 Lake Forest Dr", 
+        "street2": null, 
+        "city": "Denver", 
+        "state": "CO", 
+        "zip": "80247"
+    }, 
+    "userAccountId": "12345", 
+    "dateOfBirth": "1985-07-18", 
+    "taxId": "132454567"
+}-!|
+|POST|/users/current/billPayEnrollment|400|||
+|let|$errMsg|js|response.jsonbody.message||
+
+!|com.lodosoftware.fitnesse.fixtures.LodoSoftFitFixtures|
+|symbolName|str|isContain?|
+|errMsg|!- Argument user-billPayStatus is invalid.-!|true|
+
+''1.1.16 incorrect formatted email value''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest|
+|setHeader|!-Content-Type : application/json
+Cookie: sid=-!%cookie1%|
+|setBody|!-{
+    "phoneNumber": "4025554118", 
+    "email": "samueladamsiid3banking.com", 
+    "address": {
+        "street1": "11222 Lake Forest Dr", 
+        "street2": null, 
+        "city": "Denver", 
+        "state": "CO", 
+        "zip": "80247"
+    }, 
+    "userAccountId": "-!%UserAccId1%!-", 
+    "dateOfBirth": "1985-07-18", 
+    "taxId": "132454567"
+}-!|
+|POST|/users/current/billPayEnrollment|400|||
+|let||js|response.jsonbody.fieldErrors[0].field|email|
+|let||js|response.jsonbody.fieldErrors[0].message|!-must match "^.+@.+\..+$"-!|
+
+''1.1.17 zip code more than 9 chars''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest|
+|setHeader|!-Content-Type : application/json
+Cookie: sid=-!%cookie1%|
+|setBody|!-{
+    "phoneNumber": "4025554118", 
+    "email": "samuel.adamsiii@d3banking.com", 
+    "address": {
+        "street1": "11222 Lake Forest Dr", 
+        "street2": null, 
+        "city": "Denver", 
+        "state": "CO", 
+        "zip": "8024712344"
+    }, 
+    "userAccountId": "-!%UserAccId1%!-", 
+    "dateOfBirth": "1985-07-18", 
+    "taxId": "132454567"
+}-!|
+|POST|/users/current/billPayEnrollment|400|||
+****!
+****!
+
+!*****> !style_darkRed[2 PUT]
+!*****> ''2.1 /users/current''
+
+''All fields to different values''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest|
+|setHeader|!-Content-Type : application/json
+Cookie: sid=-!%cookie1%|
+|setBody|!-{
+    "billPayStatus": false, 
+    "person": {
+        "alternateEmail": "uaem@d3banking.com", 
+        "firstName": "uFitnesseTestFirstName", 
+        "lastName": "uFitnesseTestLastName", 
+        "primaryEmail": "uabadyelkhan@d3banking.com", 
+        "mobilePhone": "408952233", 
+        "homePhone": "40289551234", 
+        "workPhone": "4028953333", 
+        "mailingAddress": {
+            "state": "NE", 
+            "city": "TestCity", 
+            "postalCode": "98645 4561", 
+            "latitude": 35.3631619, 
+            "longitude": -94.20687579, 
+            "countryCode": "US", 
+            "line1": "3041 Su MailingAddress", 
+            "line2": "3042 Su MailingAddress", 
+            "line3": "3043 Su MailingAddress", 
+            "line4": "3044 Su MailingAddress"
+        }, 
+        "physicalAddress": {
+            "state": "CO", 
+            "city": "Englewood", 
+            "postalCode": "80110", 
+            "latitude": 36.3731619, 
+            "longitude": -94.20885579, 
+            "countryCode": "US", 
+            "line1": "3041 S INVERNESS", 
+            "line2": "Suite 395", 
+            "line3": "3043 S INVERNESS", 
+            "line4": "3044 S INVERNESS"
+        }
+    }
+}
+-!|
+|PUT|/users/current|200|||
+|let||js|!-response.jsonbody.billPayStatus-!|a|
+|let||js|!-response.jsonbody.enrolled-!|true|
+|let||js|!-response.jsonbody.lastLogin-!||
+|let||js|!-response.jsonbody.loginId-!|${userLoginId}|
+|let||js|!-response.jsonbody.billPayStatus-!|a|
+|let||js|!-response.jsonbody.person.alternateEmail-!|!-uaem@d3banking.com-!|
+|let||js|!-response.jsonbody.person.firstName-!|!-uFitnesseTestFirstName-!|
+|let||js|!-response.jsonbody.person.lastName-!|!-uFitnesseTestLastName-!|
+|let||js|!-response.jsonbody.person.primaryEmail-!|!-uabadyelkhan@d3banking.com-!|
+|let||js|!-response.jsonbody.person.mobilePhone-!|408952233|
+|let||js|!-response.jsonbody.person.homePhone-!|40289551234|
+|let||js|!-response.jsonbody.person.workPhone-!|4028953333|
+|let||js|!-response.jsonbody.person.mailingAddress.state-!|NE|
+|let||js|!-response.jsonbody.person.mailingAddress.city-!|!-TestCity-!|
+|let||js|!-response.jsonbody.person.mailingAddress.postalCode-!|98645 4561|
+|let||js|!-response.jsonbody.person.mailingAddress.latitude-!|35.3631619|
+|let||js|!-response.jsonbody.person.mailingAddress.longitude-!|-94.20687579|
+|let||js|!-response.jsonbody.person.mailingAddress.countryCode-!|US|
+|let||js|!-response.jsonbody.person.mailingAddress.line1-!|!-3041 Su MailingAddress-!|
+|let||js|!-response.jsonbody.person.mailingAddress.line2-!|!-3042 Su MailingAddress-!|
+|let||js|!-response.jsonbody.person.mailingAddress.line3-!|!-3043 Su MailingAddress-!|
+|let||js|!-response.jsonbody.person.mailingAddress.line4-!|!-3044 Su MailingAddress-!|
+|let||js|!-response.jsonbody.person.physicalAddress.state-!|CO|
+|let||js|!-response.jsonbody.person.physicalAddress.city-!|Englewood|
+|let||js|!-response.jsonbody.person.physicalAddress.postalCode-!|80110|
+|let||js|!-response.jsonbody.person.physicalAddress.latitude-!|36.3731619|
+|let||js|!-response.jsonbody.person.physicalAddress.longitude-!|-94.20885579|
+|let||js|!-response.jsonbody.person.physicalAddress.countryCode-!|US|
+|let||js|!-response.jsonbody.person.physicalAddress.line1-!|3041 S INVERNESS|
+|let||js|!-response.jsonbody.person.physicalAddress.line2-!|Suite 395|
+|let||js|!-response.jsonbody.person.physicalAddress.line3-!|3043 S INVERNESS|
+|let||js|!-response.jsonbody.person.physicalAddress.line4-!|3044 S INVERNESS|
+
+''billPayStatus/enrolled: true''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest|
+|setHeader|!-Content-Type : application/json
+Cookie: sid=-!%cookie1%|
+|setBody|!-{
+    "enrolled": true, 
+    "lastLogin": "2013-12-20T13:51:43.263-07:00", 
+    "loginId": "fitTestLogin", 
+    "billPayStatus": true, 
+    "person": {
+        "alternateEmail": "aem@d3banking.com", 
+        "firstName": "FitnesseTestFirstName", 
+        "lastName": "FitnesseTestLastName", 
+        "primaryEmail": "abadyelkhan@d3banking.com", 
+        "mobilePhone": "4025552233", 
+        "homePhone": "4025551234", 
+        "workPhone": "4025553333", 
+        "mailingAddress": {
+            "state": "CO", 
+            "city": "Aurora", 
+            "postalCode": "98745 4561", 
+            "latitude": 35.3731619, 
+            "longitude": -94.20887579, 
+            "countryCode": "US", 
+            "line1": "3041 S MailingAddress", 
+            "line2": "3042 S MailingAddress", 
+            "line3": "3043 S MailingAddress", 
+            "line4": "3044 S MailingAddress"
+        }, 
+        "physicalAddress": {
+            "state": "CO", 
+            "city": "Englewood", 
+            "postalCode": "80110", 
+            "latitude": 36.3731619, 
+            "longitude": -94.20885579, 
+            "countryCode": "US", 
+            "line1": "3041 S INVERNESS", 
+            "line2": "3042 S INVERNESS", 
+            "line3": "3043 S INVERNESS", 
+            "line4": "3044 S INVERNESS"
+        }
+    }
+}
+-!|
+|PUT|/users/current|200|||
+|let||js|!-response.jsonbody.enrolled-!||
+
+****!
+****!
+
+!*****> !style_darkRed[3 GET]
+!*****> ''3.1 /users/current''
+
+''2.1.1 billPayStatus set to true''
+
+|!-smartrics.rest.fitnesse.fixture.RestFixture-!|http://${serverName}/d3rest|
+|setHeader|!-Content-Type : application/json
+Cookie: sid=-!%cookie1%|
+|GET|/users/current|200|||
+|let||js|!-response.jsonbody.enrolled-!|true|
+|let||js|!-response.jsonbody.lastLogin-!||
+|let||js|!-response.jsonbody.loginId-!|${userLoginId}|
+|let||js|!-response.jsonbody.billPayStatus-!|a|
+|let||js|!-response.jsonbody.person.alternateEmail-!|!-aem@d3banking.com-!|
+|let||js|!-response.jsonbody.person.firstName-!|!-FitnesseTestFirstName-!|
+|let||js|!-response.jsonbody.person.lastName-!|!-FitnesseTestLastName-!|
+|let||js|!-response.jsonbody.person.primaryEmail-!|!-abadyelkhan@d3banking.com-!|
+|let||js|!-response.jsonbody.person.mobilePhone-!|4025552233|
+|let||js|!-response.jsonbody.person.homePhone-!|4025551234|
+|let||js|!-response.jsonbody.person.workPhone-!|4025553333|
+|let||js|!-response.jsonbody.person.mailingAddress.state-!|CO|
+|let||js|!-response.jsonbody.person.mailingAddress.city-!|Aurora|
+|let||js|!-response.jsonbody.person.mailingAddress.postalCode-!|98745 4561|
+|let||js|!-response.jsonbody.person.mailingAddress.latitude-!|35.3731619|
+|let||js|!-response.jsonbody.person.mailingAddress.longitude-!|-94.20887579|
+|let||js|!-response.jsonbody.person.mailingAddress.countryCode-!|US|
+|let||js|!-response.jsonbody.person.mailingAddress.line1-!|!-3041 S MailingAddress-!|
+|let||js|!-response.jsonbody.person.mailingAddress.line2-!|!-3042 S MailingAddress-!|
+|let||js|!-response.jsonbody.person.mailingAddress.line3-!|!-3043 S MailingAddress-!|
+|let||js|!-response.jsonbody.person.mailingAddress.line4-!|!-3044 S MailingAddress-!|
+|let||js|!-response.jsonbody.person.physicalAddress.state-!|CO|
+|let||js|!-response.jsonbody.person.physicalAddress.city-!|Englewood|
+|let||js|!-response.jsonbody.person.physicalAddress.postalCode-!|80110|
+|let||js|!-response.jsonbody.person.physicalAddress.latitude-!|36.3731619|
+|let||js|!-response.jsonbody.person.physicalAddress.longitude-!|-94.20885579|
+|let||js|!-response.jsonbody.person.physicalAddress.countryCode-!|US|
+|let||js|!-response.jsonbody.person.physicalAddress.line1-!|3041 S INVERNESS|
+|let||js|!-response.jsonbody.person.physicalAddress.line2-!|3042 S INVERNESS|
+|let||js|!-response.jsonbody.person.physicalAddress.line3-!|3043 S INVERNESS|
+|let||js|!-response.jsonbody.person.physicalAddress.line4-!|3044 S INVERNESS|
+****!
+****!
+
+****!

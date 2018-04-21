@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/AbstrackClassChallenge/AbstrackClassChallenge.iml" filepath="$PROJECT_DIR$/AbstrackClassChallenge/AbstrackClassChallenge.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Abstraction/Abstraction.iml" filepath="$PROJECT_DIR$/Abstraction/Abstraction.iml" />
+      <module fileurl="file://$PROJECT_DIR$/AccessModifiers/AccessModifiers.iml" filepath="$PROJECT_DIR$/AccessModifiers/AccessModifiers.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ArrayListChallenge/ArrayListChallenge.iml" filepath="$PROJECT_DIR$/ArrayListChallenge/ArrayListChallenge.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Arrays/Arrays.iml" filepath="$PROJECT_DIR$/Arrays/Arrays.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Banking/Banking.iml" filepath="$PROJECT_DIR$/Banking/Banking.iml" />
+      <module fileurl="file://$PROJECT_DIR$/BoxingAutoBoxingChallenge/BoxingAutoBoxingChallenge.iml" filepath="$PROJECT_DIR$/BoxingAutoBoxingChallenge/BoxingAutoBoxingChallenge.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ByteShortInt/ByteShortInt.iml" filepath="$PROJECT_DIR$/ByteShortInt/ByteShortInt.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Car/Car.iml" filepath="$PROJECT_DIR$/Car/Car.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Collections/Collections.iml" filepath="$PROJECT_DIR$/Collections/Collections.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Composition/Composition.iml" filepath="$PROJECT_DIR$/Composition/Composition.iml" />
+      <module fileurl="file://$PROJECT_DIR$/D3-AUTOMATION-develop/D3-AUTOMATION-develop/Consumer/Consumer.iml" filepath="$PROJECT_DIR$/D3-AUTOMATION-develop/D3-AUTOMATION-develop/Consumer/Consumer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/D3-AUTOMATION-develop/Consumer/Consumer1.iml" filepath="$PROJECT_DIR$/D3-AUTOMATION-develop/Consumer/Consumer1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/FloatAndDouble/FloatAndDouble.iml" filepath="$PROJECT_DIR$/FloatAndDouble/FloatAndDouble.iml" />
+      <module fileurl="file://$PROJECT_DIR$/GameTest/GameTest.iml" filepath="$PROJECT_DIR$/GameTest/GameTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/GenericsPart2/GenericsPart2.iml" filepath="$PROJECT_DIR$/GenericsPart2/GenericsPart2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/GroceryList2/GroceryList2.iml" filepath="$PROJECT_DIR$/GroceryList2/GroceryList2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Hamburger/Hamburger.iml" filepath="$PROJECT_DIR$/Hamburger/Hamburger.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Inheritance/Inheritance.iml" filepath="$PROJECT_DIR$/Inheritance/Inheritance.iml" />
+      <module fileurl="file://$PROJECT_DIR$/InheritaneChallenge/InheritaneChallenge.iml" filepath="$PROJECT_DIR$/InheritaneChallenge/InheritaneChallenge.iml" />
+      <module fileurl="file://$PROJECT_DIR$/InnerClasses/InnerClasses.iml" filepath="$PROJECT_DIR$/InnerClasses/InnerClasses.iml" />
+      <module fileurl="file://$PROJECT_DIR$/InterfaceChallenge/InterfaceChallenge.iml" filepath="$PROJECT_DIR$/InterfaceChallenge/InterfaceChallenge.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Interfaces/Interfaces.iml" filepath="$PROJECT_DIR$/Interfaces/Interfaces.iml" />
+      <module fileurl="file://$PROJECT_DIR$/LinkedList/LinkedList.iml" filepath="$PROJECT_DIR$/LinkedList/LinkedList.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MethodOverloading/MethodOverloading.iml" filepath="$PROJECT_DIR$/MethodOverloading/MethodOverloading.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Operators/Operators.iml" filepath="$PROJECT_DIR$/Operators/Operators.iml" />
+      <module fileurl="file://$PROJECT_DIR$/PackageChallenge/PackageChallenge.iml" filepath="$PROJECT_DIR$/PackageChallenge/PackageChallenge.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Packages/Packages.iml" filepath="$PROJECT_DIR$/Packages/Packages.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Person/Person.iml" filepath="$PROJECT_DIR$/Person/Person.iml" />
+      <module fileurl="file://$PROJECT_DIR$/PlayList/PlayList.iml" filepath="$PROJECT_DIR$/PlayList/PlayList.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Polymorphism/Polymorphism.iml" filepath="$PROJECT_DIR$/Polymorphism/Polymorphism.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ScopeChallenge/ScopeChallenge.iml" filepath="$PROJECT_DIR$/ScopeChallenge/ScopeChallenge.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SeriesTest/SeriesTest.iml" filepath="$PROJECT_DIR$/SeriesTest/SeriesTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/D3-AUTOMATION-develop/D3-AUTOMATION-develop/fitnesse/fitnesse.iml" filepath="$PROJECT_DIR$/D3-AUTOMATION-develop/D3-AUTOMATION-develop/fitnesse/fitnesse.iml" />
+      <module fileurl="file://$PROJECT_DIR$/D3-AUTOMATION-develop/fitnesse/fitnesse1.iml" filepath="$PROJECT_DIR$/D3-AUTOMATION-develop/fitnesse/fitnesse1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/house/house.iml" filepath="$PROJECT_DIR$/house/house.iml" />
+      <module fileurl="file://$PROJECT_DIR$/D3-AUTOMATION-develop/conduit/src/main/main.iml" filepath="$PROJECT_DIR$/D3-AUTOMATION-develop/conduit/src/main/main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/D3-AUTOMATION-develop/D3-AUTOMATION-develop/conduit/src/main/main1.iml" filepath="$PROJECT_DIR$/D3-AUTOMATION-develop/D3-AUTOMATION-develop/conduit/src/main/main1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/oOPSInreo/oOPSInreo.iml" filepath="$PROJECT_DIR$/oOPSInreo/oOPSInreo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/D3-AUTOMATION-develop/perfload/perfload.iml" filepath="$PROJECT_DIR$/D3-AUTOMATION-develop/perfload/perfload.iml" />
+      <module fileurl="file://$PROJECT_DIR$/D3-AUTOMATION-develop/D3-AUTOMATION-develop/perfload/perfload1.iml" filepath="$PROJECT_DIR$/D3-AUTOMATION-develop/D3-AUTOMATION-develop/perfload/perfload1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/D3-AUTOMATION-develop/conduit/src/test/test.iml" filepath="$PROJECT_DIR$/D3-AUTOMATION-develop/conduit/src/test/test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/D3-AUTOMATION-develop/D3-AUTOMATION-develop/conduit/src/test/test1.iml" filepath="$PROJECT_DIR$/D3-AUTOMATION-develop/D3-AUTOMATION-develop/conduit/src/test/test1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/untitled/untitled.iml" filepath="$PROJECT_DIR$/untitled/untitled.iml" />
+    </modules>
+  </component>
+</project>

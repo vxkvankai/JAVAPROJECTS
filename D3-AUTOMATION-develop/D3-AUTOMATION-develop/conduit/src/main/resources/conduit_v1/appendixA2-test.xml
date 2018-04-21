@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<conduitUserRequest xmlns="http://lodosoftware.com/conduit/user">
+	<version>1.0</version>
+	<userList>
+		<user directId="BR-1234-CID-9999" directId2="1234"> 
+			<branchExternalId>BRANCH4</branchExternalId>
+			<person>
+				<firstName>Jones</firstName>
+				<lastName>Jones</lastName>
+				<homePhone>8885551111</homePhone>
+				<physicalAddress>
+					<address1>112 Any Street</address1>
+					<address2></address2>
+                    <city>ENGLEWOOD</city>
+                    <state>CO</state>
+                    <postalCode>80112</postalCode>
+				</physicalAddress>
+			</person>
+		</user>
+	</userList>
+</conduitUserRequest>
+
+
+

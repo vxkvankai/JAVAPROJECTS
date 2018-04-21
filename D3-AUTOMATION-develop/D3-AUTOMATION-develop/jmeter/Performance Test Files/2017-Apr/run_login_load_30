@@ -1,0 +1,55 @@
+#!/bin/bash
+
+# usage: bash run_login_load <configfilepath>
+# e.g., bash run_login_load_30 login-load-3-0-ftbqa-tiny.config
+
+# This function depends on the summary output being <responsetime>,<label>,.... to parse properly
+function logAverage {
+  cat summary.txt | grep "$1" | perl -F, -lane '$total += $F[0]; $req = $F[1]; END{print $req . " " . $total/$.}'
+}
+
+D3_SCRIPT_HOME=`pwd`
+JMETER_HOME=~/dev/tools/apache-jmeter-3.1
+JMETER_LOG_HOME=/tmp
+
+echo $D3_SCRIPT_HOME
+rm ${JMETER_LOG_HOME}/d3PerfRun.log
+rm summary.txt
+rm results.txt
+
+echo "Configuration: $1"
+cat $1 | grep -v "#" | grep -v -e '^$'
+
+SECONDS=0
+${JMETER_HOME}/bin/jmeter -n -t "${D3_SCRIPT_HOME}/login-load-3-0.jmx" -j ${JMETER_LOG_HOME}/d3PerfRun.log -Ljmeter.engine=INFO -p $1
+
+REQCOUNT=`cat summary.txt | grep '/d3rest/' | wc -l | sed 's; ;;g'`
+echo "Number of requests: ${REQCOUNT}"
+echo "Number of seconds:  ${SECONDS}"
+RPS=$((REQCOUNT/SECONDS))
+echo "Requests/second:    ${RPS}"
+
+echo "Average Response Times:"
+
+logAverage "Login"
+logAverage "GET Challenge"
+logAverage "POST User Name"
+logAverage "POST Secret"
+logAverage "GET Session 2"
+logAverage "GET CSRF Session"
+logAverage "GET UI"
+
+logAverage "GET Accounts"
+logAverage "GET DB Accounts"
+logAverage "GET Cashflow"
+logAverage "GET Categories"
+logAverage "GET Messages"
+logAverage "GET Profile Details"
+logAverage "GET Transactions"
+
+logAverage "GET MM Meta"
+logAverage "GET MM Endpoints"
+logAverage "GET MM Latest Transfers"
+logAverage "GET MM Quickpay"
+# logAverage "GET MM Transfers"
+logAverage "GET Approval Requests"

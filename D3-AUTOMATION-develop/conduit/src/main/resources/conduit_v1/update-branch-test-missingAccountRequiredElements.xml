@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<conduitBranchRequest xmlns="http://lodosoftware.com/conduit/branch">
+    <version>1.0</version>
+    <authentication>
+        <username>user</username>
+        <password>password</password>
+    </authentication>
+    <branchList>
+        <branch externalId="ArnaTest-1" parentExternalId="DEFAULT">
+            <business>
+                <name>UpdateBusinessName</name>
+                <phone>303-545-5656</phone>
+                <physicalAddress>
+                    <address1>Updated 304 S INVERNESS, SUITE 395</address1>
+                    <city>Updated</city>
+                    <state>AR</state>
+                    <countryCode>US</countryCode>
+                    <postalCode>80244</postalCode>
+                    <geoCode>-94.2452557,36.3731619,0</geoCode>
+                </physicalAddress>
+                <mailingAddress>
+                    <address1>Updated PO BOX 1229</address1>
+                    <city>Updated</city>
+                    <state>CO</state>
+                    <countryCode>US</countryCode>
+                    <postalCode>80111</postalCode>
+                </mailingAddress>
+	            <contact1>
+	               <firstName>UpdatedFirstName</firstName>
+	               <lastName>UpdatedLastName</lastName>
+	               <primaryEmail>UpdatedJohn@smith.com</primaryEmail>
+	               <alternateEmail>UpdatedJohn@Smith2.com</alternateEmail>
+	               <homePhone>88845651111</homePhone>
+	               <workPhone>88854561113</workPhone>
+	               <mobilePhone>88456551112</mobilePhone>      
+	               <employee>true</employee>
+	            </contact1>
+	            <contact2>
+	               <firstName>UpdatedJane</firstName>
+	               <lastName>UpdatedDoe</lastName>
+	               <primaryEmail>UpdatedJane@Doe2.com</primaryEmail>
+	               <alternateEmail>UpdatedJane@Doe2.com</alternateEmail>
+	               <homePhone>8878951111</homePhone>
+	               <workPhone>88857891113</workPhone>
+	               <mobilePhone>88789551112</mobilePhone>
+	               <employee>true</employee>
+	            </contact2>
+            </business>
+        </branch>
+
+    </branchList>
+</conduitBranchRequest>
+

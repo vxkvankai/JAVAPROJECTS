@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<conduitMemoPostRequest xmlns="http://lodosoftware.com/conduit/memo" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<version>1.0</version>
+	<authentication>
+		<username>userName</username>
+		<password>password</password>
+	</authentication>
+	<accountList>
+		<account interfaceId="accountDirectID2-1">
+			<branchExternalId>ArnaTest-1</branchExternalId>
+			<balance>4200.00</balance>
+			<availableBalance>3900.99</availableBalance>
+			<transactionList>
+				 <transaction interfaceId="">
+					<type>0</type>
+					<name>InterfaceID Null Test</name>
+					<memo>memo</memo>
+					<amount>12.45</amount>
+					<principalAmount>12.45</principalAmount>
+					<interestAmount>75.12</interestAmount>
+					<postDate>2012-05-21</postDate>
+					<otherAmount>45.15</otherAmount>
+					<mcc>123</mcc>
+					<currencyCode>USD</currencyCode>
+					<pending>false</pending>
+					<runningBalance>9.99</runningBalance>
+					<originationDate>2012-04-21</originationDate>
+					<tranCode>99</tranCode>
+					<checkNum>999</checkNum>
+					 <imageId>1</imageId>
+					<postingSeq>23</postingSeq>
+				</transaction>
+			</transactionList>
+		</account>
+	</accountList> 
+</conduitMemoPostRequest>

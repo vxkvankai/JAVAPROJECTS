@@ -1,0 +1,563 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<conduit>
+  <hdr>
+    <ver>2.0</ver>
+    <rqid>01234567890</rqid>
+    <authn u="user" p="password"/>
+    <txndtrng bdt="2013-09-01" edt="2013-09-30"/>
+  </hdr>
+  
+  <usrmiglst>
+    <usrmig uid="usr-uid-001">
+      <acctdisplst>
+        <acctdisp uid="acct-uid-001">
+          <excl>0</excl>
+          <hdn>0</hdn>
+          <hba>0</hba>
+          <do>15</do>
+        </acctdisp>
+		<acctdisp uid="acct-uid-002">
+          <excl>1</excl>
+          <hdn>1</hdn>
+          <hba>1</hba>
+          <do>25</do>
+        </acctdisp>
+      </acctdisplst>
+      <catlst>
+        <cat uid="cat-uid-001">
+          <tp>expense</tp>
+          <lvl>user</lvl>
+          <grp>UserGroup</grp>
+		  <nm>userName</nm>
+        </cat>
+		 <cat uid="cat-uid-002">
+          <tp>income</tp>
+          <lvl>company</lvl>
+          <grp>companyGroup</grp>
+		  <nm>companyName</nm>
+        </cat>
+		 <cat uid="cat-uid-003">
+          <tp>expense</tp>
+          <lvl>system</lvl>
+          <grp>systemGroup</grp>
+		  <nm>systemName</nm>
+        </cat>
+      </catlst>
+      <alertdestlst>
+        <alertdest uid="dest-uid-001">
+          <nm>MyAlertDest1</nm>
+          <tp>email</tp>
+          <dest>joe.dest1@email.com</dest>
+		  <prDest>0</prDest>
+		  <altDest>0</altDest>
+        </alertdest>
+        <alertdest uid="dest-uid-002">
+          <nm>MyAlertDest2</nm>
+          <tp>inbox</tp>
+          <dest>joe.dest2@email.com</dest>
+		  <prDest>1</prDest>
+		  <altDest>1</altDest>
+        </alertdest>
+		<alertdest uid="dest-uid-003">
+          <nm>MyAlertDest3</nm>
+          <tp>inbox</tp>
+          <dest>joe.dest3@email.com</dest>
+		  <prDest>0</prDest>
+		  <altDest>0</altDest>
+        </alertdest>
+      </alertdestlst>  
+	  <alertlst>
+        <alert uid="alert-uid-001">
+          <tp>balance.threshold</tp>
+          <desc>Balance Threshold</desc>
+          <enbl>1</enbl>
+          <freq>daily</freq>
+		  <dnd>Default</dnd>
+          <destlst>
+            <dest uid="dest-uid-001"/>
+            <dest uid="dest-uid-002"/>
+          </destlst>
+          <alst>
+            <a n="accountUid">acct-uid-001</a>
+            <a n="operator">LT</a>
+            <a n="threshold">100.000000</a>
+          </alst>
+        </alert>
+        <alert uid="alert-uid-002">
+          <tp>budget.category.threshold</tp>
+          <desc>Budget Category Threshold (AMOUNT)</desc>
+          <enbl>0</enbl>
+          <freq>daily</freq>  <!--DDB-965: change to hourly-->
+		  <dnd>Ignore</dnd>
+          <destlst>
+            <dest uid="dest-uid-002"/>
+          </destlst>
+          <alst>
+            <a n="categoryUid">cat-uid-001</a>
+            <a n="threshold.attr">AMOUNT</a>
+            <a n="threshold.type">APPROACH</a>
+            <a n="threshold">1000.000000</a>
+          </alst>
+        </alert>
+        <alert uid="alert-uid-003">
+          <tp>budget.category.threshold</tp>
+          <desc>Budget Category Threshold (PERCENT)</desc>
+          <enbl>1</enbl>
+          <freq>onetime</freq>
+		  <dnd>Defer</dnd>
+          <destlst>
+            <dest uid="dest-uid-002"/>
+          </destlst>
+          <alst>
+            <a n="categoryUid">cat-uid-001</a>
+            <a n="threshold.attr">PERCENT</a>
+            <a n="threshold.type">EXCEED</a>
+            <a n="threshold">70.000000</a>
+          </alst>
+        </alert>
+        <alert uid="alert-uid-004">
+          <tp>budget.total.threshold</tp>
+          <desc>Budget Total Threshold (AMOUNT)</desc>
+          <enbl>1</enbl>
+          <freq>daily</freq> <!--DDB-965: change to semiannually-->
+		  <dnd>Drop</dnd>
+          <destlst>
+            <dest uid="dest-uid-002"/>
+          </destlst>
+          <alst>
+            <a n="threshold.attr">AMOUNT</a>
+            <a n="threshold.type">APPROACH</a>
+            <a n="threshold">20000.000000</a>
+          </alst>
+        </alert>
+        <alert uid="alert-uid-005">
+          <tp>budget.total.threshold</tp>
+          <desc>Budget Total Threshold (PERCENT)</desc>
+          <enbl>1</enbl>
+          <freq>daily</freq> <!--DDB-965: change to semiweekly-->
+          <destlst>
+            <dest uid="dest-uid-002"/>
+          </destlst>
+          <alst>
+            <a n="threshold.attr">PERCENT</a>
+            <a n="threshold.type">APPROACH</a>
+            <a n="threshold">50.000000</a>
+          </alst>
+        </alert>
+        <alert uid="alert-uid-006">
+          <tp>credit.deposit</tp>
+          <desc>Credit Deposit/Credit</desc>
+          <enbl>1</enbl>
+          <freq>always</freq>
+          <destlst>
+            <dest uid="dest-uid-002"/>
+          </destlst>
+          <alst>
+            <a n="accountUid">acct-uid-001</a>
+          </alst>
+        </alert>
+        <alert uid="alert-uid-007">
+          <tp>transaction.amount</tp>
+          <desc>Transaction Amount</desc>
+          <enbl>1</enbl>
+          <freq>daily</freq>  <!--DDB-965: change to weekly-->
+          <destlst>
+            <dest uid="dest-uid-002"/>
+          </destlst>
+          <alst>
+            <a n="accountUid">acct-uid-001</a>
+            <a n="threshold">1000.000000</a>
+          </alst>
+        </alert>
+        <alert uid="alert-uid-008">
+          <tp>transaction.merchant</tp>
+          <desc>Transaction Merchant</desc>
+          <enbl>1</enbl>
+          <freq>daily</freq> <!--DDB-965: change to semimonthly-->
+          <destlst>
+            <dest uid="dest-uid-002"/>
+          </destlst>
+          <alst>
+            <a n="merchant">WALMART</a>
+          </alst>
+        </alert>
+        <alert uid="alert-uid-009">
+          <tp>account.reminder</tp>
+          <desc>Account Reminder (MONTHLY)</desc>
+          <enbl>1</enbl>
+          <freq>monthly</freq>
+          <destlst>
+            <dest uid="dest-uid-002"/>
+          </destlst>
+          <alst>
+            <a n="freqAttr1">15</a>
+            <a n="reminder.string">This is a reminder text</a>
+          </alst>
+        </alert>
+        <alert uid="alert-uid-010">
+          <tp>account.reminder</tp>
+          <desc>Account Reminder (QUARTERLY)</desc>
+          <enbl>1</enbl>
+          <freq>quarterly</freq>
+          <destlst>
+            <dest uid="dest-uid-002"/>
+          </destlst>
+          <alst>
+            <a n="freqAttr1">2</a>
+            <a n="freqAttr2">16</a>
+            <a n="reminder.string">This is a reminder text</a>
+          </alst>
+        </alert>
+        <alert uid="alert-uid-011">
+          <tp>account.reminder</tp>
+          <desc>Account Reminder (ANNUALLY)</desc>
+          <enbl>1</enbl>
+          <freq>annually</freq>
+          <destlst>
+            <dest uid="dest-uid-002"/>
+          </destlst>
+          <alst>
+            <a n="freqAttr1">3</a>
+            <a n="freqAttr2">17</a>
+            <a n="reminder.string">This is a reminder text</a>
+          </alst>
+        </alert>
+      </alertlst>
+      <msglst>
+        <msg uid="msg-uid-001">
+          <tp>general</tp>
+          <sb>general type of message</sb>
+          <bd>This is a general type of message body!</bd>
+          <sts>new</sts>
+        </msg>
+		<msg uid="msg-uid-002">
+          <tp>alert</tp>
+          <sb>alert type of message</sb>
+          <bd>This is an alert type of message body!</bd>
+          <sts>read</sts>
+        </msg>
+		<msg uid="msg-uid-003">
+          <tp>campaign</tp>
+          <sb>campaign type of message</sb>
+          <bd>This is a campaign type of message body!</bd>
+          <sts>new</sts>
+        </msg>
+		<msg uid="msg-uid-004">
+          <tp>reminder</tp>
+          <sb>reminder type of message</sb>
+          <bd>This is a reminder type of message body!</bd>
+          <sts>new</sts>
+        </msg>
+      </msglst>
+      <catmaplst>
+        <catmap auid="acct-uid-001" tuid="txn-uid-001">
+		  <mm>Memo1 Categorization Mapping List Element</mm>
+		  <nm>Name1 for Categorization Mapping List Element</nm>
+          <cattxnlst>
+            <cat uid="cat-uid-001">
+              <amt>300.000000</amt>
+            </cat>
+			<cat uid="cat-uid-002">
+              <amt>150</amt>
+            </cat>
+          </cattxnlst>
+        </catmap>
+		<catmap auid="acct-uid-002" tuid="txn-uid-002">
+		  <mm>Memo2 Categorization Mapping List Element</mm>
+		  <nm>Name2 for Categorization Mapping List Element</nm>
+          <cattxnlst>
+            <cat uid="cat-uid-001">
+              <amt>103.75</amt>
+            </cat>
+			<cat uid="cat-uid-002">
+              <amt>0.465</amt>
+            </cat>
+			<cat uid="cat-uid-002">
+              <amt>145.785</amt>
+            </cat>
+			<cat uid="cat-uid-002">
+              <amt>100.00</amt>
+            </cat>
+			<cat uid="cat-uid-002">
+              <amt>100.00</amt>
+            </cat>
+          </cattxnlst>
+        </catmap>
+      </catmaplst>
+    </usrmig> 
+	
+	<usrmig uid="usr-uid-002">
+      <acctdisplst>
+        <acctdisp uid="acct-uid-001">
+          <excl>0</excl>
+          <hdn>0</hdn>
+          <hba>0</hba>
+          <do>15</do>
+        </acctdisp>
+		<acctdisp uid="acct-uid-002">
+          <excl>1</excl>
+          <hdn>1</hdn>
+          <hba>1</hba>
+          <do>25</do>
+        </acctdisp>
+      </acctdisplst>
+      <catlst>
+        <cat uid="cat-uid-004">
+          <tp>expense</tp>
+          <lvl>user</lvl>
+          <grp>UserGroup</grp>
+		  <nm>userName</nm>
+        </cat>
+		 <cat uid="cat-uid-005">
+          <tp>income</tp>
+          <lvl>company</lvl>
+          <grp>companyGroup</grp>
+		  <nm>companyName</nm>
+        </cat>
+		 <cat uid="cat-uid-006">
+          <tp>expense</tp>
+          <lvl>system</lvl>
+          <grp>systemGroup</grp>
+		  <nm>systemName</nm>
+        </cat>
+      </catlst>
+      <alertdestlst>
+        <alertdest uid="dest-uid-004">
+          <nm>MyAlertDest4</nm>
+          <tp>email</tp>
+          <dest>joe.dest1@email.com</dest>
+		  <prDest>0</prDest>
+		  <altDest>0</altDest>
+        </alertdest>
+        <alertdest uid="dest-uid-005">
+          <nm>MyAlertDest5</nm>
+          <tp>inbox</tp>
+          <dest>joe.dest2@email.com</dest>
+		  <prDest>1</prDest>
+		  <altDest>1</altDest>
+        </alertdest>
+		<alertdest uid="dest-uid-006">
+          <nm>MyAlertDest6</nm>
+          <tp>inbox</tp>
+          <dest>joe.dest3@email.com</dest>
+		  <prDest>0</prDest>
+		  <altDest>0</altDest>
+        </alertdest>
+      </alertdestlst>  
+	  <alertlst>
+        <alert uid="alert-uid-0012">
+          <tp>balance.threshold</tp>
+          <desc>Balance Threshold</desc>
+          <enbl>1</enbl>
+          <freq>daily</freq>
+		  <dnd>Default</dnd>
+          <destlst>
+            <dest uid="dest-uid-004"/>
+            <dest uid="dest-uid-005"/>
+          </destlst>
+          <alst>
+            <a n="accountUid">acct-uid-001</a>
+            <a n="operator">LT</a>
+            <a n="threshold">100.000000</a>
+          </alst>
+        </alert>
+        <alert uid="alert-uid-0013">
+          <tp>budget.category.threshold</tp>
+          <desc>Budget Category Threshold (AMOUNT)</desc>
+          <enbl>0</enbl>
+          <freq>daily</freq>  <!--DDB-965: change to hourly-->
+		  <dnd>Ignore</dnd>
+          <destlst>
+            <dest uid="dest-uid-004"/>
+          </destlst>
+          <alst>
+            <a n="categoryUid">cat-uid-001</a>
+            <a n="threshold.attr">AMOUNT</a>
+            <a n="threshold.type">APPROACH</a>
+            <a n="threshold">1000.000000</a>
+          </alst>
+        </alert>
+        <alert uid="alert-uid-0014">
+          <tp>budget.category.threshold</tp>
+          <desc>Budget Category Threshold (PERCENT)</desc>
+          <enbl>1</enbl>
+          <freq>onetime</freq>
+		  <dnd>Defer</dnd>
+          <destlst>
+            <dest uid="dest-uid-004"/>
+          </destlst>
+          <alst>
+            <a n="categoryUid">cat-uid-001</a>
+            <a n="threshold.attr">PERCENT</a>
+            <a n="threshold.type">EXCEED</a>
+            <a n="threshold">70.000000</a>
+          </alst>
+        </alert>
+        <alert uid="alert-uid-0015">
+          <tp>budget.total.threshold</tp>
+          <desc>Budget Total Threshold (AMOUNT)</desc>
+          <enbl>1</enbl>
+          <freq>daily</freq> <!--DDB-965: change to semiannually-->
+		  <dnd>Drop</dnd>
+          <destlst>
+            <dest uid="dest-uid-004"/>
+          </destlst>
+          <alst>
+            <a n="threshold.attr">AMOUNT</a>
+            <a n="threshold.type">APPROACH</a>
+            <a n="threshold">20000.000000</a>
+          </alst>
+        </alert>
+        <alert uid="alert-uid-0016">
+          <tp>budget.total.threshold</tp>
+          <desc>Budget Total Threshold (PERCENT)</desc>
+          <enbl>1</enbl>
+          <freq>daily</freq> <!--DDB-965: change to semiweekly-->
+          <destlst>
+            <dest uid="dest-uid-004"/>
+          </destlst>
+          <alst>
+            <a n="threshold.attr">PERCENT</a>
+            <a n="threshold.type">APPROACH</a>
+            <a n="threshold">50.000000</a>
+          </alst>
+        </alert>
+        <alert uid="alert-uid-0017">
+          <tp>credit.deposit</tp>
+          <desc>Credit Deposit/Credit</desc>
+          <enbl>1</enbl>
+          <freq>always</freq>
+          <destlst>
+            <dest uid="dest-uid-004"/>
+          </destlst>
+          <alst>
+            <a n="accountUid">acct-uid-001</a>
+          </alst>
+        </alert>
+        <alert uid="alert-uid-0018">
+          <tp>transaction.amount</tp>
+          <desc>Transaction Amount</desc>
+          <enbl>1</enbl>
+          <freq>daily</freq>  <!--DDB-965: change to weekly-->
+          <destlst>
+            <dest uid="dest-uid-004"/>
+          </destlst>
+          <alst>
+            <a n="accountUid">acct-uid-001</a>
+            <a n="threshold">1000.000000</a>
+          </alst>
+        </alert>
+        <alert uid="alert-uid-0019">
+          <tp>transaction.merchant</tp>
+          <desc>Transaction Merchant</desc>
+          <enbl>1</enbl>
+          <freq>daily</freq> <!--DDB-965: change to semimonthly-->
+          <destlst>
+            <dest uid="dest-uid-004"/>
+          </destlst>
+          <alst>
+            <a n="merchant">WALMART</a>
+          </alst>
+        </alert>
+        <alert uid="alert-uid-0020">
+          <tp>account.reminder</tp>
+          <desc>Account Reminder (MONTHLY)</desc>
+          <enbl>1</enbl>
+          <freq>monthly</freq>
+          <destlst>
+            <dest uid="dest-uid-004"/>
+          </destlst>
+          <alst>
+            <a n="freqAttr1">15</a>
+            <a n="reminder.string">This is a reminder text</a>
+          </alst>
+        </alert>
+        <alert uid="alert-uid-021">
+          <tp>account.reminder</tp>
+          <desc>Account Reminder (QUARTERLY)</desc>
+          <enbl>1</enbl>
+          <freq>quarterly</freq>
+          <destlst>
+            <dest uid="dest-uid-004"/>
+          </destlst>
+          <alst>
+            <a n="freqAttr1">2</a>
+            <a n="freqAttr2">16</a>
+            <a n="reminder.string">This is a reminder text</a>
+          </alst>
+        </alert>
+        <alert uid="alert-uid-022">
+          <tp>account.reminder</tp>
+          <desc>Account Reminder (ANNUALLY)</desc>
+          <enbl>1</enbl>
+          <freq>annually</freq>
+          <destlst>
+            <dest uid="dest-uid-004"/>
+          </destlst>
+          <alst>
+            <a n="freqAttr1">3</a>
+            <a n="freqAttr2">17</a>
+            <a n="reminder.string">This is a reminder text</a>
+          </alst>
+        </alert>
+        
+        
+        <alert uid="alert-uid-023">
+          <tp>check.number.cleared</tp>
+          <desc>check.number.cleared</desc>
+          <enbl>1</enbl>
+          <freq>annually</freq>
+          <destlst>
+            <dest uid="dest-uid-002"/>
+          </destlst>
+          <alst>
+            <a n="accountUid">acct-uid-001</a>
+            <a n="check.number">N555</a>
+          </alst>
+        </alert>
+        <alert uid="alert-uid-025">
+          <tp>periodic.balance</tp>
+          <desc>periodic.balance</desc>
+          <enbl>1</enbl>
+          <freq>annually</freq>
+          <destlst>
+            <dest uid="dest-uid-002"/>
+          </destlst>
+          <alst>
+            <a n="accountUid">acct-uid-001</a>
+          </alst>
+        </alert>
+     
+        
+        
+      </alertlst>
+      <msglst>
+        <msg uid="msg-uid-005">
+          <tp>general</tp>
+          <sb>general type of message</sb>
+          <bd>This is a general type of message body!</bd>
+          <sts>new</sts>
+        </msg>
+		<msg uid="msg-uid-006">
+          <tp>alert</tp>
+          <sb>alert type of message</sb>
+          <bd>This is an alert type of message body!</bd>
+          <sts>read</sts>
+        </msg>
+		<msg uid="msg-uid-007">
+          <tp>campaign</tp>
+          <sb>campaign type of message</sb>
+          <bd>This is a campaign type of message body!</bd>
+          <sts>new</sts>
+        </msg>
+		<msg uid="msg-uid-008">
+          <tp>reminder</tp>
+          <sb>reminder type of message</sb>
+          <bd>This is a reminder type of message body!</bd>
+          <sts>new</sts>
+        </msg>
+      </msglst>
+
+    </usrmig> 
+  </usrmiglst>
+</conduit>

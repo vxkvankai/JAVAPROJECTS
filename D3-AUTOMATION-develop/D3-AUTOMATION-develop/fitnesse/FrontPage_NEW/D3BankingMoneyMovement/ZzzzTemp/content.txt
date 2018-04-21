@@ -1,0 +1,34 @@
+!*****> '''!style_darkRed[ALERTS]'''
+
+!*****> !style_darkRed[1 POST]
+!*****> ''1.1 /alerts/transfers''
+****!
+!*****> ''1.2 ''
+****!
+****!
+
+!*****> !style_darkRed[2 PUT]
+!*****> ''2.1 ''
+****!
+!*****> ''2.2 ''
+****!
+****!
+
+!*****> !style_darkRed[3 GET]
+!*****> ''3.1 /user/current''
+****!
+!*****> ''3.2 ''
+****!
+****!
+
+!*****> !style_darkRed[4 DELETE]
+!*****> ''4.1 ''
+****!
+!*****> ''4.2 ''
+****!
+****!
+
+****!
+
+# things to include: hidden accounts, joint accounts users, variety accounts
+# transfer, recurring transfer when not enrolledBillPayment

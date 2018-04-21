@@ -1,0 +1,82 @@
+<?xml version="1.0"?>
+<conduitUserRequest xmlns="http://lodosoftware.com/conduit/user" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <version>1.0</version>
+    <requestId>requestId</requestId>
+    <authentication>
+        <username>userName</username>
+        <password>password</password>
+    </authentication>
+    <userList>
+        <user directId="NewTestUserForMigration1">
+            <loginId>NewTestUserForMigration1</loginId>
+            <branchExternalId>ArnaTest-1</branchExternalId>
+            <interfaceId>9999</interfaceId>
+            <taxId>304-26-2460</taxId>
+            <taxIdType>SSN</taxIdType>
+            <locked>false</locked>
+            <userEnabled>false</userEnabled>
+            <emailOptOut>false</emailOptOut>
+            <dateOfBirth>1980-08-24</dateOfBirth>
+            <gender>F</gender>
+            <billpaySubscriberId>316492460304</billpaySubscriberId>
+            <billpayStatus>billpayStatus.active</billpayStatus>
+            <mobile>false</mobile>
+            <creditScore>800</creditScore>
+            <creditScoreDate>2012-04-20</creditScoreDate>
+            <userClass>DOUBLE-PLATNUM</userClass>
+            <person>
+                <firstName>Arna</firstName>
+                <middleName>middleName</middleName>
+                <lastName>Badyelkhan</lastName>
+                <primaryEmail>abadyelkhan@lodosoftware.com</primaryEmail>
+                <homePhone>304-304-2460</homePhone>
+                <employee>false</employee>
+                <alternateEmail>alternateEmail@lodosoftware.com</alternateEmail>
+                <workPhone>720-456-8585</workPhone>
+                <mobilePhone>3034567845</mobilePhone>
+                <physicalAddress>
+                    <address1>9568 Missouri Ave</address1>
+                    <address2>9568 Missouri Ave</address2>
+                    <address3>9568 Missouri Ave</address3>
+                    <address4>9568 Missouri Ave</address4>
+                    <city>LOWELL</city>
+                    <state>AR</state>
+                    <countryCode>US</countryCode>
+                    <postalCode>72745-9551</postalCode>
+                </physicalAddress>
+            </person>
+     		<userMigration>
+				<alertDestinationList>
+					<alertDestination>
+						<externalId>alertDestinationExternalId1</externalId>
+						<name>Test alertDestination Email</name>
+						<type>dest.email</type>
+						<address>alertDestinationExternalId1@test.com</address>
+					</alertDestination>
+					<alertDestination>
+						<externalId>alertDestinationExternalId2</externalId>
+						<name>Test alertDestination InBox</name>
+						<type>dest.inbox</type>
+					</alertDestination>
+				</alertDestinationList>
+			</userMigration>
+        </user>
+        <user directId="ArnaTestUser-1" directId2="TestuserDirectID2">
+     		<userMigration>
+				<alertDestinationList>
+					<alertDestination>
+						<externalId>alertDestinationExternalId3</externalId>
+						<name>Test2 alertDestination Email</name>
+						<type>dest.email</type>
+						<address>alertDestinationExternalId2@test.com</address>
+					</alertDestination>
+					<alertDestination>
+						<externalId>alertDestinationExternalId4</externalId>
+						<name>Test2 alertDestination InBox</name>
+						<type>dest.inbox</type>
+					</alertDestination>
+				</alertDestinationList>
+			</userMigration>
+        </user>
+    </userList>
+</conduitUserRequest>

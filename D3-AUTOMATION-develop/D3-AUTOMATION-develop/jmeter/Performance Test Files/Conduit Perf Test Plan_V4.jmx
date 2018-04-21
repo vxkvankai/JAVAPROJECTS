@@ -1,0 +1,1503 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jmeterTestPlan version="1.2" properties="2.6" jmeter="2.11 r1554548">
+  <hashTree>
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="Conduit Perf Test Plan" enabled="true">
+      <stringProp name="TestPlan.comments"></stringProp>
+      <boolProp name="TestPlan.functional_mode">false</boolProp>
+      <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
+      <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+        <collectionProp name="Arguments.arguments">
+          <elementProp name="conduitFileDropPath" elementType="Argument">
+            <stringProp name="Argument.name">conduitFileDropPath</stringProp>
+            <stringProp name="Argument.value">C:\\conduit\\temp\\</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="dbURL" elementType="Argument">
+            <stringProp name="Argument.name">dbURL</stringProp>
+            <stringProp name="Argument.value">10.1.1.18</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="dbName" elementType="Argument">
+            <stringProp name="Argument.name">dbName</stringProp>
+            <stringProp name="Argument.value">d3qa_v23</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="dbUserName" elementType="Argument">
+            <stringProp name="Argument.name">dbUserName</stringProp>
+            <stringProp name="Argument.value">d3qa</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="dbPassword" elementType="Argument">
+            <stringProp name="Argument.name">dbPassword</stringProp>
+            <stringProp name="Argument.value">d3qa</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="numOfThreads" elementType="Argument">
+            <stringProp name="Argument.name">numOfThreads</stringProp>
+            <stringProp name="Argument.value">1</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="numOfAccts" elementType="Argument">
+            <stringProp name="Argument.name">numOfAccts</stringProp>
+            <stringProp name="Argument.value">30</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="numOfTxnsPerAccts" elementType="Argument">
+            <stringProp name="Argument.name">numOfTxnsPerAccts</stringProp>
+            <stringProp name="Argument.value">3</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="addTxns" elementType="Argument">
+            <stringProp name="Argument.name">addTxns</stringProp>
+            <stringProp name="Argument.value">true</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="source_company_id" elementType="Argument">
+            <stringProp name="Argument.name">source_company_id</stringProp>
+            <stringProp name="Argument.value">fi1</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="numOfUsers" elementType="Argument">
+            <stringProp name="Argument.name">numOfUsers</stringProp>
+            <stringProp name="Argument.value">1</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+          <elementProp name="isIntraday" elementType="Argument">
+            <stringProp name="Argument.name">isIntraday</stringProp>
+            <stringProp name="Argument.value">true</stringProp>
+            <stringProp name="Argument.metadata">=</stringProp>
+          </elementProp>
+        </collectionProp>
+      </elementProp>
+      <stringProp name="TestPlan.user_define_classpath"></stringProp>
+    </TestPlan>
+    <hashTree>
+      <JDBCDataSource guiclass="TestBeanGUI" testclass="JDBCDataSource" testname="DB Connection" enabled="true">
+        <boolProp name="autocommit">true</boolProp>
+        <stringProp name="checkQuery">Select 1</stringProp>
+        <stringProp name="connectionAge">5000</stringProp>
+        <stringProp name="dataSource">Connection-1</stringProp>
+        <stringProp name="dbUrl">jdbc:jtds:sqlserver:/${dbURL};${dbName}</stringProp>
+        <stringProp name="driver">net.sourceforge.jtds.jdbc.Driver</stringProp>
+        <boolProp name="keepAlive">true</boolProp>
+        <stringProp name="password">${dbPassword}</stringProp>
+        <stringProp name="poolMax">10</stringProp>
+        <stringProp name="timeout">10000</stringProp>
+        <stringProp name="transactionIsolation">DEFAULT</stringProp>
+        <stringProp name="trimInterval">60000</stringProp>
+        <stringProp name="username">${dbUserName}</stringProp>
+      </JDBCDataSource>
+      <hashTree/>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Only Accts and/or Txns (Nightly Job Tests)" enabled="false">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">1</stringProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">${numOfThreads}</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+        <longProp name="ThreadGroup.start_time">1360810051000</longProp>
+        <longProp name="ThreadGroup.end_time">1360810051000</longProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+      </ThreadGroup>
+      <hashTree>
+        <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="CreateAcctsTxns" enabled="true">
+          <boolProp name="LoopController.continue_forever">true</boolProp>
+          <stringProp name="LoopController.loops">1</stringProp>
+        </LoopController>
+        <hashTree>
+          <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="QueryAndGetAccountProducts" enabled="true">
+            <stringProp name="dataSource">Connection-1</stringProp>
+            <stringProp name="queryType">Prepared Select Statement</stringProp>
+            <stringProp name="query">select source_product_id from [${dbName}].[dbo].account_product where company_id = 1 and source = &apos;INTERNAL&apos; and len(source_product_id) &lt; 31</stringProp>
+            <stringProp name="queryArguments"></stringProp>
+            <stringProp name="queryArgumentsTypes"></stringProp>
+            <stringProp name="variableNames">source_product_id</stringProp>
+            <stringProp name="resultVariable"></stringProp>
+            <stringProp name="queryTimeout"></stringProp>
+          </JDBCSampler>
+          <hashTree/>
+          <BeanShellSampler guiclass="BeanShellSamplerGui" testclass="BeanShellSampler" testname="CreateFilesWithAcctsTxnsAndDrop" enabled="true">
+            <stringProp name="BeanShellSampler.query">import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
+import java.util.Random;
+import javax.xml.parsers.ParserConfigurationException;
+import org.junit.Test;
+import org.xml.sax.SAXException;
+
+String fiName = &quot;${source_company_id}&quot;;
+String conduitProccessDir = &quot;${conduitFileDropPath}&quot;;
+
+int numOfAccts = ${numOfAccts};
+int numOfTxnsPerAccts = ${numOfTxnsPerAccts};
+int threadNum = ${numOfThreads};
+boolean addTxns = ${addTxns};
+
+SimpleDateFormat sdf = new SimpleDateFormat(&quot;dd-M-yy-hh-mm&quot;);
+String tDay =  sdf.format(new Date());
+
+sdf = new SimpleDateFormat(&quot;yyyy-MM-dd&quot;);
+String endDate =  sdf.format(new Date());
+
+Calendar cal = Calendar.getInstance();
+cal.setTime(new Date());
+cal.add(Calendar.DATE, -300);
+String bgnDate =  sdf.format(cal.getTime());
+
+String fileName = &quot;conduit-accts&quot;+numOfAccts + &quot;-txnsPerAcct&quot;+numOfTxnsPerAccts + &quot;-t${__threadNum}&quot;;
+vars.put(&quot;filename&quot;, fileName);
+vars.put(&quot;filePartialName&quot;, &quot;conduit-accts&quot;+numOfAccts + &quot;-txnsPerAcct&quot;+numOfTxnsPerAccts + &quot;-t&quot;);
+String filePath = conduitProccessDir + fileName + &quot;.txt&quot;;
+File file = new File(filePath);	    
+FileWriter fw = new FileWriter(file.getAbsoluteFile());
+BufferedWriter bw = new BufferedWriter(fw);	
+
+bw.write(&quot;&lt;?xml version=\&quot;1.0\&quot; encoding=\&quot;UTF-8\&quot;?&gt;\r\n&quot; + 
+		&quot;&lt;conduit&gt;\r\n&quot; + 
+		&quot;  &lt;hdr&gt;\r\n&quot; + 
+		&quot;    &lt;ver&gt;2.0&lt;/ver&gt;\r\n&quot; + 
+		&quot;    &lt;rqid&gt;01234567890&lt;/rqid&gt;\r\n&quot; + 
+		&quot;    &lt;authn u=\&quot;user\&quot; p=\&quot;password\&quot;/&gt;\r\n&quot; + 
+		&quot;    &lt;txndtrng bdt=\&quot;&quot;+bgnDate+&quot;\&quot; edt=\&quot;&quot;+endDate+&quot;\&quot;/&gt;\r\n&quot; + 
+		&quot;  &lt;/hdr&gt;\r\n&quot; + 
+		&quot;  &lt;acctlst&gt;\r\n&quot;);
+for (int c = 0; c&lt;numOfAccts; c++)
+{
+	vars.put(&quot;partialAcctName&quot;, &quot;Performance Test Acct&quot;+ tDay + &quot;-&quot;);
+	bw.write(
+			&quot;    &lt;acct uid=\&quot;acct-uid-&quot;+ tDay + &quot;-${__threadNum}&quot;+(c+1)+&quot;\&quot; cuid=\&quot;&quot;+fiName+&quot;\&quot;&gt;\r\n&quot; + 
+			&quot;      &lt;produid&gt;${__V(source_product_id_${__Random(1,${source_product_id_#})})}&lt;/produid&gt;\r\n&quot; + 
+			&quot;      &lt;nm&gt;Performance Test Acct&quot;+ tDay + &quot;-${__threadNum}&quot;+(c+1)+&quot;&lt;/nm&gt;\r\n&quot; + 
+			&quot;      &lt;rttn&gt;123456789&lt;/rttn&gt;\r\n&quot; + 
+			&quot;      &lt;nbr&gt;${__threadNum}&quot;+(c+1)+&quot;&lt;/nbr&gt;\r\n&quot; + 
+			&quot;      &lt;bal&gt;2500.50&lt;/bal&gt;\r\n&quot; + 
+			&quot;      &lt;sts&gt;open&lt;/sts&gt;\r\n&quot; + 
+			&quot;      &lt;avbal&gt;1050.000000&lt;/avbal&gt;\r\n&quot; + 
+			&quot;      &lt;rstr&gt;0&lt;/rstr&gt;\r\n&quot; + 
+			&quot;      &lt;estmt&gt;p&lt;/estmt&gt;\r\n&quot; + 
+			&quot;      &lt;opndt&gt;2013-11-12&lt;/opndt&gt;\r\n&quot;);
+	if (addTxns)
+	{	
+		for (int txn = 0; txn&lt;numOfTxnsPerAccts; txn++)
+		{
+ 				vars.put(&quot;partialTxnName&quot;, &quot;Performance Test Txn&quot;+ tDay+ &quot;-&quot;);
+			bw.write(
+			&quot;        &lt;txn uid=\&quot;txn-uid-&quot;+ tDay+ &quot;-${__threadNum}&quot;+(c+1)+(txn+1)+&quot;\&quot; am=\&quot;800\&quot; cn=\&quot;1001\&quot; ia=\&quot;78.45\&quot; im=\&quot;checking-${__threadNum}&quot; + (c+1) + (txn+1)+&quot;.jpg\&quot; mc=\&quot;0202\&quot; oa=\&quot;7896.45\&quot; od=\&quot;2013-09-10\&quot; pa=\&quot;45.45\&quot; pd=\&quot;&quot;+endDate+&quot;\&quot; pn=\&quot;0\&quot; ps=\&quot;1\&quot; rb=\&quot;7894.45\&quot; tc=\&quot;TXN-CODE\&quot; tp=\&quot;d\&quot; cf=\&quot;${__threadNum}&quot;+(c+1)+(txn+1)+&quot;\&quot; dn=\&quot;TestDepositNum\&quot;&gt;\r\n&quot; + 
+			&quot;          &lt;nm&gt;Performance Test Txn&quot;+ tDay+ &quot;-${__threadNum}&quot;+(c+1)+(txn+1)+&quot;&lt;/nm&gt;\r\n&quot; + 
+			&quot;          &lt;mm&gt;Performance Test Transaction Memo&lt;/mm&gt;\r\n&quot; + 
+			&quot;        &lt;/txn&gt;\r\n&quot;);
+		}					
+		bw.write(&quot;    &lt;/acct&gt;\r\n&quot;);
+	}else{
+		bw.write(&quot;    &lt;/acct&gt;\r\n&quot;);
+	}
+}
+
+bw.write( 
+		&quot;  &lt;/acctlst&gt;\r\n&quot;);
+bw.write(&quot;&lt;/conduit&gt;&quot;);
+bw.close();	
+</stringProp>
+            <stringProp name="BeanShellSampler.filename"></stringProp>
+            <stringProp name="BeanShellSampler.parameters"></stringProp>
+            <boolProp name="BeanShellSampler.resetInterpreter">false</boolProp>
+          </BeanShellSampler>
+          <hashTree/>
+          <BeanShellSampler guiclass="BeanShellSamplerGui" testclass="BeanShellSampler" testname="RenameConduitFiles" enabled="true">
+            <stringProp name="BeanShellSampler.query">String conduitProccessDir = &quot;${conduitFileDropPath}&quot;;
+String filePath = conduitProccessDir  + &quot;${filename}.txt&quot;;
+File file = new File(filePath);	
+String xmlFilePath = conduitProccessDir + &quot;${filename}.xml&quot;;
+File xmlFile = new File(xmlFilePath);
+file.renameTo(xmlFile);
+</stringProp>
+            <stringProp name="BeanShellSampler.filename"></stringProp>
+            <stringProp name="BeanShellSampler.parameters"></stringProp>
+            <boolProp name="BeanShellSampler.resetInterpreter">false</boolProp>
+          </BeanShellSampler>
+          <hashTree/>
+          <BeanShellSampler guiclass="BeanShellSamplerGui" testclass="BeanShellSampler" testname="_WaitCreateConduitProcessCompletion" enabled="true">
+            <stringProp name="BeanShellSampler.query">int counter = 0;
+File file = new File(&quot;${conduitFileDropPath}&quot;);
+File[] files  = file.listFiles();
+for(int i=0; i &lt; files.length; i++)
+{
+	File f = files[i];
+	if(!f.isDirectory())
+	{
+		while (f.getName().contains(&quot;${filePartialName}&quot;)) 
+	    	{
+			if(counter &gt; 100000000){
+			       break;
+			}
+			files  = file.listFiles();
+			try {
+			         f = files[i];
+			     }
+			catch (Exception e){ break;}
+			counter = counter + 1;
+			Thread.sleep(1000);
+	    	}
+	}
+}</stringProp>
+            <stringProp name="BeanShellSampler.filename"></stringProp>
+            <stringProp name="BeanShellSampler.parameters"></stringProp>
+            <boolProp name="BeanShellSampler.resetInterpreter">false</boolProp>
+          </BeanShellSampler>
+          <hashTree>
+            <BeanShellAssertion guiclass="BeanShellAssertionGui" testclass="BeanShellAssertion" testname="_WaitCreateConduitProcessCompletion" enabled="true">
+              <stringProp name="BeanShellAssertion.query">int counter = 0;
+File file = new File(&quot;${conduitFileDropPath}&quot;);
+File[] files  = file.listFiles();
+for(int i=0; i &lt; files.length; i++)
+{
+	File f = files[i];
+	if(!f.isDirectory())
+	{
+		if (f.getName().contains(&quot;${filePartialName}&quot;)) 
+	    	{
+			Failure= true ;
+		        	FailureMessage = &quot;File has not been proccessed yet! Increase the wait time!&quot; ;
+    			break;
+	    	}
+	}
+}</stringProp>
+              <stringProp name="BeanShellAssertion.filename"></stringProp>
+              <stringProp name="BeanShellAssertion.parameters">counter</stringProp>
+              <boolProp name="BeanShellAssertion.resetInterpreter">false</boolProp>
+            </BeanShellAssertion>
+            <hashTree/>
+          </hashTree>
+          <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="VerifyAcctsAndTxnsInDB" enabled="true">
+            <stringProp name="dataSource">Connection-1</stringProp>
+            <stringProp name="query">SELECT(
+&apos;TOTAL TXNS PER ACCT:&apos; +
+(SELECT convert(varchar, (select count (*) from [${dbName}].[dbo].d3_transaction where name like &apos;${partialTxnName}${numOfThreads}%&apos;)/(select count (*) from [${dbName}].[dbo].d3_account where account_name like &apos;${partialAcctName}${numOfThreads}%&apos;)))
++ &apos; TOTAL ACCTS:&apos; +
+(SELECT convert(varchar, (select count (*) from [${dbName}].[dbo].d3_account where account_name like &apos;${partialAcctName}${numOfThreads}%&apos;)))
+)</stringProp>
+            <stringProp name="queryArguments"></stringProp>
+            <stringProp name="queryArgumentsTypes"></stringProp>
+            <stringProp name="queryType">Prepared Select Statement</stringProp>
+            <stringProp name="resultVariable"></stringProp>
+            <stringProp name="variableNames">expectedResult</stringProp>
+            <stringProp name="queryTimeout"></stringProp>
+          </JDBCSampler>
+          <hashTree>
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="VerifyAcctsAndTxnsInDB" enabled="true">
+              <collectionProp name="Asserion.test_strings">
+                <stringProp name="-64765183">TOTAL TXNS PER ACCT:${numOfTxnsPerAccts} TOTAL ACCTS:${numOfAccts}</stringProp>
+              </collectionProp>
+              <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              <intProp name="Assertion.test_type">2</intProp>
+              <stringProp name="Assertion.scope">all</stringProp>
+              <stringProp name="Scope.variable">fileProcessSucceed</stringProp>
+            </ResponseAssertion>
+            <hashTree/>
+          </hashTree>
+        </hashTree>
+        <DebugSampler guiclass="TestBeanGUI" testclass="DebugSampler" testname="Debugger" enabled="true">
+          <boolProp name="displayJMeterProperties">true</boolProp>
+          <boolProp name="displayJMeterVariables">true</boolProp>
+          <boolProp name="displaySystemProperties">false</boolProp>
+        </DebugSampler>
+        <hashTree/>
+      </hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Create Users (OnDemand &amp; IntraDay)" enabled="false">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">1</stringProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">${numOfThreads}</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+        <longProp name="ThreadGroup.start_time">1360810051000</longProp>
+        <longProp name="ThreadGroup.end_time">1360810051000</longProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+      </ThreadGroup>
+      <hashTree>
+        <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="CreateUsers" enabled="true">
+          <boolProp name="LoopController.continue_forever">true</boolProp>
+          <stringProp name="LoopController.loops">1</stringProp>
+        </LoopController>
+        <hashTree>
+          <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="QueryAndGetAccountProducts" enabled="true">
+            <stringProp name="dataSource">Connection-1</stringProp>
+            <stringProp name="queryType">Prepared Select Statement</stringProp>
+            <stringProp name="query">select source_product_id from [${dbName}].[dbo].account_product where company_id = 1 and source = &apos;INTERNAL&apos; and len(source_product_id) &lt; 31</stringProp>
+            <stringProp name="queryArguments"></stringProp>
+            <stringProp name="queryArgumentsTypes"></stringProp>
+            <stringProp name="variableNames">source_product_id</stringProp>
+            <stringProp name="resultVariable"></stringProp>
+            <stringProp name="queryTimeout"></stringProp>
+          </JDBCSampler>
+          <hashTree/>
+          <BeanShellSampler guiclass="BeanShellSamplerGui" testclass="BeanShellSampler" testname="CreateFilesWithUsersAcctsTxnsAndDrop" enabled="true">
+            <stringProp name="BeanShellSampler.query">import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
+import java.util.Random;
+import javax.xml.parsers.ParserConfigurationException;
+import org.junit.Test;
+import org.xml.sax.SAXException;
+
+String fiName = &quot;${source_company_id}&quot;;
+String conduitProccessDir = &quot;${conduitFileDropPath}&quot;;
+
+int numOfAccts = ${numOfAccts};
+int numOfTxnsPerAccts = ${numOfTxnsPerAccts};
+int numOfUsers = ${numOfUsers};
+int threadNum = ${numOfThreads};
+boolean addTxns = ${addTxns};
+
+SimpleDateFormat sdf = new SimpleDateFormat(&quot;dd-M-yy-hh-mm&quot;);
+String tDay =  sdf.format(new Date());
+
+sdf = new SimpleDateFormat(&quot;yyyy-MM-dd&quot;);
+String endDate =  sdf.format(new Date());
+
+Calendar cal = Calendar.getInstance();
+cal.setTime(new Date());
+cal.add(Calendar.DATE, -300);
+String bgnDate =  sdf.format(cal.getTime());
+
+String fileName = &quot;&quot;;
+boolean intraDay = ${isIntraday};
+if (intraDay)
+{
+	fileName = &quot;intraday-users&quot;+numOfUsers+&quot;-accts&quot;+numOfAccts + &quot;-txnsPerAcct&quot;+numOfTxnsPerAccts + &quot;-t${__threadNum}&quot;;
+	vars.put(&quot;filePartialName&quot;, &quot;intraday-users&quot;+numOfUsers+&quot;-accts&quot;+numOfAccts + &quot;-txnsPerAcct&quot;+numOfTxnsPerAccts + &quot;-t&quot;);
+}else{
+	fileName = &quot;conduit-users&quot;+numOfUsers+&quot;-accts&quot;+numOfAccts + &quot;-txnsPerAcct&quot;+numOfTxnsPerAccts + &quot;-t${__threadNum}&quot;;
+	vars.put(&quot;filePartialName&quot;, &quot;conduit-accts&quot;+numOfUsers+&quot;-accts&quot;+numOfAccts + &quot;-txnsPerAcct&quot;+numOfTxnsPerAccts + &quot;-t&quot;);
+}	
+
+vars.put(&quot;filename&quot;, fileName);
+String filePath = conduitProccessDir + fileName + &quot;.txt&quot;;
+File file = new File(filePath);	    
+FileWriter fw = new FileWriter(file.getAbsoluteFile());
+BufferedWriter bw = new BufferedWriter(fw);	
+
+bw.write(&quot;&lt;?xml version=\&quot;1.0\&quot; encoding=\&quot;UTF-8\&quot;?&gt;\r\n&quot; + 
+		&quot;&lt;conduit&gt;\r\n&quot; + 
+		&quot;  &lt;hdr&gt;\r\n&quot; + 
+		&quot;    &lt;ver&gt;2.0&lt;/ver&gt;\r\n&quot; + 
+		&quot;    &lt;rqid&gt;01234567890&lt;/rqid&gt;\r\n&quot; + 
+		&quot;    &lt;authn u=\&quot;user\&quot; p=\&quot;password\&quot;/&gt;\r\n&quot; + 
+		&quot;    &lt;txndtrng bdt=\&quot;&quot;+bgnDate+&quot;\&quot; edt=\&quot;&quot;+endDate+&quot;\&quot;/&gt;\r\n&quot; + 
+		&quot;  &lt;/hdr&gt;\r\n&quot; + 
+		&quot;  &lt;acctlst&gt;\r\n&quot;);
+		
+String acctAssociate = &quot;&quot;;
+
+for (int c = 0; c&lt;numOfAccts; c++)
+{
+	acctAssociate = acctAssociate + &quot;            &lt;usracct a=\&quot;a\&quot; auid=\&quot;acct-uid-&quot;+ tDay + &quot;-${__threadNum}&quot; +(c+1)+&quot;\&quot;/&gt;\r\n&quot;;
+	vars.put(&quot;partialAcctName&quot;, &quot;Performance Test Acct&quot;+ tDay + &quot;-&quot;);
+	bw.write(
+			&quot;    &lt;acct uid=\&quot;acct-uid-&quot;+ tDay + &quot;-${__threadNum}&quot;+(c+1)+&quot;\&quot; cuid=\&quot;&quot;+fiName+&quot;\&quot;&gt;\r\n&quot; + 
+			&quot;      &lt;produid&gt;${__V(source_product_id_${__Random(1,${source_product_id_#})})}&lt;/produid&gt;\r\n&quot; + 
+			&quot;      &lt;nm&gt;Performance Test Acct&quot;+ tDay + &quot;-${__threadNum}&lt;/nm&gt;\r\n&quot; + 
+			&quot;      &lt;rttn&gt;123456789&lt;/rttn&gt;\r\n&quot; + 
+			&quot;      &lt;nbr&gt;${__threadNum}&quot;+(c+1)+&quot;&lt;/nbr&gt;\r\n&quot; + 
+			&quot;      &lt;bal&gt;2500.50&lt;/bal&gt;\r\n&quot; + 
+			&quot;      &lt;sts&gt;open&lt;/sts&gt;\r\n&quot; + 
+			&quot;      &lt;avbal&gt;1050.000000&lt;/avbal&gt;\r\n&quot; + 
+			&quot;      &lt;rstr&gt;0&lt;/rstr&gt;\r\n&quot; + 
+			&quot;      &lt;estmt&gt;p&lt;/estmt&gt;\r\n&quot; + 
+			&quot;      &lt;opndt&gt;2013-11-12&lt;/opndt&gt;\r\n&quot;);
+	if (addTxns)
+	{	
+		for (int txn = 0; txn&lt;numOfTxnsPerAccts; txn++)
+		{
+ 				vars.put(&quot;partialTxnName&quot;, &quot;Performance Test Txn&quot;+ tDay+ &quot;-&quot;);
+			bw.write(
+			&quot;        &lt;txn uid=\&quot;txn-uid-&quot;+ tDay+ &quot;-${__threadNum}&quot;+(c+1)+(txn+1)+&quot;\&quot; am=\&quot;800\&quot; cn=\&quot;1001\&quot; ia=\&quot;78.45\&quot; im=\&quot;checking-${__threadNum}&quot; + (c+1) + (txn+1)+&quot;.jpg\&quot; mc=\&quot;0202\&quot; oa=\&quot;7896.45\&quot; od=\&quot;2013-09-10\&quot; pa=\&quot;45.45\&quot; pd=\&quot;&quot;+endDate+&quot;\&quot; pn=\&quot;0\&quot; ps=\&quot;1\&quot; rb=\&quot;7894.45\&quot; tc=\&quot;TXN-CODE\&quot; tp=\&quot;d\&quot; cf=\&quot;${__threadNum}&quot;+(c+1)+(txn+1)+&quot;\&quot; dn=\&quot;TestDepositNum\&quot;&gt;\r\n&quot; + 
+			&quot;          &lt;nm&gt;Performance Test Txn&quot;+ tDay+ &quot;-${__threadNum}&lt;/nm&gt;\r\n&quot; + 
+			&quot;          &lt;mm&gt;Performance Test Transaction Memo&lt;/mm&gt;\r\n&quot; + 
+			&quot;        &lt;/txn&gt;\r\n&quot;);
+		}					
+		bw.write(&quot;    &lt;/acct&gt;\r\n&quot;);
+	}else{
+		bw.write(&quot;    &lt;/acct&gt;\r\n&quot;);
+	}
+}
+
+bw.write( 
+		&quot;  &lt;/acctlst&gt;\r\n&quot; + 
+          &quot;  &lt;usrlst&gt;\r\n&quot;);
+
+for (int c = 0; c&lt;numOfUsers; c++)
+{
+	vars.put(&quot;partialLogin&quot;, &quot;u&quot;+tDay);
+	bw.write(
+			&quot;    &lt;usr uid=\&quot;usr-uid-${__threadNum}&quot;+(c+1)+&quot;\&quot; cuid=\&quot;&quot;+fiName+&quot;\&quot;&gt;\n&quot; + 
+			&quot;      &lt;login&gt;u&quot;+tDay + &quot;${__threadNum}&lt;/login&gt;\n&quot; + 
+			&quot;      &lt;txid&gt;111-00-2222&lt;/txid&gt;\n&quot; + 
+			&quot;      &lt;txtp&gt;s&lt;/txtp&gt;\n&quot; + 
+			&quot;      &lt;lock&gt;0&lt;/lock&gt;\n&quot; + 
+			&quot;      &lt;m&gt;1&lt;/m&gt;\n&quot; + 
+			&quot;      &lt;enbl&gt;1&lt;/enbl&gt;\n&quot; + 
+			&quot;      &lt;emlopt&gt;0&lt;/emlopt&gt;\n&quot; + 
+			&quot;      &lt;dob&gt;1985-01-01&lt;/dob&gt;\n&quot; + 
+			&quot;      &lt;g&gt;m&lt;/g&gt;\n&quot; + 
+			&quot;      &lt;bpid&gt;billpay-id-${__threadNum}&quot;+(c+1)+&quot;&lt;/bpid&gt;\n&quot; + 
+			&quot;      &lt;bpsts&gt;a&lt;/bpsts&gt;\n&quot; + 
+			&quot;      &lt;crsc&gt;700&lt;/crsc&gt;\n&quot; + 
+			&quot;      &lt;crdt&gt;2014-09-01&lt;/crdt&gt;\n&quot; + 
+			&quot;      &lt;cls&gt;VALUED-CUSTOMER&lt;/cls&gt;\n&quot; + 
+			&quot;      &lt;psn&gt;\n&quot; + 
+			&quot;        &lt;fn&gt;PerformanceFirstName&lt;/fn&gt;\n&quot; + 
+			&quot;		&lt;mn&gt;PerformanceMiddleName&lt;/mn&gt;\n&quot; + 
+			&quot;		&lt;ln&gt;PerformanceLastName&lt;/ln&gt;\n&quot; + 
+			&quot;		&lt;pem&gt;Primary@d3banking.com&lt;/pem&gt;\n&quot; + 
+			&quot;		&lt;aem&gt;Alternate@d3banking.com&lt;/aem&gt;\n&quot; + 
+			&quot;		&lt;hph&gt;7204564545&lt;/hph&gt;\n&quot; + 
+			&quot;		&lt;wph&gt;720 678 4564&lt;/wph&gt;\n&quot; + 
+			&quot;		&lt;mph&gt;7894 456 1525&lt;/mph&gt;\n&quot; + 
+			&quot;		&lt;emp&gt;1&lt;/emp&gt;\n&quot; + 
+			&quot;        &lt;paddr&gt;\n&quot; + 
+			&quot;			&lt;a1&gt;1-1 Any Physical Street&lt;/a1&gt;\n&quot; + 
+			&quot;			&lt;a2&gt;1-2 Any Physical Street&lt;/a2&gt;\n&quot; + 
+			&quot;			&lt;a3&gt;1-3 Any Physical Street&lt;/a3&gt;\n&quot; + 
+			&quot;			&lt;a4&gt;1-4 Any Physical Street&lt;/a4&gt;\n&quot; + 
+			&quot;			&lt;ct&gt;Englewood&lt;/ct&gt;\n&quot; + 
+			&quot;			&lt;st&gt;CO&lt;/st&gt;\n&quot; + 
+			&quot;			&lt;cc&gt;US&lt;/cc&gt;\n&quot; + 
+			&quot;			&lt;pc&gt;80112&lt;/pc&gt;\n&quot; + 
+			&quot;			&lt;ln&gt;-94.20885579&lt;/ln&gt;\n&quot; + 
+			&quot;            &lt;lt&gt;36.37312619&lt;/lt&gt;\n&quot; + 
+			&quot;		&lt;/paddr&gt;\n&quot; + 
+			&quot;        &lt;maddr&gt;\n&quot; + 
+			&quot;			&lt;a1&gt;1-5 Any Mailing Street&lt;/a1&gt;\n&quot; + 
+			&quot;			&lt;a2&gt;1-6 Any Mailing Street&lt;/a2&gt;\n&quot; + 
+			&quot;			&lt;a3&gt;1-7 Any Mailing Street&lt;/a3&gt;\n&quot; + 
+			&quot;			&lt;a4&gt;1-8 Any Mailing Street&lt;/a4&gt;\n&quot; + 
+			&quot;			&lt;ct&gt;Highlands Ranch&lt;/ct&gt;\n&quot; + 
+			&quot;			&lt;st&gt;CO&lt;/st&gt;\n&quot; + 
+			&quot;			&lt;cc&gt;US&lt;/cc&gt;\n&quot; + 
+			&quot;			&lt;pc&gt;80111-4561&lt;/pc&gt;\n&quot; + 
+			&quot;			&lt;ln&gt;-95.20885579&lt;/ln&gt;\n&quot; + 
+			&quot;            &lt;lt&gt;35.37316219&lt;/lt&gt;\n&quot; + 
+			&quot;		&lt;/maddr&gt;\n&quot; + 
+			&quot;      &lt;/psn&gt;\n&quot; + 
+			&quot;       &lt;alst&gt;\n&quot; + 
+			&quot;        &lt;a n=\&quot;Boolean\&quot; t=\&quot;b\&quot; v=\&quot;1\&quot; d=\&quot;1\&quot;&gt;true&lt;/a&gt;\n&quot; + 
+			&quot;      &lt;/alst&gt;\n&quot; + 
+			&quot;      &lt;usracctlist&gt;\n&quot; + 
+			        acctAssociate +
+			&quot;      &lt;/usracctlist&gt;\n&quot; + 
+			&quot;    &lt;/usr&gt;\r\n&quot;);
+	
+}
+
+bw.write( 
+		&quot;  &lt;/usrlst&gt;\r\n&quot;);
+bw.write(&quot;&lt;/conduit&gt;&quot;);
+bw.close();		
+			
+
+
+
+
+
+
+
+
+
+</stringProp>
+            <stringProp name="BeanShellSampler.filename"></stringProp>
+            <stringProp name="BeanShellSampler.parameters"></stringProp>
+            <boolProp name="BeanShellSampler.resetInterpreter">false</boolProp>
+          </BeanShellSampler>
+          <hashTree/>
+          <BeanShellSampler guiclass="BeanShellSamplerGui" testclass="BeanShellSampler" testname="RenameConduitFiles" enabled="true">
+            <stringProp name="BeanShellSampler.query">String conduitProccessDir = &quot;${conduitFileDropPath}&quot;;
+String filePath = conduitProccessDir  + &quot;${filename}.txt&quot;;
+File file = new File(filePath);	
+String xmlFilePath = conduitProccessDir + &quot;${filename}.xml&quot;;
+File xmlFile = new File(xmlFilePath);
+file.renameTo(xmlFile);
+</stringProp>
+            <stringProp name="BeanShellSampler.filename"></stringProp>
+            <stringProp name="BeanShellSampler.parameters"></stringProp>
+            <boolProp name="BeanShellSampler.resetInterpreter">false</boolProp>
+          </BeanShellSampler>
+          <hashTree/>
+          <BeanShellSampler guiclass="BeanShellSamplerGui" testclass="BeanShellSampler" testname="_WaitCreateConduitProcessCompletion" enabled="true">
+            <stringProp name="BeanShellSampler.query">int counter = 0;
+File file = new File(&quot;${conduitFileDropPath}${filePartialName}${__threadNum}.xml&quot;);
+while (file.exists()) 
+{
+if(counter &gt; 100000000){
+       break;
+}
+counter = counter + 1;
+Thread.sleep(1000);
+}
+</stringProp>
+            <stringProp name="BeanShellSampler.filename"></stringProp>
+            <stringProp name="BeanShellSampler.parameters"></stringProp>
+            <boolProp name="BeanShellSampler.resetInterpreter">false</boolProp>
+          </BeanShellSampler>
+          <hashTree>
+            <BeanShellAssertion guiclass="BeanShellAssertionGui" testclass="BeanShellAssertion" testname="_WaitCreateConduitProcessCompletion" enabled="true">
+              <stringProp name="BeanShellAssertion.query">int counter = 0;
+File file = new File(&quot;${conduitFileDropPath}${filePartialName}${__threadNum}.xml&quot;);
+while (file.exists()) 
+{
+Failure= true ;
+   	FailureMessage = &quot;File has not been proccessed yet! Increase the wait time!&quot; ;
+	break;
+}
+</stringProp>
+              <stringProp name="BeanShellAssertion.filename"></stringProp>
+              <stringProp name="BeanShellAssertion.parameters">counter</stringProp>
+              <boolProp name="BeanShellAssertion.resetInterpreter">false</boolProp>
+            </BeanShellAssertion>
+            <hashTree/>
+          </hashTree>
+          <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="VerifyUserAcctsTxnsInDB" enabled="true">
+            <stringProp name="dataSource">Connection-1</stringProp>
+            <stringProp name="query">SELECT(
+&apos;TOTAL TXNS PER ACCT:&apos; +
+(SELECT convert(varchar, (select count (*) from [${dbName}].[dbo].d3_transaction where name = &apos;${partialTxnName}${__threadNum}&apos;)/(select count (*) from [${dbName}].[dbo].d3_account where account_name = &apos;${partialAcctName}${__threadNum}&apos;)))
++ &apos; TOTAL ACCTS:&apos; +
+(SELECT convert(varchar, (select count (*) from [${dbName}].[dbo].d3_account where account_name = &apos;${partialAcctName}${__threadNum}&apos;)))
++ &apos; TOTAL USERS:&apos; +
+(SELECT convert(varchar, (select count (*) from [${dbName}].[dbo].d3_user where login_id = &apos;${partialLogin}${__threadNum}&apos;)))
+)</stringProp>
+            <stringProp name="queryArguments"></stringProp>
+            <stringProp name="queryArgumentsTypes"></stringProp>
+            <stringProp name="queryType">Prepared Select Statement</stringProp>
+            <stringProp name="resultVariable"></stringProp>
+            <stringProp name="variableNames">expectedResult</stringProp>
+            <stringProp name="queryTimeout"></stringProp>
+          </JDBCSampler>
+          <hashTree>
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="VerifyAcctsAndTxnsInDB" enabled="true">
+              <collectionProp name="Asserion.test_strings">
+                <stringProp name="-635391186">TOTAL TXNS PER ACCT:${numOfTxnsPerAccts} TOTAL ACCTS:${numOfAccts} TOTAL USERS:${numOfUsers}</stringProp>
+              </collectionProp>
+              <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              <intProp name="Assertion.test_type">2</intProp>
+              <stringProp name="Assertion.scope">all</stringProp>
+              <stringProp name="Scope.variable">fileProcessSucceed</stringProp>
+            </ResponseAssertion>
+            <hashTree/>
+          </hashTree>
+        </hashTree>
+        <DebugSampler guiclass="TestBeanGUI" testclass="DebugSampler" testname="Debugger" enabled="true">
+          <boolProp name="displayJMeterProperties">true</boolProp>
+          <boolProp name="displayJMeterVariables">true</boolProp>
+          <boolProp name="displaySystemProperties">false</boolProp>
+        </DebugSampler>
+        <hashTree/>
+      </hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="User Migration (Transfers)" enabled="true">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">1</stringProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">${numOfThreads}</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+        <longProp name="ThreadGroup.start_time">1360810051000</longProp>
+        <longProp name="ThreadGroup.end_time">1360810051000</longProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+      </ThreadGroup>
+      <hashTree>
+        <Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+          <collectionProp name="Arguments.arguments">
+            <elementProp name="catlst" elementType="Argument">
+              <stringProp name="Argument.name">catlst</stringProp>
+              <stringProp name="Argument.value">20</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="alertdestlst" elementType="Argument">
+              <stringProp name="Argument.name">alertdestlst</stringProp>
+              <stringProp name="Argument.value">2</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="msglst" elementType="Argument">
+              <stringProp name="Argument.name">msglst</stringProp>
+              <stringProp name="Argument.value">20</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="scxfrlst" elementType="Argument">
+              <stringProp name="Argument.name">scxfrlst</stringProp>
+              <stringProp name="Argument.value">20</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="xfrlst" elementType="Argument">
+              <stringProp name="Argument.name">xfrlst</stringProp>
+              <stringProp name="Argument.value">20</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+            <elementProp name="alertlst" elementType="Argument">
+              <stringProp name="Argument.name">alertlst</stringProp>
+              <stringProp name="Argument.value">20</stringProp>
+              <stringProp name="Argument.metadata">=</stringProp>
+            </elementProp>
+          </collectionProp>
+        </Arguments>
+        <hashTree/>
+        <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="CreateUsers" enabled="true">
+          <boolProp name="LoopController.continue_forever">true</boolProp>
+          <stringProp name="LoopController.loops">1</stringProp>
+        </LoopController>
+        <hashTree>
+          <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="QueryAndGetAccountProducts" enabled="true">
+            <stringProp name="dataSource">Connection-1</stringProp>
+            <stringProp name="queryType">Prepared Select Statement</stringProp>
+            <stringProp name="query">select source_product_id from [${dbName}].[dbo].account_product where company_id = 1 and source = &apos;INTERNAL&apos; and len(source_product_id) &lt; 31</stringProp>
+            <stringProp name="queryArguments"></stringProp>
+            <stringProp name="queryArgumentsTypes"></stringProp>
+            <stringProp name="variableNames">source_product_id</stringProp>
+            <stringProp name="resultVariable"></stringProp>
+            <stringProp name="queryTimeout"></stringProp>
+          </JDBCSampler>
+          <hashTree/>
+          <BeanShellSampler guiclass="BeanShellSamplerGui" testclass="BeanShellSampler" testname="CreateFilesWithUsersAcctsTxnsAndDrop" enabled="true">
+            <stringProp name="BeanShellSampler.query">import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
+import java.util.Random;
+import javax.xml.parsers.ParserConfigurationException;
+import org.junit.Test;
+import org.xml.sax.SAXException;
+
+String fiName = &quot;${source_company_id}&quot;;
+String conduitProccessDir = &quot;${conduitFileDropPath}&quot;;
+
+int numOfAccts = ${numOfAccts};
+int numOfTxnsPerAccts = ${numOfTxnsPerAccts};
+int numOfUsers = ${numOfUsers};
+int threadNum = ${numOfThreads};
+boolean addTxns = ${addTxns};
+
+SimpleDateFormat sdf = new SimpleDateFormat(&quot;dd-M-yy-hh-mm&quot;);
+String tDay =  sdf.format(new Date());
+
+sdf = new SimpleDateFormat(&quot;yyyy-MM-dd&quot;);
+String endDate =  sdf.format(new Date());
+
+Calendar cal = Calendar.getInstance();
+cal.setTime(new Date());
+cal.add(Calendar.DATE, -300);
+String bgnDate =  sdf.format(cal.getTime());
+
+String fileName = &quot;&quot;;
+boolean intraDay = ${isIntraday};
+if (intraDay)
+{
+	fileName = &quot;intraday-u-&quot;+numOfUsers+&quot;-accts&quot;+numOfAccts + &quot;-txnsPerAcct&quot;+numOfTxnsPerAccts + &quot;-t${__threadNum}&quot;;
+	vars.put(&quot;filePartialName&quot;, &quot;intraday-users&quot;+numOfUsers+&quot;-accts&quot;+numOfAccts + &quot;-txnsPerAcct&quot;+numOfTxnsPerAccts + &quot;-t&quot;);
+}else{
+	fileName = &quot;conduit-u-&quot;+numOfUsers+&quot;-accts&quot;+numOfAccts + &quot;-txnsPerAcct&quot;+numOfTxnsPerAccts + &quot;-t${__threadNum}&quot;;
+	vars.put(&quot;filePartialName&quot;, &quot;conduit-accts&quot;+numOfUsers+&quot;-accts&quot;+numOfAccts + &quot;-txnsPerAcct&quot;+numOfTxnsPerAccts + &quot;-t&quot;);
+}	
+
+vars.put(&quot;filename&quot;, fileName);
+String filePath = conduitProccessDir + fileName + &quot;.txt&quot;;
+File file = new File(filePath);	    
+FileWriter fw = new FileWriter(file.getAbsoluteFile());
+BufferedWriter bw = new BufferedWriter(fw);	
+
+bw.write(&quot;&lt;?xml version=\&quot;1.0\&quot; encoding=\&quot;UTF-8\&quot;?&gt;\r\n&quot; + 
+		&quot;&lt;conduit&gt;\r\n&quot; + 
+		&quot;  &lt;hdr&gt;\r\n&quot; + 
+		&quot;    &lt;ver&gt;2.0&lt;/ver&gt;\r\n&quot; + 
+		&quot;    &lt;rqid&gt;01234567890&lt;/rqid&gt;\r\n&quot; + 
+		&quot;    &lt;authn u=\&quot;user\&quot; p=\&quot;password\&quot;/&gt;\r\n&quot; + 
+		&quot;    &lt;txndtrng bdt=\&quot;&quot;+bgnDate+&quot;\&quot; edt=\&quot;&quot;+endDate+&quot;\&quot;/&gt;\r\n&quot; + 
+		&quot;  &lt;/hdr&gt;\r\n&quot; + 
+		&quot;  &lt;acctlst&gt;\r\n&quot;);
+		
+String acctAssociate = &quot;&quot;;
+String acctUids = &quot;&quot;;
+String txnUids = &quot;&quot;;
+for (int c = 0; c&lt;numOfAccts; c++)
+{
+	acctAssociate = acctAssociate + &quot;            &lt;usracct a=\&quot;a\&quot; auid=\&quot;acct-uid-&quot;+ tDay + &quot;-${__threadNum}&quot; +(c+1)+&quot;\&quot;/&gt;\r\n&quot;;
+	if (acctUids.equals(&quot;&quot;))
+	{
+		acctUids = &quot;acct-uid-&quot;+ tDay + &quot;-${__threadNum}&quot;+(c+1);
+	}else {
+		acctUids = acctUids + &quot;;&quot; + &quot;acct-uid-&quot;+ tDay + &quot;-${__threadNum}&quot;+(c+1);
+	}
+	vars.put(&quot;acctUIDs&quot;, acctUids);
+	vars.put(&quot;partialAcctName&quot;, &quot;Performance Test Acct&quot;+ tDay + &quot;-&quot;);
+	bw.write(
+			&quot;    &lt;acct uid=\&quot;acct-uid-&quot;+ tDay + &quot;-${__threadNum}&quot;+(c+1)+&quot;\&quot; cuid=\&quot;&quot;+fiName+&quot;\&quot;&gt;\r\n&quot; + 
+			&quot;      &lt;produid&gt;${__V(source_product_id_${__Random(1,${source_product_id_#})})}&lt;/produid&gt;\r\n&quot; + 
+			&quot;      &lt;nm&gt;Performance Test Acct&quot;+ tDay + &quot;-${__threadNum}&lt;/nm&gt;\r\n&quot; + 
+			&quot;      &lt;rttn&gt;123456789&lt;/rttn&gt;\r\n&quot; + 
+			&quot;      &lt;nbr&gt;${__threadNum}&quot;+(c+1)+&quot;&lt;/nbr&gt;\r\n&quot; + 
+			&quot;      &lt;bal&gt;2500.50&lt;/bal&gt;\r\n&quot; + 
+			&quot;      &lt;sts&gt;open&lt;/sts&gt;\r\n&quot; + 
+			&quot;      &lt;avbal&gt;1050.000000&lt;/avbal&gt;\r\n&quot; + 
+			&quot;      &lt;rstr&gt;0&lt;/rstr&gt;\r\n&quot; + 
+			&quot;      &lt;estmt&gt;p&lt;/estmt&gt;\r\n&quot; + 
+			&quot;      &lt;opndt&gt;2013-11-12&lt;/opndt&gt;\r\n&quot;);
+	if (addTxns)
+	{	
+		for (int txn = 0; txn&lt;numOfTxnsPerAccts; txn++)
+		{
+			if (txnUids.equals(&quot;&quot;))
+			{
+				txnUids = &quot;txn-uid-&quot;+ tDay+ &quot;-${__threadNum}&quot;+(c+1)+(txn+1);
+			}else {
+				txnUids = txnUids + &quot;;&quot; + &quot;txn-uid-&quot;+ tDay+ &quot;-${__threadNum}&quot;+(c+1)+(txn+1);
+			}
+			vars.put(&quot;txnUIDs&quot;,txnUids);
+ 			vars.put(&quot;partialTxnName&quot;, &quot;Performance Test Txn&quot;+ tDay+ &quot;-&quot;);
+			bw.write(
+			&quot;        &lt;txn uid=\&quot;txn-uid-&quot;+ tDay+ &quot;-${__threadNum}&quot;+(c+1)+(txn+1)+&quot;\&quot; am=\&quot;1500\&quot; cn=\&quot;1001\&quot; ia=\&quot;78.45\&quot; im=\&quot;checking-${__threadNum}&quot; + (c+1) + (txn+1)+&quot;.jpg\&quot; mc=\&quot;0202\&quot; oa=\&quot;7896.45\&quot; od=\&quot;2013-09-10\&quot; pa=\&quot;45.45\&quot; pd=\&quot;&quot;+endDate+&quot;\&quot; pn=\&quot;0\&quot; ps=\&quot;1\&quot; rb=\&quot;7894.45\&quot; tc=\&quot;TXN-CODE\&quot; tp=\&quot;d\&quot; cf=\&quot;${__threadNum}&quot;+(c+1)+(txn+1)+&quot;\&quot; dn=\&quot;TestDepositNum\&quot;&gt;\r\n&quot; + 
+			&quot;          &lt;nm&gt;Performance Test Txn&quot;+ tDay+ &quot;-${__threadNum}&lt;/nm&gt;\r\n&quot; + 
+			&quot;          &lt;mm&gt;Performance Test Transaction Memo&lt;/mm&gt;\r\n&quot; + 
+			&quot;        &lt;/txn&gt;\r\n&quot;);
+		}					
+		bw.write(&quot;    &lt;/acct&gt;\r\n&quot;);
+	}else{
+		bw.write(&quot;    &lt;/acct&gt;\r\n&quot;);
+	}
+}
+
+bw.write( 
+		&quot;  &lt;/acctlst&gt;\r\n&quot; + 
+          &quot;  &lt;usrlst&gt;\r\n&quot;);
+
+String UserUIDs = &quot;&quot;;
+for (int c = 0; c&lt;numOfUsers; c++)
+{
+	if (UserUIDs.equals(&quot;&quot;))
+	{
+		UserUIDs = &quot;usr-uid-${__threadNum}&quot;+tDay+(c+1);
+	}else {
+		UserUIDs = UserUIDs + &quot;;&quot; + &quot;usr-uid-${__threadNum}&quot;+tDay+(c+1);
+	}
+	vars.put(&quot;userUIDs&quot;,UserUIDs);
+	vars.put(&quot;partialLogin&quot;, &quot;u&quot;+tDay);
+	bw.write(
+			&quot;    &lt;usr uid=\&quot;usr-uid-${__threadNum}&quot;+tDay+(c+1)+&quot;\&quot; cuid=\&quot;&quot;+fiName+&quot;\&quot;&gt;\n&quot; + 
+			&quot;      &lt;login&gt;m${__threadNum}&quot;+tDay+(c+1)+&quot;&lt;/login&gt;\n&quot; + 
+			&quot;      &lt;txid&gt;111-00-2222&lt;/txid&gt;\n&quot; + 
+			&quot;      &lt;txtp&gt;s&lt;/txtp&gt;\n&quot; + 
+			&quot;      &lt;lock&gt;0&lt;/lock&gt;\n&quot; + 
+			&quot;      &lt;m&gt;1&lt;/m&gt;\n&quot; + 
+			&quot;      &lt;enbl&gt;1&lt;/enbl&gt;\n&quot; + 
+			&quot;      &lt;emlopt&gt;0&lt;/emlopt&gt;\n&quot; + 
+			&quot;      &lt;dob&gt;1985-01-01&lt;/dob&gt;\n&quot; + 
+			&quot;      &lt;g&gt;m&lt;/g&gt;\n&quot; + 
+//			&quot;      &lt;bpid&gt;billpay-id-${__threadNum}&quot;+(c+1)+&quot;&lt;/bpid&gt;\n&quot; + 
+//			&quot;      &lt;bpsts&gt;a&lt;/bpsts&gt;\n&quot; + 
+			&quot;      &lt;crsc&gt;700&lt;/crsc&gt;\n&quot; + 
+			&quot;      &lt;crdt&gt;2014-09-01&lt;/crdt&gt;\n&quot; + 
+			&quot;      &lt;cls&gt;VALUED-CUSTOMER&lt;/cls&gt;\n&quot; + 
+			&quot;      &lt;psn&gt;\n&quot; + 
+			&quot;        &lt;fn&gt;PerformanceFirstName&lt;/fn&gt;\n&quot; + 
+			&quot;		&lt;mn&gt;PerformanceMiddleName&lt;/mn&gt;\n&quot; + 
+			&quot;		&lt;ln&gt;PerformanceLastName&lt;/ln&gt;\n&quot; + 
+			&quot;		&lt;pem&gt;Primary@d3banking.com&lt;/pem&gt;\n&quot; + 
+			&quot;		&lt;aem&gt;Alternate@d3banking.com&lt;/aem&gt;\n&quot; + 
+			&quot;		&lt;hph&gt;7204564545&lt;/hph&gt;\n&quot; + 
+			&quot;		&lt;wph&gt;720 678 4564&lt;/wph&gt;\n&quot; + 
+			&quot;		&lt;mph&gt;7894 456 1525&lt;/mph&gt;\n&quot; + 
+			&quot;		&lt;emp&gt;1&lt;/emp&gt;\n&quot; + 
+			&quot;        &lt;paddr&gt;\n&quot; + 
+			&quot;			&lt;a1&gt;1-1 Any Physical Street&lt;/a1&gt;\n&quot; + 
+			&quot;			&lt;a2&gt;1-2 Any Physical Street&lt;/a2&gt;\n&quot; + 
+			&quot;			&lt;a3&gt;1-3 Any Physical Street&lt;/a3&gt;\n&quot; + 
+			&quot;			&lt;a4&gt;1-4 Any Physical Street&lt;/a4&gt;\n&quot; + 
+			&quot;			&lt;ct&gt;Englewood&lt;/ct&gt;\n&quot; + 
+			&quot;			&lt;st&gt;CO&lt;/st&gt;\n&quot; + 
+			&quot;			&lt;cc&gt;US&lt;/cc&gt;\n&quot; + 
+			&quot;			&lt;pc&gt;80112&lt;/pc&gt;\n&quot; + 
+			&quot;			&lt;ln&gt;-94.20885579&lt;/ln&gt;\n&quot; + 
+			&quot;            &lt;lt&gt;36.37312619&lt;/lt&gt;\n&quot; + 
+			&quot;		&lt;/paddr&gt;\n&quot; + 
+			&quot;        &lt;maddr&gt;\n&quot; + 
+			&quot;			&lt;a1&gt;1-5 Any Mailing Street&lt;/a1&gt;\n&quot; + 
+			&quot;			&lt;a2&gt;1-6 Any Mailing Street&lt;/a2&gt;\n&quot; + 
+			&quot;			&lt;a3&gt;1-7 Any Mailing Street&lt;/a3&gt;\n&quot; + 
+			&quot;			&lt;a4&gt;1-8 Any Mailing Street&lt;/a4&gt;\n&quot; + 
+			&quot;			&lt;ct&gt;Highlands Ranch&lt;/ct&gt;\n&quot; + 
+			&quot;			&lt;st&gt;CO&lt;/st&gt;\n&quot; + 
+			&quot;			&lt;cc&gt;US&lt;/cc&gt;\n&quot; + 
+			&quot;			&lt;pc&gt;80111-4561&lt;/pc&gt;\n&quot; + 
+			&quot;			&lt;ln&gt;-95.20885579&lt;/ln&gt;\n&quot; + 
+			&quot;            &lt;lt&gt;35.37316219&lt;/lt&gt;\n&quot; + 
+			&quot;		&lt;/maddr&gt;\n&quot; + 
+			&quot;      &lt;/psn&gt;\n&quot; + 
+			&quot;       &lt;alst&gt;\n&quot; + 
+			&quot;        &lt;a n=\&quot;Boolean\&quot; t=\&quot;b\&quot; v=\&quot;1\&quot; d=\&quot;1\&quot;&gt;true&lt;/a&gt;\n&quot; + 
+			&quot;      &lt;/alst&gt;\n&quot; + 
+			&quot;      &lt;usracctlist&gt;\n&quot; + 
+			        acctAssociate +
+			&quot;      &lt;/usracctlist&gt;\n&quot; + 
+			&quot;    &lt;/usr&gt;\r\n&quot;);
+	
+}
+
+bw.write( 
+		&quot;  &lt;/usrlst&gt;\r\n&quot;);
+bw.write(&quot;&lt;/conduit&gt;&quot;);
+bw.close();		
+			
+
+
+
+
+
+
+
+
+
+</stringProp>
+            <stringProp name="BeanShellSampler.filename"></stringProp>
+            <stringProp name="BeanShellSampler.parameters"></stringProp>
+            <boolProp name="BeanShellSampler.resetInterpreter">false</boolProp>
+          </BeanShellSampler>
+          <hashTree/>
+          <BeanShellSampler guiclass="BeanShellSamplerGui" testclass="BeanShellSampler" testname="RenameConduitFiles" enabled="true">
+            <stringProp name="BeanShellSampler.query">String conduitProccessDir = &quot;${conduitFileDropPath}&quot;;
+String filePath = conduitProccessDir  + &quot;${filename}.txt&quot;;
+File file = new File(filePath);	
+String xmlFilePath = conduitProccessDir + &quot;${filename}.xml&quot;;
+File xmlFile = new File(xmlFilePath);
+file.renameTo(xmlFile);
+</stringProp>
+            <stringProp name="BeanShellSampler.filename"></stringProp>
+            <stringProp name="BeanShellSampler.parameters"></stringProp>
+            <boolProp name="BeanShellSampler.resetInterpreter">false</boolProp>
+          </BeanShellSampler>
+          <hashTree/>
+          <BeanShellSampler guiclass="BeanShellSamplerGui" testclass="BeanShellSampler" testname="_WaitCreateConduitProcessCompletion" enabled="false">
+            <stringProp name="BeanShellSampler.query">int counter = 0;
+File file = new File(&quot;${conduitFileDropPath}${filePartialName}${__threadNum}.xml&quot;);
+while (file.exists()) 
+{
+if(counter &gt; 100000000){
+       break;
+}
+counter = counter + 1;
+Thread.sleep(1000);
+}
+</stringProp>
+            <stringProp name="BeanShellSampler.filename"></stringProp>
+            <stringProp name="BeanShellSampler.parameters"></stringProp>
+            <boolProp name="BeanShellSampler.resetInterpreter">false</boolProp>
+          </BeanShellSampler>
+          <hashTree>
+            <BeanShellAssertion guiclass="BeanShellAssertionGui" testclass="BeanShellAssertion" testname="_WaitCreateConduitProcessCompletion" enabled="true">
+              <stringProp name="BeanShellAssertion.query">int counter = 0;
+File file = new File(&quot;${conduitFileDropPath}${filePartialName}${__threadNum}.xml&quot;);
+while (file.exists()) 
+{
+Failure= true ;
+   	FailureMessage = &quot;File has not been proccessed yet! Increase the wait time!&quot; ;
+	break;
+}
+</stringProp>
+              <stringProp name="BeanShellAssertion.filename"></stringProp>
+              <stringProp name="BeanShellAssertion.parameters">counter</stringProp>
+              <boolProp name="BeanShellAssertion.resetInterpreter">false</boolProp>
+            </BeanShellAssertion>
+            <hashTree/>
+          </hashTree>
+          <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="VerifyUserAcctsTxnsInDB" enabled="false">
+            <stringProp name="dataSource">Connection-1</stringProp>
+            <stringProp name="query">SELECT(
+&apos;TOTAL TXNS PER ACCT:&apos; +
+(SELECT convert(varchar, (select count (*) from [${dbName}].[dbo].d3_transaction where name = &apos;${partialTxnName}${__threadNum}&apos;)/(select count (*) from [${dbName}].[dbo].d3_account where account_name = &apos;${partialAcctName}${__threadNum}&apos;)))
++ &apos; TOTAL ACCTS:&apos; +
+(SELECT convert(varchar, (select count (*) from [${dbName}].[dbo].d3_account where account_name = &apos;${partialAcctName}${__threadNum}&apos;)))
++ &apos; TOTAL USERS:&apos; +
+(SELECT convert(varchar, (select count (*) from [${dbName}].[dbo].d3_user where login_id = &apos;${partialLogin}${__threadNum}&apos;)))
+)</stringProp>
+            <stringProp name="queryArguments"></stringProp>
+            <stringProp name="queryArgumentsTypes"></stringProp>
+            <stringProp name="queryType">Prepared Select Statement</stringProp>
+            <stringProp name="resultVariable"></stringProp>
+            <stringProp name="variableNames">expectedResult</stringProp>
+            <stringProp name="queryTimeout"></stringProp>
+          </JDBCSampler>
+          <hashTree>
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="VerifyAcctsAndTxnsInDB" enabled="true">
+              <collectionProp name="Asserion.test_strings">
+                <stringProp name="-635391186">TOTAL TXNS PER ACCT:${numOfTxnsPerAccts} TOTAL ACCTS:${numOfAccts} TOTAL USERS:${numOfUsers}</stringProp>
+              </collectionProp>
+              <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              <intProp name="Assertion.test_type">2</intProp>
+              <stringProp name="Assertion.scope">all</stringProp>
+              <stringProp name="Scope.variable">fileProcessSucceed</stringProp>
+            </ResponseAssertion>
+            <hashTree/>
+          </hashTree>
+        </hashTree>
+        <LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="CreateUserMigration" enabled="true">
+          <boolProp name="LoopController.continue_forever">true</boolProp>
+          <stringProp name="LoopController.loops">1</stringProp>
+        </LoopController>
+        <hashTree>
+          <BeanShellSampler guiclass="BeanShellSamplerGui" testclass="BeanShellSampler" testname="CreateFilesWithUserMigrationAndDrop" enabled="true">
+            <stringProp name="BeanShellSampler.query">import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
+import java.util.Random;
+import javax.xml.parsers.ParserConfigurationException;
+import org.junit.Test;
+import org.xml.sax.SAXException;
+
+String fiName = &quot;${source_company_id}&quot;;
+String conduitProccessDir = &quot;${conduitFileDropPath}&quot;;
+
+int numOfUsers = ${numOfUsers};
+int numOfAccts = ${numOfAccts};
+int numOfTxnsPerAccts = ${numOfTxnsPerAccts};
+int threadNum = ${numOfThreads};
+boolean addTxns = ${addTxns};
+
+int alertdestlst = ${alertdestlst};
+int msglst = ${msglst};
+int catlst = ${catlst};
+int scxfrlst = ${scxfrlst};
+int xfrlst = ${xfrlst};
+int alertlst = ${alertlst};
+
+
+String fileName = &quot;&quot;;
+SimpleDateFormat sdf = new SimpleDateFormat(&quot;dd-M-yy-hh-mm&quot;);
+String tDate =  sdf.format(new Date());
+
+sdf = new SimpleDateFormat(&quot;yyyy-MM-dd&quot;);
+String endDate =  sdf.format(new Date());
+
+Calendar cal = Calendar.getInstance();
+cal.setTime(new Date());
+cal.add(Calendar.DATE, -300);
+String bgnDate =  sdf.format(cal.getTime());
+
+fileName = &quot;conduit-m-t${__threadNum}&quot;;
+vars.put(&quot;filePartialName&quot;, &quot;conduit-userMigration-t&quot;);	
+vars.put(&quot;filename&quot;, fileName);
+
+String filePath = conduitProccessDir + fileName + &quot;.txt&quot;;
+File file = new File(filePath);	    
+FileWriter fw = new FileWriter(file.getAbsoluteFile());
+BufferedWriter bw = new BufferedWriter(fw);
+Random generator = new Random();	
+
+bw.write(&quot;&lt;?xml version=\&quot;1.0\&quot; encoding=\&quot;UTF-8\&quot;?&gt;\r\n&quot; + 
+		&quot;&lt;conduit&gt;\r\n&quot; + 
+		&quot;  &lt;hdr&gt;\r\n&quot; + 
+		&quot;    &lt;ver&gt;2.0&lt;/ver&gt;\r\n&quot; + 
+		&quot;    &lt;rqid&gt;01234567890&lt;/rqid&gt;\r\n&quot; + 
+		&quot;    &lt;authn u=\&quot;user\&quot; p=\&quot;password\&quot;/&gt;\r\n&quot; + 
+		&quot;    &lt;txndtrng bdt=\&quot;&quot;+bgnDate+&quot;\&quot; edt=\&quot;&quot;+endDate+&quot;\&quot;/&gt;\r\n&quot; + 
+		&quot;  &lt;/hdr&gt;\r\n&quot; + 
+		&quot;  &lt;usrmiglst&gt;\r\n&quot;);
+		
+// create User Migration element
+
+String acctdisplist = &quot;&quot;;
+String acctUids = &quot;${acctUIDs}&quot;;
+String txnUids = &quot;${txnUIDs}&quot;;
+String userUids = &quot;${userUIDs}&quot;;
+for (int c = 0; c&lt;numOfAccts; c++)
+{
+	acctdisplist = acctdisplist +
+			&quot;        &lt;acctdisp uid=\&quot;&quot;+acctUids.split(&quot;;&quot;)[c]+&quot;\&quot;&gt;\n&quot; + 
+			&quot;		  &lt;nnm&gt;AcctNickname&quot;+(c+1)+&quot;&lt;/nnm&gt;\n&quot; + 
+			&quot;          &lt;excl&gt;0&lt;/excl&gt;\n&quot; + 
+			&quot;          &lt;hdn&gt;0&lt;/hdn&gt;\n&quot; + 
+			&quot;          &lt;hba&gt;0&lt;/hba&gt;\n&quot; + 
+			&quot;          &lt;do&gt;&quot;+(c+1)+&quot;&lt;/do&gt;\n&quot; + 
+			&quot;        &lt;/acctdisp&gt;\n&quot;;
+}
+
+String catlist = &quot;&quot;;
+String catUids = &quot;&quot;;
+for (int c = 0; c &lt; catlst; c++)
+{
+	catUids = catUids + &quot;;&quot; + &quot;cat-&quot;+ tDate + &quot;-${__threadNum}&quot;+(c+1);
+	catlist = catlist +
+			&quot;        &lt;cat uid=\&quot;cat-&quot;+ tDate + &quot;-${__threadNum}&quot;+(c+1)+&quot;\&quot;&gt;\n&quot; + 
+			&quot;          &lt;tp&gt;expense&lt;/tp&gt;\n&quot; + 
+			&quot;          &lt;lvl&gt;user&lt;/lvl&gt;\n&quot; + 
+			&quot;          &lt;grp&gt;Jmeter Perf Test-&quot;+ tDate + &quot;-${__threadNum}&quot;+(c+1)+&quot;&lt;/grp&gt;\n&quot; + 
+			&quot;		  &lt;nm&gt;JMeter&quot;+ tDate + &quot;-${__threadNum}&quot;+(c+1)+&quot;&lt;/nm&gt;\n&quot; + 
+			&quot;        &lt;/cat&gt;\n&quot;;
+}
+
+String alertdestlist = &quot;&quot;;
+String alertDestUids = &quot;&quot;;
+for (int c = 0; c&lt;alertdestlst; c++)
+{
+	alertDestUids = alertDestUids + &quot;;&quot; + &quot;dest-&quot;+ tDate + &quot;-${__threadNum}&quot;+(c+1);
+	alertdestlist = alertdestlist +
+			&quot;        &lt;alertdest uid=\&quot;dest-&quot;+ tDate + &quot;-${__threadNum}&quot;+(c+1)+&quot;\&quot;&gt;\n&quot; + 
+			&quot;          &lt;nm&gt;JMeterAlertDest&lt;/nm&gt;\n&quot; + 
+			&quot;          &lt;tp&gt;email&lt;/tp&gt;\n&quot; + 
+			&quot;          &lt;dest&gt;jmeter@d3banking.com&lt;/dest&gt;\n&quot; + 
+			&quot;		  &lt;prDest&gt;1&lt;/prDest&gt;\n&quot; + 
+			&quot;		  &lt;altDest&gt;0&lt;/altDest&gt;\n&quot; + 
+			&quot;        &lt;/alertdest&gt;\n&quot;;
+}
+
+String msglist = &quot;&quot;;
+for (int c = 0; c&lt;msglst; c++)
+{
+	msglist = msglist +
+			&quot;        &lt;msg uid=\&quot;msg-&quot;+ tDate + &quot;-${__threadNum}&quot;+(c+1)+&quot;\&quot;&gt;\n&quot; + 
+			&quot;          &lt;tp&gt;general&lt;/tp&gt;\n&quot; + 
+			&quot;          &lt;sb&gt;JMeter Performance Test!&lt;/sb&gt;\n&quot; + 
+			&quot;          &lt;bd&gt;Hey, this is created by JMeter Performance tests!&lt;/bd&gt;\n&quot; + 
+			&quot;          &lt;sts&gt;new&lt;/sts&gt;\n&quot; + 
+			&quot;        &lt;/msg&gt;\n&quot;;
+}
+
+String catmaplist = &quot;&quot;;
+String auid = &quot;&quot;;
+String tuid = &quot;&quot;;
+for (int c = 0; c&lt;numOfTxnsPerAccts; c++)
+{  
+	auid = acctUids.split(&quot;;&quot;)[generator.nextInt(acctUids.split(&quot;;&quot;).length)];
+	tuid = auid.replace(&quot;acct&quot;, &quot;txn&quot;) + (c+1);
+	catmaplist = catmaplist +
+			&quot;        &lt;catmap auid=\&quot;&quot;+auid+&quot;\&quot; tuid=\&quot;&quot;+tuid+&quot;\&quot;&gt;\n&quot; + 
+			&quot;		  &lt;mm&gt;JMeterCatMapList Memo&lt;/mm&gt;\n&quot; + 
+			&quot;		  &lt;nm&gt;JMeter Created Category Mapping List&lt;/nm&gt;\n&quot; + 
+			&quot;          &lt;cattxnlst&gt;\n&quot; + 
+			&quot;            &lt;cat uid=\&quot;&quot;+catUids.split(&quot;;&quot;)[(catUids.split(&quot;;&quot;).length-1)]+&quot;\&quot;&gt;\n&quot; + 
+			&quot;              &lt;amt&gt;1000.000000&lt;/amt&gt;\n&quot; + 
+			&quot;            &lt;/cat&gt;\n&quot; + 
+			&quot;            &lt;cat uid=\&quot;&quot;+catUids.split(&quot;;&quot;)[(catUids.split(&quot;;&quot;).length-2)]+&quot;\&quot;&gt;\n&quot; + 
+			&quot;              &lt;amt&gt;500.000000&lt;/amt&gt;\n&quot; + 
+			&quot;            &lt;/cat&gt;\n&quot; + 
+			&quot;          &lt;/cattxnlst&gt;\n&quot; + 
+			&quot;        &lt;/catmap&gt;\n&quot;;
+}
+
+String scxfrlist = &quot;&quot;;
+for (int c = 0; c&lt;scxfrlst; c++)
+{
+	scxfrlist = scxfrlist +
+			&quot;	        &lt;scxfr uid=\&quot;scxfr-&quot;+ tDate + &quot;-${__threadNum}&quot;+(c+1)+&quot;\&quot;&gt;\n&quot; + 
+			&quot;	          &lt;fauid&gt;&quot; + acctUids.split(&quot;;&quot;)[(acctUids.split(&quot;;&quot;).length-1)]+&quot;&lt;/fauid&gt;\n&quot; + 
+			&quot;	          &lt;tauid&gt;&quot; + acctUids.split(&quot;;&quot;)[(acctUids.split(&quot;;&quot;).length-2)]+&quot;&lt;/tauid&gt;\n&quot; + 
+			&quot;	          &lt;nm&gt;JMeter test scheduled transfer!&lt;/nm&gt;\n&quot; + 
+			&quot;	          &lt;mm&gt;This is test running with jmeter tests!&lt;/mm&gt;\n&quot; + 
+			&quot;	          &lt;freq&gt;weekly&lt;/freq&gt;\n&quot; + 
+			&quot;	          &lt;amt&gt;99.000000&lt;/amt&gt;\n&quot; + 
+			&quot;	          &lt;bdt&gt;&quot;+endDate+&quot;&lt;/bdt&gt;\n&quot; + 
+			&quot;	          &lt;alst&gt;\n&quot; + 
+			&quot;	            &lt;a n=\&quot;occurrences\&quot; v = \&quot;0\&quot;&gt;2&lt;/a&gt;\n&quot; + 
+			&quot;	          &lt;/alst&gt;\n&quot; + 
+			&quot;	        &lt;/scxfr&gt;\n&quot;;
+			
+}
+
+String xfrlist = &quot;&quot;;
+for (int c = 0; c&lt;xfrlst; c++)
+{
+	xfrlist = xfrlist +
+			&quot;	        &lt;xfr uid=\&quot;xfr-&quot;+ tDate + &quot;-${__threadNum}&quot;+(c+1)+&quot;\&quot;&gt;\n&quot; + 
+			&quot;	          &lt;fauid&gt;&quot; + acctUids.split(&quot;;&quot;)[(acctUids.split(&quot;;&quot;).length-1)]+&quot;&lt;/fauid&gt;\n&quot; + 
+			&quot;	          &lt;tauid&gt;&quot; + acctUids.split(&quot;;&quot;)[(acctUids.split(&quot;;&quot;).length-2)]+&quot;&lt;/tauid&gt;\n&quot; + 
+			&quot;	          &lt;nm&gt;JMeter test created transfer!&lt;/nm&gt;\n&quot; + 
+			&quot;	          &lt;mm&gt;This is test running with jmeter tests!&lt;/mm&gt;\n&quot; + 
+			&quot;	          &lt;postsq&gt;1&lt;/postsq&gt;\n&quot; + 
+			&quot;			  &lt;cnfmnbr&gt;1&lt;/cnfmnbr&gt;\n&quot; + 
+			&quot;	          &lt;amt&gt;99.000000&lt;/amt&gt;\n&quot; + 
+			&quot;	          &lt;postdt&gt;&quot;+endDate+&quot;&lt;/postdt&gt;\n&quot; + 
+			&quot;	          &lt;alst&gt;\n&quot; + 
+			&quot;	            &lt;a n=\&quot;occurrences\&quot; v = \&quot;0\&quot;&gt;2&lt;/a&gt;\n&quot; + 
+			&quot;	          &lt;/alst&gt;\n&quot; + 
+			&quot;	        &lt;/xfr&gt;\n&quot;;
+}
+
+String alertlist = &quot;&quot;;
+for (int c = 0; c&lt;alertlst; c++)
+{
+	alertlist = alertlist +
+			&quot;        &lt;alert uid=\&quot;alert-&quot;+ tDate + &quot;-${__threadNum}&quot;+(c+1)+&quot;\&quot;&gt;\n&quot; + 
+			&quot;          &lt;tp&gt;balance.threshold&lt;/tp&gt;\n&quot; + 
+			&quot;          &lt;desc&gt;Balance Threshold&lt;/desc&gt;\n&quot; + 
+			&quot;          &lt;enbl&gt;0&lt;/enbl&gt;\n&quot; + 
+			&quot;          &lt;freq&gt;daily&lt;/freq&gt;\n&quot; + 
+			&quot;		  &lt;dnd&gt;Default&lt;/dnd&gt;\n&quot; + 
+			&quot;          &lt;destlst&gt;\n&quot; + 
+			&quot;            &lt;dest uid=\&quot;&quot;+ alertDestUids.split(&quot;;&quot;)[(alertDestUids.split(&quot;;&quot;).length-1)] +&quot;\&quot;/&gt;\n&quot; + 
+			&quot;          &lt;/destlst&gt;\n&quot; + 
+			&quot;          &lt;alst&gt;\n&quot; + 
+			&quot;            &lt;a n=\&quot;accountUid\&quot;&gt;&quot;+acctUids.split(&quot;;&quot;)[(acctUids.split(&quot;;&quot;).length-1)]+&quot;&lt;/a&gt;\n&quot; + 
+			&quot;            &lt;a n=\&quot;operator\&quot;&gt;LT&lt;/a&gt;\n&quot; + 
+			&quot;            &lt;a n=\&quot;threshold\&quot; v=\&quot;0\&quot;&gt;100.000000&lt;/a&gt;\n&quot; + 
+			&quot;          &lt;/alst&gt;\n&quot; + 
+			&quot;        &lt;/alert&gt;\n&quot;;
+}
+
+for (int c = 0; c&lt;numOfUsers; c++)
+{
+	bw.write(
+			&quot;    &lt;usrmig uid=\&quot;&quot;+userUids.split(&quot;;&quot;)[userUids.split(&quot;;&quot;).length-1]+&quot;\&quot;&gt;\n&quot; + 
+			&quot;      &lt;acctdisplst&gt;\n&quot; + 
+			acctdisplist +
+			&quot;      &lt;/acctdisplst&gt;\n&quot; + 
+			&quot;      &lt;catlst&gt;\n&quot; + 
+			catlist +
+			&quot;      &lt;/catlst&gt;\n&quot; + 
+			&quot;      &lt;alertdestlst&gt;\n&quot; + 
+			alertdestlist +
+			&quot;      &lt;/alertdestlst&gt;\n&quot; + 
+			&quot;      &lt;alertlst&gt;\n&quot; + 
+			alertlist +
+			&quot;      &lt;/alertlst&gt;\n&quot; + 
+			&quot;      &lt;msglst&gt;\n&quot; + 
+			msglist + 
+			&quot;      &lt;/msglst&gt;\n&quot; + 
+			&quot;      &lt;catmaplst&gt;\n&quot; + 
+			catmaplist +
+			&quot;      &lt;/catmaplst&gt;\n&quot; + 
+			&quot;	  &lt;scxfrlst&gt;\n&quot; + 
+			scxfrlist +
+			&quot;	  &lt;/scxfrlst&gt;\n&quot; + 
+			&quot;	  &lt;xfrlst&gt;\n&quot; + 
+			xfrlist +
+			&quot;	  &lt;/xfrlst&gt;\n&quot; + 
+			&quot;    &lt;/usrmig&gt;\r\n&quot;
+			);
+}			
+bw.write( 
+		&quot;  &lt;/usrmiglst&gt;\r\n&quot;);
+bw.write(&quot;&lt;/conduit&gt;&quot;);
+bw.close();	
+</stringProp>
+            <stringProp name="BeanShellSampler.filename"></stringProp>
+            <stringProp name="BeanShellSampler.parameters"></stringProp>
+            <boolProp name="BeanShellSampler.resetInterpreter">false</boolProp>
+          </BeanShellSampler>
+          <hashTree/>
+          <BeanShellSampler guiclass="BeanShellSamplerGui" testclass="BeanShellSampler" testname="RenameConduitFiles" enabled="true">
+            <stringProp name="BeanShellSampler.query">String conduitProccessDir = &quot;${conduitFileDropPath}&quot;;
+String filePath = conduitProccessDir  + &quot;${filename}.txt&quot;;
+File file = new File(filePath);	
+String xmlFilePath = conduitProccessDir + &quot;${filename}.xml&quot;;
+File xmlFile = new File(xmlFilePath);
+file.renameTo(xmlFile);
+</stringProp>
+            <stringProp name="BeanShellSampler.filename"></stringProp>
+            <stringProp name="BeanShellSampler.parameters"></stringProp>
+            <boolProp name="BeanShellSampler.resetInterpreter">false</boolProp>
+          </BeanShellSampler>
+          <hashTree/>
+          <BeanShellSampler guiclass="BeanShellSamplerGui" testclass="BeanShellSampler" testname="_WaitUserMigrationFileProcessCompletion" enabled="false">
+            <stringProp name="BeanShellSampler.query">int counter = 0;
+File file = new File(&quot;${conduitFileDropPath}${filePartialName}${__threadNum}.xml&quot;);
+while (file.exists()) 
+{
+if(counter &gt; 100000000){
+       break;
+}
+counter = counter + 1;
+Thread.sleep(1000);
+}
+</stringProp>
+            <stringProp name="BeanShellSampler.filename"></stringProp>
+            <stringProp name="BeanShellSampler.parameters"></stringProp>
+            <boolProp name="BeanShellSampler.resetInterpreter">false</boolProp>
+          </BeanShellSampler>
+          <hashTree>
+            <BeanShellAssertion guiclass="BeanShellAssertionGui" testclass="BeanShellAssertion" testname="_WaitUserMigrationFileProcessCompletion" enabled="true">
+              <stringProp name="BeanShellAssertion.query">int counter = 0;
+File file = new File(&quot;${conduitFileDropPath}${filePartialName}${__threadNum}.xml&quot;);
+while (file.exists()) 
+{
+Failure= true ;
+   	FailureMessage = &quot;File has not been proccessed yet! Increase the wait time!&quot; ;
+	break;
+}
+</stringProp>
+              <stringProp name="BeanShellAssertion.filename"></stringProp>
+              <stringProp name="BeanShellAssertion.parameters">counter</stringProp>
+              <boolProp name="BeanShellAssertion.resetInterpreter">false</boolProp>
+            </BeanShellAssertion>
+            <hashTree/>
+          </hashTree>
+          <JDBCSampler guiclass="TestBeanGUI" testclass="JDBCSampler" testname="VerifyUserMigrationInDB" enabled="false">
+            <stringProp name="dataSource">Connection-1</stringProp>
+            <stringProp name="query">SELECT(
+&apos;TOTAL TXNS PER ACCT:&apos; +
+(SELECT convert(varchar, (select count (*) from [${dbName}].[dbo].d3_transaction where name like &apos;${partialTxnName}${numOfThreads}%&apos;)/(select count (*) from [${dbName}].[dbo].d3_account where account_name like &apos;${partialAcctName}${numOfThreads}%&apos;)))
++ &apos; TOTAL ACCTS:&apos; +
+(SELECT convert(varchar, (select count (*) from [${dbName}].[dbo].d3_account where account_name like &apos;${partialAcctName}${numOfThreads}%&apos;)))
+)</stringProp>
+            <stringProp name="queryArguments"></stringProp>
+            <stringProp name="queryArgumentsTypes"></stringProp>
+            <stringProp name="queryType">Prepared Select Statement</stringProp>
+            <stringProp name="resultVariable"></stringProp>
+            <stringProp name="variableNames">expectedResult</stringProp>
+            <stringProp name="queryTimeout"></stringProp>
+          </JDBCSampler>
+          <hashTree>
+            <ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="VerifyUserMigrationInDB" enabled="true">
+              <collectionProp name="Asserion.test_strings">
+                <stringProp name="-64765183">TOTAL TXNS PER ACCT:${numOfTxnsPerAccts} TOTAL ACCTS:${numOfAccts}</stringProp>
+              </collectionProp>
+              <stringProp name="Assertion.test_field">Assertion.response_data</stringProp>
+              <boolProp name="Assertion.assume_success">false</boolProp>
+              <intProp name="Assertion.test_type">2</intProp>
+              <stringProp name="Assertion.scope">all</stringProp>
+              <stringProp name="Scope.variable">fileProcessSucceed</stringProp>
+            </ResponseAssertion>
+            <hashTree/>
+          </hashTree>
+        </hashTree>
+        <DebugSampler guiclass="TestBeanGUI" testclass="DebugSampler" testname="Debugger" enabled="true">
+          <boolProp name="displayJMeterProperties">true</boolProp>
+          <boolProp name="displayJMeterVariables">true</boolProp>
+          <boolProp name="displaySystemProperties">false</boolProp>
+        </DebugSampler>
+        <hashTree/>
+      </hashTree>
+      <ResultCollector guiclass="StatVisualizer" testclass="ResultCollector" testname="Aggregate Report" enabled="true">
+        <boolProp name="ResultCollector.error_logging">false</boolProp>
+        <objProp>
+          <name>saveConfig</name>
+          <value class="SampleSaveConfiguration">
+            <time>true</time>
+            <latency>true</latency>
+            <timestamp>true</timestamp>
+            <success>true</success>
+            <label>true</label>
+            <code>true</code>
+            <message>true</message>
+            <threadName>true</threadName>
+            <dataType>true</dataType>
+            <encoding>false</encoding>
+            <assertions>true</assertions>
+            <subresults>true</subresults>
+            <responseData>false</responseData>
+            <samplerData>false</samplerData>
+            <xml>false</xml>
+            <fieldNames>false</fieldNames>
+            <responseHeaders>false</responseHeaders>
+            <requestHeaders>false</requestHeaders>
+            <responseDataOnError>false</responseDataOnError>
+            <saveAssertionResultsFailureMessage>false</saveAssertionResultsFailureMessage>
+            <assertionsResultsToSave>0</assertionsResultsToSave>
+            <bytes>true</bytes>
+          </value>
+        </objProp>
+        <stringProp name="filename"></stringProp>
+      </ResultCollector>
+      <hashTree/>
+      <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report" enabled="true">
+        <boolProp name="ResultCollector.error_logging">false</boolProp>
+        <objProp>
+          <name>saveConfig</name>
+          <value class="SampleSaveConfiguration">
+            <time>true</time>
+            <latency>true</latency>
+            <timestamp>true</timestamp>
+            <success>true</success>
+            <label>true</label>
+            <code>true</code>
+            <message>true</message>
+            <threadName>true</threadName>
+            <dataType>true</dataType>
+            <encoding>false</encoding>
+            <assertions>true</assertions>
+            <subresults>true</subresults>
+            <responseData>false</responseData>
+            <samplerData>false</samplerData>
+            <xml>false</xml>
+            <fieldNames>false</fieldNames>
+            <responseHeaders>false</responseHeaders>
+            <requestHeaders>false</requestHeaders>
+            <responseDataOnError>false</responseDataOnError>
+            <saveAssertionResultsFailureMessage>false</saveAssertionResultsFailureMessage>
+            <assertionsResultsToSave>0</assertionsResultsToSave>
+            <bytes>true</bytes>
+          </value>
+        </objProp>
+        <stringProp name="filename"></stringProp>
+      </ResultCollector>
+      <hashTree/>
+      <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+        <boolProp name="ResultCollector.error_logging">false</boolProp>
+        <objProp>
+          <name>saveConfig</name>
+          <value class="SampleSaveConfiguration">
+            <time>true</time>
+            <latency>true</latency>
+            <timestamp>true</timestamp>
+            <success>true</success>
+            <label>true</label>
+            <code>true</code>
+            <message>true</message>
+            <threadName>true</threadName>
+            <dataType>true</dataType>
+            <encoding>false</encoding>
+            <assertions>true</assertions>
+            <subresults>true</subresults>
+            <responseData>false</responseData>
+            <samplerData>false</samplerData>
+            <xml>false</xml>
+            <fieldNames>false</fieldNames>
+            <responseHeaders>false</responseHeaders>
+            <requestHeaders>false</requestHeaders>
+            <responseDataOnError>false</responseDataOnError>
+            <saveAssertionResultsFailureMessage>false</saveAssertionResultsFailureMessage>
+            <assertionsResultsToSave>0</assertionsResultsToSave>
+            <bytes>true</bytes>
+          </value>
+        </objProp>
+        <stringProp name="filename"></stringProp>
+      </ResultCollector>
+      <hashTree/>
+      <ResultCollector guiclass="TableVisualizer" testclass="ResultCollector" testname="View Results in Table" enabled="true">
+        <boolProp name="ResultCollector.error_logging">false</boolProp>
+        <objProp>
+          <name>saveConfig</name>
+          <value class="SampleSaveConfiguration">
+            <time>true</time>
+            <latency>true</latency>
+            <timestamp>true</timestamp>
+            <success>true</success>
+            <label>true</label>
+            <code>true</code>
+            <message>true</message>
+            <threadName>true</threadName>
+            <dataType>true</dataType>
+            <encoding>false</encoding>
+            <assertions>true</assertions>
+            <subresults>true</subresults>
+            <responseData>false</responseData>
+            <samplerData>false</samplerData>
+            <xml>false</xml>
+            <fieldNames>false</fieldNames>
+            <responseHeaders>false</responseHeaders>
+            <requestHeaders>false</requestHeaders>
+            <responseDataOnError>false</responseDataOnError>
+            <saveAssertionResultsFailureMessage>false</saveAssertionResultsFailureMessage>
+            <assertionsResultsToSave>0</assertionsResultsToSave>
+            <bytes>true</bytes>
+          </value>
+        </objProp>
+        <stringProp name="filename"></stringProp>
+      </ResultCollector>
+      <hashTree/>
+      <kg.apc.jmeter.perfmon.PerfMonCollector guiclass="kg.apc.jmeter.vizualizers.PerfMonGui" testclass="kg.apc.jmeter.perfmon.PerfMonCollector" testname="jp@gc - PerfMon Metrics Collector" enabled="false">
+        <boolProp name="ResultCollector.error_logging">false</boolProp>
+        <objProp>
+          <name>saveConfig</name>
+          <value class="SampleSaveConfiguration">
+            <time>true</time>
+            <latency>true</latency>
+            <timestamp>true</timestamp>
+            <success>true</success>
+            <label>true</label>
+            <code>true</code>
+            <message>true</message>
+            <threadName>true</threadName>
+            <dataType>true</dataType>
+            <encoding>false</encoding>
+            <assertions>true</assertions>
+            <subresults>true</subresults>
+            <responseData>false</responseData>
+            <samplerData>false</samplerData>
+            <xml>false</xml>
+            <fieldNames>false</fieldNames>
+            <responseHeaders>false</responseHeaders>
+            <requestHeaders>false</requestHeaders>
+            <responseDataOnError>false</responseDataOnError>
+            <saveAssertionResultsFailureMessage>false</saveAssertionResultsFailureMessage>
+            <assertionsResultsToSave>0</assertionsResultsToSave>
+            <bytes>true</bytes>
+          </value>
+        </objProp>
+        <stringProp name="filename"></stringProp>
+        <longProp name="interval_grouping">1000</longProp>
+        <boolProp name="graph_aggregated">false</boolProp>
+        <stringProp name="include_sample_labels"></stringProp>
+        <stringProp name="exclude_sample_labels"></stringProp>
+        <collectionProp name="metricConnections">
+          <collectionProp name="917712290">
+            <stringProp name="-1204607085">localhost</stringProp>
+            <stringProp name="1600768">4444</stringProp>
+            <stringProp name="66952">CPU</stringProp>
+            <stringProp name="0"></stringProp>
+          </collectionProp>
+          <collectionProp name="-1383002031">
+            <stringProp name="-1204607085">localhost</stringProp>
+            <stringProp name="1600768">4444</stringProp>
+            <stringProp name="-1993889503">Memory</stringProp>
+            <stringProp name="0"></stringProp>
+          </collectionProp>
+          <collectionProp name="917712290">
+            <stringProp name="-1204607085">localhost</stringProp>
+            <stringProp name="1600768">4444</stringProp>
+            <stringProp name="66952">CPU</stringProp>
+            <stringProp name="0"></stringProp>
+          </collectionProp>
+          <collectionProp name="-1270662015">
+            <stringProp name="-1204607085">localhost</stringProp>
+            <stringProp name="1600768">4444</stringProp>
+            <stringProp name="-274342153">Network I/O</stringProp>
+            <stringProp name="0"></stringProp>
+          </collectionProp>
+          <collectionProp name="-723468740">
+            <stringProp name="-1204607085">localhost</stringProp>
+            <stringProp name="1600768">4444</stringProp>
+            <stringProp name="2590131">Swap</stringProp>
+            <stringProp name="0"></stringProp>
+          </collectionProp>
+          <collectionProp name="1870391425">
+            <stringProp name="-1204607085">localhost</stringProp>
+            <stringProp name="1600768">4444</stringProp>
+            <stringProp name="73589">JMX</stringProp>
+            <stringProp name="0"></stringProp>
+          </collectionProp>
+        </collectionProp>
+      </kg.apc.jmeter.perfmon.PerfMonCollector>
+      <hashTree/>
+    </hashTree>
+  </hashTree>
+</jmeterTestPlan>

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<conduit>
+  <hdr>
+    <ver>2.0</ver>
+    <rqid>01234567890</rqid>
+    <authn u="user" p="password"/>
+    <txndtrng bdt="2013-09-01" edt="2013-09-30"/>
+    <parse>ftrue</parse>
+  </hdr>
+  <complst>
+    <comp uid="testCompany-1" puid="ROOT">
+      <tp>institution</tp>
+      <busn>
+        <nm>TestBusinessName-1</nm>
+        <ph>303 564 7878</ph>
+        <paddr>
+			<a1>111 Any Physical Street</a1>
+			<a2>222 Any Physical Street</a2>
+			<a3>333 Any Physical Street</a3>
+			<a4>444 Any Physical Street</a4>
+			<ct>Englewood</ct>
+			<st>CO</st>
+			<cc>US</cc>
+			<pc>80112</pc>
+			<ln>-94.20885579</ln>
+            <lt>36.37312619</lt>
+		</paddr>
+        <maddr>
+			<a1>555 Any Mailing Street</a1>
+			<a2>666 Any Mailing Street</a2>
+			<a3>777 Any Mailing Street</a3>
+			<a4>888 Any Mailing Street</a4>
+			<ct>Highlands Ranch</ct>
+			<st>CO</st>
+			<cc>US</cc>
+			<pc>80111</pc>
+			<ln>-95.20885579</ln>
+            <lt>35.37316219</lt>
+		</maddr>
+		<ct1>
+			<fn>TestFirstName</fn>
+			<mn>TestMiddleName</mn>
+			<ln>TestLastName</ln>
+			<pem>PrimaryEmail@d3banking.com</pem>
+			<aem>AlternateEmail@d3banking.com</aem>
+			<hph>7204564545</hph>
+			<wph>720 678 4564</wph>
+			<mph>78944561525 ext 123</mph>
+			<emp>false</emp>
+			<paddr>
+				<a1>1111 Any Physical Street</a1>
+				<a2>2222 Any Physical Street</a2>
+				<a3>3333 Any Physical Street</a3>
+				<a4>4444 Any Physical Street</a4>
+				<ct>Boulder</ct>
+				<st>CO</st>
+				<cc>US</cc>
+				<pc>95624</pc>
+				<ln>-66.20885579</ln>
+	            <lt>37.3731619</lt>
+			</paddr>
+	        <maddr>
+				<a1>5555 Any Mailing Street</a1>
+				<a2>6666 Any Mailing Street</a2>
+				<a3>7777 Any Mailing Street</a3>
+				<a4>8888 Any Mailing Street</a4>
+				<ct>Longmont</ct>
+				<st>CO</st>
+				<cc>US</cc>
+				<pc>86545</pc>
+				<ln>-234.20885579</ln>
+	            <lt>124.3731619</lt>
+			</maddr>
+		</ct1>
+		<ct2>
+			<fn>TestFirstName2</fn>
+			<mn>TestMiddleName2</mn>
+			<ln>TestLastName2</ln>
+			<pem>PrimaryEmail2@d3banking.com</pem>
+			<aem>AlternateEmail2@d3banking.com</aem>
+			<hph>7204564542</hph>
+			<wph>720 678 4562</wph>
+			<mph>7894 456 1522</mph>
+			<emp>true</emp>
+			<paddr>
+				<a1>11111 Any Physical Street</a1>
+				<a2>22222 Any Physical Street</a2>
+				<a3>33333 Any Physical Street</a3>
+				<a4>44444 Any Physical Street</a4>
+				<ct>Denver</ct>
+				<st>CO</st>
+				<cc>US</cc>
+				<pc>45678</pc>
+				<ln>-66.208455579</ln>
+	            <lt>37.3731679</lt>
+			</paddr>
+	        <maddr>
+				<a1>55555 Any Mailing Street</a1>
+				<a2>66666 Any Mailing Street</a2>
+				<a3>77777 Any Mailing Street</a3>
+				<a4>88888 Any Mailing Street</a4>
+				<ct>Parker</ct>
+				<st>CO</st>
+				<cc>US</cc>
+				<pc>80015</pc>
+				<ln>-234.208909</ln>
+	            <lt>124.373349</lt>
+			</maddr>
+		</ct2>
+      </busn>
+    </comp>
+   </complst>
+</conduit>

@@ -1,0 +1,120 @@
+<?xml version="1.0"?>
+<conduitMemoPostRequest xmlns="http://lodosoftware.com/conduit/memo" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<version>1.0</version>
+	<requestId>requestId</requestId>
+	<authentication>
+		<username>userName</username>
+		<password>password</password>
+	</authentication>
+	<accountList>
+		<account directId="accountDirectID1-1">
+			<branchExternalId>ArnaTest-1</branchExternalId>
+			<balance>7895.00</balance>
+			<availableBalance>15000.12</availableBalance>
+			<routingTransitNumber>TEST-1</routingTransitNumber>
+			<accountNumber>1234 1234 1234 1234</accountNumber>
+			<!--<customerReserved>customerReserved</customerReserved>-->
+			<transactionList>
+				 <transaction directId="DDA-CHECKING-123-201204201829326050">
+					<type>0</type>
+					<name>Long John Silver’s</name>
+					<memo>memo</memo>
+					<amount>8260.19</amount>
+					<principalAmount>12.45</principalAmount>
+					<interestAmount>75.12</interestAmount>
+					<postDate>2012-06-14</postDate>
+					<otherAmount>45.15</otherAmount>
+					<mcc>123</mcc>
+					<currencyCode>USD</currencyCode>
+					<pending>true</pending>
+					<runningBalance>9.99</runningBalance>
+					<originationDate>2012-04-21</originationDate>
+					<tranCode>99</tranCode>
+					<checkNum>999</checkNum>
+					<imageId>1</imageId>
+					<postingSeq>14</postingSeq>
+					<depositNum>depositNum</depositNum>
+				</transaction>
+				 <transaction directId="DDA-CHECKING-124-201204201829326050">
+					<type>0</type>
+					<name>For Create Test</name>
+					<memo>Initially Created Transaction</memo>
+					<amount>8260.19</amount>
+					<principalAmount>12.45</principalAmount>
+					<interestAmount>75.12</interestAmount>
+					<postDate>2012-11-30</postDate>
+					<otherAmount>45.15</otherAmount>
+					<mcc>123</mcc>
+					<currencyCode>USD</currencyCode>
+					<pending>true</pending>
+					<runningBalance>9.99</runningBalance>
+					<originationDate>2012-04-21</originationDate>
+					<tranCode>99</tranCode>
+					<checkNum>999</checkNum>
+					<imageId>1</imageId>
+					<postingSeq>14</postingSeq>
+				</transaction>
+			</transactionList>
+		</account>
+		<account directId="accountDirectID4-1">
+			<branchExternalId>ArnaTest-1</branchExternalId>
+			<balance>7895.00</balance>
+			<availableBalance>15000.12</availableBalance>
+			<routingTransitNumber>TEST-4</routingTransitNumber>
+			<accountNumber>1234 1234 1234 1234</accountNumber>
+		</account>
+		<account directId="accountDirectID5-1">
+			<transactionList>
+				 <transaction directId="DDA-CHECKING-125-201204201829326050">
+					<type>0</type>
+					<name>Long John Silver’s</name>
+					<memo>memo</memo>
+					<amount>8260.19</amount>
+					<principalAmount>12.45</principalAmount>
+					<interestAmount>75.12</interestAmount>
+					<postDate>2012-06-14</postDate>
+					<otherAmount>45.15</otherAmount>
+					<mcc>123</mcc>
+					<currencyCode>USD</currencyCode>
+					<pending>true</pending>
+					<runningBalance>9.99</runningBalance>
+					<originationDate>2012-04-21</originationDate>
+					<tranCode>99</tranCode>
+					<checkNum>999</checkNum>
+					<imageId>1</imageId>
+					<postingSeq>14</postingSeq>
+					<depositNum>depositNum5</depositNum>
+				</transaction>
+			</transactionList>
+		</account>
+		<account interfaceId="accountDirectID2-1">
+			<externalInstitutionId>4</externalInstitutionId>
+			<balance>7895.00</balance>
+			<availableBalance>15000.12</availableBalance>
+			<routingTransitNumber>TEST-2</routingTransitNumber>
+			<accountNumber>1234 1234 1234 1234</accountNumber>
+			<transactionList>
+				 <transaction interfaceId="1234">
+					<type>0</type>
+					<name>ExternalTransaction</name>
+					<memo>memo</memo>
+					<amount>8260.19</amount>
+					<principalAmount>12.45</principalAmount>
+					<interestAmount>75.12</interestAmount>
+					<postDate>2012-06-14</postDate>
+					<otherAmount>45.15</otherAmount>
+					<mcc>123</mcc>
+					<currencyCode>USD</currencyCode>
+					<pending>true</pending>
+					<runningBalance>9.99</runningBalance>
+					<originationDate>2012-04-21</originationDate>
+					<tranCode>99</tranCode>
+					<checkNum>999</checkNum>
+					<imageId>1</imageId>
+					<postingSeq>14</postingSeq>
+					<depositNum>depositNum5</depositNum>
+				</transaction>
+			</transactionList>
+		</account>
+	</accountList> 
+</conduitMemoPostRequest>

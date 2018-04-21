@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<conduit>
+  <hdr>
+    <ver>2.0</ver>
+    <rqid>01234567890</rqid>
+    <authn u="user" p="password"/>
+    <txndtrng bdt="2013-09-01" edt="2013-09-30"/>
+    <parse>ftrue</parse>
+  </hdr>
+  <usrlst>
+    <usr uid="usr-uid-001" cuid="com-uid-001">
+      <login>testLogin</login>
+      <txid>111-00-2222</txid>
+      <txtp>s</txtp>
+      <lock>f</lock>
+      <m>false</m>
+      <enbl>1</enbl>
+      <emlopt>0</emlopt>
+      <dob>1969-01-01</dob>
+      <g>m</g>
+      <bpid>billpay-id-001</bpid>
+      <bpsts>a</bpsts>
+      <crsc>700</crsc>
+      <crdt>2013-09-01</crdt>
+      <cls>VALUED-CUSTOMER</cls>
+      <psn>
+        <fn>John</fn>
+        <ln>White</ln>
+        <pem>jw@d3banking.com</pem>
+        <mph>3030005555</mph>
+        <emp>0</emp>
+        <maddr>
+          <a1>1010 Main St</a1>
+          <st>CO</st>
+          <pc>80110</pc>
+        </maddr>
+      </psn>
+      <usracctlist>
+        <usracct a="a" auid="acct-uid-001"/>
+      </usracctlist>
+    </usr>
+  </usrlst>
+</conduit>

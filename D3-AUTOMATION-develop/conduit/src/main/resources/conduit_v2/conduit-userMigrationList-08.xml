@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<conduit>
+  <hdr>
+    <ver>2.0</ver>
+    <rqid>01234567890</rqid>
+    <authn u="user" p="password"/>
+    <txndtrng bdt="2013-09-01" edt="2013-09-30"/>
+  </hdr>
+  
+  <usrmiglst>
+    <usrmig uid="usr-uid-001">
+     <catlst>
+        <cat uid="cat-uid-001">
+          <tp>expense</tp>
+          <lvl>user</lvl>
+          <grp>College</grp>
+        </cat>
+      </catlst>
+      <catmaplst>
+        <catmap auid="acct-uid-001" tuid="txn-uid-001">
+          <cattxnlst>
+            <cat uid="cat-uid-001">
+              <amt>300.000000</amt>
+            </cat>
+            <cat uid="cat-uid-001">
+              <amt>150.000000</amt>
+            </cat>
+          </cattxnlst>
+        </catmap>
+      </catmaplst>
+    </usrmig> 
+  </usrmiglst>
+</conduit>

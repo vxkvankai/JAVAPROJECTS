@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<conduit xmlns="http://d3banking.com/conduit" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://d3banking.com/conduit ../../../main/resources/xsd-2.0/d3conduit.xsd ">
+  <hdr>
+    <ver>2.6</ver>
+    <rqid>00000000026</rqid>
+  </hdr>
+  <complst>
+    <comp uid="perf" puid="ROOT">
+      <tp>institution</tp>
+      <busn>
+        <nm>Performance Testing Financial Institution</nm>
+      </busn>
+    </comp>
+    <comp uid="perfb1" puid="perf">
+      <tp>branch</tp>
+      <busn>
+        <nm>Denver Branch 1</nm>
+        <ph>303-555-1111</ph>
+        <paddr>
+          <a1>6041 S. Syracuse</a1>
+          <a2>Suite 213</a2>
+          <ct>Englewood</ct>
+          <st>CO</st>
+          <cc>US</cc>
+          <pc>80110</pc>
+          <ln>-94.20885579</ln>
+          <lt>36.3731619</lt>
+        </paddr>
+        <maddr>
+          <a1>PO BOX 111</a1>
+          <ct>Denver</ct>
+          <st>CO</st>
+          <cc>US</cc>
+          <pc>80287-0001</pc>
+        </maddr>
+      </busn>
+    </comp>
+    <comp uid="perfb2" puid="perf">
+      <tp>branch</tp>
+      <busn>
+        <nm>Denver Branch 2</nm>
+        <ph>303-555-5555</ph>
+        <paddr>
+          <a1>6041 S. Syracuse</a1>
+          <a2>Suite 205</a2>
+          <ct>Englewood</ct>
+          <st>CO</st>
+          <cc>US</cc>
+          <pc>80110</pc>
+          <ln>-94.20885579</ln>
+          <lt>36.3731619</lt>
+        </paddr>
+        <maddr>
+          <a1>PO BOX 555</a1>
+          <ct>Denver</ct>
+          <st>CO</st>
+          <cc>US</cc>
+          <pc>80287-0001</pc>
+        </maddr>
+      </busn>
+    </comp>
+  </complst>
+</conduit>
+

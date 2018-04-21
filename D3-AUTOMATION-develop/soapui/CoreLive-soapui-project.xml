@@ -1,0 +1,2365 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project activeEnvironment="Default" name="CoreLive SOAP" resourceRoot="" soapui-version="4.6.4-m-SNAPSHOT" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="CustomBinding_CoreLive1" type="wsdl" bindingName="{http://d3banking.d3connect.corelive}CustomBinding_CoreLive1" soapVersion="1_2" anonymous="optional" definition="https://adapter-test.arvest.com:451/OLBLodo/CoreLive.svc?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="https://adapter-test.arvest.com:451/OLBLodo/CoreLive.svc?wsdl"><con:part><con:url>https://adapter-test.arvest.com:451/OLBLodo/CoreLive.svc?wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="CoreLiveService" targetNamespace="http://d3banking.d3connect.corelive" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://d3banking.d3connect.corelive" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/">
+  <wsp:Policy wsu:Id="CustomBinding_CoreLive1_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <sp:TransportBinding xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
+          <wsp:Policy>
+            <sp:TransportToken>
+              <wsp:Policy>
+                <sp:HttpsToken RequireClientCertificate="false"/>
+              </wsp:Policy>
+            </sp:TransportToken>
+            <sp:AlgorithmSuite>
+              <wsp:Policy>
+                <sp:Basic256/>
+              </wsp:Policy>
+            </sp:AlgorithmSuite>
+            <sp:Layout>
+              <wsp:Policy>
+                <sp:Strict/>
+              </wsp:Policy>
+            </sp:Layout>
+          </wsp:Policy>
+        </sp:TransportBinding>
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://d3banking.d3connect.corelive/Imports">
+      <xsd:import schemaLocation="https://adapter-test.arvest.com:451/OLBLodo/CoreLive.svc?xsd=xsd0" namespace="http://d3banking.d3connect.corelive"/>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="ProfileUpdateRequest">
+    <wsdl:part name="parameters" element="tns:updateProfile"/>
+  </wsdl:message>
+  <wsdl:message name="ProfileUpdateResponse">
+    <wsdl:part name="parameters" element="tns:updateProfileResponse"/>
+  </wsdl:message>
+  <wsdl:message name="CoreLive_updateProfile_CoreLiveThrowable_FaultMessage">
+    <wsdl:part name="detail" element="tns:CoreLiveThrowable"/>
+  </wsdl:message>
+  <wsdl:message name="IntraDayRequest">
+    <wsdl:part name="parameters" element="tns:initiateIntraDay"/>
+  </wsdl:message>
+  <wsdl:message name="IntraDayResponse">
+    <wsdl:part name="parameters" element="tns:initiateIntraDayResponse"/>
+  </wsdl:message>
+  <wsdl:message name="CoreLive_initiateIntraDay_CoreLiveThrowable_FaultMessage">
+    <wsdl:part name="detail" element="tns:CoreLiveThrowable"/>
+  </wsdl:message>
+  <wsdl:message name="StopPaymentRequest">
+    <wsdl:part name="parameters" element="tns:stopPayment"/>
+  </wsdl:message>
+  <wsdl:message name="StopPaymentResponse">
+    <wsdl:part name="parameters" element="tns:stopPaymentResponse"/>
+  </wsdl:message>
+  <wsdl:message name="CoreLive_stopPayment_CoreLiveThrowable_FaultMessage">
+    <wsdl:part name="detail" element="tns:CoreLiveThrowable"/>
+  </wsdl:message>
+  <wsdl:message name="OnDemandRequest">
+    <wsdl:part name="parameters" element="tns:initiateOnDemand"/>
+  </wsdl:message>
+  <wsdl:message name="OnDemandResponse">
+    <wsdl:part name="parameters" element="tns:initiateOnDemandResponse"/>
+  </wsdl:message>
+  <wsdl:message name="CoreLive_initiateOnDemand_CoreLiveThrowable_FaultMessage">
+    <wsdl:part name="detail" element="tns:CoreLiveThrowable"/>
+  </wsdl:message>
+  <wsdl:message name="TransferRequest">
+    <wsdl:part name="parameters" element="tns:transferFunds"/>
+  </wsdl:message>
+  <wsdl:message name="TransferResponse">
+    <wsdl:part name="parameters" element="tns:transferFundsResponse"/>
+  </wsdl:message>
+  <wsdl:message name="CoreLive_transferFunds_CoreLiveThrowable_FaultMessage">
+    <wsdl:part name="detail" element="tns:CoreLiveThrowable"/>
+  </wsdl:message>
+  <wsdl:message name="PingRequest">
+    <wsdl:part name="parameters" element="tns:ping"/>
+  </wsdl:message>
+  <wsdl:message name="PingResponse">
+    <wsdl:part name="parameters" element="tns:pingResponse"/>
+  </wsdl:message>
+  <wsdl:message name="CoreLive_ping_CoreLiveThrowable_FaultMessage">
+    <wsdl:part name="detail" element="tns:CoreLiveThrowable"/>
+  </wsdl:message>
+  <wsdl:message name="EnrollEstatementsRequest">
+    <wsdl:part name="parameters" element="tns:enrollEstatements"/>
+  </wsdl:message>
+  <wsdl:message name="EnrollEstatementsResponse">
+    <wsdl:part name="parameters" element="tns:enrollEstatementsResponse"/>
+  </wsdl:message>
+  <wsdl:message name="CoreLive_enrollEstatements_CoreLiveThrowable_FaultMessage">
+    <wsdl:part name="detail" element="tns:CoreLiveThrowable"/>
+  </wsdl:message>
+  <wsdl:portType name="CoreLive">
+    <wsdl:operation name="updateProfile">
+      <wsdl:input wsaw:Action="urn:updateProfile" name="ProfileUpdateRequest" message="tns:ProfileUpdateRequest"/>
+      <wsdl:output wsaw:Action="urn:updateProfileResponse" name="ProfileUpdateResponse" message="tns:ProfileUpdateResponse"/>
+      <wsdl:fault wsaw:Action="http://d3banking.d3connect.corelive/CoreLive/updateProfileCoreLiveThrowable" name="CoreLiveThrowable" message="tns:CoreLive_updateProfile_CoreLiveThrowable_FaultMessage"/>
+    </wsdl:operation>
+    <wsdl:operation name="initiateIntraDay">
+      <wsdl:input wsaw:Action="urn:initiateIntraDay" name="IntraDayRequest" message="tns:IntraDayRequest"/>
+      <wsdl:output wsaw:Action="urn:initiateIntraDayResponse" name="IntraDayResponse" message="tns:IntraDayResponse"/>
+      <wsdl:fault wsaw:Action="http://d3banking.d3connect.corelive/CoreLive/initiateIntraDayCoreLiveThrowable" name="CoreLiveThrowable" message="tns:CoreLive_initiateIntraDay_CoreLiveThrowable_FaultMessage"/>
+    </wsdl:operation>
+    <wsdl:operation name="stopPayment">
+      <wsdl:input wsaw:Action="urn:stopPayment" name="StopPaymentRequest" message="tns:StopPaymentRequest"/>
+      <wsdl:output wsaw:Action="urn:stopPaymentResponse" name="StopPaymentResponse" message="tns:StopPaymentResponse"/>
+      <wsdl:fault wsaw:Action="http://d3banking.d3connect.corelive/CoreLive/stopPaymentCoreLiveThrowable" name="CoreLiveThrowable" message="tns:CoreLive_stopPayment_CoreLiveThrowable_FaultMessage"/>
+    </wsdl:operation>
+    <wsdl:operation name="initiateOnDemand">
+      <wsdl:input wsaw:Action="urn:initiateOnDemand" name="OnDemandRequest" message="tns:OnDemandRequest"/>
+      <wsdl:output wsaw:Action="urn:initiateOnDemandResponse" name="OnDemandResponse" message="tns:OnDemandResponse"/>
+      <wsdl:fault wsaw:Action="http://d3banking.d3connect.corelive/CoreLive/initiateOnDemandCoreLiveThrowable" name="CoreLiveThrowable" message="tns:CoreLive_initiateOnDemand_CoreLiveThrowable_FaultMessage"/>
+    </wsdl:operation>
+    <wsdl:operation name="transferFunds">
+      <wsdl:input wsaw:Action="urn:transferFunds" name="TransferRequest" message="tns:TransferRequest"/>
+      <wsdl:output wsaw:Action="urn:transferFundsResponse" name="TransferResponse" message="tns:TransferResponse"/>
+      <wsdl:fault wsaw:Action="http://d3banking.d3connect.corelive/CoreLive/transferFundsCoreLiveThrowable" name="CoreLiveThrowable" message="tns:CoreLive_transferFunds_CoreLiveThrowable_FaultMessage"/>
+    </wsdl:operation>
+    <wsdl:operation name="ping">
+      <wsdl:input wsaw:Action="urn:ping" name="PingRequest" message="tns:PingRequest"/>
+      <wsdl:output wsaw:Action="urn:pingResponse" name="PingResponse" message="tns:PingResponse"/>
+      <wsdl:fault wsaw:Action="http://d3banking.d3connect.corelive/CoreLive/pingCoreLiveThrowable" name="CoreLiveThrowable" message="tns:CoreLive_ping_CoreLiveThrowable_FaultMessage"/>
+    </wsdl:operation>
+    <wsdl:operation name="enrollEstatements">
+      <wsdl:input wsaw:Action="urn:enrollEstatements" name="EnrollEstatementsRequest" message="tns:EnrollEstatementsRequest"/>
+      <wsdl:output wsaw:Action="urn:enrollEstatementsResponse" name="EnrollEstatementsResponse" message="tns:EnrollEstatementsResponse"/>
+      <wsdl:fault wsaw:Action="http://d3banking.d3connect.corelive/CoreLive/enrollEstatementsCoreLiveThrowable" name="CoreLiveThrowable" message="tns:CoreLive_enrollEstatements_CoreLiveThrowable_FaultMessage"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="CustomBinding_CoreLive" type="tns:CoreLive">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="updateProfile">
+      <soap12:operation soapAction="urn:updateProfile" style="document"/>
+      <wsdl:input name="ProfileUpdateRequest">
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="ProfileUpdateResponse">
+        <soap12:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="CoreLiveThrowable">
+        <soap12:fault name="CoreLiveThrowable" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="initiateIntraDay">
+      <soap12:operation soapAction="urn:initiateIntraDay" style="document"/>
+      <wsdl:input name="IntraDayRequest">
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="IntraDayResponse">
+        <soap12:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="CoreLiveThrowable">
+        <soap12:fault name="CoreLiveThrowable" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="stopPayment">
+      <soap12:operation soapAction="urn:stopPayment" style="document"/>
+      <wsdl:input name="StopPaymentRequest">
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="StopPaymentResponse">
+        <soap12:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="CoreLiveThrowable">
+        <soap12:fault name="CoreLiveThrowable" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="initiateOnDemand">
+      <soap12:operation soapAction="urn:initiateOnDemand" style="document"/>
+      <wsdl:input name="OnDemandRequest">
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="OnDemandResponse">
+        <soap12:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="CoreLiveThrowable">
+        <soap12:fault name="CoreLiveThrowable" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="transferFunds">
+      <soap12:operation soapAction="urn:transferFunds" style="document"/>
+      <wsdl:input name="TransferRequest">
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="TransferResponse">
+        <soap12:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="CoreLiveThrowable">
+        <soap12:fault name="CoreLiveThrowable" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="ping">
+      <soap12:operation soapAction="urn:ping" style="document"/>
+      <wsdl:input name="PingRequest">
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="PingResponse">
+        <soap12:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="CoreLiveThrowable">
+        <soap12:fault name="CoreLiveThrowable" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="enrollEstatements">
+      <soap12:operation soapAction="urn:enrollEstatements" style="document"/>
+      <wsdl:input name="EnrollEstatementsRequest">
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="EnrollEstatementsResponse">
+        <soap12:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="CoreLiveThrowable">
+        <soap12:fault name="CoreLiveThrowable" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="CustomBinding_CoreLive1" type="tns:CoreLive">
+    <wsp:PolicyReference URI="#CustomBinding_CoreLive1_policy"/>
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="updateProfile">
+      <soap12:operation soapAction="urn:updateProfile" style="document"/>
+      <wsdl:input name="ProfileUpdateRequest">
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="ProfileUpdateResponse">
+        <soap12:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="CoreLiveThrowable">
+        <soap12:fault name="CoreLiveThrowable" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="initiateIntraDay">
+      <soap12:operation soapAction="urn:initiateIntraDay" style="document"/>
+      <wsdl:input name="IntraDayRequest">
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="IntraDayResponse">
+        <soap12:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="CoreLiveThrowable">
+        <soap12:fault name="CoreLiveThrowable" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="stopPayment">
+      <soap12:operation soapAction="urn:stopPayment" style="document"/>
+      <wsdl:input name="StopPaymentRequest">
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="StopPaymentResponse">
+        <soap12:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="CoreLiveThrowable">
+        <soap12:fault name="CoreLiveThrowable" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="initiateOnDemand">
+      <soap12:operation soapAction="urn:initiateOnDemand" style="document"/>
+      <wsdl:input name="OnDemandRequest">
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="OnDemandResponse">
+        <soap12:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="CoreLiveThrowable">
+        <soap12:fault name="CoreLiveThrowable" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="transferFunds">
+      <soap12:operation soapAction="urn:transferFunds" style="document"/>
+      <wsdl:input name="TransferRequest">
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="TransferResponse">
+        <soap12:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="CoreLiveThrowable">
+        <soap12:fault name="CoreLiveThrowable" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="ping">
+      <soap12:operation soapAction="urn:ping" style="document"/>
+      <wsdl:input name="PingRequest">
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="PingResponse">
+        <soap12:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="CoreLiveThrowable">
+        <soap12:fault name="CoreLiveThrowable" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="enrollEstatements">
+      <soap12:operation soapAction="urn:enrollEstatements" style="document"/>
+      <wsdl:input name="EnrollEstatementsRequest">
+        <soap12:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="EnrollEstatementsResponse">
+        <soap12:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="CoreLiveThrowable">
+        <soap12:fault name="CoreLiveThrowable" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="CoreLiveService">
+    <wsdl:port name="CustomBinding_CoreLive" binding="tns:CustomBinding_CoreLive">
+      <soap12:address location="http://adapter-test.arvest.com:88/OLBLodo/CoreLive.svc"/>
+    </wsdl:port>
+    <wsdl:port name="CustomBinding_CoreLive1" binding="tns:CustomBinding_CoreLive1">
+      <soap12:address location="https://adapter-test.arvest.com:451/OLBLodo/CoreLive.svc"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part><con:part><con:url>https://adapter-test.arvest.com:451/OLBLodo/CoreLive.svc?xsd=xsd0</con:url><con:content><![CDATA[<xs:schema elementFormDefault="qualified" targetNamespace="http://d3banking.d3connect.corelive" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://d3banking.d3connect.corelive">
+  <xs:element name="updateProfile">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="hdr" type="tns:headerType"/>
+        <xs:element minOccurs="0" maxOccurs="1" name="prflUpdtRqst" type="tns:ProfileUpdateRequestFields"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="headerType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="ver" type="xs:string"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="rqstId" type="xs:string"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="authn" type="tns:authenticationType"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="uid" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="authenticationType">
+    <xs:attribute name="userName" type="xs:string"/>
+    <xs:attribute name="pswd" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="ProfileUpdateRequestFields">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="acctEnrlLst" type="tns:ArrayOfAccountEnrollment"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="userSet" type="tns:userSet"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ArrayOfAccountEnrollment">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="acct" nillable="true" type="tns:AccountEnrollment"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="AccountEnrollment">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="eStmtPref" type="xs:string"/>
+    </xs:sequence>
+    <xs:attribute name="cuid" type="xs:string"/>
+    <xs:attribute name="uid" type="xs:string"/>
+  </xs:complexType>
+  <xs:complexType name="userSet">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="bpStat" type="xs:string"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="bpId" type="xs:string"/>
+      <xs:element minOccurs="1" maxOccurs="1" name="dob" type="xs:dateTime"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="emlOpt" type="xs:string"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="gndr" type="xs:string"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="mobl" type="xs:string"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="pers" type="tns:personType"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="personType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="frstName" type="xs:string"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="midlName" type="xs:string"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="lastName" type="xs:string"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="priEmail" type="xs:string"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="altEmail" type="xs:string"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="homePhon" type="xs:string"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="workPhon" type="xs:string"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="moblPhon" type="xs:string"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="emp" type="xs:string"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="priAddr" type="tns:addressType"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="mailAddr" type="tns:addressType"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="addressType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="addr1" type="xs:string"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="addr2" type="xs:string"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="addr3" type="xs:string"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="addr4" type="xs:string"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="city" type="xs:string"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="st" type="xs:string"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="pstlCode" type="xs:string"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="ctryCode" type="xs:string"/>
+      <xs:element minOccurs="1" maxOccurs="1" name="lat" type="xs:decimal"/>
+      <xs:element minOccurs="1" maxOccurs="1" name="lon" type="xs:decimal"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="updateProfileResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="hdr" type="tns:headerType"/>
+        <xs:element minOccurs="0" maxOccurs="1" name="prflUpdtResp" type="tns:responseType"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:complexType name="responseType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="cnfmNbr" type="xs:string"/>
+      <xs:element minOccurs="1" maxOccurs="1" name="stat" type="xs:int"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="infoText" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CoreLiveThrowable"/>
+  <xs:complexType name="EnrollEstatementsResponseFields">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="infoText" type="xs:string"/>
+      <xs:element minOccurs="1" maxOccurs="1" name="stat" type="xs:int"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="EnrollEstatementsRequestFields">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="acctUid" type="xs:string"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="compUid" type="xs:string"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="eStmtPref" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="StopPaymentRequestFields">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="acctUid" type="xs:string"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="compUid" type="xs:string"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="memo" type="xs:string"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="txnType" type="xs:string"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="chekNbr" type="xs:string"/>
+      <xs:element minOccurs="1" maxOccurs="1" name="amt" type="xs:decimal"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PingResponseFields">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="stat" type="xs:int"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="infoText" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="intlAcctFundXferResp">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="fromAcctAvblBal" type="xs:decimal"/>
+      <xs:element minOccurs="1" maxOccurs="1" name="toAcctAvblBal" type="xs:decimal"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="cnfmNbr" type="xs:string"/>
+      <xs:element minOccurs="1" maxOccurs="1" name="stat" type="xs:int"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="infoText" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="OnDemandRequestFields">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="eTkn" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="asyncResponseType">
+    <xs:sequence>
+      <xs:element minOccurs="1" maxOccurs="1" name="stat" type="xs:int"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="infoText" type="xs:string"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="payload" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="intraDayRqst">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="txnDateRang" type="tns:txnDateRangType"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="eTkn" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="txnDateRangType">
+    <xs:attribute name="begnDate" type="xs:dateTime" use="required"/>
+    <xs:attribute name="endDate" type="xs:dateTime" use="required"/>
+  </xs:complexType>
+  <xs:complexType name="intlAcctFundXferRqst">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="fromAcctUid" type="xs:string"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="toAcctUid" type="xs:string"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="memo" type="xs:string"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="fromAcctCncyCode" type="xs:string"/>
+      <xs:element minOccurs="0" maxOccurs="1" name="toAcctCncyCode" type="xs:string"/>
+      <xs:element minOccurs="1" maxOccurs="1" name="date" type="xs:dateTime"/>
+      <xs:element minOccurs="1" maxOccurs="1" name="amt" type="xs:decimal"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="initiateIntraDay">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="hdr" type="tns:headerType"/>
+        <xs:element minOccurs="0" maxOccurs="1" name="intraDayRqst" type="tns:intraDayRqst"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="initiateIntraDayResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="hdr" type="tns:headerType"/>
+        <xs:element minOccurs="0" maxOccurs="1" name="intraDayResp" type="tns:asyncResponseType"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="stopPayment">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="hdr" type="tns:headerType"/>
+        <xs:element minOccurs="0" maxOccurs="1" name="stopPmtRqst" type="tns:StopPaymentRequestFields"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="stopPaymentResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="hdr" type="tns:headerType"/>
+        <xs:element minOccurs="0" maxOccurs="1" name="stopPmtResp" type="tns:responseType"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="initiateOnDemand">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="hdr" type="tns:headerType"/>
+        <xs:element minOccurs="0" maxOccurs="1" name="onDemandRqst" type="tns:OnDemandRequestFields"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="initiateOnDemandResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="hdr" type="tns:headerType"/>
+        <xs:element minOccurs="0" maxOccurs="1" name="onDemandResp" type="tns:asyncResponseType"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="transferFunds">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="hdr" type="tns:headerType"/>
+        <xs:element minOccurs="0" maxOccurs="1" name="intlAcctFundXferRqst" type="tns:intlAcctFundXferRqst"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="transferFundsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="hdr" type="tns:headerType"/>
+        <xs:element minOccurs="0" maxOccurs="1" name="transferFundsResponse" type="tns:intlAcctFundXferResp"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ping">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="hdr" type="tns:headerType"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="pingResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="hdr" type="tns:headerType"/>
+        <xs:element minOccurs="0" maxOccurs="1" name="pingResponse" type="tns:PingResponseFields"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="enrollEstatements">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="eStmtEnrlRqst" type="tns:EnrollEstatementsRequestFields"/>
+        <xs:element minOccurs="0" maxOccurs="1" name="hdr" type="tns:headerType"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="enrollEstatementsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="1" name="eStmtEnrlResp" type="tns:EnrollEstatementsResponseFields"/>
+        <xs:element minOccurs="0" maxOccurs="1" name="hdr" type="tns:headerType"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://192.168.1.21/simulators/corelive</con:endpoint><con:endpoint>http://Arna-PC:8088/mockCustomBinding_CoreLive1</con:endpoint><con:endpoint>http://Arna-PC:8088CoreLiveTestSuit</con:endpoint><con:endpoint>https://adapter-test.arvest.com:451/OLBLodo/CoreLive.svc</con:endpoint></con:endpoints><con:operation isOneWay="false" action="urn:enrollEstatements" name="enrollEstatements" bindingOperationName="enrollEstatements" type="Request-Response" outputName="EnrollEstatementsResponse" inputName="EnrollEstatementsRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>https://adapter-test.arvest.com:451/OLBLodo/CoreLive.svc</con:endpoint><con:request><![CDATA[<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:d3b="http://d3banking.d3connect.corelive">
+   <soap:Header/>
+   <soap:Body>
+      <d3b:enrollEstatements>
+         <!--Optional:-->
+         <d3b:eStmtEnrlRqst>
+            <!--Optional:-->
+            <d3b:acctUid>?</d3b:acctUid>
+            <!--Optional:-->
+            <d3b:compUid>?</d3b:compUid>
+            <!--Optional:-->
+            <d3b:eStmtPref>?</d3b:eStmtPref>
+         </d3b:eStmtEnrlRqst>
+         <!--Optional:-->
+         <d3b:hdr>
+            <!--Optional:-->
+            <d3b:ver>?</d3b:ver>
+            <!--Optional:-->
+            <d3b:rqstId>?</d3b:rqstId>
+            <!--Optional:-->
+            <d3b:authn userName="?" pswd="?"/>
+            <!--Optional:-->
+            <d3b:uid>?</d3b:uid>
+         </d3b:hdr>
+      </d3b:enrollEstatements>
+   </soap:Body>
+</soap:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:enrollEstatements"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="urn:initiateIntraDay" name="initiateIntraDay" bindingOperationName="initiateIntraDay" type="Request-Response" outputName="IntraDayResponse" inputName="IntraDayRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://adapter-test.arvest.com:451/OLBLodo/CoreLive.svc</con:endpoint><con:request><![CDATA[<?xml version='1.0' encoding='UTF-8'?>
+<soapenv:Envelope xmlns:soapenv="http://www.w3.org/2003/05/soap-envelope">
+    <soapenv:Body>
+        <ns1:initiateIntraDay xmlns:ns1="http://d3banking.d3connect.corelive">
+			<ns1:hdr>
+				<ns1:ver>2.0</ns1:ver>
+				<ns1:rqstId>INVALID</ns1:rqstId>
+				<ns1:authn userName="INVALID" pswd="INVALID"/>
+				<ns1:uid>INVALID</ns1:uid>
+			</ns1:hdr>
+			<ns1:intraDayRqst>
+				<ns1:txnDateRang begnDate="2013-12-04" endDate="2013-12-04" />
+				<ns1:eTkn>ECHO_TOKEN</ns1:eTkn>
+			</ns1:intraDayRqst>
+        </ns1:initiateIntraDay>
+    </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:initiateIntraDay"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="urn:initiateOnDemand" name="initiateOnDemand" bindingOperationName="initiateOnDemand" type="Request-Response" outputName="OnDemandResponse" inputName="OnDemandRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>https://adapter-test.arvest.com:451/OLBLodo/CoreLive.svc</con:endpoint><con:request><![CDATA[<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:d3b="http://d3banking.d3connect.corelive">
+   <soap:Header/>
+   <soap:Body>
+      <d3b:initiateOnDemand>
+         <!--Optional:-->
+         <d3b:hdr>
+            <!--Optional:-->
+            <d3b:ver>?</d3b:ver>
+            <!--Optional:-->
+            <d3b:rqstId>?</d3b:rqstId>
+            <!--Optional:-->
+            <d3b:authn userName="?" pswd="?"/>
+            <!--Optional:-->
+            <d3b:uid>?</d3b:uid>
+         </d3b:hdr>
+         <!--Optional:-->
+         <d3b:onDemandRqst>
+            <!--Optional:-->
+            <d3b:eTkn>?</d3b:eTkn>
+         </d3b:onDemandRqst>
+      </d3b:initiateOnDemand>
+   </soap:Body>
+</soap:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:initiateOnDemand"/></con:call></con:operation><con:operation isOneWay="false" action="urn:ping" name="ping" bindingOperationName="ping" type="Request-Response" outputName="PingResponse" inputName="PingRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>https://adapter-test.arvest.com:451/OLBLodo/CoreLive.svc</con:endpoint><con:request><![CDATA[<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:d3b="http://d3banking.d3connect.corelive">
+   <soap:Header/>
+   <soap:Body>
+      <d3b:ping>
+         <!--Optional:-->
+         <d3b:hdr>
+            <!--Optional:-->
+            <d3b:ver>?</d3b:ver>
+            <!--Optional:-->
+            <d3b:rqstId>?</d3b:rqstId>
+            <!--Optional:-->
+            <d3b:authn userName="?" pswd="?"/>
+            <!--Optional:-->
+            <d3b:uid>?</d3b:uid>
+         </d3b:hdr>
+      </d3b:ping>
+   </soap:Body>
+</soap:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:ping"/></con:call></con:operation><con:operation isOneWay="false" action="urn:stopPayment" name="stopPayment" bindingOperationName="stopPayment" type="Request-Response" outputName="StopPaymentResponse" inputName="StopPaymentRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>https://adapter-test.arvest.com:451/OLBLodo/CoreLive.svc</con:endpoint><con:request><![CDATA[<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:d3b="http://d3banking.d3connect.corelive">
+   <soap:Header/>
+   <soap:Body>
+      <d3b:stopPayment>
+         <!--Optional:-->
+         <d3b:hdr>
+            <!--Optional:-->
+            <d3b:ver>?</d3b:ver>
+            <!--Optional:-->
+            <d3b:rqstId>?</d3b:rqstId>
+            <!--Optional:-->
+            <d3b:authn userName="?" pswd="?"/>
+            <!--Optional:-->
+            <d3b:uid>?</d3b:uid>
+         </d3b:hdr>
+         <!--Optional:-->
+         <d3b:stopPmtRqst>
+            <!--Optional:-->
+            <d3b:acctUid>?</d3b:acctUid>
+            <!--Optional:-->
+            <d3b:compUid>?</d3b:compUid>
+            <!--Optional:-->
+            <d3b:memo>?</d3b:memo>
+            <!--Optional:-->
+            <d3b:txnType>?</d3b:txnType>
+            <!--Optional:-->
+            <d3b:chekNbr>?</d3b:chekNbr>
+            <d3b:amt>?</d3b:amt>
+         </d3b:stopPmtRqst>
+      </d3b:stopPayment>
+   </soap:Body>
+</soap:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:stopPayment"/></con:call></con:operation><con:operation isOneWay="false" action="urn:transferFunds" name="transferFunds" bindingOperationName="transferFunds" type="Request-Response" outputName="TransferResponse" inputName="TransferRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>https://adapter-test.arvest.com:451/OLBLodo/CoreLive.svc</con:endpoint><con:request><![CDATA[<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:d3b="http://d3banking.d3connect.corelive">
+   <soap:Header/>
+   <soap:Body>
+      <d3b:transferFunds>
+         <!--Optional:-->
+         <d3b:hdr>
+            <!--Optional:-->
+            <d3b:ver>?</d3b:ver>
+            <!--Optional:-->
+            <d3b:rqstId>?</d3b:rqstId>
+            <!--Optional:-->
+            <d3b:authn userName="?" pswd="?"/>
+            <!--Optional:-->
+            <d3b:uid>?</d3b:uid>
+         </d3b:hdr>
+         <!--Optional:-->
+         <d3b:intlAcctFundXferRqst>
+            <!--Optional:-->
+            <d3b:fromAcctUid>?</d3b:fromAcctUid>
+            <!--Optional:-->
+            <d3b:toAcctUid>?</d3b:toAcctUid>
+            <!--Optional:-->
+            <d3b:memo>?</d3b:memo>
+            <!--Optional:-->
+            <d3b:fromAcctCncyCode>?</d3b:fromAcctCncyCode>
+            <!--Optional:-->
+            <d3b:toAcctCncyCode>?</d3b:toAcctCncyCode>
+            <d3b:date>?</d3b:date>
+            <d3b:amt>?</d3b:amt>
+         </d3b:intlAcctFundXferRqst>
+      </d3b:transferFunds>
+   </soap:Body>
+</soap:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:transferFunds"/></con:call></con:operation><con:operation isOneWay="false" action="urn:updateProfile" name="updateProfile" bindingOperationName="updateProfile" type="Request-Response" outputName="ProfileUpdateResponse" inputName="ProfileUpdateRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>https://adapter-test.arvest.com:451/OLBLodo/CoreLive.svc</con:endpoint><con:request><![CDATA[<soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:d3b="http://d3banking.d3connect.corelive">
+   <soap:Header/>
+   <soap:Body>
+      <d3b:updateProfile>
+         <!--Optional:-->
+         <d3b:hdr>
+            <!--Optional:-->
+            <d3b:ver>?</d3b:ver>
+            <!--Optional:-->
+            <d3b:rqstId>?</d3b:rqstId>
+            <!--Optional:-->
+            <d3b:authn userName="?" pswd="?"/>
+            <!--Optional:-->
+            <d3b:uid>?</d3b:uid>
+         </d3b:hdr>
+         <!--Optional:-->
+         <d3b:prflUpdtRqst>
+            <!--Optional:-->
+            <d3b:acctEnrlLst>
+               <!--Zero or more repetitions:-->
+               <d3b:acct cuid="?" uid="?">
+                  <!--Optional:-->
+                  <d3b:eStmtPref>?</d3b:eStmtPref>
+               </d3b:acct>
+            </d3b:acctEnrlLst>
+            <!--Optional:-->
+            <d3b:userSet>
+               <!--Optional:-->
+               <d3b:bpStat>?</d3b:bpStat>
+               <!--Optional:-->
+               <d3b:bpId>?</d3b:bpId>
+               <d3b:dob>?</d3b:dob>
+               <!--Optional:-->
+               <d3b:emlOpt>?</d3b:emlOpt>
+               <!--Optional:-->
+               <d3b:gndr>?</d3b:gndr>
+               <!--Optional:-->
+               <d3b:mobl>?</d3b:mobl>
+               <!--Optional:-->
+               <d3b:pers>
+                  <!--Optional:-->
+                  <d3b:frstName>?</d3b:frstName>
+                  <!--Optional:-->
+                  <d3b:midlName>?</d3b:midlName>
+                  <!--Optional:-->
+                  <d3b:lastName>?</d3b:lastName>
+                  <!--Optional:-->
+                  <d3b:priEmail>?</d3b:priEmail>
+                  <!--Optional:-->
+                  <d3b:altEmail>?</d3b:altEmail>
+                  <!--Optional:-->
+                  <d3b:homePhon>?</d3b:homePhon>
+                  <!--Optional:-->
+                  <d3b:workPhon>?</d3b:workPhon>
+                  <!--Optional:-->
+                  <d3b:moblPhon>?</d3b:moblPhon>
+                  <!--Optional:-->
+                  <d3b:emp>?</d3b:emp>
+                  <!--Optional:-->
+                  <d3b:priAddr>
+                     <!--Optional:-->
+                     <d3b:addr1>?</d3b:addr1>
+                     <!--Optional:-->
+                     <d3b:addr2>?</d3b:addr2>
+                     <!--Optional:-->
+                     <d3b:addr3>?</d3b:addr3>
+                     <!--Optional:-->
+                     <d3b:addr4>?</d3b:addr4>
+                     <!--Optional:-->
+                     <d3b:city>?</d3b:city>
+                     <!--Optional:-->
+                     <d3b:st>?</d3b:st>
+                     <!--Optional:-->
+                     <d3b:pstlCode>?</d3b:pstlCode>
+                     <!--Optional:-->
+                     <d3b:ctryCode>?</d3b:ctryCode>
+                     <d3b:lat>?</d3b:lat>
+                     <d3b:lon>?</d3b:lon>
+                  </d3b:priAddr>
+                  <!--Optional:-->
+                  <d3b:mailAddr>
+                     <!--Optional:-->
+                     <d3b:addr1>?</d3b:addr1>
+                     <!--Optional:-->
+                     <d3b:addr2>?</d3b:addr2>
+                     <!--Optional:-->
+                     <d3b:addr3>?</d3b:addr3>
+                     <!--Optional:-->
+                     <d3b:addr4>?</d3b:addr4>
+                     <!--Optional:-->
+                     <d3b:city>?</d3b:city>
+                     <!--Optional:-->
+                     <d3b:st>?</d3b:st>
+                     <!--Optional:-->
+                     <d3b:pstlCode>?</d3b:pstlCode>
+                     <!--Optional:-->
+                     <d3b:ctryCode>?</d3b:ctryCode>
+                     <d3b:lat>?</d3b:lat>
+                     <d3b:lon>?</d3b:lon>
+                  </d3b:mailAddr>
+               </d3b:pers>
+            </d3b:userSet>
+         </d3b:prflUpdtRqst>
+      </d3b:updateProfile>
+   </soap:Body>
+</soap:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:updateProfile"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:testSuite name="CoreLiveTestSuit"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="initiateIntraDay" searchProperties="true" id="bb281e9d-3b7c-4c0f-a664-f1daf3d7a746"><con:settings/><con:testStep type="groovy" name="getTodayDate"><con:settings/><con:config><script>def sdf = new java.text.SimpleDateFormat("yyyy-MM-dd")
+return sdf.format( new Date())</script></con:config></con:testStep><con:testStep type="groovy" name="getPastDate"><con:settings/><con:config><script>def sdf = new java.text.SimpleDateFormat("yyyy-MM-dd")
+return sdf.format( new Date()-300)</script></con:config></con:testStep><con:testStep type="properties" name="properties"><con:settings/><con:config xsi:type="con:PropertiesStep" saveFirst="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:source>C:/Users/Arna/Documents/D3Banking/QA/SOAPUI/CoreLive/properties/maxwell677</con:source><con:target>C:/Users/Arna/Documents/D3Banking/QA/SOAPUI/CoreLive/properties/maxwell677</con:target><con:properties><con:property><con:name>ver</con:name><con:value>2.0</con:value></con:property><con:property><con:name>rqstId</con:name><con:value>c5ba1003-ee93-4612-af6a-d66c7bab44a1</con:value></con:property><con:property><con:name>authn</con:name><con:value>anthn</con:value></con:property><con:property><con:name>uid</con:name><con:value>267324</con:value></con:property><con:property><con:name>eTkn</con:name><con:value>testToken</con:value></con:property><con:property><con:name>userName</con:name><con:value>maxwell677</con:value></con:property><con:property><con:name>pswd</con:name><con:value>arvest</con:value></con:property><con:property><con:name>soapenv</con:name><con:value>http://www.w3.org/2003/05/soap-envelope</con:value></con:property><con:property><con:name>xmlns</con:name><con:value>http://d3banking.d3connect.corelive</con:value></con:property><con:property><con:name>acctUid11</con:name><con:value/></con:property><con:property><con:name>acctUid2</con:name><con:value/></con:property></con:properties></con:config></con:testStep><con:testStep type="transfer" name="transferProperties"><con:settings/><con:config xsi:type="con:PropertyTransfersStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:transfers setNullOnMissingSource="true" transferTextContent="false" failOnError="false" ignoreEmpty="false" transferToAll="false" useXQuery="false" entitize="false" transferChildNodes="false"><con:name>payload</con:name><con:sourceType>Response</con:sourceType><con:sourceStep>initiateIntraDay</con:sourceStep><con:sourcePath>declare namespace corelive="http://d3banking.d3connect.corelive";
+//corelive:payload</con:sourcePath><con:targetType>payload</con:targetType><con:targetStep>#Global#</con:targetStep><con:targetPath/></con:transfers></con:config></con:testStep><con:testStep type="request" name="initiateIntraDay"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CustomBinding_CoreLive1</con:interface><con:operation>initiateIntraDay</con:operation><con:request name="initiateIntraDay"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://adapter-test.arvest.com:451/OLBLodo/CoreLive.svc</con:endpoint><con:request><![CDATA[<?xml version='1.0' encoding='UTF-8'?>
+<soapenv:Envelope xmlns:soapenv="${soapenv}">
+    <soapenv:Body>
+        <ns1:initiateIntraDay xmlns:ns1="${xmlns}">
+			<ns1:hdr>
+				<ns1:ver>${properties#ver}</ns1:ver>
+				<ns1:rqstId>${properties#rqstId}</ns1:rqstId>
+				<ns1:authn userName="${properties#userName}" pswd="${properties#pswd}"/>
+				<ns1:uid>${properties#uid}</ns1:uid>
+			</ns1:hdr>
+			<ns1:intraDayRqst>
+				<ns1:txnDateRang begnDate="${getTodayDate#result}" endDate="${getTodayDate#result}" />
+				<ns1:eTkn>${properties#eTkn}</ns1:eTkn>
+			</ns1:intraDayRqst>
+        </ns1:initiateIntraDay>
+    </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" name="SOAP Response"/><con:assertion type="SOAP Fault Assertion" name="Not SOAP Fault"/><con:assertion type="Valid HTTP Status Codes" name="Valid HTTP Status Codes"><con:configuration><codes>200</codes></con:configuration></con:assertion><con:assertion type="XPath Match" name="AssertResponseContent"><con:configuration><path>declare namespace s='${soapenv}';
+declare namespace ns1='${xmlns}';
+//s:Envelope</path><content><![CDATA[<s:Envelope xmlns:s="${soapenv}">
+   <s:Body xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <initiateIntraDayResponse xmlns="${xmlns}">
+         <hdr>
+            <ver>${properties#ver}</ver>
+            <rqstId>${properties#rqstId}</rqstId>
+            <authn userName="${properties#userName}" pswd="${properties#pswd}"/>
+            <uid>${properties#uid}</uid>
+         </hdr>
+         <intraDayResp>
+            <stat>200</stat>
+            <payload>*</payload>
+         </intraDayResp>
+      </initiateIntraDayResponse>
+   </s:Body>
+</s:Envelope>]]></content><allowWildcards>true</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="urn:initiateIntraDay" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="initiateIntraDay_noVersion"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CustomBinding_CoreLive1</con:interface><con:operation>initiateIntraDay</con:operation><con:request name="initiateIntraDay_noVersion"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://adapter-test.arvest.com:451/OLBLodo/CoreLive.svc</con:endpoint><con:request><![CDATA[
+      <?xml version='1.0' encoding='UTF-8'?>
+<soapenv:Envelope xmlns:soapenv="${properties#soapenv}">
+    <soapenv:Body>
+        <ns1:initiateIntraDay xmlns:ns1="${properties#xmlns}">
+			<ns1:hdr>
+				<ns1:authn userName="${properties#userName}" pswd="${properties#pswd}"/>
+				<ns1:uid>${properties#uid}</ns1:uid>
+			</ns1:hdr>
+			<ns1:intraDayRqst>
+				<ns1:txnDateRang begnDate="${getPastDate#result}" endDate="${getTodayDate#result}" />
+				<ns1:eTkn>${properties#eTkn}</ns1:eTkn>
+			</ns1:intraDayRqst>
+        </ns1:initiateIntraDay>
+    </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="Valid HTTP Status Codes" name="Valid HTTP Status Codes"><con:configuration><codes>400</codes></con:configuration></con:assertion><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="urn:initiateIntraDay" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="initiateIntraDay_noRequestId"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CustomBinding_CoreLive1</con:interface><con:operation>initiateIntraDay</con:operation><con:request name="initiateIntraDay_noRequestId"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://adapter-test.arvest.com:451/OLBLodo/CoreLive.svc</con:endpoint><con:request><![CDATA[<?xml version='1.0' encoding='UTF-8'?>
+<soapenv:Envelope xmlns:soapenv="${soapenv}">
+    <soapenv:Body>
+        <ns1:initiateIntraDay xmlns:ns1="${xmlns}">
+        <ns1:hdr>
+				<ns1:ver>${properties#ver}</ns1:ver>
+				<ns1:authn userName="${properties#userName}" pswd="${properties#pswd}"/>
+				<ns1:uid>${properties#uid}</ns1:uid>
+			</ns1:hdr>
+			<ns1:intraDayRqst>
+				<ns1:txnDateRang begnDate="${getPastDate#result}" endDate="${getTodayDate#result}" />
+				<ns1:eTkn>${properties#eTkn}</ns1:eTkn>
+			</ns1:intraDayRqst>
+        </ns1:initiateIntraDay>
+    </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="Valid HTTP Status Codes" name="Valid HTTP Status Codes"><con:configuration><codes>400</codes></con:configuration></con:assertion><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="urn:initiateIntraDay" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="initiateIntraDay_NoAuthentication"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CustomBinding_CoreLive1</con:interface><con:operation>initiateIntraDay</con:operation><con:request name="initiateIntraDay_NoAuthentication"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://adapter-test.arvest.com:451/OLBLodo/CoreLive.svc</con:endpoint><con:request><![CDATA[<?xml version='1.0' encoding='UTF-8'?>
+<soapenv:Envelope xmlns:soapenv="${soapenv}">
+    <soapenv:Body>
+        <ns1:initiateIntraDay xmlns:ns1="${xmlns}">
+			<ns1:hdr>
+				<ns1:ver>${properties#ver}</ns1:ver>
+				<ns1:rqstId>${properties#rqstId}</ns1:rqstId>
+				<ns1:uid>${properties#uid}</ns1:uid>
+			</ns1:hdr>
+			<ns1:intraDayRqst>
+				<ns1:txnDateRang begnDate="${getPastDate#result}" endDate="${getTodayDate#result}" />
+				<ns1:eTkn>${properties#eTkn}</ns1:eTkn>
+			</ns1:intraDayRqst>
+        </ns1:initiateIntraDay>
+    </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="Valid HTTP Status Codes" name="Valid HTTP Status Codes"><con:configuration><codes>200</codes></con:configuration></con:assertion><con:assertion type="XPath Match" name="AssertResponseContent"><con:configuration><path>declare namespace s='http://www.w3.org/2003/05/soap-envelope';
+//s:Envelope</path><content><![CDATA[<s:Envelope xmlns:s="http://www.w3.org/2003/05/soap-envelope">
+   <s:Body xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <initiateIntraDayResponse xmlns="http://d3banking.d3connect.corelive">
+         <hdr>
+            <ver>${properties#ver}</ver>
+            <rqstId>${properties#rqstId}</rqstId>
+            <uid>${properties#uid}</uid>
+         </hdr>
+         <intraDayResp>
+            <stat>200</stat>
+            <payload>*</payload>
+         </intraDayResp>
+      </initiateIntraDayResponse>
+   </s:Body>
+</s:Envelope>]]></content><allowWildcards>true</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="urn:initiateIntraDay" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="initiateIntraDay_noUserUniqieId"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CustomBinding_CoreLive1</con:interface><con:operation>initiateIntraDay</con:operation><con:request name="initiateIntraDay_noUserUniqieId"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://adapter-test.arvest.com:451/OLBLodo/CoreLive.svc</con:endpoint><con:request><![CDATA[<?xml version='1.0' encoding='UTF-8'?>
+<soapenv:Envelope xmlns:soapenv="${soapenv}">
+    <soapenv:Body>
+        <ns1:initiateIntraDay xmlns:ns1="${xmlns}">
+			<ns1:hdr>
+				<ns1:ver>${properties#ver}</ns1:ver>
+				<ns1:rqstId>${properties#rqstId}</ns1:rqstId>
+				<ns1:authn userName="${properties#userName}" pswd="${properties#pswd}"/>
+			</ns1:hdr>
+			<ns1:intraDayRqst>
+				<ns1:txnDateRang begnDate="${getPastDate#result}" endDate="${getTodayDate#result}" />
+				<ns1:eTkn>${properties#eTkn}</ns1:eTkn>
+			</ns1:intraDayRqst>
+        </ns1:initiateIntraDay>
+    </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="Valid HTTP Status Codes" name="Valid HTTP Status Codes"><con:configuration><codes>400</codes></con:configuration></con:assertion><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="urn:initiateIntraDay" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="initiateIntraDay_invalidValueForRequestId"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CustomBinding_CoreLive1</con:interface><con:operation>initiateIntraDay</con:operation><con:request name="initiateIntraDay_invalidValueForRequestId"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://adapter-test.arvest.com:451/OLBLodo/CoreLive.svc</con:endpoint><con:request><![CDATA[<?xml version='1.0' encoding='UTF-8'?>
+<soapenv:Envelope xmlns:soapenv="${soapenv}">
+    <soapenv:Body>
+        <ns1:initiateIntraDay xmlns:ns1="${xmlns}">
+			<ns1:hdr>
+				<ns1:ver>${properties#ver}</ns1:ver>
+				<ns1:rqstId>123.234#123</ns1:rqstId>
+				<ns1:authn userName="${properties#userName}" pswd="${properties#pswd}"/>
+				<ns1:uid>${properties#uid}</ns1:uid>
+			</ns1:hdr>
+			<ns1:intraDayRqst>
+				<ns1:txnDateRang begnDate="${getPastDate#result}" endDate="${getTodayDate#result}" />
+				<ns1:eTkn>${properties#eTkn}</ns1:eTkn>
+			</ns1:intraDayRqst>
+        </ns1:initiateIntraDay>
+    </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="Valid HTTP Status Codes" name="Valid HTTP Status Codes"><con:configuration><codes>400</codes></con:configuration></con:assertion><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="urn:initiateIntraDay" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="initiateIntraDay_invalidValueForUserUniqueId"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CustomBinding_CoreLive1</con:interface><con:operation>initiateIntraDay</con:operation><con:request name="initiateIntraDay_invalidValueForUserUniqueId"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://adapter-test.arvest.com:451/OLBLodo/CoreLive.svc</con:endpoint><con:request><![CDATA[<?xml version='1.0' encoding='UTF-8'?>
+<soapenv:Envelope xmlns:soapenv="${soapenv}">
+    <soapenv:Body>
+        <ns1:initiateIntraDay xmlns:ns1="${xmlns}">
+			<ns1:hdr>
+				<ns1:ver>${properties#ver}</ns1:ver>
+				<ns1:rqstId>${properties#rqstId}</ns1:rqstId>
+				<ns1:authn userName="${properties#userName}" pswd="${properties#pswd}"/>
+				<ns1:uid>123.234#123</ns1:uid>
+			</ns1:hdr>
+			<ns1:intraDayRqst>
+				<ns1:txnDateRang begnDate="${getPastDate#result}" endDate="${getTodayDate#result}" />
+				<ns1:eTkn>${properties#eTkn}</ns1:eTkn>
+			</ns1:intraDayRqst>
+        </ns1:initiateIntraDay>
+    </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="Valid HTTP Status Codes" name="Valid HTTP Status Codes"><con:configuration><codes>400</codes></con:configuration></con:assertion><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="urn:initiateIntraDay" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="initiateIntraDay_noEchoToken"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CustomBinding_CoreLive1</con:interface><con:operation>initiateIntraDay</con:operation><con:request name="initiateIntraDay_noEchoToken"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://adapter-test.arvest.com:451/OLBLodo/CoreLive.svc</con:endpoint><con:request><![CDATA[<?xml version='1.0' encoding='UTF-8'?>
+<soapenv:Envelope xmlns:soapenv="${soapenv}">
+    <soapenv:Body>
+        <ns1:initiateIntraDay xmlns:ns1="${xmlns}">
+			<ns1:hdr>
+				<ns1:ver>${properties#ver}</ns1:ver>
+				<ns1:rqstId>${properties#rqstId}</ns1:rqstId>
+				<ns1:authn userName="${properties#userName}" pswd="${properties#pswd}"/>
+				<ns1:uid>${properties#uid}</ns1:uid>
+			</ns1:hdr>
+			<ns1:intraDayRqst>
+				<ns1:txnDateRang begnDate="${getPastDate#result}" endDate="${getTodayDate#result}" />
+			</ns1:intraDayRqst>
+        </ns1:initiateIntraDay>
+    </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" name="SOAP Response"/><con:assertion type="SOAP Fault Assertion" name="Not SOAP Fault"/><con:assertion type="Valid HTTP Status Codes" name="Valid HTTP Status Codes"><con:configuration><codes>200</codes></con:configuration></con:assertion><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="urn:initiateIntraDay" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="initiateIntraDay_nonSupportedDateValue"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CustomBinding_CoreLive1</con:interface><con:operation>initiateIntraDay</con:operation><con:request name="initiateIntraDay_nonSupportedDateValue"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://adapter-test.arvest.com:451/OLBLodo/CoreLive.svc</con:endpoint><con:request><![CDATA[<?xml version='1.0' encoding='UTF-8'?>
+<soapenv:Envelope xmlns:soapenv="${soapenv}">
+    <soapenv:Body>
+        <ns1:initiateIntraDay xmlns:ns1="${xmlns}">
+			<ns1:hdr>
+				<ns1:ver>${properties#ver}</ns1:ver>
+				<ns1:rqstId>${properties#rqstId}</ns1:rqstId>
+				<ns1:authn userName="${properties#userName}" pswd="${properties#pswd}"/>
+				<ns1:uid>${properties#uid}</ns1:uid>
+			</ns1:hdr>
+			<ns1:intraDayRqst>
+				<ns1:txnDateRang begnDate="02-05-2014" endDate="${getTodayDate#result}" />
+				<ns1:eTkn>${properties#eTkn}</ns1:eTkn>
+			</ns1:intraDayRqst>
+        </ns1:initiateIntraDay>
+    </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response" name="SOAP Response"/><con:assertion type="Valid HTTP Status Codes" name="Valid HTTP Status Codes"><con:configuration><codes>500</codes></con:configuration></con:assertion><con:assertion type="Not SOAP Fault Assertion" name="SOAP Fault"/><con:assertion type="Simple Contains" name="Contains"><con:configuration><token>'02-05-2014' is not a valid</token><ignoreCase>false</ignoreCase><useRegEx>false</useRegEx></con:configuration></con:assertion><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="urn:initiateIntraDay" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="initiateIntraDay_endDateLesserThanBgnDate"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CustomBinding_CoreLive1</con:interface><con:operation>initiateIntraDay</con:operation><con:request name="initiateIntraDay_endDateLesserThanBgnDate"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://adapter-test.arvest.com:451/OLBLodo/CoreLive.svc</con:endpoint><con:request><![CDATA[<?xml version='1.0' encoding='UTF-8'?>
+<soapenv:Envelope xmlns:soapenv="${soapenv}">
+    <soapenv:Body>
+        <ns1:initiateIntraDay xmlns:ns1="${xmlns}">
+			<ns1:hdr>
+				<ns1:ver>${properties#ver}</ns1:ver>
+				<ns1:rqstId>${properties#rqstId}</ns1:rqstId>
+				<ns1:authn userName="${properties#userName}" pswd="${properties#pswd}"/>
+				<ns1:uid>${properties#uid}</ns1:uid>
+			</ns1:hdr>
+			<ns1:intraDayRqst>
+				<ns1:txnDateRang begnDate="${getTodayDate#result}" endDate="${getPastDate#result}" />
+				<ns1:eTkn>${properties#eTkn}</ns1:eTkn>
+			</ns1:intraDayRqst>
+        </ns1:initiateIntraDay>
+    </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="Valid HTTP Status Codes" name="Valid HTTP Status Codes"><con:configuration><codes>400</codes></con:configuration></con:assertion><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="urn:initiateIntraDay" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="initiateIntraDay_noEndBgnDates"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CustomBinding_CoreLive1</con:interface><con:operation>initiateIntraDay</con:operation><con:request name="initiateIntraDay_noEndBgnDates"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://adapter-test.arvest.com:451/OLBLodo/CoreLive.svc</con:endpoint><con:request><![CDATA[<?xml version='1.0' encoding='UTF-8'?>
+<soapenv:Envelope xmlns:soapenv="${soapenv}">
+    <soapenv:Body>
+        <ns1:initiateIntraDay xmlns:ns1="${xmlns}">
+			<ns1:hdr>
+				<ns1:ver>${properties#ver}</ns1:ver>
+				<ns1:rqstId>${properties#rqstId}</ns1:rqstId>
+				<ns1:authn userName="${properties#userName}" pswd="${properties#pswd}"/>
+				<ns1:uid>${properties#uid}</ns1:uid>
+			</ns1:hdr>
+			<ns1:intraDayRqst>
+				<ns1:eTkn>${properties#eTkn}</ns1:eTkn>
+			</ns1:intraDayRqst>
+        </ns1:initiateIntraDay>
+    </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="Valid HTTP Status Codes" name="Valid HTTP Status Codes"><con:configuration><codes>400</codes></con:configuration></con:assertion><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="urn:initiateIntraDay" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="groovy" name="getDataInPayload"><con:settings/><con:config><script>def xmlns = com.eviware.soapui.SoapUI.globalProperties.getPropertyValue( "xmlns" )
+def groovyUtils = new com.eviware.soapui.support.GroovyUtils( context );   
+def holder = groovyUtils.getXmlHolder( 'initiateIntraDay#Response' ); 
+holder.namespaces["ns"] = xmlns;
+def list = []
+for( item in holder.getNodeValues( "//ns:payload" ))
+{
+	list.add(item)
+}
+payload =list[0]
+//get accountUid1
+int index1 = payload.indexOf("acct uid", 0)
+int index2 = payload.indexOf(" cuid", index1)
+testRunner.testCase.testSuite.setPropertyValue( "acctUid1", payload.substring(index1+10, index2-1) )
+log.info testRunner.testCase.testSuite.getPropertyValue( "acctUid1" )
+//get accountUid2
+index1 = payload.indexOf("acct uid", index1+1)
+index2 = payload.indexOf(" cuid", index1)
+testRunner.testCase.testSuite.setPropertyValue( "acctUid2", payload.substring(index1+10, index2-1) )
+log.info testRunner.testCase.testSuite.getPropertyValue( "acctUid2" )
+//get cuid
+index1 = payload.indexOf("cuid", index1)
+index2 = payload.indexOf(">", index1)
+testRunner.testCase.testSuite.setPropertyValue( "cuid", payload.substring(index1+6, index2-1) )
+log.info testRunner.testCase.testSuite.getPropertyValue( "cuid" )</script></con:config></con:testStep><con:setupScript/><con:properties><con:property><con:name>payload</con:name><con:value>arna</con:value></con:property><con:property><con:name>Token</con:name><con:value>com.eviware.soapui.impl.wsdl.teststeps.WsdlTestRequest@78203548</con:value></con:property></con:properties></con:testCase><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="initiateOnDemand" searchProperties="true" id="9c3693d8-dee4-4c2f-bbdf-77f9ccb12e00"><con:settings/><con:testStep type="properties" name="properties"><con:settings/><con:config xsi:type="con:PropertiesStep" saveFirst="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:source>C:/Users/Arna/Documents/D3Banking/QA/SOAPUI/CoreLive/properties/maxwell677</con:source><con:target/><con:properties><con:property><con:name>ver</con:name><con:value>2.0</con:value></con:property><con:property><con:name>rqstId</con:name><con:value>c5ba1003-ee93-4612-af6a-d66c7bab44a1</con:value></con:property><con:property><con:name>authn</con:name><con:value>anthn</con:value></con:property><con:property><con:name>uid</con:name><con:value>267324</con:value></con:property><con:property><con:name>eTkn</con:name><con:value>testToken</con:value></con:property><con:property><con:name>userName</con:name><con:value>maxwell677</con:value></con:property><con:property><con:name>pswd</con:name><con:value>arvest</con:value></con:property></con:properties></con:config></con:testStep><con:testStep type="request" name="initiateOnDemand"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CustomBinding_CoreLive1</con:interface><con:operation>initiateOnDemand</con:operation><con:request name="initiateOnDemand"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://adapter-test.arvest.com:451/OLBLodo/CoreLive.svc</con:endpoint><con:request><![CDATA[<?xml version='1.0' encoding='UTF-8'?>
+<soapenv:Envelope xmlns:soapenv="${soapenv}">
+    <soapenv:Body>
+        <ns1:initiateOnDemand xmlns:ns1="${xmlns}">
+			<ns1:hdr>
+				<ns1:ver>${properties#ver}</ns1:ver>
+				<ns1:rqstId>${properties#rqstId}</ns1:rqstId>
+				<ns1:authn userName="${properties#userName}" pswd="${properties#pswd}"/>
+				<ns1:uid>${properties#uid}</ns1:uid>
+			</ns1:hdr>
+			<ns1:onDemandRqst>
+				<ns1:eTkn>${properties#eTkn}</ns1:eTkn>
+			</ns1:onDemandRqst>
+        </ns1:initiateOnDemand>
+    </soapenv:Body>
+</soapenv:Envelope>
+]]></con:request><con:assertion type="SOAP Response" name="SOAP Response"/><con:assertion type="SOAP Fault Assertion" name="Not SOAP Fault"/><con:assertion type="Valid HTTP Status Codes" name="Valid HTTP Status Codes"><con:configuration><codes>200</codes></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match"><con:configuration><path>declare namespace s='http://www.w3.org/2003/05/soap-envelope';
+//s:Envelope</path><content><![CDATA[<s:Envelope xmlns:s="http://www.w3.org/2003/05/soap-envelope">
+   <s:Body xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <initiateIntraDayResponse xmlns="http://d3banking.d3connect.corelive">
+         <hdr>
+            <ver>${properties#ver}</ver>
+            <rqstId>${properties#rqstId}</rqstId>
+            <authn userName="${properties#userName}" pswd="${properties#pswd}"/>
+            <uid>${properties#uid}</uid>
+         </hdr>
+         <intraDayResp>
+            <stat>200</stat>
+            <payload>*</payload>
+         </intraDayResp>
+      </initiateIntraDayResponse>
+   </s:Body>
+</s:Envelope>]]></content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="urn:initiateOnDemand" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="initiateOnDemand_noEchoToken"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CustomBinding_CoreLive1</con:interface><con:operation>initiateOnDemand</con:operation><con:request name="initiateOnDemand_noEchoToken"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://adapter-test.arvest.com:451/OLBLodo/CoreLive.svc</con:endpoint><con:request><![CDATA[<?xml version='1.0' encoding='UTF-8'?>
+<soapenv:Envelope xmlns:soapenv="${soapenv}">
+    <soapenv:Body>
+        <ns1:initiateOnDemand xmlns:ns1="${xmlns}">
+			<ns1:hdr>
+				<ns1:ver>${properties#ver}</ns1:ver>
+				<ns1:rqstId>${properties#rqstId}</ns1:rqstId>
+				<ns1:authn userName="${properties#userName}" pswd="${properties#pswd}"/>
+				<ns1:uid>${properties#uid}</ns1:uid>
+			</ns1:hdr>
+			<ns1:onDemandRqst>
+			</ns1:onDemandRqst>
+        </ns1:initiateOnDemand>
+    </soapenv:Body>
+</soapenv:Envelope>
+]]></con:request><con:assertion type="SOAP Response" name="SOAP Response"/><con:assertion type="SOAP Fault Assertion" name="Not SOAP Fault"/><con:assertion type="XPath Match" name="XPath Match"><con:configuration><path>declare namespace s='${soapenv}';
+//s:Envelope</path><content><![CDATA[<s:Envelope xmlns:s="${soapenv}">
+   <s:Body xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <initiateIntraDayResponse xmlns="${xmlns}">
+         <hdr>
+            <ver>${properties#ver}</ver>
+            <rqstId>${properties#rqstId}</rqstId>
+            <authn userName="${properties#userName}" pswd="${properties#pswd}"/>
+            <uid>${properties#uid}</uid>
+         </hdr>
+         <intraDayResp>
+            <stat>200</stat>
+            *
+         </intraDayResp>
+      </initiateIntraDayResponse>
+   </s:Body>
+</s:Envelope>]]></content><allowWildcards>true</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:assertion type="Valid HTTP Status Codes" name="Valid HTTP Status Codes"><con:configuration><codes>400</codes></con:configuration></con:assertion><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="urn:initiateOnDemand" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="initiateOnDemand_noOnDemandRqst"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CustomBinding_CoreLive1</con:interface><con:operation>initiateOnDemand</con:operation><con:request name="initiateOnDemand_noOnDemandRqst"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://adapter-test.arvest.com:451/OLBLodo/CoreLive.svc</con:endpoint><con:request><![CDATA[<?xml version='1.0' encoding='UTF-8'?>
+<soapenv:Envelope xmlns:soapenv="${soapenv}">
+    <soapenv:Body>
+        <ns1:initiateOnDemand xmlns:ns1="${xmlns}">
+			<ns1:hdr>
+				<ns1:ver>${properties#ver}</ns1:ver>
+				<ns1:rqstId>${properties#rqstId}</ns1:rqstId>
+				<ns1:authn userName="${properties#userName}" pswd="${properties#pswd}"/>
+				<ns1:uid>${properties#uid}</ns1:uid>
+			</ns1:hdr>
+        </ns1:initiateOnDemand>
+    </soapenv:Body>
+</soapenv:Envelope>
+]]></con:request><con:assertion type="Invalid HTTP Status Codes" name="Invalid HTTP Status Codes"><con:configuration><codes>400</codes></con:configuration></con:assertion><con:assertion type="Not SOAP Fault Assertion" name="SOAP Fault"/><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="urn:initiateOnDemand" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="enrollEstatements" searchProperties="true" id="04307dae-5cf2-498a-9dff-1d1a744d3a5d"><con:settings/><con:testStep type="groovy" name="getAcctUid"><con:settings/><con:config><script>testRunner.testCase.testSuite.getPropertyValue( "acctUid1" )</script></con:config></con:testStep><con:testStep type="groovy" name="getCuid"><con:settings/><con:config><script>testRunner.testCase.testSuite.getPropertyValue( "cuid" )</script></con:config></con:testStep><con:testStep type="properties" name="properties"><con:settings/><con:config xsi:type="con:PropertiesStep" saveFirst="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:source>C:/Users/Arna/Documents/D3Banking/QA/SOAPUI/CoreLive/properties/maxwell677</con:source><con:target>C:/Users/Arna/Documents/D3Banking/QA/SOAPUI/CoreLive/properties/maxwell677</con:target><con:properties><con:property><con:name>ver</con:name><con:value>2.0</con:value></con:property><con:property><con:name>rqstId</con:name><con:value>c5ba1003-ee93-4612-af6a-d66c7bab44a1</con:value></con:property><con:property><con:name>authn</con:name><con:value>anthn</con:value></con:property><con:property><con:name>uid</con:name><con:value>267324</con:value></con:property><con:property><con:name>eTkn</con:name><con:value>testToken</con:value></con:property><con:property><con:name>userName</con:name><con:value>maxwell677</con:value></con:property><con:property><con:name>pswd</con:name><con:value>arvest</con:value></con:property></con:properties></con:config></con:testStep><con:testStep type="request" name="enrollEstatements"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CustomBinding_CoreLive1</con:interface><con:operation>enrollEstatements</con:operation><con:request name="enrollEstatements"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://adapter-test.arvest.com:451/OLBLodo/CoreLive.svc</con:endpoint><con:request><![CDATA[<?xml version='1.0' encoding='UTF-8'?>
+<soapenv:Envelope xmlns:soapenv="${soapenv}">
+    <soapenv:Body>
+        <ns1:enrollEstatements xmlns:ns1="${xmlns}">
+		<ns1:hdr>
+			<ns1:ver>${properties#ver}</ns1:ver>
+			<ns1:rqstId>${properties#rqstId}</ns1:rqstId>
+			<ns1:authn userName="${properties#userName}" pswd="${properties#pswd}"/>
+			<ns1:uid>${properties#uid}</ns1:uid>
+		</ns1:hdr>
+           <ns1:eStmtEnrlRqst>
+              <ns1:acctUid>${getAcctUid#result}</ns1:acctUid>
+              <ns1:compUid>${getCuid#result}</ns1:compUid>
+              <ns1:eStmtPref>e</ns1:eStmtPref>
+           </ns1:eStmtEnrlRqst>
+        </ns1:enrollEstatements>
+    </soapenv:Body>
+</soapenv:Envelope>
+]]></con:request><con:assertion type="SOAP Response" name="SOAP Response"/><con:assertion type="SOAP Fault Assertion" name="Not SOAP Fault"/><con:assertion type="Valid HTTP Status Codes" name="Valid HTTP Status Codes"><con:configuration><codes>200</codes></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match"><con:configuration><path>declare namespace s='${soapenv}';
+declare namespace ns1='${xmlns}';
+//s:Envelope</path><content><![CDATA[<s:Envelope xmlns:s="${soapenv}">
+   <s:Body xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <enrollEstatementsResponse xmlns="${xmlns}">
+         <eStmtEnrlResp>
+            <stat>200</stat>
+         </eStmtEnrlResp>
+         <hdr>
+            <ver>${properties#ver}</ver>
+            <rqstId>${properties#rqstId}</rqstId>
+            <authn userName="${properties#userName}" pswd="${properties#pswd}"/>
+            <uid>${properties#uid}</uid>
+         </hdr>
+      </enrollEstatementsResponse>
+   </s:Body>
+</s:Envelope>]]></content><allowWildcards>true</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>true</ignoreComments></con:configuration></con:assertion><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="urn:enrollEstatements" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="enrollEstatements_noAccUid"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CustomBinding_CoreLive1</con:interface><con:operation>enrollEstatements</con:operation><con:request name="enrollEstatements_noAccUid"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://adapter-test.arvest.com:451/OLBLodo/CoreLive.svc</con:endpoint><con:request><![CDATA[<?xml version='1.0' encoding='UTF-8'?>
+<soapenv:Envelope xmlns:soapenv="${soapenv}">
+    <soapenv:Body>
+        <ns1:enrollEstatements xmlns:ns1="${xmlns}">
+		<ns1:hdr>
+			<ns1:ver>${properties#ver}</ns1:ver>
+			<ns1:rqstId>${properties#rqstId}</ns1:rqstId>
+			<ns1:authn userName="${properties#userName}" pswd="${properties#pswd}"/>
+			<ns1:uid>${properties#uid}</ns1:uid>
+		</ns1:hdr>
+           <ns1:eStmtEnrlRqst>
+              <ns1:compUid>${getCuid#result}</ns1:compUid>
+              <ns1:eStmtPref>b</ns1:eStmtPref>
+           </ns1:eStmtEnrlRqst>
+        </ns1:enrollEstatements>
+    </soapenv:Body>
+</soapenv:Envelope>
+]]></con:request><con:assertion type="Invalid HTTP Status Codes" name="Invalid HTTP Status Codes"><con:configuration><codes>400</codes></con:configuration></con:assertion><con:assertion type="Not SOAP Fault Assertion" name="SOAP Fault"/><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="urn:enrollEstatements" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="enrollEstatements_noCompUid"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CustomBinding_CoreLive1</con:interface><con:operation>enrollEstatements</con:operation><con:request name="enrollEstatements_noCompUid"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://adapter-test.arvest.com:451/OLBLodo/CoreLive.svc</con:endpoint><con:request><![CDATA[<?xml version='1.0' encoding='UTF-8'?>
+<soapenv:Envelope xmlns:soapenv="${soapenv}">
+    <soapenv:Body>
+        <ns1:enrollEstatements xmlns:ns1="${xmlns}">
+		<ns1:hdr>
+			<ns1:ver>${properties#ver}</ns1:ver>
+			<ns1:rqstId>${properties#rqstId}</ns1:rqstId>
+			<ns1:authn userName="${properties#userName}" pswd="${properties#pswd}"/>
+			<ns1:uid>${properties#uid}</ns1:uid>
+		</ns1:hdr>
+           <ns1:eStmtEnrlRqst>
+              <ns1:acctUid>${getAcctUid#result}</ns1:acctUid>
+              <ns1:eStmtPref>b</ns1:eStmtPref>
+           </ns1:eStmtEnrlRqst>
+        </ns1:enrollEstatements>
+    </soapenv:Body>
+</soapenv:Envelope>
+]]></con:request><con:assertion type="Invalid HTTP Status Codes" name="Invalid HTTP Status Codes"><con:configuration><codes>400</codes></con:configuration></con:assertion><con:assertion type="Not SOAP Fault Assertion" name="SOAP Fault"/><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="urn:enrollEstatements" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="enrollEstatements_noEstmtPref"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CustomBinding_CoreLive1</con:interface><con:operation>enrollEstatements</con:operation><con:request name="enrollEstatements_noEstmtPref"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://adapter-test.arvest.com:451/OLBLodo/CoreLive.svc</con:endpoint><con:request><![CDATA[<?xml version='1.0' encoding='UTF-8'?>
+<soapenv:Envelope xmlns:soapenv="${soapenv}">
+    <soapenv:Body>
+        <ns1:enrollEstatements xmlns:ns1="${xmlns}">
+		<ns1:hdr>
+			<ns1:ver>${properties#ver}</ns1:ver>
+			<ns1:rqstId>${properties#rqstId}</ns1:rqstId>
+			<ns1:authn userName="${properties#userName}" pswd="${properties#pswd}"/>
+			<ns1:uid>${properties#uid}</ns1:uid>
+		</ns1:hdr>
+           <ns1:eStmtEnrlRqst>
+              <ns1:acctUid>${getAcctUid#result}</ns1:acctUid>
+              <ns1:compUid>${getCuid#result}</ns1:compUid>
+           </ns1:eStmtEnrlRqst>
+        </ns1:enrollEstatements>
+    </soapenv:Body>
+</soapenv:Envelope>
+]]></con:request><con:assertion type="Invalid HTTP Status Codes" name="Invalid HTTP Status Codes"><con:configuration><codes>400</codes></con:configuration></con:assertion><con:assertion type="Not SOAP Fault Assertion" name="SOAP Fault"/><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="urn:enrollEstatements" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="enrollEstatements_paper"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CustomBinding_CoreLive1</con:interface><con:operation>enrollEstatements</con:operation><con:request name="enrollEstatements_paper"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://adapter-test.arvest.com:451/OLBLodo/CoreLive.svc</con:endpoint><con:request><![CDATA[<?xml version='1.0' encoding='UTF-8'?>
+<soapenv:Envelope xmlns:soapenv="${soapenv}">
+    <soapenv:Body>
+        <ns1:enrollEstatements xmlns:ns1="${xmlns}">
+		<ns1:hdr>
+			<ns1:ver>${properties#ver}</ns1:ver>
+			<ns1:rqstId>${properties#rqstId}</ns1:rqstId>
+			<ns1:authn userName="${properties#userName}" pswd="${properties#pswd}"/>
+			<ns1:uid>${properties#uid}</ns1:uid>
+		</ns1:hdr>
+           <ns1:eStmtEnrlRqst>
+              <ns1:acctUid>${getAcctUid#result}</ns1:acctUid>
+              <ns1:compUid>${getCuid#result}</ns1:compUid>
+              <ns1:eStmtPref>p</ns1:eStmtPref>
+           </ns1:eStmtEnrlRqst>
+        </ns1:enrollEstatements>
+    </soapenv:Body>
+</soapenv:Envelope>
+]]></con:request><con:assertion type="SOAP Response" name="SOAP Response"/><con:assertion type="SOAP Fault Assertion" name="Not SOAP Fault"/><con:assertion type="Invalid HTTP Status Codes" name="Invalid HTTP Status Codes"><con:configuration><codes>400</codes></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match"><con:configuration><path>declare namespace s='${soapenv}';
+declare namespace ns1='${xmlns}';
+//s:Envelope</path><content><![CDATA[<s:Envelope xmlns:s="${soapenv}">
+   <s:Body xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <enrollEstatementsResponse xmlns="${xmlns}">
+         <eStmtEnrlResp>
+            <stat>200</stat>
+         </eStmtEnrlResp>
+         <hdr>
+            <ver>${properties#ver}</ver>
+            <rqstId>${properties#rqstId}</rqstId>
+            <authn userName="${properties#userName}" pswd="${properties#pswd}"/>
+            <uid>${properties#uid}</uid>
+         </hdr>
+      </enrollEstatementsResponse>
+   </s:Body>
+</s:Envelope>]]></content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="urn:enrollEstatements" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="enrollEstatements_both"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CustomBinding_CoreLive1</con:interface><con:operation>enrollEstatements</con:operation><con:request name="enrollEstatements_both"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://adapter-test.arvest.com:451/OLBLodo/CoreLive.svc</con:endpoint><con:request><![CDATA[<?xml version='1.0' encoding='UTF-8'?>
+<soapenv:Envelope xmlns:soapenv="${soapenv}">
+    <soapenv:Body>
+        <ns1:enrollEstatements xmlns:ns1="${xmlns}">
+		<ns1:hdr>
+			<ns1:ver>${properties#ver}</ns1:ver>
+			<ns1:rqstId>${properties#rqstId}</ns1:rqstId>
+			<ns1:authn userName="${properties#userName}" pswd="${properties#pswd}"/>
+			<ns1:uid>${properties#uid}</ns1:uid>
+		</ns1:hdr>
+           <ns1:eStmtEnrlRqst>
+              <ns1:acctUid>${getAcctUid#result}</ns1:acctUid>
+              <ns1:compUid>${getCuid#result}</ns1:compUid>
+              <ns1:eStmtPref>b</ns1:eStmtPref>
+           </ns1:eStmtEnrlRqst>
+        </ns1:enrollEstatements>
+    </soapenv:Body>
+</soapenv:Envelope>
+]]></con:request><con:assertion type="SOAP Response" name="SOAP Response"/><con:assertion type="SOAP Fault Assertion" name="Not SOAP Fault"/><con:assertion type="Invalid HTTP Status Codes" name="Invalid HTTP Status Codes"><con:configuration><codes>400</codes></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match"><con:configuration><path>declare namespace s='${soapenv}';
+declare namespace ns1='${xmlns}';
+//s:Envelope</path><content><![CDATA[<s:Envelope xmlns:s="${soapenv}">
+   <s:Body xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <enrollEstatementsResponse xmlns="${xmlns}">
+         <eStmtEnrlResp>
+            <stat>200</stat>
+         </eStmtEnrlResp>
+         <hdr>
+            <ver>${properties#ver}</ver>
+            <rqstId>${properties#rqstId}</rqstId>
+            <authn userName="${properties#userName}" pswd="${properties#pswd}"/>
+            <uid>${properties#uid}</uid>
+         </hdr>
+      </enrollEstatementsResponse>
+   </s:Body>
+</s:Envelope>]]></content><allowWildcards>true</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>true</ignoreComments></con:configuration></con:assertion><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="urn:enrollEstatements" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="enrollEstatements_nonSupportedEStmtPref"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CustomBinding_CoreLive1</con:interface><con:operation>enrollEstatements</con:operation><con:request name="enrollEstatements_nonSupportedEStmtPref"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://adapter-test.arvest.com:451/OLBLodo/CoreLive.svc</con:endpoint><con:request><![CDATA[<?xml version='1.0' encoding='UTF-8'?>
+<soapenv:Envelope xmlns:soapenv="${soapenv}">
+    <soapenv:Body>
+        <ns1:enrollEstatements xmlns:ns1="${xmlns}">
+		<ns1:hdr>
+			<ns1:ver>${properties#ver}</ns1:ver>
+			<ns1:rqstId>${properties#rqstId}</ns1:rqstId>
+			<ns1:authn userName="${properties#userName}" pswd="${properties#pswd}"/>
+			<ns1:uid>${properties#uid}</ns1:uid>
+		</ns1:hdr>
+           <ns1:eStmtEnrlRqst>
+              <ns1:acctUid>${getAcctUid#result}</ns1:acctUid>
+              <ns1:compUid>${getCuid#result}</ns1:compUid>
+              <ns1:eStmtPref>none</ns1:eStmtPref>
+           </ns1:eStmtEnrlRqst>
+        </ns1:enrollEstatements>
+    </soapenv:Body>
+</soapenv:Envelope>
+]]></con:request><con:assertion type="Invalid HTTP Status Codes" name="Invalid HTTP Status Codes"><con:configuration><codes>400</codes></con:configuration></con:assertion><con:assertion type="Not SOAP Fault Assertion" name="SOAP Fault"/><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="urn:enrollEstatements" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="enrollEstatements_nonExistAccUid"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CustomBinding_CoreLive1</con:interface><con:operation>enrollEstatements</con:operation><con:request name="enrollEstatements_nonExistAccUid"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://adapter-test.arvest.com:451/OLBLodo/CoreLive.svc</con:endpoint><con:request><![CDATA[<?xml version='1.0' encoding='UTF-8'?>
+<soapenv:Envelope xmlns:soapenv="${soapenv}">
+    <soapenv:Body>
+        <ns1:enrollEstatements xmlns:ns1="${xmlns}">
+		<ns1:hdr>
+			<ns1:ver>${properties#ver}</ns1:ver>
+			<ns1:rqstId>${properties#rqstId}</ns1:rqstId>
+			<ns1:authn userName="${properties#userName}" pswd="${properties#pswd}"/>
+			<ns1:uid>${properties#uid}</ns1:uid>
+		</ns1:hdr>
+           <ns1:eStmtEnrlRqst>
+              <ns1:acctUid>non_existent_acctUid</ns1:acctUid>
+              <ns1:compUid>${getCuid#result}</ns1:compUid>
+              <ns1:eStmtPref>b</ns1:eStmtPref>
+           </ns1:eStmtEnrlRqst>
+        </ns1:enrollEstatements>
+    </soapenv:Body>
+</soapenv:Envelope>
+]]></con:request><con:assertion type="Invalid HTTP Status Codes" name="Invalid HTTP Status Codes"><con:configuration><codes>400</codes></con:configuration></con:assertion><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="urn:enrollEstatements" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="enrollEstatements_nonExistCompUid"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CustomBinding_CoreLive1</con:interface><con:operation>enrollEstatements</con:operation><con:request name="enrollEstatements_nonExistCompUid"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://adapter-test.arvest.com:451/OLBLodo/CoreLive.svc</con:endpoint><con:request><![CDATA[<?xml version='1.0' encoding='UTF-8'?>
+<soapenv:Envelope xmlns:soapenv="${soapenv}">
+    <soapenv:Body>
+        <ns1:enrollEstatements xmlns:ns1="${xmlns}">
+		<ns1:hdr>
+			<ns1:ver>${properties#ver}</ns1:ver>
+			<ns1:rqstId>${properties#rqstId}</ns1:rqstId>
+			<ns1:authn userName="${properties#userName}" pswd="${properties#pswd}"/>
+			<ns1:uid>${properties#uid}</ns1:uid>
+		</ns1:hdr>
+           <ns1:eStmtEnrlRqst>
+              <ns1:acctUid>${getAcctUid#result}</ns1:acctUid>
+              <ns1:compUid>non_existent_compUid</ns1:compUid>
+              <ns1:eStmtPref>b</ns1:eStmtPref>
+           </ns1:eStmtEnrlRqst>
+        </ns1:enrollEstatements>
+    </soapenv:Body>
+</soapenv:Envelope>
+]]></con:request><con:assertion type="SOAP Response" name="SOAP Response"/><con:assertion type="Invalid HTTP Status Codes" name="Invalid HTTP Status Codes"><con:configuration><codes>400</codes></con:configuration></con:assertion><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="urn:enrollEstatements" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="enrollEstatements_noCorrectFormattedXML"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CustomBinding_CoreLive1</con:interface><con:operation>enrollEstatements</con:operation><con:request name="enrollEstatements_noCorrectFormattedXML"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://adapter-test.arvest.com:451/OLBLodo/CoreLive.svc</con:endpoint><con:request><![CDATA[<?xml version='1.0' encoding='UTF-8'?>
+<soapenv:Envelope xmlns:soapenv="${soapenv}">
+    <soapenv:Body>
+
+		<ns1:hdr>
+			<ns1:ver>${properties#ver}</ns1:ver>
+			<ns1:rqstId>${properties#rqstId}</ns1:rqstId>
+			<ns1:authn userName="${properties#userName}" pswd="${properties#pswd}"/>
+			<ns1:uid>${properties#uid}</ns1:uid>
+		</ns1:hdr>
+           <ns1:eStmtEnrlRqst>
+              <ns1:acctUid>${getAcctUid#result}</ns1:acctUid>
+              <ns1:compUid>${getCuid#result}</ns1:compUid>
+              <ns1:eStmtPref>b</ns1:eStmtPref>
+           </ns1:eStmtEnrlRqst>
+
+    </soapenv:Body>
+</soapenv:Envelope>
+]]></con:request><con:assertion type="Invalid HTTP Status Codes" name="Invalid HTTP Status Codes"><con:configuration><codes>401</codes></con:configuration></con:assertion><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="urn:enrollEstatements" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="ping" searchProperties="true" id="b1af231f-0f1a-4e08-b2ca-5fb2ec9624ff"><con:settings/><con:testStep type="request" name="ping"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CustomBinding_CoreLive1</con:interface><con:operation>ping</con:operation><con:request name="ping"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://adapter-test.arvest.com:451/OLBLodo/CoreLive.svc</con:endpoint><con:request><![CDATA[<?xml version='1.0' encoding='UTF-8'?>
+<soapenv:Envelope xmlns:soapenv="http://www.w3.org/2003/05/soap-envelope">
+    <soapenv:Body>
+        <ns1:ping xmlns:ns1="http://d3banking.d3connect.corelive"/>
+    </soapenv:Body>
+</soapenv:Envelope>
+]]></con:request><con:assertion type="Valid HTTP Status Codes" name="Valid HTTP Status Codes"><con:configuration><codes>200</codes></con:configuration></con:assertion><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="urn:ping" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="stopPayment" searchProperties="true" id="0d6c0c1c-6856-4272-aed1-8377f561a5ed"><con:settings/><con:testStep type="groovy" name="getAcctUid"><con:settings/><con:config><script>testRunner.testCase.testSuite.getPropertyValue( "acctUid1" )</script></con:config></con:testStep><con:testStep type="groovy" name="getCuid"><con:settings/><con:config><script>testRunner.testCase.testSuite.getPropertyValue( "cuid" )</script></con:config></con:testStep><con:testStep type="properties" name="properties"><con:settings/><con:config xsi:type="con:PropertiesStep" saveFirst="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:source>C:/Users/Arna/Documents/D3Banking/QA/SOAPUI/CoreLive/properties/maxwell677</con:source><con:target/><con:properties><con:property><con:name>ver</con:name><con:value>2.0</con:value></con:property><con:property><con:name>rqstId</con:name><con:value>c5ba1003-ee93-4612-af6a-d66c7bab44a1</con:value></con:property><con:property><con:name>authn</con:name><con:value>anthn</con:value></con:property><con:property><con:name>uid</con:name><con:value>267324</con:value></con:property><con:property><con:name>eTkn</con:name><con:value>testToken</con:value></con:property><con:property><con:name>userName</con:name><con:value>maxwell677</con:value></con:property><con:property><con:name>pswd</con:name><con:value>arvest</con:value></con:property></con:properties></con:config></con:testStep><con:testStep type="request" name="stopPayment"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CustomBinding_CoreLive1</con:interface><con:operation>stopPayment</con:operation><con:request name="stopPayment"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://192.168.1.21/simulators/corelive</con:endpoint><con:request><![CDATA[<?xml version='1.0' encoding='UTF-8'?>
+<soapenv:Envelope xmlns:soapenv="${soapenv}">
+    <soapenv:Body>
+        <ns1:stopPayment xmlns:ns1="${xmlns}">
+			<ns1:hdr>
+				<ns1:ver>${properties#ver}</ns1:ver>
+				<ns1:rqstId>${properties#rqstId}</ns1:rqstId>
+				<ns1:authn userName="${properties#userName}" pswd="${properties#pswd}"/>
+				<ns1:uid>${properties#uid}</ns1:uid>
+			</ns1:hdr>
+			<ns1:stopPmtRqst>
+				<ns1:acctUid>${getAcctUid#result}</ns1:acctUid>
+				<ns1:compUid>${getCuid#result}</ns1:compUid>
+				<ns1:memo>MEMO</ns1:memo>
+				<ns1:txnType>c</ns1:txnType>
+				<ns1:chekNbr>1234</ns1:chekNbr>
+				<ns1:amt>125.44</ns1:amt>
+			</ns1:stopPmtRqst>
+        </ns1:stopPayment>
+    </soapenv:Body>
+</soapenv:Envelope>
+]]></con:request><con:assertion type="Valid HTTP Status Codes" name="Valid HTTP Status Codes"><con:configuration><codes>200</codes></con:configuration></con:assertion><con:assertion type="XPath Match" name="XPath Match"><con:configuration><path>declare namespace s='${soapenv}';
+declare namespace ns1='${xmlns}';
+//s:Envelope</path><content><![CDATA[<s:Envelope xmlns:s="${soapenv}">
+   <s:Body xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <stopPaymentResponse xmlns="${xmlns}">
+         <hdr>
+            <ver>${properties#ver}</ver>
+            <rqstId>${properties#rqstId}</rqstId>
+            <authn userName="${properties#userName}" pswd="${properties#pswd}"/>
+            <uid>${properties#uid}</uid>
+         </hdr>
+         <stopPmtResp>
+            <cnfmNbr>*</cnfmNbr>
+            <stat>200</stat>
+            <infoText>*</infoText>
+         </stopPmtResp>
+      </stopPaymentResponse>
+   </s:Body>
+</s:Envelope>]]></content><allowWildcards>true</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="urn:stopPayment" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="stopPayment_noAcctUid"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CustomBinding_CoreLive1</con:interface><con:operation>stopPayment</con:operation><con:request name="stopPayment_noAcctUid"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://adapter-test.arvest.com:451/OLBLodo/CoreLive.svc</con:endpoint><con:request><![CDATA[<?xml version='1.0' encoding='UTF-8'?>
+<soapenv:Envelope xmlns:soapenv="${soapenv}">
+    <soapenv:Body>
+        <ns1:stopPayment xmlns:ns1="${xmlns}">
+			<ns1:hdr>
+				<ns1:ver>${properties#ver}</ns1:ver>
+				<ns1:rqstId>${properties#rqstId}</ns1:rqstId>
+				<ns1:authn userName="${properties#userName}" pswd="${properties#pswd}"/>
+				<ns1:uid>${properties#uid}</ns1:uid>
+			</ns1:hdr>
+			<ns1:stopPmtRqst>
+				<ns1:compUid>${getCuid#result}</ns1:compUid>
+				<ns1:memo>MEMO</ns1:memo>
+				<ns1:txnType>c</ns1:txnType>
+				<ns1:chekNbr>1234</ns1:chekNbr>
+				<ns1:amt>125.44</ns1:amt>
+			</ns1:stopPmtRqst>
+        </ns1:stopPayment>
+    </soapenv:Body>
+</soapenv:Envelope>
+]]></con:request><con:assertion type="Valid HTTP Status Codes" name="Valid HTTP Status Codes"><con:configuration><codes>400</codes></con:configuration></con:assertion><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="urn:stopPayment" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="stopPayment_noCompUid"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CustomBinding_CoreLive1</con:interface><con:operation>stopPayment</con:operation><con:request name="stopPayment_noCompUid"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://adapter-test.arvest.com:451/OLBLodo/CoreLive.svc</con:endpoint><con:request><![CDATA[<?xml version='1.0' encoding='UTF-8'?>
+<soapenv:Envelope xmlns:soapenv="${soapenv}">
+    <soapenv:Body>
+        <ns1:stopPayment xmlns:ns1="${xmlns}">
+			<ns1:hdr>
+				<ns1:ver>${properties#ver}</ns1:ver>
+				<ns1:rqstId>${properties#rqstId}</ns1:rqstId>
+				<ns1:authn userName="${properties#userName}" pswd="${properties#pswd}"/>
+				<ns1:uid>${properties#uid}</ns1:uid>
+			</ns1:hdr>
+			<ns1:stopPmtRqst>
+				<ns1:acctUid>${getAcctUid#result}</ns1:acctUid>
+				<ns1:memo>MEMO</ns1:memo>
+				<ns1:txnType>c</ns1:txnType>
+				<ns1:chekNbr>1234</ns1:chekNbr>
+				<ns1:amt>125.44</ns1:amt>
+			</ns1:stopPmtRqst>
+        </ns1:stopPayment>
+    </soapenv:Body>
+</soapenv:Envelope>
+]]></con:request><con:assertion type="Valid HTTP Status Codes" name="Valid HTTP Status Codes"><con:configuration><codes>400</codes></con:configuration></con:assertion><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="urn:stopPayment" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="stopPayment_notxnType"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CustomBinding_CoreLive1</con:interface><con:operation>stopPayment</con:operation><con:request name="stopPayment_notxnType"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://adapter-test.arvest.com:451/OLBLodo/CoreLive.svc</con:endpoint><con:request><![CDATA[<?xml version='1.0' encoding='UTF-8'?>
+<soapenv:Envelope xmlns:soapenv="${soapenv}">
+    <soapenv:Body>
+        <ns1:stopPayment xmlns:ns1="${xmlns}">
+			<ns1:hdr>
+				<ns1:ver>${properties#ver}</ns1:ver>
+				<ns1:rqstId>${properties#rqstId}</ns1:rqstId>
+				<ns1:authn userName="${properties#userName}" pswd="${properties#pswd}"/>
+				<ns1:uid>${properties#uid}</ns1:uid>
+			</ns1:hdr>
+			<ns1:stopPmtRqst>
+				<ns1:acctUid>${getAcctUid#result}</ns1:acctUid>
+				<ns1:compUid>${getCuid#result}</ns1:compUid>
+				<ns1:memo>MEMO</ns1:memo>
+				<ns1:chekNbr>1234</ns1:chekNbr>
+				<ns1:amt>125.44</ns1:amt>
+			</ns1:stopPmtRqst>
+        </ns1:stopPayment>
+    </soapenv:Body>
+</soapenv:Envelope>
+]]></con:request><con:assertion type="Valid HTTP Status Codes" name="Valid HTTP Status Codes"><con:configuration><codes>400</codes></con:configuration></con:assertion><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="urn:stopPayment" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="stopPayment_nochekNbr"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CustomBinding_CoreLive1</con:interface><con:operation>stopPayment</con:operation><con:request name="stopPayment_nochekNbr"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://adapter-test.arvest.com:451/OLBLodo/CoreLive.svc</con:endpoint><con:request><![CDATA[<?xml version='1.0' encoding='UTF-8'?>
+<soapenv:Envelope xmlns:soapenv="${soapenv}">
+    <soapenv:Body>
+        <ns1:stopPayment xmlns:ns1="${xmlns}">
+			<ns1:hdr>
+				<ns1:ver>${properties#ver}</ns1:ver>
+				<ns1:rqstId>${properties#rqstId}</ns1:rqstId>
+				<ns1:authn userName="${properties#userName}" pswd="${properties#pswd}"/>
+				<ns1:uid>${properties#uid}</ns1:uid>
+			</ns1:hdr>
+			<ns1:stopPmtRqst>
+				<ns1:acctUid>${getAcctUid#result}</ns1:acctUid>
+				<ns1:compUid>${getCuid#result}</ns1:compUid>
+				<ns1:memo>MEMO</ns1:memo>
+				<ns1:txnType>c</ns1:txnType>
+				<ns1:amt>125.44</ns1:amt>
+			</ns1:stopPmtRqst>
+        </ns1:stopPayment>
+    </soapenv:Body>
+</soapenv:Envelope>
+]]></con:request><con:assertion type="Valid HTTP Status Codes" name="Valid HTTP Status Codes"><con:configuration><codes>400</codes></con:configuration></con:assertion><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="urn:stopPayment" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="stopPayment_noMemo"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CustomBinding_CoreLive1</con:interface><con:operation>stopPayment</con:operation><con:request name="stopPayment_noMemo"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://adapter-test.arvest.com:451/OLBLodo/CoreLive.svc</con:endpoint><con:request><![CDATA[<?xml version='1.0' encoding='UTF-8'?>
+<soapenv:Envelope xmlns:soapenv="${soapenv}">
+    <soapenv:Body>
+        <ns1:stopPayment xmlns:ns1="${xmlns}">
+			<ns1:hdr>
+				<ns1:ver>${properties#ver}</ns1:ver>
+				<ns1:rqstId>${properties#rqstId}</ns1:rqstId>
+				<ns1:authn userName="${properties#userName}" pswd="${properties#pswd}"/>
+				<ns1:uid>${properties#uid}</ns1:uid>
+			</ns1:hdr>
+			<ns1:stopPmtRqst>
+				<ns1:acctUid>${getAcctUid#result}</ns1:acctUid>
+				<ns1:compUid>${getCuid#result}</ns1:compUid>
+				<ns1:txnType>c</ns1:txnType>
+				<ns1:chekNbr>1234</ns1:chekNbr>
+				<ns1:amt>125.44</ns1:amt>
+			</ns1:stopPmtRqst>
+        </ns1:stopPayment>
+    </soapenv:Body>
+</soapenv:Envelope>
+]]></con:request><con:assertion type="SOAP Fault Assertion" name="Not SOAP Fault"/><con:assertion type="SOAP Response" name="SOAP Response"/><con:assertion type="Valid HTTP Status Codes" name="Valid HTTP Status Codes"><con:configuration><codes>200</codes></con:configuration></con:assertion><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="urn:stopPayment" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="stopPayment_noAmount"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CustomBinding_CoreLive1</con:interface><con:operation>stopPayment</con:operation><con:request name="stopPayment_noAmount"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://adapter-test.arvest.com:451/OLBLodo/CoreLive.svc</con:endpoint><con:request><![CDATA[<?xml version='1.0' encoding='UTF-8'?>
+<soapenv:Envelope xmlns:soapenv="${soapenv}">
+    <soapenv:Body>
+        <ns1:stopPayment xmlns:ns1="${xmlns}">
+			<ns1:hdr>
+				<ns1:ver>${properties#ver}</ns1:ver>
+				<ns1:rqstId>${properties#rqstId}</ns1:rqstId>
+				<ns1:authn userName="${properties#userName}" pswd="${properties#pswd}"/>
+				<ns1:uid>${properties#uid}</ns1:uid>
+			</ns1:hdr>
+			<ns1:stopPmtRqst>
+				<ns1:acctUid>${getAcctUid#result}</ns1:acctUid>
+				<ns1:compUid>${getCuid#result}</ns1:compUid>
+				<ns1:memo>MEMO</ns1:memo>
+				<ns1:txnType>c</ns1:txnType>
+				<ns1:chekNbr>1234</ns1:chekNbr>
+			</ns1:stopPmtRqst>
+        </ns1:stopPayment>
+    </soapenv:Body>
+</soapenv:Envelope>
+]]></con:request><con:assertion type="SOAP Fault Assertion" name="Not SOAP Fault"/><con:assertion type="SOAP Response" name="SOAP Response"/><con:assertion type="Valid HTTP Status Codes" name="Valid HTTP Status Codes"><con:configuration><codes>200</codes></con:configuration></con:assertion><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="urn:stopPayment" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="stopPayment_nonExistentAcctUid"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CustomBinding_CoreLive1</con:interface><con:operation>stopPayment</con:operation><con:request name="stopPayment_nonExistentAcctUid"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://adapter-test.arvest.com:451/OLBLodo/CoreLive.svc</con:endpoint><con:request><![CDATA[<?xml version='1.0' encoding='UTF-8'?>
+<soapenv:Envelope xmlns:soapenv="${soapenv}">
+    <soapenv:Body>
+        <ns1:stopPayment xmlns:ns1="${xmlns}">
+			<ns1:hdr>
+				<ns1:ver>${properties#ver}</ns1:ver>
+				<ns1:rqstId>${properties#rqstId}</ns1:rqstId>
+				<ns1:authn userName="${properties#userName}" pswd="${properties#pswd}"/>
+				<ns1:uid>${properties#uid}</ns1:uid>
+			</ns1:hdr>
+			<ns1:stopPmtRqst>
+				<ns1:acctUid>non_existent_acctUid</ns1:acctUid>
+				<ns1:compUid>${getCuid#result}</ns1:compUid>
+				<ns1:memo>MEMO</ns1:memo>
+				<ns1:txnType>c</ns1:txnType>
+				<ns1:chekNbr>1234</ns1:chekNbr>
+				<ns1:amt>125.44</ns1:amt>
+			</ns1:stopPmtRqst>
+        </ns1:stopPayment>
+    </soapenv:Body>
+</soapenv:Envelope>
+]]></con:request><con:assertion type="Valid HTTP Status Codes" name="Valid HTTP Status Codes"><con:configuration><codes>400</codes></con:configuration></con:assertion><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="urn:stopPayment" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="stopPayment_nonExistentCompUid"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CustomBinding_CoreLive1</con:interface><con:operation>stopPayment</con:operation><con:request name="stopPayment_nonExistentCompUid"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://adapter-test.arvest.com:451/OLBLodo/CoreLive.svc</con:endpoint><con:request><![CDATA[<?xml version='1.0' encoding='UTF-8'?>
+<soapenv:Envelope xmlns:soapenv="${soapenv}">
+    <soapenv:Body>
+        <ns1:stopPayment xmlns:ns1="${xmlns}">
+			<ns1:hdr>
+				<ns1:ver>${properties#ver}</ns1:ver>
+				<ns1:rqstId>${properties#rqstId}</ns1:rqstId>
+				<ns1:authn userName="${properties#userName}" pswd="${properties#pswd}"/>
+				<ns1:uid>${properties#uid}</ns1:uid>
+			</ns1:hdr>
+			<ns1:stopPmtRqst>
+				<ns1:acctUid>${getAcctUid#result}</ns1:acctUid>
+				<ns1:compUid>non_existent_compUid</ns1:compUid>
+				<ns1:memo>MEMO</ns1:memo>
+				<ns1:txnType>c</ns1:txnType>
+				<ns1:chekNbr>1234</ns1:chekNbr>
+				<ns1:amt>125.44</ns1:amt>
+			</ns1:stopPmtRqst>
+        </ns1:stopPayment>
+    </soapenv:Body>
+</soapenv:Envelope>
+]]></con:request><con:assertion type="Valid HTTP Status Codes" name="Valid HTTP Status Codes"><con:configuration><codes>400</codes></con:configuration></con:assertion><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="urn:stopPayment" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="stopPayment_nonSupportedTxnType"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CustomBinding_CoreLive1</con:interface><con:operation>stopPayment</con:operation><con:request name="stopPayment_nonSupportedTxnType"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://adapter-test.arvest.com:451/OLBLodo/CoreLive.svc</con:endpoint><con:request><![CDATA[<?xml version='1.0' encoding='UTF-8'?>
+<soapenv:Envelope xmlns:soapenv="${soapenv}">
+    <soapenv:Body>
+        <ns1:stopPayment xmlns:ns1="${xmlns}">
+			<ns1:hdr>
+				<ns1:ver>${properties#ver}</ns1:ver>
+				<ns1:rqstId>${properties#rqstId}</ns1:rqstId>
+				<ns1:authn userName="${properties#userName}" pswd="${properties#pswd}"/>
+				<ns1:uid>${properties#uid}</ns1:uid>
+			</ns1:hdr>
+			<ns1:stopPmtRqst>
+				<ns1:acctUid>${getAcctUid#result}</ns1:acctUid>
+				<ns1:compUid>${getCuid#result}</ns1:compUid>
+				<ns1:memo>MEMO</ns1:memo>
+				<ns1:txnType>none</ns1:txnType>
+				<ns1:chekNbr>1234</ns1:chekNbr>
+				<ns1:amt>125.44</ns1:amt>
+			</ns1:stopPmtRqst>
+        </ns1:stopPayment>
+    </soapenv:Body>
+</soapenv:Envelope>
+]]></con:request><con:assertion type="Valid HTTP Status Codes" name="Valid HTTP Status Codes"><con:configuration><codes>400</codes></con:configuration></con:assertion><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="urn:stopPayment" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="stopPayment_negativeAmountValue"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CustomBinding_CoreLive1</con:interface><con:operation>stopPayment</con:operation><con:request name="stopPayment_negativeAmountValue"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://adapter-test.arvest.com:451/OLBLodo/CoreLive.svc</con:endpoint><con:request><![CDATA[<?xml version='1.0' encoding='UTF-8'?>
+<soapenv:Envelope xmlns:soapenv="${soapenv}">
+    <soapenv:Body>
+        <ns1:stopPayment xmlns:ns1="${xmlns}">
+			<ns1:hdr>
+				<ns1:ver>${properties#ver}</ns1:ver>
+				<ns1:rqstId>${properties#rqstId}</ns1:rqstId>
+				<ns1:authn userName="${properties#userName}" pswd="${properties#pswd}"/>
+				<ns1:uid>${properties#uid}</ns1:uid>
+			</ns1:hdr>
+			<ns1:stopPmtRqst>
+				<ns1:acctUid>${getAcctUid#result}</ns1:acctUid>
+				<ns1:compUid>${getCuid#result}</ns1:compUid>
+				<ns1:memo>MEMO</ns1:memo>
+				<ns1:txnType>c</ns1:txnType>
+				<ns1:chekNbr>1234</ns1:chekNbr>
+				<ns1:amt>-125.44</ns1:amt>
+			</ns1:stopPmtRqst>
+        </ns1:stopPayment>
+    </soapenv:Body>
+</soapenv:Envelope>
+]]></con:request><con:assertion type="Valid HTTP Status Codes" name="Valid HTTP Status Codes"><con:configuration><codes>400</codes></con:configuration></con:assertion><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="urn:stopPayment" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="stopPayment_debitTxnType"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CustomBinding_CoreLive1</con:interface><con:operation>stopPayment</con:operation><con:request name="stopPayment_debitTxnType"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://adapter-test.arvest.com:451/OLBLodo/CoreLive.svc</con:endpoint><con:request><![CDATA[<?xml version='1.0' encoding='UTF-8'?>
+<soapenv:Envelope xmlns:soapenv="${soapenv}">
+    <soapenv:Body>
+        <ns1:stopPayment xmlns:ns1="${xmlns}">
+			<ns1:hdr>
+				<ns1:ver>${properties#ver}</ns1:ver>
+				<ns1:rqstId>${properties#rqstId}</ns1:rqstId>
+				<ns1:authn userName="${properties#userName}" pswd="${properties#pswd}"/>
+				<ns1:uid>${properties#uid}</ns1:uid>
+			</ns1:hdr>
+			<ns1:stopPmtRqst>
+				<ns1:acctUid>${getAcctUid#result}</ns1:acctUid>
+				<ns1:compUid>${getCuid#result}</ns1:compUid>
+				<ns1:memo>MEMO</ns1:memo>
+				<ns1:txnType>d</ns1:txnType>
+				<ns1:chekNbr>1234</ns1:chekNbr>
+				<ns1:amt>125.44</ns1:amt>
+			</ns1:stopPmtRqst>
+        </ns1:stopPayment>
+    </soapenv:Body>
+</soapenv:Envelope>
+]]></con:request><con:assertion type="SOAP Fault Assertion" name="Not SOAP Fault"/><con:assertion type="SOAP Response" name="SOAP Response"/><con:assertion type="Valid HTTP Status Codes" name="Valid HTTP Status Codes"><con:configuration><codes>200</codes></con:configuration></con:assertion><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="urn:stopPayment" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="stopPayment_memoWithMoreThan255Char"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CustomBinding_CoreLive1</con:interface><con:operation>stopPayment</con:operation><con:request name="stopPayment_memoWithMoreThan255Char"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://adapter-test.arvest.com:451/OLBLodo/CoreLive.svc</con:endpoint><con:request><![CDATA[<?xml version='1.0' encoding='UTF-8'?>
+<soapenv:Envelope xmlns:soapenv="${soapenv}">
+    <soapenv:Body>
+        <ns1:stopPayment xmlns:ns1="${xmlns}">
+			<ns1:hdr>
+				<ns1:ver>${properties#ver}</ns1:ver>
+				<ns1:rqstId>${properties#rqstId}</ns1:rqstId>
+				<ns1:authn userName="${properties#userName}" pswd="${properties#pswd}"/>
+				<ns1:uid>${properties#uid}</ns1:uid>
+			</ns1:hdr>
+			<ns1:stopPmtRqst>
+				<ns1:acctUid>${getAcctUid#result}</ns1:acctUid>
+				<ns1:compUid>${getCuid#result}</ns1:compUid>
+				<ns1:memo>This is memo for stop payment test "Core Live uses the Stop Payment Request message to send stop payment instructions to Core. Core responds to the Stop Payment Request with a Stop Payment Request Response that indicates the status with which Core received the request information."</ns1:memo>
+				<ns1:txnType>c</ns1:txnType>
+				<ns1:chekNbr>1234</ns1:chekNbr>
+				<ns1:amt>125.44</ns1:amt>
+			</ns1:stopPmtRqst>
+        </ns1:stopPayment>
+    </soapenv:Body>
+</soapenv:Envelope>
+
+]]></con:request><con:assertion type="Valid HTTP Status Codes" name="Valid HTTP Status Codes"><con:configuration><codes>400</codes></con:configuration></con:assertion><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="urn:stopPayment" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="stopPayment_xmlNotWellFormatted"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CustomBinding_CoreLive1</con:interface><con:operation>stopPayment</con:operation><con:request name="stopPayment_xmlNotWellFormatted"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://adapter-test.arvest.com:451/OLBLodo/CoreLive.svc</con:endpoint><con:request><![CDATA[<?xml version='1.0' encoding='UTF-8'?>
+<soapenv:Envelope xmlns:soapenv="${soapenv}">
+    <soapenv:Body>
+
+			<ns1:hdr>
+				<ns1:ver>${properties#ver}</ns1:ver>
+				<ns1:rqstId>${properties#rqstId}</ns1:rqstId>
+				<ns1:authn userName="${properties#userName}" pswd="${properties#pswd}"/>
+				<ns1:uid>${properties#uid}</ns1:uid>
+			</ns1:hdr>
+			<ns1:stopPmtRqst>
+				<ns1:acctUid>${getAcctUid#result}</ns1:acctUid>
+				<ns1:compUid>${getCuid#result}</ns1:compUid>
+				<ns1:memo>MEMO</ns1:memo>
+				<ns1:txnType>c</ns1:txnType>
+				<ns1:chekNbr>1234</ns1:chekNbr>
+				<ns1:amt>125.44</ns1:amt>
+			</ns1:stopPmtRqst>
+
+    </soapenv:Body>
+</soapenv:Envelope>
+]]></con:request><con:assertion type="Valid HTTP Status Codes" name="Valid HTTP Status Codes"><con:configuration><codes>400</codes></con:configuration></con:assertion><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="urn:stopPayment" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="transferFunds" searchProperties="true" id="0199c32d-5aaa-4cbb-9012-57684bd767a7"><con:settings/><con:testStep type="properties" name="properties"><con:settings/><con:config xsi:type="con:PropertiesStep" saveFirst="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:source>C:/Users/Arna/Documents/D3Banking/QA/SOAPUI/CoreLive/properties/maxwell677</con:source><con:target>C:/Users/Arna/Documents/D3Banking/QA/SOAPUI/CoreLive/properties/arv10687</con:target><con:properties><con:property><con:name>ver</con:name><con:value>2.0</con:value></con:property><con:property><con:name>rqstId</con:name><con:value>c5ba1003-ee93-4612-af6a-d66c7bab44a1</con:value></con:property><con:property><con:name>authn</con:name><con:value>anthn</con:value></con:property><con:property><con:name>uid</con:name><con:value>267324</con:value></con:property><con:property><con:name>eTkn</con:name><con:value>testToken</con:value></con:property><con:property><con:name>userName</con:name><con:value>maxwell677</con:value></con:property><con:property><con:name>pswd</con:name><con:value>arvest</con:value></con:property></con:properties></con:config></con:testStep><con:testStep type="groovy" name="getTodayDate"><con:settings/><con:config><script>def sdf = new java.text.SimpleDateFormat("yyyy-MM-dd")
+return sdf.format( new Date())</script></con:config></con:testStep><con:testStep type="groovy" name="getAcctUid1"><con:settings/><con:config><script>testRunner.testCase.testSuite.getPropertyValue( "acctUid1" )</script></con:config></con:testStep><con:testStep type="groovy" name="getAcctUid2"><con:settings/><con:config><script>testRunner.testCase.testSuite.getPropertyValue( "acctUid2" )</script></con:config></con:testStep><con:testStep type="request" name="transferFunds"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CustomBinding_CoreLive1</con:interface><con:operation>transferFunds</con:operation><con:request name="transferFunds" useWsAddressing="false"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://adapter-test.arvest.com:451/OLBLodo/CoreLive.svc</con:endpoint><con:request><![CDATA[<?xml version='1.0' encoding='UTF-8'?>
+<soapenv:Envelope xmlns:soapenv="${soapenv}">
+    <soapenv:Body>
+        <ns1:transferFunds xmlns:ns1="${xmlns}">
+			<ns1:hdr>
+				<ns1:ver>${properties#ver}</ns1:ver>
+				<ns1:rqstId>${properties#rqstId}</ns1:rqstId>
+				<ns1:authn userName="${properties#userName}" pswd="${properties#pswd}"/>
+				<ns1:uid>${properties#uid}</ns1:uid>
+			</ns1:hdr>
+			<ns1:intlAcctFundXferRqst>
+				<ns1:fromAcctUid>${getAcctUid1#result}</ns1:fromAcctUid>
+				<ns1:toAcctUid>${getAcctUid2#result}</ns1:toAcctUid>
+				<ns1:memo>This is a transfer request test</ns1:memo>
+				<ns1:fromAcctCncyCode>USD</ns1:fromAcctCncyCode>
+				<ns1:toAcctCncyCode>USD</ns1:toAcctCncyCode>
+				<ns1:date>2014-04-15</ns1:date>
+				<ns1:amt>5.00</ns1:amt>
+			</ns1:intlAcctFundXferRqst>
+        </ns1:transferFunds>
+    </soapenv:Body>
+</soapenv:Envelope>
+]]></con:request><con:assertion type="Valid HTTP Status Codes" name="Valid HTTP Status Codes"><con:configuration><codes>200</codes></con:configuration></con:assertion><con:assertion type="SOAP Fault Assertion" name="Not SOAP Fault"/><con:assertion type="SOAP Response" name="SOAP Response"/><con:assertion type="XPath Match" name="XPath Match"><con:configuration><path>declare namespace s='${soapenv}';
+//s:Envelope</path><content><![CDATA[<s:Envelope xmlns:s="${soapenv}">
+   <s:Body xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <transferFundsResponse xmlns="${xmlns}">
+         <hdr>
+                  <ver>${properties#ver}</ver>
+                  <rqstId>${properties#rqstId}</rqstId>
+                  <authn userName="${properties#userName}" pswd="${properties#pswd}"/>
+                  <uid>${properties#uid}</uid>
+         </hdr>
+         <intlAcctFundXferResp>
+            <stat>200</stat>
+            <fromAcctAvblBal xsi:nil="true"/>
+            <toAcctAvblBal xsi:nil="true"/>
+            <cnfmNbr>Az123456</cnfmNbr>
+         </intlAcctFundXferResp>
+      </transferFundsResponse>
+   </s:Body>
+</s:Envelope>]]></content><allowWildcards>true</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="urn:transferFunds" mustUnderstand="NONE" version="200508" addDefaultAction="false"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="transferFunds_noFromAcctUid"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CustomBinding_CoreLive1</con:interface><con:operation>transferFunds</con:operation><con:request name="transferFunds_noFromAcctUid"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://adapter-test.arvest.com:451/OLBLodo/CoreLive.svc</con:endpoint><con:request><![CDATA[<?xml version='1.0' encoding='UTF-8'?>
+<soapenv:Envelope xmlns:soapenv="${soapenv}">
+    <soapenv:Body>
+        <ns1:transferFunds xmlns:ns1="${xmlns}">
+			<ns1:hdr>
+				<ns1:ver>${properties#ver}</ns1:ver>
+				<ns1:rqstId>${properties#rqstId}</ns1:rqstId>
+				<ns1:authn userName="${properties#userName}" pswd="${properties#pswd}"/>
+				<ns1:uid>${properties#uid}</ns1:uid>
+			</ns1:hdr>
+			<ns1:intlAcctFundXferRqst>
+				<ns1:toAcctUid>${getAcctUid2#result}</ns1:toAcctUid>
+				<ns1:memo>This is a transfer request test</ns1:memo>
+				<ns1:fromAcctCncyCode>USD</ns1:fromAcctCncyCode>
+				<ns1:toAcctCncyCode>USD</ns1:toAcctCncyCode>
+				<ns1:date>2014-04-15</ns1:date>
+				<ns1:amt>5.00</ns1:amt>
+			</ns1:intlAcctFundXferRqst>
+        </ns1:transferFunds>
+    </soapenv:Body>
+</soapenv:Envelope>
+]]></con:request><con:assertion type="Valid HTTP Status Codes" name="Valid HTTP Status Codes"><con:configuration><codes>400</codes></con:configuration></con:assertion><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="urn:transferFunds" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="transferFunds.noToAcctUid"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CustomBinding_CoreLive1</con:interface><con:operation>transferFunds</con:operation><con:request name="transferFunds.noToAcctUid"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://adapter-test.arvest.com:451/OLBLodo/CoreLive.svc</con:endpoint><con:request><![CDATA[<?xml version='1.0' encoding='UTF-8'?>
+<soapenv:Envelope xmlns:soapenv="${soapenv}">
+    <soapenv:Body>
+        <ns1:transferFunds xmlns:ns1="${xmlns}">
+			<ns1:hdr>
+				<ns1:ver>${properties#ver}</ns1:ver>
+				<ns1:rqstId>${properties#rqstId}</ns1:rqstId>
+				<ns1:authn userName="${properties#userName}" pswd="${properties#pswd}"/>
+				<ns1:uid>${properties#uid}</ns1:uid>
+			</ns1:hdr>
+			<ns1:intlAcctFundXferRqst>
+				<ns1:fromAcctUid>${getAcctUid1#result}</ns1:fromAcctUid>
+				<ns1:memo>This is a transfer request test</ns1:memo>
+				<ns1:fromAcctCncyCode>USD</ns1:fromAcctCncyCode>
+				<ns1:toAcctCncyCode>USD</ns1:toAcctCncyCode>
+				<ns1:date>2014-04-15</ns1:date>
+				<ns1:amt>5.00</ns1:amt>
+			</ns1:intlAcctFundXferRqst>
+        </ns1:transferFunds>
+    </soapenv:Body>
+</soapenv:Envelope>
+]]></con:request><con:assertion type="Valid HTTP Status Codes" name="Valid HTTP Status Codes"><con:configuration><codes>400</codes></con:configuration></con:assertion><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="urn:transferFunds" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="transferFunds_noDate"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CustomBinding_CoreLive1</con:interface><con:operation>transferFunds</con:operation><con:request name="transferFunds_noDate"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://adapter-test.arvest.com:451/OLBLodo/CoreLive.svc</con:endpoint><con:request><![CDATA[<?xml version='1.0' encoding='UTF-8'?>
+<soapenv:Envelope xmlns:soapenv="${soapenv}">
+    <soapenv:Body>
+        <ns1:transferFunds xmlns:ns1="${xmlns}">
+			<ns1:hdr>
+				<ns1:ver>${properties#ver}</ns1:ver>
+				<ns1:rqstId>${properties#rqstId}</ns1:rqstId>
+				<ns1:authn userName="${properties#userName}" pswd="${properties#pswd}"/>
+				<ns1:uid>${properties#uid}</ns1:uid>
+			</ns1:hdr>
+			<ns1:intlAcctFundXferRqst>
+				<ns1:fromAcctUid>${getAcctUid1#result}</ns1:fromAcctUid>
+				<ns1:toAcctUid>${getAcctUid2#result}</ns1:toAcctUid>
+				<ns1:memo>This is a transfer request test</ns1:memo>
+				<ns1:fromAcctCncyCode>USD</ns1:fromAcctCncyCode>
+				<ns1:toAcctCncyCode>USD</ns1:toAcctCncyCode>
+				<ns1:amt>5.00</ns1:amt>
+			</ns1:intlAcctFundXferRqst>
+        </ns1:transferFunds>
+    </soapenv:Body>
+</soapenv:Envelope>
+]]></con:request><con:assertion type="Valid HTTP Status Codes" name="Valid HTTP Status Codes"><con:configuration><codes>400</codes></con:configuration></con:assertion><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="urn:transferFunds" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="transferFunds_noAmount"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CustomBinding_CoreLive1</con:interface><con:operation>transferFunds</con:operation><con:request name="transferFunds_noAmount"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://adapter-test.arvest.com:451/OLBLodo/CoreLive.svc</con:endpoint><con:request><![CDATA[<?xml version='1.0' encoding='UTF-8'?>
+<soapenv:Envelope xmlns:soapenv="${soapenv}">
+    <soapenv:Body>
+        <ns1:transferFunds xmlns:ns1="${xmlns}">
+			<ns1:hdr>
+				<ns1:ver>${properties#ver}</ns1:ver>
+				<ns1:rqstId>${properties#rqstId}</ns1:rqstId>
+				<ns1:authn userName="${properties#userName}" pswd="${properties#pswd}"/>
+				<ns1:uid>${properties#uid}</ns1:uid>
+			</ns1:hdr>
+			<ns1:intlAcctFundXferRqst>
+				<ns1:fromAcctUid>${getAcctUid1#result}</ns1:fromAcctUid>
+				<ns1:toAcctUid>${getAcctUid2#result}</ns1:toAcctUid>
+				<ns1:memo>This is a transfer request test</ns1:memo>
+				<ns1:fromAcctCncyCode>USD</ns1:fromAcctCncyCode>
+				<ns1:toAcctCncyCode>USD</ns1:toAcctCncyCode>
+				<ns1:date>2014-04-15</ns1:date>
+			</ns1:intlAcctFundXferRqst>
+        </ns1:transferFunds>
+    </soapenv:Body>
+</soapenv:Envelope>
+]]></con:request><con:assertion type="Valid HTTP Status Codes" name="Valid HTTP Status Codes"><con:configuration><codes>400</codes></con:configuration></con:assertion><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="urn:transferFunds" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="transferFunds_noMemoFromToAcctCncyCodes"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CustomBinding_CoreLive1</con:interface><con:operation>transferFunds</con:operation><con:request name="transferFunds_noMemoFromToAcctCncyCodes"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://adapter-test.arvest.com:451/OLBLodo/CoreLive.svc</con:endpoint><con:request><![CDATA[<?xml version='1.0' encoding='UTF-8'?>
+<soapenv:Envelope xmlns:soapenv="${soapenv}">
+    <soapenv:Body>
+        <ns1:transferFunds xmlns:ns1="${xmlns}">
+			<ns1:hdr>
+				<ns1:ver>${properties#ver}</ns1:ver>
+				<ns1:rqstId>${properties#rqstId}</ns1:rqstId>
+				<ns1:authn userName="${properties#userName}" pswd="${properties#pswd}"/>
+				<ns1:uid>${properties#uid}</ns1:uid>
+			</ns1:hdr>
+			<ns1:intlAcctFundXferRqst>
+				<ns1:fromAcctUid>${getAcctUid1#result}</ns1:fromAcctUid>
+				<ns1:toAcctUid>${getAcctUid2#result}</ns1:toAcctUid>
+				<ns1:fromAcctCncyCode>USD</ns1:fromAcctCncyCode>
+				<ns1:toAcctCncyCode>USD</ns1:toAcctCncyCode>
+				<ns1:date>2014-04-15</ns1:date>
+				<ns1:amt>5.00</ns1:amt>
+			</ns1:intlAcctFundXferRqst>
+        </ns1:transferFunds>
+    </soapenv:Body>
+</soapenv:Envelope>
+]]></con:request><con:assertion type="Valid HTTP Status Codes" name="Valid HTTP Status Codes"><con:configuration><codes>200</codes></con:configuration></con:assertion><con:assertion type="SOAP Fault Assertion" name="Not SOAP Fault"/><con:assertion type="SOAP Response" name="SOAP Response"/><con:assertion type="XPath Match" name="XPath Match"><con:configuration><path>declare namespace s='${soapenv}';
+//s:Envelope</path><content><![CDATA[<s:Envelope xmlns:s="${soapenv}">
+   <s:Body xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <transferFundsResponse xmlns="${xmlns}">
+         <hdr>
+                  <ver>${properties#ver}</ver>
+                  <rqstId>${properties#rqstId}</rqstId>
+                  <authn userName="${properties#userName}" pswd="${properties#pswd}"/>
+                  <uid>${properties#uid}</uid>
+         </hdr>
+         <intlAcctFundXferResp>
+            <stat>200</stat>
+            <fromAcctAvblBal xsi:nil="true"/>
+            <toAcctAvblBal xsi:nil="true"/>
+            <cnfmNbr>Az123456</cnfmNbr>
+         </intlAcctFundXferResp>
+      </transferFundsResponse>
+   </s:Body>
+</s:Envelope>]]></content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="urn:transferFunds" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="transferFunds_nonExistentFromAcctUid"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CustomBinding_CoreLive1</con:interface><con:operation>transferFunds</con:operation><con:request name="transferFunds_nonExistentFromAcctUid"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://adapter-test.arvest.com:451/OLBLodo/CoreLive.svc</con:endpoint><con:request><![CDATA[<?xml version='1.0' encoding='UTF-8'?>
+<soapenv:Envelope xmlns:soapenv="${soapenv}">
+    <soapenv:Body>
+        <ns1:transferFunds xmlns:ns1="${xmlns}">
+			<ns1:hdr>
+				<ns1:ver>${properties#ver}</ns1:ver>
+				<ns1:rqstId>${properties#rqstId}</ns1:rqstId>
+				<ns1:authn userName="${properties#userName}" pswd="${properties#pswd}"/>
+				<ns1:uid>${properties#uid}</ns1:uid>
+			</ns1:hdr>
+			<ns1:intlAcctFundXferRqst>
+				<ns1:fromAcctUid>non_existent_acct</ns1:fromAcctUid>
+				<ns1:toAcctUid>${getAcctUid2#result}</ns1:toAcctUid>
+				<ns1:memo>This is a transfer request test</ns1:memo>
+				<ns1:fromAcctCncyCode>USD</ns1:fromAcctCncyCode>
+				<ns1:toAcctCncyCode>USD</ns1:toAcctCncyCode>
+				<ns1:date>2014-04-15</ns1:date>
+				<ns1:amt>5.00</ns1:amt>
+			</ns1:intlAcctFundXferRqst>
+        </ns1:transferFunds>
+    </soapenv:Body>
+</soapenv:Envelope>
+]]></con:request><con:assertion type="Valid HTTP Status Codes" name="Valid HTTP Status Codes"><con:configuration><codes>400</codes></con:configuration></con:assertion><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="urn:transferFunds" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="transferFunds_nonExistentToAcctUid"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CustomBinding_CoreLive1</con:interface><con:operation>transferFunds</con:operation><con:request name="transferFunds_nonExistentToAcctUid"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://adapter-test.arvest.com:451/OLBLodo/CoreLive.svc</con:endpoint><con:request><![CDATA[<?xml version='1.0' encoding='UTF-8'?>
+<soapenv:Envelope xmlns:soapenv="${soapenv}">
+    <soapenv:Body>
+        <ns1:transferFunds xmlns:ns1="${xmlns}">
+			<ns1:hdr>
+				<ns1:ver>${properties#ver}</ns1:ver>
+				<ns1:rqstId>${properties#rqstId}</ns1:rqstId>
+				<ns1:authn userName="${properties#userName}" pswd="${properties#pswd}"/>
+				<ns1:uid>${properties#uid}</ns1:uid>
+			</ns1:hdr>
+			<ns1:intlAcctFundXferRqst>
+				<ns1:fromAcctUid>${getAcctUid1#result}</ns1:fromAcctUid>
+				<ns1:toAcctUid>non_existent_toAcct</ns1:toAcctUid>
+				<ns1:memo>This is a transfer request test</ns1:memo>
+				<ns1:fromAcctCncyCode>USD</ns1:fromAcctCncyCode>
+				<ns1:toAcctCncyCode>USD</ns1:toAcctCncyCode>
+				<ns1:date>2014-04-15</ns1:date>
+				<ns1:amt>5.00</ns1:amt>
+			</ns1:intlAcctFundXferRqst>
+        </ns1:transferFunds>
+    </soapenv:Body>
+</soapenv:Envelope>
+]]></con:request><con:assertion type="Valid HTTP Status Codes" name="Valid HTTP Status Codes"><con:configuration><codes>400</codes></con:configuration></con:assertion><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="urn:transferFunds" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="transferFunds_negativeAmountValue"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CustomBinding_CoreLive1</con:interface><con:operation>transferFunds</con:operation><con:request name="transferFunds_negativeAmountValue"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://adapter-test.arvest.com:451/OLBLodo/CoreLive.svc</con:endpoint><con:request><![CDATA[<?xml version='1.0' encoding='UTF-8'?>
+<soapenv:Envelope xmlns:soapenv="${soapenv}">
+    <soapenv:Body>
+        <ns1:transferFunds xmlns:ns1="${xmlns}">
+			<ns1:hdr>
+				<ns1:ver>${properties#ver}</ns1:ver>
+				<ns1:rqstId>${properties#rqstId}</ns1:rqstId>
+				<ns1:authn userName="${properties#userName}" pswd="${properties#pswd}"/>
+				<ns1:uid>${properties#uid}</ns1:uid>
+			</ns1:hdr>
+			<ns1:intlAcctFundXferRqst>
+				<ns1:fromAcctUid>${getAcctUid1#result}</ns1:fromAcctUid>
+				<ns1:toAcctUid>${getAcctUid2#result}</ns1:toAcctUid>
+				<ns1:memo>This is a transfer request test</ns1:memo>
+				<ns1:fromAcctCncyCode>USD</ns1:fromAcctCncyCode>
+				<ns1:toAcctCncyCode>USD</ns1:toAcctCncyCode>
+				<ns1:date>2014-04-15</ns1:date>
+				<ns1:amt>-5.00</ns1:amt>
+			</ns1:intlAcctFundXferRqst>
+        </ns1:transferFunds>
+    </soapenv:Body>
+</soapenv:Envelope>
+]]></con:request><con:assertion type="Valid HTTP Status Codes" name="Valid HTTP Status Codes"><con:configuration><codes>400</codes></con:configuration></con:assertion><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="urn:transferFunds" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="transferFunds_nonWellFormedXML"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CustomBinding_CoreLive1</con:interface><con:operation>transferFunds</con:operation><con:request name="transferFunds_nonWellFormedXML"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://adapter-test.arvest.com:451/OLBLodo/CoreLive.svc</con:endpoint><con:request><![CDATA[<?xml version='1.0' encoding='UTF-8'?>
+<soapenv:Envelope xmlns:soapenv="${soapenv}">
+    <soapenv:Body>
+
+			<ns1:hdr>
+				<ns1:ver>${properties#ver}</ns1:ver>
+				<ns1:rqstId>${properties#rqstId}</ns1:rqstId>
+				<ns1:authn userName="${properties#userName}" pswd="${properties#pswd}"/>
+				<ns1:uid>${properties#uid}</ns1:uid>
+			</ns1:hdr>
+			<ns1:intlAcctFundXferRqst>
+				<ns1:fromAcctUid>${getAcctUid1#result}</ns1:fromAcctUid>
+				<ns1:toAcctUid>${getAcctUid2#result}</ns1:toAcctUid>
+				<ns1:memo>This is a transfer request test</ns1:memo>
+				<ns1:fromAcctCncyCode>USD</ns1:fromAcctCncyCode>
+				<ns1:toAcctCncyCode>USD</ns1:toAcctCncyCode>
+				<ns1:date>2014-04-15</ns1:date>
+				<ns1:amt>5.00</ns1:amt>
+			</ns1:intlAcctFundXferRqst>
+
+    </soapenv:Body>
+</soapenv:Envelope>
+]]></con:request><con:assertion type="Valid HTTP Status Codes" name="Valid HTTP Status Codes"><con:configuration><codes>400</codes></con:configuration></con:assertion><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="urn:transferFunds" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="transferFunds_rejected"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CustomBinding_CoreLive1</con:interface><con:operation>transferFunds</con:operation><con:request name="transferFunds_rejected"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://adapter-test.arvest.com:451/OLBLodo/CoreLive.svc</con:endpoint><con:request><![CDATA[<?xml version='1.0' encoding='UTF-8'?>
+<soapenv:Envelope xmlns:soapenv="${soapenv}">
+    <soapenv:Body>
+        <ns1:transferFunds xmlns:ns1="${xmlns}">
+			<ns1:hdr>
+				<ns1:ver>${properties#ver}</ns1:ver>
+				<ns1:rqstId>${properties#rqstId}</ns1:rqstId>
+				<ns1:authn userName="${properties#userName}" pswd="${properties#pswd}"/>
+				<ns1:uid>${properties#uid}</ns1:uid>
+			</ns1:hdr>
+			<ns1:intlAcctFundXferRqst>
+				<ns1:fromAcctUid>${getAcctUid1#result}</ns1:fromAcctUid>
+				<ns1:toAcctUid>${getAcctUid2#result}</ns1:toAcctUid>
+				<ns1:memo>This is a transfer request test</ns1:memo>
+				<ns1:fromAcctCncyCode>USD</ns1:fromAcctCncyCode>
+				<ns1:toAcctCncyCode>USD</ns1:toAcctCncyCode>
+				<ns1:date>2014-04-15</ns1:date>
+				<ns1:amt>5.00</ns1:amt>
+			</ns1:intlAcctFundXferRqst>
+        </ns1:transferFunds>
+    </soapenv:Body>
+</soapenv:Envelope>
+]]></con:request><con:assertion type="Valid HTTP Status Codes" name="Valid HTTP Status Codes"><con:configuration><codes>301</codes></con:configuration></con:assertion><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="urn:transferFunds" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="transferFunds_rejectedNSF"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CustomBinding_CoreLive1</con:interface><con:operation>transferFunds</con:operation><con:request name="transferFunds_rejectedNSF"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://adapter-test.arvest.com:451/OLBLodo/CoreLive.svc</con:endpoint><con:request><![CDATA[<?xml version='1.0' encoding='UTF-8'?>
+<soapenv:Envelope xmlns:soapenv="${soapenv}">
+    <soapenv:Body>
+        <ns1:transferFunds xmlns:ns1="${xmlns}">
+			<ns1:hdr>
+				<ns1:ver>${properties#ver}</ns1:ver>
+				<ns1:rqstId>${properties#rqstId}</ns1:rqstId>
+				<ns1:authn userName="${properties#userName}" pswd="${properties#pswd}"/>
+				<ns1:uid>${properties#uid}</ns1:uid>
+			</ns1:hdr>
+			<ns1:intlAcctFundXferRqst>
+				<ns1:fromAcctUid>${getAcctUid1#result}</ns1:fromAcctUid>
+				<ns1:toAcctUid>${getAcctUid2#result}</ns1:toAcctUid>
+				<ns1:memo>This is a transfer request test</ns1:memo>
+				<ns1:fromAcctCncyCode>USD</ns1:fromAcctCncyCode>
+				<ns1:toAcctCncyCode>USD</ns1:toAcctCncyCode>
+				<ns1:date>2014-04-15</ns1:date>
+				<ns1:amt>7859625</ns1:amt>
+			</ns1:intlAcctFundXferRqst>
+        </ns1:transferFunds>
+    </soapenv:Body>
+</soapenv:Envelope>
+]]></con:request><con:assertion type="Valid HTTP Status Codes" name="Valid HTTP Status Codes"><con:configuration><codes>302</codes></con:configuration></con:assertion><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="urn:transferFunds" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="transferFunds_amountExceedsLoanBalance"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CustomBinding_CoreLive1</con:interface><con:operation>transferFunds</con:operation><con:request name="transferFunds_amountExceedsLoanBalance"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://adapter-test.arvest.com:451/OLBLodo/CoreLive.svc</con:endpoint><con:request><![CDATA[<?xml version='1.0' encoding='UTF-8'?>
+<soapenv:Envelope xmlns:soapenv="${soapenv}">
+    <soapenv:Body>
+        <ns1:transferFunds xmlns:ns1="${xmlns}">
+			<ns1:hdr>
+				<ns1:ver>${properties#ver}</ns1:ver>
+				<ns1:rqstId>${properties#rqstId}</ns1:rqstId>
+				<ns1:authn userName="${properties#userName}" pswd="${properties#pswd}"/>
+				<ns1:uid>${properties#uid}</ns1:uid>
+			</ns1:hdr>
+			<ns1:intlAcctFundXferRqst>
+				<ns1:fromAcctUid>${getAcctUid1#result}</ns1:fromAcctUid>
+				<ns1:toAcctUid>${getAcctUid2#result}</ns1:toAcctUid>
+				<ns1:memo>This is a transfer request test</ns1:memo>
+				<ns1:fromAcctCncyCode>USD</ns1:fromAcctCncyCode>
+				<ns1:toAcctCncyCode>USD</ns1:toAcctCncyCode>
+				<ns1:date>2014-04-15</ns1:date>
+				<ns1:amt>14000000.00</ns1:amt>
+			</ns1:intlAcctFundXferRqst>
+        </ns1:transferFunds>
+    </soapenv:Body>
+</soapenv:Envelope>
+]]></con:request><con:assertion type="Valid HTTP Status Codes" name="Valid HTTP Status Codes"><con:configuration><codes>303</codes></con:configuration></con:assertion><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="urn:transferFunds" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="updateProfile" searchProperties="true" id="609eb2dd-c841-4e66-9f69-0b725d9c6779"><con:settings/><con:testStep type="groovy" name="getAcctUid"><con:settings/><con:config><script>testRunner.testCase.testSuite.getPropertyValue( "acctUid1" )</script></con:config></con:testStep><con:testStep type="groovy" name="getCuid"><con:settings/><con:config><script>testRunner.testCase.testSuite.getPropertyValue( "cuid" )</script></con:config></con:testStep><con:testStep type="properties" name="properties"><con:settings/><con:config xsi:type="con:PropertiesStep" saveFirst="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:source>C:/Users/Arna/Documents/D3Banking/QA/SOAPUI/CoreLive/properties/maxwell677</con:source><con:target/><con:properties><con:property><con:name>ver</con:name><con:value>2.0</con:value></con:property><con:property><con:name>rqstId</con:name><con:value>c5ba1003-ee93-4612-af6a-d66c7bab44a1</con:value></con:property><con:property><con:name>authn</con:name><con:value>anthn</con:value></con:property><con:property><con:name>uid</con:name><con:value>267324</con:value></con:property><con:property><con:name>eTkn</con:name><con:value>testToken</con:value></con:property><con:property><con:name>userName</con:name><con:value>maxwell677</con:value></con:property><con:property><con:name>pswd</con:name><con:value>arvest</con:value></con:property></con:properties></con:config></con:testStep><con:testStep type="request" name="updateProfile"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CustomBinding_CoreLive1</con:interface><con:operation>updateProfile</con:operation><con:request name="updateProfile"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://adapter-test.arvest.com:451/OLBLodo/CoreLive.svc</con:endpoint><con:request><![CDATA[<?xml version='1.0' encoding='UTF-8'?>
+<soapenv:Envelope xmlns:soapenv="${soapenv}">
+    <soapenv:Body>
+        <ns1:updateProfile xmlns:ns1="${xmlns}">
+			<ns1:hdr>
+				<ns1:ver>${properties#ver}</ns1:ver>
+				<ns1:rqstId>${properties#rqstId}</ns1:rqstId>
+				<ns1:authn userName="${properties#userName}" pswd="${properties#pswd}"/>
+				<ns1:uid>${properties#uid}</ns1:uid>
+			</ns1:hdr>
+			<ns1:prflUpdtRqst>
+				<ns1:userPrfl>
+					<ns1:acctEnrlLst>
+						<ns1:acct acctUid="${getAcctUid#result}" compUid="${getCuid#result}">
+							<ns1:eStmtPref>e</ns1:eStmtPref>
+						</ns1:acct>
+					</ns1:acctEnrlLst>                    
+					<ns1:userSet>
+						<ns1:bpStat>a</ns1:bpStat>
+						<ns1:bpId>8737104XX</ns1:bpId>
+						<ns1:dob>1942-09-08</ns1:dob>
+						<ns1:emlOpt>0</ns1:emlOpt>
+						<ns1:gndr>M</ns1:gndr>
+						<ns1:mobl>0</ns1:mobl>
+						<ns1:pers>
+							<ns1:frstName>Samuel</ns1:frstName>
+							<ns1:midlName>Quincy</ns1:midlName>
+							<ns1:lastName>Adams III</ns1:lastName>
+							<ns1:priEmail>samuel.adamsiii@d3banking.com</ns1:priEmail>
+							<ns1:altEmail>samuel.adamsiii@lodosoftware.com</ns1:altEmail>
+							<ns1:homePhon>2417915393</ns1:homePhon>
+							<ns1:workPhon>6193592910</ns1:workPhon>
+							<ns1:moblPhon>2605410261</ns1:moblPhon>
+							<ns1:emp>0</ns1:emp>
+							<ns1:priAddr>
+								<ns1:addr1>8232 N 152nd St</ns1:addr1>
+								<ns1:city>Victorville</ns1:city>
+								<ns1:st>CA</ns1:st>
+								<ns1:pstlCode>92395</ns1:pstlCode>
+								<ns1:ctryCode>US</ns1:ctryCode>
+							</ns1:priAddr>
+							<ns1:mailAddr>
+								<ns1:addr1>1292 Spindlewood Ln</ns1:addr1>
+								<ns1:city>Rock Hill</ns1:city>
+								<ns1:st>SC</ns1:st>
+								<ns1:pstlCode>29734</ns1:pstlCode>
+								<ns1:ctryCode>US</ns1:ctryCode>
+							</ns1:mailAddr>
+						</ns1:pers>
+					</ns1:userSet>
+				</ns1:userPrfl>
+			</ns1:prflUpdtRqst>
+        </ns1:updateProfile>
+    </soapenv:Body>
+</soapenv:Envelope>
+]]></con:request><con:assertion type="Valid HTTP Status Codes" name="Valid HTTP Status Codes"><con:configuration><codes>200</codes></con:configuration></con:assertion><con:assertion type="SOAP Fault Assertion" name="Not SOAP Fault"/><con:assertion type="XPath Match" name="XPath Match"><con:configuration><path>declare namespace s='${soapenv}';
+//s:Envelope</path><content><![CDATA[<s:Envelope xmlns:s="${soapenv}">
+   <s:Body xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <updateProfileResponse xmlns="${xmlns}">
+         <hdr>
+            <ver>${properties#ver}</ver>
+            <rqstId>${properties#rqstId}</rqstId>
+            <authn userName="${properties#userName}" pswd="${properties#pswd}"/>
+            <uid>${properties#uid}</uid>
+         </hdr>
+         <prflUpdtResp>
+            <stat>200</stat>
+            <cnfmNbr>*</cnfmNbr>
+         </prflUpdtResp>
+      </updateProfileResponse>
+   </s:Body>
+</s:Envelope>]]></content><allowWildcards>true</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>true</ignoreComments></con:configuration></con:assertion><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="urn:updateProfile" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="updateProfile_nonExistentAcct"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CustomBinding_CoreLive1</con:interface><con:operation>updateProfile</con:operation><con:request name="updateProfile_nonExistentAcct"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://adapter-test.arvest.com:451/OLBLodo/CoreLive.svc</con:endpoint><con:request><![CDATA[<?xml version='1.0' encoding='UTF-8'?>
+<soapenv:Envelope xmlns:soapenv="${soapenv}">
+    <soapenv:Body>
+        <ns1:updateProfile xmlns:ns1="${xmlns}">
+			<ns1:hdr>
+				<ns1:ver>${properties#ver}</ns1:ver>
+				<ns1:rqstId>${properties#rqstId}</ns1:rqstId>
+				<ns1:authn userName="${properties#userName}" pswd="${properties#pswd}"/>
+				<ns1:uid>${properties#uid}</ns1:uid>
+			</ns1:hdr>
+			<ns1:prflUpdtRqst>
+				<ns1:userPrfl>
+					<ns1:acctEnrlLst>
+						<ns1:acct acctUid="non_existent_acct" compUid="${getCuid#result}">
+							<ns1:eStmtPref>e</ns1:eStmtPref>
+						</ns1:acct>
+					</ns1:acctEnrlLst>                    
+					<ns1:userSet>
+						<ns1:bpStat>a</ns1:bpStat>
+						<ns1:bpId>8737104XX</ns1:bpId>
+						<ns1:dob>1942-09-08</ns1:dob>
+						<ns1:emlOpt>0</ns1:emlOpt>
+						<ns1:gndr>M</ns1:gndr>
+						<ns1:mobl>0</ns1:mobl>
+						<ns1:pers>
+							<ns1:frstName>Samuel</ns1:frstName>
+							<ns1:midlName>Quincy</ns1:midlName>
+							<ns1:lastName>Adams III</ns1:lastName>
+							<ns1:priEmail>samuel.adamsiii@d3banking.com</ns1:priEmail>
+							<ns1:altEmail>samuel.adamsiii@lodosoftware.com</ns1:altEmail>
+							<ns1:homePhon>2417915393</ns1:homePhon>
+							<ns1:workPhon>6193592910</ns1:workPhon>
+							<ns1:moblPhon>2605410261</ns1:moblPhon>
+							<ns1:emp>0</ns1:emp>
+							<ns1:priAddr>
+								<ns1:addr1>8232 N 152nd St</ns1:addr1>
+								<ns1:city>Victorville</ns1:city>
+								<ns1:st>CA</ns1:st>
+								<ns1:pstlCode>92395</ns1:pstlCode>
+								<ns1:ctryCode>US</ns1:ctryCode>
+							</ns1:priAddr>
+							<ns1:mailAddr>
+								<ns1:addr1>1292 Spindlewood Ln</ns1:addr1>
+								<ns1:city>Rock Hill</ns1:city>
+								<ns1:st>SC</ns1:st>
+								<ns1:pstlCode>29734</ns1:pstlCode>
+								<ns1:ctryCode>US</ns1:ctryCode>
+							</ns1:mailAddr>
+						</ns1:pers>
+					</ns1:userSet>
+				</ns1:userPrfl>
+			</ns1:prflUpdtRqst>
+        </ns1:updateProfile>
+    </soapenv:Body>
+</soapenv:Envelope>
+]]></con:request><con:assertion type="Valid HTTP Status Codes" name="Valid HTTP Status Codes"><con:configuration><codes>400</codes></con:configuration></con:assertion><con:assertion type="SOAP Fault Assertion" name="Not SOAP Fault"/><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="urn:updateProfile" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="updateProfile_nonExistentCuid"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CustomBinding_CoreLive1</con:interface><con:operation>updateProfile</con:operation><con:request name="updateProfile_nonExistentCuid"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://adapter-test.arvest.com:451/OLBLodo/CoreLive.svc</con:endpoint><con:request><![CDATA[<?xml version='1.0' encoding='UTF-8'?>
+<soapenv:Envelope xmlns:soapenv="${soapenv}">
+    <soapenv:Body>
+        <ns1:updateProfile xmlns:ns1="${xmlns}">
+			<ns1:hdr>
+				<ns1:ver>${properties#ver}</ns1:ver>
+				<ns1:rqstId>${properties#rqstId}</ns1:rqstId>
+				<ns1:authn userName="${properties#userName}" pswd="${properties#pswd}"/>
+				<ns1:uid>${properties#uid}</ns1:uid>
+			</ns1:hdr>
+			<ns1:prflUpdtRqst>
+				<ns1:userPrfl>
+					<ns1:acctEnrlLst>
+						<ns1:acct acctUid="${getAcctUid#result}" compUid="non_existent_cuid">
+							<ns1:eStmtPref>e</ns1:eStmtPref>
+						</ns1:acct>
+					</ns1:acctEnrlLst>                    
+					<ns1:userSet>
+						<ns1:bpStat>a</ns1:bpStat>
+						<ns1:bpId>8737104XX</ns1:bpId>
+						<ns1:dob>1942-09-08</ns1:dob>
+						<ns1:emlOpt>0</ns1:emlOpt>
+						<ns1:gndr>M</ns1:gndr>
+						<ns1:mobl>0</ns1:mobl>
+						<ns1:pers>
+							<ns1:frstName>Samuel</ns1:frstName>
+							<ns1:midlName>Quincy</ns1:midlName>
+							<ns1:lastName>Adams III</ns1:lastName>
+							<ns1:priEmail>samuel.adamsiii@d3banking.com</ns1:priEmail>
+							<ns1:altEmail>samuel.adamsiii@lodosoftware.com</ns1:altEmail>
+							<ns1:homePhon>2417915393</ns1:homePhon>
+							<ns1:workPhon>6193592910</ns1:workPhon>
+							<ns1:moblPhon>2605410261</ns1:moblPhon>
+							<ns1:emp>0</ns1:emp>
+							<ns1:priAddr>
+								<ns1:addr1>8232 N 152nd St</ns1:addr1>
+								<ns1:city>Victorville</ns1:city>
+								<ns1:st>CA</ns1:st>
+								<ns1:pstlCode>92395</ns1:pstlCode>
+								<ns1:ctryCode>US</ns1:ctryCode>
+							</ns1:priAddr>
+							<ns1:mailAddr>
+								<ns1:addr1>1292 Spindlewood Ln</ns1:addr1>
+								<ns1:city>Rock Hill</ns1:city>
+								<ns1:st>SC</ns1:st>
+								<ns1:pstlCode>29734</ns1:pstlCode>
+								<ns1:ctryCode>US</ns1:ctryCode>
+							</ns1:mailAddr>
+						</ns1:pers>
+					</ns1:userSet>
+				</ns1:userPrfl>
+			</ns1:prflUpdtRqst>
+        </ns1:updateProfile>
+    </soapenv:Body>
+</soapenv:Envelope>
+]]></con:request><con:assertion type="Valid HTTP Status Codes" name="Valid HTTP Status Codes"><con:configuration><codes>400</codes></con:configuration></con:assertion><con:assertion type="SOAP Fault Assertion" name="Not SOAP Fault"/><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="urn:updateProfile" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="updateProfile_eStmtPrefPaper"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CustomBinding_CoreLive1</con:interface><con:operation>updateProfile</con:operation><con:request name="updateProfile_eStmtPrefPaper"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://adapter-test.arvest.com:451/OLBLodo/CoreLive.svc</con:endpoint><con:request><![CDATA[<?xml version='1.0' encoding='UTF-8'?>
+<soapenv:Envelope xmlns:soapenv="${soapenv}">
+    <soapenv:Body>
+        <ns1:updateProfile xmlns:ns1="${xmlns}">
+			<ns1:hdr>
+				<ns1:ver>${properties#ver}</ns1:ver>
+				<ns1:rqstId>${properties#rqstId}</ns1:rqstId>
+				<ns1:authn userName="${properties#userName}" pswd="${properties#pswd}"/>
+				<ns1:uid>${properties#uid}</ns1:uid>
+			</ns1:hdr>
+			<ns1:prflUpdtRqst>
+				<ns1:userPrfl>
+					<ns1:acctEnrlLst>
+						<ns1:acct acctUid="${getAcctUid#result}" compUid="${getCuid#result}">
+							<ns1:eStmtPref>p</ns1:eStmtPref>
+						</ns1:acct>
+					</ns1:acctEnrlLst>                    
+					<ns1:userSet>
+						<ns1:bpStat>a</ns1:bpStat>
+						<ns1:bpId>8737104XX</ns1:bpId>
+						<ns1:dob>1942-09-08</ns1:dob>
+						<ns1:emlOpt>0</ns1:emlOpt>
+						<ns1:gndr>M</ns1:gndr>
+						<ns1:mobl>0</ns1:mobl>
+						<ns1:pers>
+							<ns1:frstName>Samuel</ns1:frstName>
+							<ns1:midlName>Quincy</ns1:midlName>
+							<ns1:lastName>Adams III</ns1:lastName>
+							<ns1:priEmail>samuel.adamsiii@d3banking.com</ns1:priEmail>
+							<ns1:altEmail>samuel.adamsiii@lodosoftware.com</ns1:altEmail>
+							<ns1:homePhon>2417915393</ns1:homePhon>
+							<ns1:workPhon>6193592910</ns1:workPhon>
+							<ns1:moblPhon>2605410261</ns1:moblPhon>
+							<ns1:emp>0</ns1:emp>
+							<ns1:priAddr>
+								<ns1:addr1>8232 N 152nd St</ns1:addr1>
+								<ns1:city>Victorville</ns1:city>
+								<ns1:st>CA</ns1:st>
+								<ns1:pstlCode>92395</ns1:pstlCode>
+								<ns1:ctryCode>US</ns1:ctryCode>
+							</ns1:priAddr>
+							<ns1:mailAddr>
+								<ns1:addr1>1292 Spindlewood Ln</ns1:addr1>
+								<ns1:city>Rock Hill</ns1:city>
+								<ns1:st>SC</ns1:st>
+								<ns1:pstlCode>29734</ns1:pstlCode>
+								<ns1:ctryCode>US</ns1:ctryCode>
+							</ns1:mailAddr>
+						</ns1:pers>
+					</ns1:userSet>
+				</ns1:userPrfl>
+			</ns1:prflUpdtRqst>
+        </ns1:updateProfile>
+    </soapenv:Body>
+</soapenv:Envelope>
+]]></con:request><con:assertion type="Valid HTTP Status Codes" name="Valid HTTP Status Codes"><con:configuration><codes>200</codes></con:configuration></con:assertion><con:assertion type="SOAP Fault Assertion" name="Not SOAP Fault"/><con:assertion type="XPath Match" name="XPath Match"><con:configuration><path>declare namespace s='${soapenv}';
+//s:Envelope</path><content><![CDATA[<s:Envelope xmlns:s="${soapenv}">
+   <s:Body xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <updateProfileResponse xmlns="${xmlns}">
+         <hdr>
+            <ver>${properties#ver}</ver>
+            <rqstId>${properties#rqstId}</rqstId>
+            <authn userName="${properties#userName}" pswd="${properties#pswd}"/>
+            <uid>${properties#uid}</uid>
+         </hdr>
+         <prflUpdtResp>
+            <stat>200</stat>
+            <cnfmNbr>*</cnfmNbr>
+         </prflUpdtResp>
+      </updateProfileResponse>
+   </s:Body>
+</s:Envelope>]]></content><allowWildcards>true</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>true</ignoreComments></con:configuration></con:assertion><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="urn:updateProfile" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="updateProfile_eStmtPrefBoth"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CustomBinding_CoreLive1</con:interface><con:operation>updateProfile</con:operation><con:request name="updateProfile_eStmtPrefBoth"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://adapter-test.arvest.com:451/OLBLodo/CoreLive.svc</con:endpoint><con:request><![CDATA[<?xml version='1.0' encoding='UTF-8'?>
+<soapenv:Envelope xmlns:soapenv="${soapenv}">
+    <soapenv:Body>
+        <ns1:updateProfile xmlns:ns1="${xmlns}">
+			<ns1:hdr>
+				<ns1:ver>${properties#ver}</ns1:ver>
+				<ns1:rqstId>${properties#rqstId}</ns1:rqstId>
+				<ns1:authn userName="${properties#userName}" pswd="${properties#pswd}"/>
+				<ns1:uid>${properties#uid}</ns1:uid>
+			</ns1:hdr>
+			<ns1:prflUpdtRqst>
+				<ns1:userPrfl>
+					<ns1:acctEnrlLst>
+						<ns1:acct acctUid="${getAcctUid#result}" compUid="${getCuid#result}">
+							<ns1:eStmtPref>b</ns1:eStmtPref>
+						</ns1:acct>
+					</ns1:acctEnrlLst>                    
+					<ns1:userSet>
+						<ns1:bpStat>a</ns1:bpStat>
+						<ns1:bpId>8737104XX</ns1:bpId>
+						<ns1:dob>1942-09-08</ns1:dob>
+						<ns1:emlOpt>0</ns1:emlOpt>
+						<ns1:gndr>M</ns1:gndr>
+						<ns1:mobl>0</ns1:mobl>
+						<ns1:pers>
+							<ns1:frstName>Samuel</ns1:frstName>
+							<ns1:midlName>Quincy</ns1:midlName>
+							<ns1:lastName>Adams III</ns1:lastName>
+							<ns1:priEmail>samuel.adamsiii@d3banking.com</ns1:priEmail>
+							<ns1:altEmail>samuel.adamsiii@lodosoftware.com</ns1:altEmail>
+							<ns1:homePhon>2417915393</ns1:homePhon>
+							<ns1:workPhon>6193592910</ns1:workPhon>
+							<ns1:moblPhon>2605410261</ns1:moblPhon>
+							<ns1:emp>0</ns1:emp>
+							<ns1:priAddr>
+								<ns1:addr1>8232 N 152nd St</ns1:addr1>
+								<ns1:city>Victorville</ns1:city>
+								<ns1:st>CA</ns1:st>
+								<ns1:pstlCode>92395</ns1:pstlCode>
+								<ns1:ctryCode>US</ns1:ctryCode>
+							</ns1:priAddr>
+							<ns1:mailAddr>
+								<ns1:addr1>1292 Spindlewood Ln</ns1:addr1>
+								<ns1:city>Rock Hill</ns1:city>
+								<ns1:st>SC</ns1:st>
+								<ns1:pstlCode>29734</ns1:pstlCode>
+								<ns1:ctryCode>US</ns1:ctryCode>
+							</ns1:mailAddr>
+						</ns1:pers>
+					</ns1:userSet>
+				</ns1:userPrfl>
+			</ns1:prflUpdtRqst>
+        </ns1:updateProfile>
+    </soapenv:Body>
+</soapenv:Envelope>
+]]></con:request><con:assertion type="Valid HTTP Status Codes" name="Valid HTTP Status Codes"><con:configuration><codes>200</codes></con:configuration></con:assertion><con:assertion type="SOAP Fault Assertion" name="Not SOAP Fault"/><con:assertion type="XPath Match" name="XPath Match"><con:configuration><path>declare namespace s='${soapenv}';
+//s:Envelope</path><content><![CDATA[<s:Envelope xmlns:s="${soapenv}">
+   <s:Body xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+      <updateProfileResponse xmlns="${xmlns}">
+         <hdr>
+            <ver>${properties#ver}</ver>
+            <rqstId>${properties#rqstId}</rqstId>
+            <authn userName="${properties#userName}" pswd="${properties#pswd}"/>
+            <uid>${properties#uid}</uid>
+         </hdr>
+         <prflUpdtResp>
+            <stat>200</stat>
+            <cnfmNbr>*</cnfmNbr>
+         </prflUpdtResp>
+      </updateProfileResponse>
+   </s:Body>
+</s:Envelope>]]></content><allowWildcards>true</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>true</ignoreComments></con:configuration></con:assertion><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="urn:updateProfile" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="updateProfile_nonSupported_eStmtPref"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>CustomBinding_CoreLive1</con:interface><con:operation>updateProfile</con:operation><con:request name="updateProfile_nonSupported_eStmtPref"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>https://adapter-test.arvest.com:451/OLBLodo/CoreLive.svc</con:endpoint><con:request><![CDATA[<?xml version='1.0' encoding='UTF-8'?>
+<soapenv:Envelope xmlns:soapenv="${soapenv}">
+    <soapenv:Body>
+        <ns1:updateProfile xmlns:ns1="${xmlns}">
+			<ns1:hdr>
+				<ns1:ver>${properties#ver}</ns1:ver>
+				<ns1:rqstId>${properties#rqstId}</ns1:rqstId>
+				<ns1:authn userName="${properties#userName}" pswd="${properties#pswd}"/>
+				<ns1:uid>${properties#uid}</ns1:uid>
+			</ns1:hdr>
+			<ns1:prflUpdtRqst>
+				<ns1:userPrfl>
+					<ns1:acctEnrlLst>
+						<ns1:acct acctUid="${getAcctUid#result}" compUid="${getCuid#result}">
+							<ns1:eStmtPref>none</ns1:eStmtPref>
+						</ns1:acct>
+					</ns1:acctEnrlLst>                    
+					<ns1:userSet>
+						<ns1:bpStat>a</ns1:bpStat>
+						<ns1:bpId>8737104XX</ns1:bpId>
+						<ns1:dob>1942-09-08</ns1:dob>
+						<ns1:emlOpt>0</ns1:emlOpt>
+						<ns1:gndr>M</ns1:gndr>
+						<ns1:mobl>0</ns1:mobl>
+						<ns1:pers>
+							<ns1:frstName>Samuel</ns1:frstName>
+							<ns1:midlName>Quincy</ns1:midlName>
+							<ns1:lastName>Adams III</ns1:lastName>
+							<ns1:priEmail>samuel.adamsiii@d3banking.com</ns1:priEmail>
+							<ns1:altEmail>samuel.adamsiii@lodosoftware.com</ns1:altEmail>
+							<ns1:homePhon>2417915393</ns1:homePhon>
+							<ns1:workPhon>6193592910</ns1:workPhon>
+							<ns1:moblPhon>2605410261</ns1:moblPhon>
+							<ns1:emp>0</ns1:emp>
+							<ns1:priAddr>
+								<ns1:addr1>8232 N 152nd St</ns1:addr1>
+								<ns1:city>Victorville</ns1:city>
+								<ns1:st>CA</ns1:st>
+								<ns1:pstlCode>92395</ns1:pstlCode>
+								<ns1:ctryCode>US</ns1:ctryCode>
+							</ns1:priAddr>
+							<ns1:mailAddr>
+								<ns1:addr1>1292 Spindlewood Ln</ns1:addr1>
+								<ns1:city>Rock Hill</ns1:city>
+								<ns1:st>SC</ns1:st>
+								<ns1:pstlCode>29734</ns1:pstlCode>
+								<ns1:ctryCode>US</ns1:ctryCode>
+							</ns1:mailAddr>
+						</ns1:pers>
+					</ns1:userSet>
+				</ns1:userPrfl>
+			</ns1:prflUpdtRqst>
+        </ns1:updateProfile>
+    </soapenv:Body>
+</soapenv:Envelope>
+]]></con:request><con:assertion type="Valid HTTP Status Codes" name="Valid HTTP Status Codes"><con:configuration><codes>400</codes></con:configuration></con:assertion><con:assertion type="SOAP Fault Assertion" name="Not SOAP Fault"/><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="urn:updateProfile" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:properties><con:property><con:name>payload</con:name><con:value>arna</con:value></con:property><con:property><con:name>AcctUid1</con:name><con:value>L0000000371005163</con:value></con:property><con:property><con:name>accountUid1</con:name><con:value>L0000000371005163</con:value></con:property><con:property><con:name>acctUid2</con:name><con:value>D0000000016428566</con:value></con:property><con:property><con:name>cuid</con:name><con:value>default</con:value></con:property><con:property><con:name>accountUid2</con:name><con:value>D0000000016428566</con:value></con:property></con:properties></con:testSuite><con:properties><con:property><con:name>payload</con:name><con:value>arna_test</con:value></con:property><con:property><con:name>AcctUid1</con:name><con:value>L0000000371005163</con:value></con:property><con:property><con:name>AcctUid2</con:name><con:value>D0000000016428566</con:value></con:property><con:property><con:name>cuid</con:name><con:value>default</con:value></con:property></con:properties><con:wssContainer><con:crypto><con:source>C:/Users/Arna/Documents/D3Banking/QA/SOAPUI/Certificates/arvest-qa-keystore.pfx</con:source><con:password/><con:type>KEYSTORE</con:type></con:crypto><con:crypto><con:source>C:/Users/Arna/Documents/D3Banking/QA/SOAPUI/Certificates/arvest-qa-truststore.jks</con:source><con:password/><con:type>TRUSTSTORE</con:type></con:crypto></con:wssContainer><con:sensitiveInformation/></con:soapui-project>

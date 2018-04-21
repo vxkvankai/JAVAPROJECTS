@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="D3 Smoke Tests Suite" verbose="2">
+    <listeners>
+        <listener class-name="com.d3.tests.listeners.ProjectListener"/>
+    </listeners>
+    <test name="Smoke Tests">
+        <packages>
+            <package name="com.d3.tests.consumer.core.*"/>
+        </packages>
+    </test>
+</suite>
