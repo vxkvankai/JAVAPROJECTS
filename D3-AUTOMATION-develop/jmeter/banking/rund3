@@ -1,8 +1,0 @@
-#!/bin/bash
-
-D3_SCRIPT_HOME=/data/git/D3-AUTOMATION/jmeter/banking
-JMETER_LOG_HOME=/data/tools/jmeterLogs
-
-echo $D3_SCRIPT_HOME
-rm ${JMETER_LOG_HOME}/d3PerfRun.log
-jmeter -n -t ${D3_SCRIPT_HOME}/d3ui-saas.jmx -j ${JMETER_LOG_HOME}/d3PerfRun.log -Ljmeter.engine=DEBUG -p jmeter.config

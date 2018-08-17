@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<conduitMemoPostRequest xmlns="http://lodosoftware.com/conduit/memo">
-	<version>1.0</version>
-	<authentication>
-		<username>userName</username>
-		<password>password</password>
-	</authentication>
-
-</conduitMemoPostRequest>

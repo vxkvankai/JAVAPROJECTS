@@ -1,4 +1,0 @@
-!1 !c !style_green[LODO SOFTWARE Rest Api Call Tests] 
-!c Today is !today
-
-!contents -R2 -g -p -f -h

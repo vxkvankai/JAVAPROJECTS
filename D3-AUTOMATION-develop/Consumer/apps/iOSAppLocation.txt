@@ -1,1 +1,0 @@
-The path to the iOS App build will be written to this file.

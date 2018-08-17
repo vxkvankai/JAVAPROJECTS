@@ -2,7 +2,8 @@ package com.vamsi.java;
 
 public class Main {
 
-    public static void main(String[] args) {
+    static public void main(String... va) {
 	// write your code here
     }
 }
+                                                  

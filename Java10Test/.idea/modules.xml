@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Java10Test.iml" filepath="$PROJECT_DIR$/Java10Test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bawp.programming.coursedatabase/bawp.programming.coursedatabase.iml" filepath="$PROJECT_DIR$/bawp.programming.coursedatabase/bawp.programming.coursedatabase.iml" />
+      <module fileurl="file://$PROJECT_DIR$/build.programming.apps/build.programming.apps.iml" filepath="$PROJECT_DIR$/build.programming.apps/build.programming.apps.iml" />
+    </modules>
+  </component>
+</project>

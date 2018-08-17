@@ -1,8 +1,0 @@
-<?xml version="1.0"?>
-<conduitUserRequest xmlns="http://lodosoftware.com/conduit/user">
-    <version>1.0</version>
-    <transactionDateRange>
-        <beginDate>2010-05-01</beginDate>
-        <endDate>2012-08-01</endDate>
-    </transactionDateRange>
-</conduitUserRequest>

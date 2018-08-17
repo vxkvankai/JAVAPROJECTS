@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-
-<conduitUserRequest xmlns="http://lodosoftware.com/conduit/user" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-    <version>1.0</version>
-    <accountList>
-        <account directId="accountDirectID1-1">
-        </account>
-    </accountList>
-</conduitUserRequest>
